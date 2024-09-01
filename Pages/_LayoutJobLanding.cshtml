@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@namespace ynex.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Microsoft.AspNetCore.Components.NavigationManager NavigationManager // This line is used to generate URLs dynamically //
+@inject StateService stateService
+
+    @{ 
+        
+        var appState = stateService.GetAppState();
+
+    }
+<!DOCTYPE html>
+<html lang="en" data-nav-layout="horizontal" data-nav-style="menu-click" data-menu-position="fixed"  data-toggled="close"
+
+    @if (!string.IsNullOrEmpty(appState?.Direction))
+    {
+        <text>dir="@appState.Direction"</text>
+    }
+    @if (!string.IsNullOrEmpty(appState?.ColorTheme))
+    {
+        <text>data-theme-mode="@appState.ColorTheme"</text>
+    }
+    @if (!string.IsNullOrEmpty(appState?.ThemePrimary))
+    {
+        <text> style="--primary-rgb: @appState.ThemePrimary;"</text>
+    }>
+
+    <head>
+        <!-- META DATA -->
+        <meta charset="UTF-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
+        <meta name="Author" content="Spruko Technologies Private Limited">
+        <meta name="keywords" content="blazor, blazor c#, blazor template, dashboard, blazor ui, dashboard template, blazor bootstrap, blazor framework, admin, blazor net, bootstrap, bootstrap css, admindashboard, bootstrap blazor, bootstrap admin">
+        <base href="~/" />
+
+        <!-- TITLE -->
+        <title> Ynex - Blazor Server Bootstrap5 Premium Admin & Dashboard Template </title>
+
+        <!-- Favicon -->
+        <link rel="icon" href="@($"{NavigationManager.BaseUri}assets/images/brand-logos/favicon.ico")" type="image/x-icon">
+
+        <!-- Style Css -->
+        <link href="@($"{NavigationManager.BaseUri}assets/css/styles.css")" rel="stylesheet" >
+
+        <!-- Icons Css -->
+        <link href="@($"{NavigationManager.BaseUri}assets/css/icons.css")" rel="stylesheet" >
+
+        <!-- ColorPicker CSS -->
+        <link href="_content/BlazorColorPicker/colorpicker.css" rel="stylesheet" />
+        <link href="_content/BlazorColorPicker/BlazorColorPicker.bundle.scp.css" rel="stylesheet" />
+
+        <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+        
+    </head>
+
+    <body class="landing-body jobs-landing">
+
+        @RenderBody()
+
+        <!-- Scroll To Top -->
+
+        <!-- Popper JS -->
+        <script src="@($"{NavigationManager.BaseUri}assets/libs/@popperjs/core/umd/popper.min.js")"></script>
+
+        <!-- Bootstrap JS -->
+        <script src="@($"{NavigationManager.BaseUri}assets/libs/bootstrap/js/bootstrap.bundle.min.js")"></script>
+        
+        <script src="_framework/blazor.server.js"></script>
+        <script src="js/javaScriptInterop.js"></script>
+        <script src="js/resizeInterop.js"></script>
+
+    </body>
+
+</html>

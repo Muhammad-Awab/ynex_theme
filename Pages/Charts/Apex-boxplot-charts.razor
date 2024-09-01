@@ -1,0 +1,450 @@
+@page "/apex-boxplot-charts"
+@using ApexCharts
+@using System.Collections.Generic
+
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <h1 class="page-title fw-semibold fs-18 mb-0">Apex Boxplot Charts</h1>
+                    <div class="ms-md-1 ms-0">
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Apex Charts</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Apex Boxplot Charts</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start::row-1 -->
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Basic Boxplot Chart</div>
+                            </div>
+                            <div class="card-body">
+                                    <ApexChart TItem="Boxplotbasicchart" Title="Basic BoxPlot Chart" Debug Height="320" Options=BoxplotbasicchartOptions>
+                                        <ApexBoxPlotSeries TItem="Boxplotbasicchart"
+                                            Items="incidents" Name="boxPlot" XValue="@(e => e.Name)"
+                                            Max="@(e => (decimal)e.Max)" Min="@(e => (decimal)e.Min)"
+                                            Quantile1="@(e => (decimal)e.Q1)" Quantile3="@(e => (decimal)e.Q3)"
+                                            Median="@(e => (decimal)e.Median)" />
+                                    </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Boxplot With Time Series</div>
+                            </div>
+                            <div class="card-body">
+                                    <ApexChart TItem="BoxplotTimechart"  XAxisType="XAxisType.Datetime" Title="BoxPlot - Time Series" Debug Height="320" Options=BoxplotTimechartOptions>
+                                        <ApexBoxPlotSeries TItem="BoxplotTimechart"
+                                            Items="Timeincidents"  Name="box" XValue="@(e => e.Date)"
+                                            Max="@(e => (decimal)e.Max)" Min="@(e => (decimal)e.Min)"
+                                            Quantile1="@(e => (decimal)e.Q1)" Quantile3="@(e => (decimal)e.Q3)"
+                                            Median="@(e => (decimal)e.Median)" />
+                                    </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Colors Boxplot Chart</div>
+                            </div>
+                            <div class="card-body">
+                            <ApexChart TItem="Boxplotcolorschart" Options=boxplotcolorschartoptions  Height="320">
+                                <ApexBoxPlotSeries TItem="Boxplotcolorschart"
+                                    Items="Boxplotcolorschartincidents"
+                                    Name="incidents"
+                                    XValue="@(e => e.Name)"
+                                    Max="@(e => e.Max)"
+                                    Min="@(e => e.Min)"
+                                    Quantile1="@(e => e.Q1)"
+                                    Quantile3="@(e => e.Q3)"
+                                    Median="@(e => e.Median)"
+                                    />
+                            </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Horizontal Boxplot Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <ApexChart TItem="Boxplothorizontalchart" Options=boxplothorizontalchartoptions Height="320">
+                                
+                                    <ApexBoxPlotSeries TItem="Boxplothorizontalchart"
+                                                Items="Boxplothorizontalchartincidents"
+                                                Name="Boxplothorizontalchartincidents"
+                                                XValue="@(e => e.Name)"
+                                                Max="@(e => e.Max)"
+                                                Min="@(e => e.Min)"
+                                                Quantile1="@(e => e.Q1)"
+                                                Quantile3="@(e => e.Q3)"
+                                                Median="@(e => e.Median)"
+                                                />
+                                </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+            </div>
+
+@code {
+    
+    // Basic BoxplotChart Start //     
+    private List<Boxplotbasicchart> incidents { get; set; } = DataBoxplotbasicchart.GetBoxplotbasiccharts();
+    private ApexChartOptions<Boxplotbasicchart> BoxplotbasicchartOptions { get; set; } = new();
+    public static class DataBoxplotbasicchart
+    {
+        public static List<Boxplotbasicchart> GetBoxplotbasiccharts()
+        {
+            var boxPlotData = new List<Boxplotbasicchart>
+            {
+                new Boxplotbasicchart { Name = "Jan 2015", Min = 54, Max = 88, Q1 = 66, Q3 = 75, Median = 69 },
+                new Boxplotbasicchart { Name = "Jan 2016", Min = 43, Max = 81, Q1 = 65, Q3 = 76, Median = 69 },
+                new Boxplotbasicchart { Name = "Jan 2017", Min = 31, Max = 59, Q1 = 39, Q3 = 51, Median = 45 },
+                new Boxplotbasicchart { Name = "Jan 2018", Min = 39, Max = 71, Q1 = 46, Q3 = 65, Median = 55 },
+                new Boxplotbasicchart { Name = "Jan 2019", Min = 29, Max = 44, Q1 = 31, Q3 = 39, Median = 35 },
+                new Boxplotbasicchart { Name = "Jan 2020", Min = 41, Max = 67, Q1 = 49, Q3 = 61, Median = 58 },
+                new Boxplotbasicchart { Name = "Jan 2021", Min = 54, Max = 88, Q1 = 59, Q3 = 71, Median = 66 },
+            };
+
+            return boxPlotData;
+        }
+    }
+    public class Boxplotbasicchart
+    {
+        public string? Name { get; set; }
+        public decimal Min { get; set; }
+        public decimal Max { get; set; }
+        public decimal Q1 { get; set; }
+        public decimal Q3 { get; set; }
+        public decimal Median { get; set; }
+    }
+    // Basic BoxplotChart End //     
+    
+    // Time BoxplotChart Start //     
+    private List<BoxplotTimechart> Timeincidents { get; set; } = DataBoxplotTimechart.GetBoxplotTimecharts();
+    private ApexChartOptions<BoxplotTimechart> BoxplotTimechartOptions { get; set; } = new();
+    public static class DataBoxplotTimechart
+    {
+        public static List<BoxplotTimechart> GetBoxplotTimecharts()
+        {
+            var boxPlotData = new List<BoxplotTimechart>
+            {
+                new BoxplotTimechart { Date = new DateTime(1483228800000), Min = 54, Max = 88, Q1 = 66, Q3 = 75, Median = 69, YSeries = 32 },
+                new BoxplotTimechart { Date = new DateTime(1514764800000), Min = 43, Max = 81, Q1 = 65, Q3 = 76, Median = 69, YSeries = 25 },
+                new BoxplotTimechart { Date = new DateTime(1546300800000), Min = 31, Max = 59, Q1 = 39, Q3 = 51, Median = 45, YSeries = 64 },
+                new BoxplotTimechart { Date = new DateTime(1577836800000), Min = 39, Max = 71, Q1 = 46, Q3 = 65, Median = 55, YSeries = 27 },
+                new BoxplotTimechart { Date = new DateTime(1609459200000), Min = 29, Max = 44, Q1 = 31, Q3 = 39, Median = 35, YSeries = 78 },
+            };
+
+            return boxPlotData;
+        }
+    }
+    public class BoxplotTimechart
+    {
+        public DateTime Date { get; set; }
+        public decimal Min { get; set; }
+        public decimal Max { get; set; }
+        public decimal Q1 { get; set; }
+        public decimal Q3 { get; set; }
+        public decimal Median { get; set; }
+        public decimal YSeries { get; set; }
+    }
+    // Time BoxplotChart End //  
+
+    // Color BoxplotChart Start //     
+    private List<Boxplotcolorschart> Boxplotcolorschartincidents { get; set; } = SampleDataBoxplotcolorschart.GetBoxplotcolorscharts();
+    private ApexChartOptions<Boxplotcolorschart> boxplotcolorschartoptions { get; set; } = new();
+
+    public static class SampleDataBoxplotcolorschart
+    {
+        public static List<Boxplotcolorschart> GetBoxplotcolorscharts()
+        {
+            var boxPlotData = new List<Boxplotcolorschart>
+            {
+                new Boxplotcolorschart { Name = "Category A", Min = 54, Max = 88, Q1 = 66, Q3 = 75, Median = 69 },
+                new Boxplotcolorschart { Name = "Category B", Min = 43, Max = 81, Q1 = 65, Q3 = 76, Median = 69 },
+                new Boxplotcolorschart { Name = "Category C", Min = 31, Max = 59, Q1 = 39, Q3 = 51, Median = 45 },
+                new Boxplotcolorschart { Name = "Category D", Min = 39, Max = 71, Q1 = 46, Q3 = 65, Median = 55 },
+                new Boxplotcolorschart { Name = "Category E", Min = 29, Max = 44, Q1 = 31, Q3 = 39, Median = 35 },
+                new Boxplotcolorschart { Name = "Category F", Min = 41, Max = 67, Q1 = 49, Q3 = 61, Median = 58 },
+                new Boxplotcolorschart { Name = "Category G", Min = 54, Max = 88, Q1 = 59, Q3 = 71, Median = 66 },
+            };
+
+            return boxPlotData;
+        }
+    }
+
+    public class Boxplotcolorschart
+    {
+        public string? Name { get; set; }
+        public decimal Min { get; set; }
+        public decimal Max { get; set; }
+        public decimal Q1 { get; set; }
+        public decimal Q3 { get; set; }
+        public decimal Median { get; set; }
+    }
+    // Color BoxplotChart End //        
+   
+   // Horizontal BoxplotChart End //        
+    private List<Boxplothorizontalchart> Boxplothorizontalchartincidents { get; set; } = SampleDataBoxplothorizontalchart.GetBoxplothorizontalcharts();
+    private ApexChartOptions<Boxplothorizontalchart> boxplothorizontalchartoptions { get; set; } = new ApexChartOptions<Boxplothorizontalchart>();
+
+    public static class SampleDataBoxplothorizontalchart
+    {
+        public static List<Boxplothorizontalchart> GetBoxplothorizontalcharts()
+        {
+            var boxPlotData = new List<Boxplothorizontalchart>
+            {
+                new Boxplothorizontalchart { Name = "Category A", Min = 54, Max = 88, Q1 = 66, Q3 = 75, Median = 69 },
+                new Boxplothorizontalchart { Name = "Category B", Min = 43, Max = 81, Q1 = 65, Q3 = 76, Median = 69 },
+                new Boxplothorizontalchart { Name = "Category C", Min = 31, Max = 59, Q1 = 39, Q3 = 51, Median = 45 },
+                new Boxplothorizontalchart { Name = "Category D", Min = 39, Max = 71, Q1 = 46, Q3 = 65, Median = 55 },
+                new Boxplothorizontalchart { Name = "Category E", Min = 29, Max = 44, Q1 = 31, Q3 = 39, Median = 35 },
+                new Boxplothorizontalchart { Name = "Category F", Min = 41, Max = 67, Q1 = 49, Q3 = 61, Median = 58 },
+                new Boxplothorizontalchart { Name = "Category G", Min = 54, Max = 88, Q1 = 59, Q3 = 71, Median = 66 },
+            };
+
+            return boxPlotData;
+        }
+    }
+
+    public class Boxplothorizontalchart
+    {
+        public string? Name { get; set; }
+        public decimal Min { get; set; }
+        public decimal Max { get; set; }
+        public decimal Q1 { get; set; }
+        public decimal Q3 { get; set; }
+        public decimal Median { get; set; }
+    }
+
+   // Horizontal BoxplotChart End //       
+    protected override void OnInitialized()
+    {
+        BoxplotbasicchartOptions = new ApexChartOptions<Boxplotbasicchart> {
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= 600,
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+             PlotOptions = new PlotOptions 
+            {
+                BoxPlot = new PlotOptionsBoxPlot
+                {    
+                    Colors =  new() {
+                        Upper = "var(--primary-color)",
+                        Lower = "#23b7e5"
+                    }
+                }
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                },
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 20,
+                    Max = 100,
+                    StepSize = 20,
+                }
+            },
+        };
+
+         BoxplotTimechartOptions = new ApexChartOptions<BoxplotTimechart> {
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= 600,
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            PlotOptions = new PlotOptions 
+            {
+                BoxPlot = new PlotOptionsBoxPlot
+                {    
+                    Colors =  new() {
+                        Upper = "var(--primary-color)",
+                        Lower = "#23b7e5"
+                    }
+                }
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                },
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 20,
+                    Max = 100,
+                    StepSize = 20,
+                }
+            },
+        };
+
+         boxplotcolorschartoptions = new ApexChartOptions<Boxplotcolorschart> {
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= 600,
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            PlotOptions = new PlotOptions 
+            {
+                BoxPlot = new PlotOptionsBoxPlot
+                {    
+                    Colors =  new() {
+                        Upper = "#26bf94",
+                        Lower = "#f5b849"
+                    }
+                }
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                },
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 20,
+                    Max = 100,
+                    StepSize = 20,
+                }
+            },
+        };
+
+        boxplothorizontalchartoptions = new ApexChartOptions<Boxplothorizontalchart> {
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= 600,
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            PlotOptions = new PlotOptions 
+            { 
+                Bar = new PlotOptionsBar { Horizontal = true },
+                BoxPlot = new PlotOptionsBoxPlot
+                {   
+                    Colors =  new() {
+                        Upper = "var(--primary-color)",
+                        Lower = "#23b7e5"
+                    }
+                }
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                },
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 20,
+                    Max = 100,
+                    StepSize = 20,
+                }
+            },
+        };
+
+
+    }
+
+}

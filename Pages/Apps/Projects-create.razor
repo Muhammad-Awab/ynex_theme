@@ -1,0 +1,269 @@
+@page "/projects-create"
+@using Soenneker.Blazor.TomSelect
+@using Soenneker.Blazor.TomSelect.Base 
+@using Soenneker.Blazor.TomSelect.Dtos
+@using FlatpickrBlazor
+@using FlatpickrBlazor.Components
+@using Blazored.TextEditor
+@using Soenneker.Blazor.Utils.InteropEventListener
+@using Soenneker.Blazor.FilePond
+@using Soenneker.Blazor.FilePond.Dtos
+@using Soenneker.Blazor.FilePond.Options
+@using Soenneker.Blazor.FilePond.Enums
+
+<!-- TomSelect Css -->
+<link rel="stylesheet" href="../assets/libs/tom-select/css/tom-select.bootstrap5.min.css">
+
+<!-- QuilEditor Css -->
+<link rel="stylesheet" href="../assets/libs/quill/quill.snow.css">
+
+<!-- Flatpickr Css -->
+<link href="_content/FlatpickrBlazor/flatpickr.min.css" rel="stylesheet" />
+
+<!-- Filepond Css -->
+<link rel="stylesheet" href="../assets/libs/filepond/filepond.min.css">
+<link rel="stylesheet" href="../assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css">
+<link rel="stylesheet" href="../assets/libs/filepond-plugin-image-edit/filepond-plugin-image-edit.min.css">
+
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <h1 class="page-title fw-semibold fs-18 mb-0">Create Project</h1>
+                    <div class="ms-md-1 ms-0">
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Projects</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Create Project</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start::row-1 -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Create Project
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row gy-3">
+                                    <div class="col-xl-4">
+                                        <label for="input-label" class="form-label">Project Name :</label>
+                                        <input type="text" class="form-control" id="input-label" placeholder="Enter Project Name">
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <label for="input-label11" class="form-label">Project Manager :</label>
+                                        <input type="text" class="form-control" id="input-label11" placeholder="Project Manager Name">
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <label for="input-label1" class="form-label">Client / Stakeholder :</label>
+                                        <input type="text" class="form-control" id="input-label1" placeholder="Enter Client Name">
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <label class="form-label">Project Description :</label>
+                                        <div id="project-descriptioin-editor">
+                                            <BlazoredTextEditor  @ref="@QuillHtml">
+                                                <ToolbarContent>
+                                                    <span class="ql-formats">
+                                                        <select class="ql-header">
+                                                            <option value="1"></option>
+                                                            <option value="2"></option>
+                                                            <option value="3"></option>
+                                                            <option value="4"></option>
+                                                            <option value="5"></option>
+                                                            <option value="6"></option>
+                                                            <option selected=""></option>
+                                                        </select> 
+                                                    </span>
+                                                    <span class="ql-formats">
+                                                        <select class="ql-font">
+                                                            <option selected=""></option>
+                                                            <option value="serif"></option>
+                                                            <option value="monospace"></option>
+                                                        </select>
+                                                    </span>
+                                                    <span class="ql-formats">
+                                                        <button class="ql-bold"></button>
+                                                        <button class="ql-italic"></button>
+                                                        <button class="ql-underline"></button>
+                                                        <button class="ql-strike"></button>
+                                                    </span>
+                                                    <span class="ql-formats">
+                                                        <button class="ql-blockquote" value="blockquote"></button>
+                                                        <button class="ql-code-block" value="code-block"></button>
+                                                    </span>
+                                                    <span class="ql-formats">
+                                                        <button class="ql-header" value="1"></button>
+                                                        <button class="ql-header" value="2"></button>
+                                                    </span>
+                                                    <span class="ql-formats">
+                                                        <button class="ql-list" value="ordered"></button>
+                                                        <button class="ql-list" value="bullet"></button>
+                                                    </span>
+                                                    <span class="ql-formats">
+                                                        <select class="ql-color"></select>
+                                                        <select class="ql-background"></select>
+                                                    </span>
+                                                    <span class="ql-formats">
+                                                        <select class="ql-align">
+                                                            <option selected=""></option>
+                                                            <option value="center"></option>
+                                                            <option value="right"></option>
+                                                            <option value="justify"></option>
+                                                        </select>
+                                                    </span>
+                                                    <span class="ql-formats">
+                                                        <button class="ql-image"></button>
+                                                        <button class="ql-video"></button>
+                                                    </span>
+                                                    <span class="ql-formats">
+                                                        <button class="ql-clean"></button>
+                                                    </span>
+                                                </ToolbarContent>
+                                                <EditorContent>
+                                                    <p>lorem Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33.</p>
+                                                    <p><br></p>
+                                                    <ol>
+                                                        <li class="ql-size-normal">Conducting a comprehensive analysis of the existing website design.</li>
+                                                        <li class="">Collaborating with the UI/UX team to develop wireframes and mockups.</li>
+                                                        <li class="">Iteratively refining the design based on feedback..</li>
+                                                        <li class="">Implementing the finalized design changes using HTML, CSS, and JavaScript.</li>
+                                                        <li class="">Testing the website across different devices and browsers.</li>
+                                                    </ol>
+                                                </EditorContent>
+                                            </BlazoredTextEditor >
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <label class="form-label">Start Date :</label>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i> </div>
+                                                <Flatpickr class="form-control" @ref="_flatpickr" placeholder="Choose date"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <label class="form-label">End Date :</label>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i> </div>
+                                                <Flatpickr class="form-control" @ref="_flatpickr" placeholder="Choose date"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <label class="form-label">Status :</label>
+                                        <select class="form-control tomselect">
+                                            <option value="Inprogress" selected>Inprogress</option>
+                                            <option value="On-hold">On-hold</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <label class="form-label">Priority :</label>
+                                        <select class="form-control tomselect">
+                                            <option value="High">High</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="Low">Low</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <label class="form-label">Assigned To</label>
+                                        <select class="form-control tomselect-multiple" name="assigned-team-members" id="assigned-team-members" multiple>
+                                            <option value="Choice 1" selected>Angelina May</option>
+                                            <option value="Choice 2">Kiara advain</option>
+                                            <option value="Choice 3">Hercules Jhon</option>
+                                            <option value="Choice 4">Mayor Kim</option>
+                                            <option value="Choice 4" selected>Alexa Biss</option>
+                                            <option value="Choice 4">Karley Dia</option>
+                                            <option value="Choice 4">Kim Jong</option>
+                                            <option value="Choice 4">Darren Sami</option>
+                                            <option value="Choice 4">Elizabeth</option>
+                                            <option value="Choice 4">Bear Gills</option>
+                                            <option value="Choice 4" selected>Alex Carey</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <label class="form-label">Tags</label>
+                                        <input class="tomselect-unique" type="text" value="Marketing, Sales, Development, Design, Research" autocomplete="off">
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <label class="form-label">Attachments</label>
+                                        <input type="file" class="multiple-filepond" name="filepond" multiple data-allow-reorder="true" data-max-file-size="3MB" data-max-files="6">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary-light btn-wave ms-auto float-end">Create Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+            </div>
+            
+<!-- TomSelect JS -->
+<script src="../assets/libs/tom-select/js/tom-select.complete.min.js"></script>
+
+<!-- Tomselect JS -->
+<script src="../assets/js/tomselect.js"></script>
+
+<!-- Flatpickr JS -->
+<script src="_content/FlatpickrBlazor/flatpickr.min.js"></script>
+<script src="_content/FlatpickrBlazor/flatpickr.blazor.js"></script>
+
+<!-- Quill Editor JS -->
+<script src="../assets/libs/quill/quill.min.js"></script>
+<script src="_content/Blazored.TextEditor/quill-blot-formatter.min.js"></script>
+<script src="_content/Blazored.TextEditor/Blazored-BlazorQuill.js"></script>
+
+<!-- Filepond JS -->
+<script src="../assets/libs/filepond/filepond.min.js"></script>
+<script src="../assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js"></script>
+<script src="../assets/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js"></script>
+<script src="../assets/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js"></script>
+<script src="../assets/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js"></script>
+<script src="../assets/libs/filepond-plugin-image-edit/filepond-plugin-image-edit.min.js"></script>
+<script src="../assets/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js"></script>
+<script src="../assets/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js"></script>
+<script src="../assets/libs/filepond-plugin-image-crop/filepond-plugin-image-crop.min.js"></script>
+<script src="../assets/libs/filepond-plugin-image-resize/filepond-plugin-image-resize.min.js"></script>
+<script src="../assets/libs/filepond-plugin-image-transform/filepond-plugin-image-transform.min.js"></script>
+<script>
+    /* filepond */
+    FilePond.registerPlugin(
+        FilePondPluginImagePreview,
+        FilePondPluginImageExifOrientation,
+        FilePondPluginFileValidateSize,
+        FilePondPluginFileEncode,
+        FilePondPluginImageEdit,
+        FilePondPluginFileValidateType,
+        FilePondPluginImageCrop,
+        FilePondPluginImageResize,
+        FilePondPluginImageTransform
+    );
+    if(document.querySelector('.multiple-filepond')) {
+        /* multiple upload */
+        const MultipleElement = document.querySelector('.multiple-filepond');
+        FilePond.create(MultipleElement,);
+    }
+</script>
+
+@code {
+    
+
+    <!-- Flatpickr JS Start -->
+    public Flatpickr? _flatpickr;
+    <!-- Flatpickr JS End -->
+
+    <!-- QuilEditor JS Start -->
+    BlazoredTextEditor?  QuillHtml;
+    <!-- QuilEditor JS Start -->
+}

@@ -1,0 +1,199 @@
+@page "/form_input_masks"
+@inject IJSRuntime JSRuntime
+
+        <div class="container-fluid">
+
+            <!-- Page Header -->
+            <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                <h1 class="page-title fw-semibold fs-18 mb-0">Input Masks</h1>
+                <div class="ms-md-1 ms-0">
+                    <nav>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Form Elements</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Input Masks</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!-- Page Header Close -->
+
+            <!-- Start:: row-1 -->
+            <h6 class="fw-semibold mb-2"> Input Mask WIth Blazor:</h6>
+            <div class="row Form-input-mask-cleave">
+                <div class="col-xl-4">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Date formatting-1
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <Cleave Placeholder="DD-MM-YYYY" class="form-control date-format" DateFormat="@(new DateFormat{
+                                    Delimiter = '-',
+                                    Format = new char[] { 'd', 'm', 'Y' }
+                                })" InputType="InputType.Date" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Date formatting-2
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <Cleave Placeholder="MM-DD-YYYY" class="form-control date-format" DateFormat="@(new DateFormat{
+                                    Delimiter = '-',
+                                    Format = new char[] { 'm', 'd', 'Y' }
+                                })" InputType="InputType.Date" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Date formatting-3
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <Cleave Placeholder="MM/YY" class="form-control date-format" DateFormat="@(new DateFormat{
+                                    Delimiter = '/',
+                                    Format = new char[] { 'm', 'y' }
+                                })" InputType="InputType.Date" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Numeral formatting
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <BlazorCleave.Cleave Placeholder="Numeral Type" class="form-control" NumeralType="NumeralTypes.Type.Thousand" InputType="InputType.Numeral" /> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Time Format-1
+                            </div>
+                        </div>
+                        <div class="card-body">                 
+                            <Cleave Placeholder="hh:mm:ss" class="form-control" TimeFormat="@( new TimeFormat{
+                                    Format = new[] { 'h', 'm','s' }
+                                })" InputType="InputType.Time" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Time Format-2
+                            </div>
+                        </div>
+                        <div class="card-body">                 
+                            <Cleave Placeholder="hh:mm" class="form-control" TimeFormat="@( new TimeFormat{
+                                    Format = new[] { 'h', 'm' }
+                                })" InputType="InputType.Time" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Phone number formatting
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <Cleave Placeholder="Phone Number" class="form-control"  CountryCode="CountryCode.IN" InputType="InputType.PhoneNumber" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Credit card formatting
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <Cleave Placeholder="Credit Card" class="form-control"  InputType="InputType.CreditCard" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End:: row-1 -->
+
+            <!-- Start:: row-2 -->
+            <h6 class="fw-semibold mb-2"> Input Mask WIth Javascript:</h6>
+            <div class="row Form-input-mask-cleave">
+                <div class="col-xl-4">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Formatting Into Blocks
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <input class="form-control formatting-blocks" placeholder="ABCD EFG HIJ KLMN">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Delimiter
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <input class="form-control delimiter" placeholder="ABC.DEF.GHi">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Delimiters
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <input class="form-control delimiters" placeholder="ABC/DEF/GHi-JK">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Prefix
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <input class="form-control prefix-element" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End:: row-2 -->
+
+        </div>
+
+    <!-- Cleave.js -->
+    <script src="_content/BlazorCleave/BlazorCleave.js"></script>
+    <script src="_content/BlazorCleave/cleave-phone.i18n.js"></script>
+
+    <!-- Internal form-input-mask JS -->
+    <script src="../assets/js/form-input-mask.js"></script>
+

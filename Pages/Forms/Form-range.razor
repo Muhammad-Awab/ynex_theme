@@ -1,0 +1,398 @@
+@page "/form_range"
+@using PElshen.NoUiSlider.Blazor;
+@using PElshen.NoUiSlider.Blazor.Utilities;
+@inject Microsoft.AspNetCore.Components.NavigationManager NavigationManager // This line is used to generate URLs dynamically //
+
+<!-- NouiSlider CSS -->
+<link rel="stylesheet" href="_content/NoUiSlider.Blazor/dist/styles.css" />
+
+<!-- Prism CSS -->
+<link rel="stylesheet" href="../assets/libs/prismjs/themes/prism-coy.min.css">
+
+
+    <div class="container-fluid">
+
+        <!-- Page Header -->
+        <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+            <h1 class="page-title fw-semibold fs-18 mb-0">Range Slider</h1>
+            <div class="ms-md-1 ms-0">
+                <nav>
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Form Elements</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Range Slider</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- Page Header Close -->
+
+        <!-- Start:: row-1 -->
+        <div class="row">
+            <div class="col-xl-3">
+                <div class="card custom-card">
+                    <div class="card-header justify-content-between">
+                        <div class="card-title">
+                            Default Range
+                        </div>
+                        <div class="prism-toggle">
+                            <button class="btn btn-sm btn-primary-light">Show Code<i
+                                    class="ri-code-line ms-2 d-inline-block align-middle"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <input type="range" class="form-range" id="customRange1">
+                    </div>
+                    <div class="card-footer d-none border-top-0">
+                        <!-- Prism Code -->
+                        <pre
+                            class="language-html"><code class="language-html">&lt;input type="range" class="form-range" id="customRange1"&gt;</code></pre>
+                        <!-- Prism Code -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="card custom-card">
+                    <div class="card-header justify-content-between">
+                        <div class="card-title">
+                            Disabled Range
+                        </div>
+                        <div class="prism-toggle">
+                            <button class="btn btn-sm btn-primary-light">Show Code<i
+                                    class="ri-code-line ms-2 d-inline-block align-middle"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <input type="range" class="form-range" id="disabledRange" disabled>
+                    </div>
+                    <div class="card-footer d-none border-top-0">
+                        <!-- Prism Code -->
+                        <pre
+                            class="language-html"><code class="language-html">&lt;input type="range" class="form-range" id="disabledRange" disabled&gt;</code></pre>
+                        <!-- Prism Code -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="card custom-card">
+                    <div class="card-header justify-content-between">
+                        <div class="card-title">
+                            Range With Min and Max Values
+                        </div>
+                        <div class="prism-toggle">
+                            <button class="btn btn-sm btn-primary-light">Show Code<i
+                                    class="ri-code-line ms-2 d-inline-block align-middle"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                    </div>
+                    <div class="card-footer d-none border-top-0">
+                        <!-- Prism Code -->
+                        <pre
+                            class="language-html"><code class="language-html">&lt;input type="range" class="form-range" min="0" max="5" id="customRange2"&gt;</code></pre>
+                        <!-- Prism Code -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="card custom-card">
+                    <div class="card-header justify-content-between">
+                        <div class="card-title">
+                            Range With Steps
+                        </div>
+                        <div class="prism-toggle">
+                            <button class="btn btn-sm btn-primary-light">Show Code<i
+                                    class="ri-code-line ms-2 d-inline-block align-middle"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+                    </div>
+                    <div class="card-footer d-none border-top-0">
+                        <!-- Prism Code -->
+                        <pre
+                            class="language-html"><code class="language-html">&lt;input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3"&gt;</code></pre>
+                        <!-- Prism Code -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End:: row-1 -->
+
+        <!-- Start:: row-2 -->
+        <h6 class="mb-3">noUiSlider:</h6>
+        <div class="row">
+            <div class="col-xl-3">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Default-Styling js and blazor
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="slider"></div>
+                        <div class="mt-4">
+                            <NoUiSlider @bind-Values="@SliderValues" Options="@SliderOptions" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Fit Handles js and blazor
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="slider-fit"></div>
+                        <div class="mt-4">
+                            <NoUiSlider @bind-Values="@SliderFitValues" Options="@SliderFitOptions" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Rounded Styling js and blazor
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="slider-round"></div>
+                        <div class="mt-4">
+                            <NoUiSlider Options="@SliderRoundOptions" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Square Styling Blazor
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="slider-square">
+                            <NoUiSlider Options="@SliderSquareOptions" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End:: row-2 -->
+
+        <!-- Start:: row-3 -->
+        <div class="row">
+            <div class="col-xl-3">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">Color Picker Slider</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="sliders" id="color1"></div>
+                        <div class="sliders" id="color2"></div>
+                        <div class="sliders" id="color3"></div>
+                        <div id="result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="col-xl-12">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">Locking Sliders</div>
+                        </div>
+                        <div class="card-body">
+                            <div id="slider1"></div>
+                            <div id="slider1-span" class="my-1"></div>
+                            <div id="slider2"></div>
+                            <div id="slider2-span" class="my-1"></div>
+                            <div id="slider3"></div>
+                            <div id="slider3-span" class="my-1"></div>
+                            <button id="lockbutton" class="btn btn-sm btn-primary float-end">Lock</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">Merging tooltips slider</div>
+                        </div>
+                        <div class="card-body">
+                            <div id="merging-tooltips"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Non Linear Slider</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="nonlinear"></div>
+                                <div id="lower-value" class="mt-5"></div>
+                                <div id="upper-value" class="mt-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Blazor Sliding Handles Tooltips</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="slider-hide">
+                                    <NoUiSlider @bind-Values="@HideSliderValues" Options="@HideSliderOptions"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End:: row-3 -->
+
+        <!-- Start:: row-4 -->
+        <div class="row">
+            <div class="col-xl-10">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">Colored Connect Elements</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="slider" id="color-slider"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">Slider Toggle</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="slider-toggle"> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End:: row-4 -->
+
+        <!-- Start:: row-5 -->
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">Toggle Movement By Clicking Pips</div>
+                    </div>
+                    <div class="card-body pb-5">
+                        <div id="slider-pips"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">Soft Limits</div>
+                    </div>
+                    <div class="card-body pb-5">
+                        <div id="soft"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End:: row-5 -->
+
+        <!-- Start:: row-6 -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">Blazor Nouislider Disabled</div>
+                    </div>
+                    <div class="card-body pt-5">
+                    <NoUiSlider @bind-Value="ValueBasic" Min="0" Max="100" Tooltips="true" IsDisabled="IsDisabled" />
+                        <button class="btn btn-sm btn-primary float-end mt-5" @onclick="ToggleDisabled">@(IsDisabled ? "Enable" : "Disable")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End:: row-6 -->
+
+    </div>
+
+
+@code {
+
+    //Basic Slider Start
+    private double[] SliderValues = new double[] { 30, 80 };
+    private NoUiSliderOptions SliderOptions = new NoUiSliderOptions
+        {
+            Start = new double[] { 30, 80 },
+            Min = 0,
+            Max = 100,
+        };
+    //Basic Slider End
+
+    //Fit Slider Start
+    private double[] SliderFitValues = new double[] { 50, 90 };
+    private NoUiSliderOptions SliderFitOptions = new NoUiSliderOptions
+        {
+            Start = new double[] { 50, 90 },
+            Min = 1,
+            Max = 100,
+        };
+    //Fit Slider End
+
+    //Round Slider Start
+    private NoUiSliderOptions SliderRoundOptions = new NoUiSliderOptions
+        {
+            Start = new[] { 50.0 },
+            Min = 0,
+            Max = 100,
+        };
+    //Round Slider End
+
+    //Square Slider Start
+    private NoUiSliderOptions SliderSquareOptions = new NoUiSliderOptions
+        {
+            Start = new[] { 50.0 },
+            Min = 0,
+            Max = 100,
+        };
+    //Square Slider End
+
+    //Hide Sliders Start
+    private double[] HideSliderValues = new double[] { 30, 80 };
+    private NoUiSliderOptions HideSliderOptions = new NoUiSliderOptions
+    {
+        Start = new double[] { 30, 80 },
+        Min = 0,
+        Max = 100,
+        Tooltips = true,
+    };
+    //Hide Sliders End
+    
+    private double ValueBasic { get; set; } = 10;        
+    private double ValueDisabled { get; set; } = 10;
+    private bool IsDisabled { get; set; } = false;
+
+    private void ToggleDisabled()
+    {
+        IsDisabled = !IsDisabled;
+    }
+}
+
+<!-- Prism JS -->
+<script src="../assets/libs/prismjs/prism.js"></script>
+<script src="../assets/js/prism-custom.js"></script>
+
+<!-- NouiSlider Js -->
+<script src="_content/NoUiSlider.Blazor/dist/bundle.js"></script>
+<script src="@($"{NavigationManager.BaseUri}assets/js/nouislider.js")"></script>

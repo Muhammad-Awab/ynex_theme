@@ -1,0 +1,72 @@
+@inherits LayoutComponentBase
+@using Microsoft.JSInterop;
+@inject IJSRuntime JSRuntime
+@inject StateService stateService
+
+    <!-- SWITCHER -->
+    <LandingSwitcher />
+    <!-- END SWITCHER -->
+
+    <!-- PAGE -->
+    <div class="landing-page-wrapper">
+
+        <!-- HEADER -->
+        <LandingHeader />
+        <!-- END HEADER -->
+
+        <!-- SIDEBAR -->
+        <JobsLandingSidebar />
+        <!-- END SIDEBAR -->
+
+        @Body
+
+        <!-- FOOTER -->
+        <JobsLandingFooter />
+        <!-- END FOOTER -->
+
+        
+        @if (ShowButton)
+        {
+            <!-- Scroll To Top -->
+            <div class="scrollToTop"  @onclick="ScrollToTop">
+                <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>
+            </div>
+            <!-- Scroll To Top -->
+        }
+
+    </div>
+    <!-- END PAGE-->
+
+@code {
+      bool ShowButton { get; set; } = false;
+    protected override async Task OnInitializedAsync()
+    {
+        await stateService.InitializeLandingAppState();
+        
+        
+        await base.OnInitializedAsync();
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var currentState = new AppState();
+        var newState = stateService.GetAppState(); 
+        if(!currentState.Equals(newState)){
+            await stateService.retrieveFromLandingLocalStorage();
+        }
+        StateHasChanged();
+            await JSRuntime.InvokeVoidAsync("interop.updateScrollVisibility", DotNetObjectReference.Create(this));
+        }
+    }
+    [JSInvokable]
+    public void UpdateScrollVisibility(int scrollHeight)
+    {
+        ShowButton = scrollHeight >= 100;
+        StateHasChanged();
+    }
+    async Task ScrollToTop()
+    {
+        await JSRuntime.InvokeVoidAsync("interop.scrollToTop");
+    }
+}

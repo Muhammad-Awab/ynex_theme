@@ -1,0 +1,1943 @@
+@page "/index10"
+@using ApexCharts
+
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <h1 class="page-title fw-semibold fs-18 mb-0">Stocks</h1>
+                    <div class="ms-md-1 ms-0">
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboards</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Stocks</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start::row-1 -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-body">
+                                <div class="d-md-flex d-block flex-wrap align-items-center justify-content-between">
+                                    <div class="flex-fill">
+                                        <ul class="nav nav-pills nav-style-3" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" data-bs-toggle="tab" role="tab" aria-current="page"
+                                                href="#stocks-portfolio" aria-selected="true">Portfolio</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-bs-toggle="tab" role="tab" aria-current="page"
+                                                href="#stocks-market" aria-selected="true">Market</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="d-flex flex-wrap align-items-center mt-md-0 mt-3 justify-content-evenly gap-4">
+                                        <div class="text-md-end">
+                                            <span class="d-block fw-semibold">Total Value</span>
+                                            <span class="text-primary">$8.89k</span>
+                                        </div>
+                                        <div class="text-md-end">
+                                            <span class="d-block fw-semibold">Market Value</span>
+                                            <span class="text-warning">$15.9k</span>
+                                        </div>
+                                        <div class="text-md-end">
+                                            <span class="d-block fw-semibold">Yield</span>
+                                            <span class="text-danger">3.4%</span>
+                                        </div>
+                                        <div class="text-md-end">
+                                            <span class="d-block fw-semibold">Dividend</span>
+                                            <span class="text-info">$1.3k</span>
+                                        </div>
+                                        <div class="text-md-end">
+                                            <span class="d-block fw-semibold">Gain</span>
+                                            <span class="text-success">$116</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+                <!-- Start::row-2 -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="tab-content">
+                            <div class="tab-pane show active p-0 border-0" id="stocks-portfolio" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-xl-3 col-sm-6">
+                                        <div class="card custom-card">
+                                            <div class="card-body">
+                                                <div class="d-flex gap-3 flex-wrap align-items-top justify-content-between">
+                                                    <div class="flex-fill d-flex align-items-top mb-4 mb-sm-0">
+                                                        <div class="me-3">
+                                                            <span class="avatar avatar-rounded bg-primary">
+                                                                <i class="ti ti-wallet fs-16"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="d-block text-muted">Total amount Invested</span>
+                                                            <span class="fs-16 fw-semibold">$23,8998.99</span>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div id="total-invested">
+                                                            <ApexChart TItem="TotalInvested" Options=TotalInvestedChartOptions>
+                                                                <ApexPointSeries TItem="TotalInvested" Items="totalinvested" SeriesType="@SeriesType.Line"
+                                                                            XValue="@(e => e.InvestedSeries)"
+                                                                        YAggregate="@(e => e.Sum(e => e.InvestedValue))"/>
+                                                            </ApexChart>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-sm-6">
+                                        <div class="card custom-card">
+                                            <div class="card-body">
+                                                <div class="d-flex gap-3 flex-wrap align-items-top justify-content-between">
+                                                    <div class="flex-fill d-flex align-items-top mb-4 mb-sm-0">
+                                                        <div class="me-3">
+                                                            <span class="avatar avatar-rounded bg-secondary">
+                                                                <i class="ti ti-arrow-big-up-line fs-16"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="d-block text-muted">No Of Investments</span>
+                                                            <span class="fs-16 fw-semibold">116</span>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div id="total-investments">
+                                                            <ApexChart TItem="TotalInvestments" Options=TotalInvestmentsChartOptions>
+                                                                <ApexPointSeries TItem="TotalInvestments" Items="totalinvestments" SeriesType="@SeriesType.Line"
+                                                                            XValue="@(e => e.InvestmentsSeries)"
+                                                                        YAggregate="@(e => e.Sum(e => e.InvestmentsValue))"/>
+                                                            </ApexChart>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-sm-6">
+                                        <div class="card custom-card">
+                                            <div class="card-body">
+                                                <div class="d-flex gap-3 flex-wrap align-items-top justify-content-between">
+                                                    <div class="flex-fill d-flex align-items-top mb-4 mb-sm-0">
+                                                        <div class="me-3">
+                                                            <span class="avatar avatar-rounded bg-warning">
+                                                                <i class="ti ti-wallet fs-16"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="d-block text-muted">Portfolio Value</span>
+                                                            <span class="fs-16 fw-semibold">$12,920.20<i class="ti ti-arrow-narrow-up ms-1 text-success"></i></span>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div id="portfolio-value">
+                                                            <ApexChart TItem="TotalPortfolio" Options=TotalPortfolioChartOptions>
+                                                                <ApexPointSeries TItem="TotalPortfolio" Items="totalportfolio" SeriesType="@SeriesType.Line"
+                                                                            XValue="@(e => e.PortfolioSeries)"
+                                                                        YAggregate="@(e => e.Sum(e => e.PortfolioValue))"/>
+                                                            </ApexChart>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-sm-6">
+                                        <div class="card custom-card">
+                                            <div class="card-body">
+                                                <div class="d-flex gap-3 flex-wrap align-items-top justify-content-between">
+                                                    <div class="flex-fill d-flex align-items-top mb-4 mb-sm-0">
+                                                        <div class="me-3">
+                                                            <span class="avatar avatar-rounded bg-success">
+                                                                <i class="ti ti-wallet fs-16"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="d-block text-muted">Returns Rate</span>
+                                                            <span class="fs-16 fw-semibold">+12.08%<i class="ti ti-arrow-narrow-up ms-1 text-success"></i></span>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div id="returns-rate">
+                                                            <ApexChart TItem="TotalReturns" Options=TotalReturnsChartOptions>
+                                                                <ApexPointSeries TItem="TotalReturns" Items="totalreturns" SeriesType="@SeriesType.Line"
+                                                                            XValue="@(e => e.ReturnsSeries)"
+                                                                        YAggregate="@(e => e.Sum(e => e.ReturnsValue))"/>
+                                                            </ApexChart>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-8">
+                                        <div class="card custom-card">
+                                            <div class="card-header justify-content-between">
+                                                <div class="card-title mb-2 mb-sm-0">
+                                                    Total Investments
+                                                </div>
+                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <button type="button" class="btn btn-primary btn-sm btn-wave waves-effect waves-light">1D</button>
+                                                    <button type="button" class="btn btn-primary-light btn-sm btn-wave waves-effect waves-light">1W</button>
+                                                    <button type="button" class="btn btn-primary-light btn-sm btn-wave waves-effect waves-light">1M</button>
+                                                    <button type="button" class="btn btn-primary-light btn-sm btn-wave waves-effect waves-light">3M</button>
+                                                    <button type="button" class="btn btn-primary-light btn-sm btn-wave waves-effect waves-light">6M</button>
+                                                    <button type="button" class="btn btn-primary-light btn-sm btn-wave waves-effect waves-light">1Y</button>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="d-flex alilgn-items-center justify-content-between gap-3 flex-wrap">
+                                                    <div class="d-flex flex-wrap flex-fill gap-3 ms-sm-5 ms-0">
+                                                        <div>
+                                                            <span class="d-block text-muted mb-1">Invested Value</span>
+                                                            <span class="d-block fw-semibold">$1,290.94<span class="text-success ms-1 fs-12"><i class="ti ti-chevron-up"></i>1.22%</span></span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="d-block text-muted mb-1">Total Returns</span>
+                                                            <span class="d-block fw-semibold">$25,458.20<span class="text-success ms-1 fs-12"><i class="ti ti-chevron-up"></i>10.14%</span></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-wrap gap-3 text-end">
+                                                        <div>
+                                                            <span class="d-block text-muted mb-1">Today Change</span>
+                                                            <span class="d-block fw-semibold">$112.09</span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="d-block text-muted mb-1">Change In %</span>
+                                                            <span class="d-block fw-semibold">+0.01%<span class="text-success ms-1 fs-12"><i class="ti ti-chevron-up"></i>0.21%</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="totalInvestmentsStats"> 
+                                                        <ApexChart TItem="InvestmentsStats" XAxisType="XAxisType.Datetime"  Height="320" Options=investmentsstatsChartOptions>
+                                                            <ApexPointSeries TItem="InvestmentsStats"
+                                                                Items="investmentsstats"
+                                                                SeriesType="@SeriesType.Area"
+                                                                Name="Basic"
+                                                                XValue="@(e => e.Date)"
+                                                                YAggregate="@(e => e.Sum(e => e.Value))"/>
+                                                    </ApexChart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="card custom-card">
+                                            <div class="card-header justify-content-between">
+                                                <div class="card-title">
+                                                    My Stocks
+                                                </div>
+                                                <div class="d-flex flex-wrap gap-2">
+                                                    <div class="mb-2 mb-sm-0">
+                                                        <input class="form-control form-control-sm" type="text" placeholder="Search Any Stock" aria-label=".form-control-sm example">
+                                                    </div>
+                                                    <div class="dropdown">
+                                                        <a href="javascript:void(0);" class="btn btn-primary-light btn-sm btn-wave waves-effect waves-light" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            Sort By<i class="ri-arrow-down-s-line align-middle ms-1 d-inline-block"></i>
+                                                        </a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a class="dropdown-item" href="javascript:void(0);">New</a></li>
+                                                            <li><a class="dropdown-item" href="javascript:void(0);">Popular</a></li>
+                                                            <li><a class="dropdown-item" href="javascript:void(0);">Relevant</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-0">
+                                                <ul class="list-unstyled my-stocks-ul mb-0">
+                                                    <li>
+                                                        <div class="d-flex align-items-center flex-fill lh-1">
+                                                            <div class="me-2">
+                                                                <span class="avatar avatar-rounded bg-light p-2">
+                                                                    <i class="bi bi-github text-dark fs-18"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="lh-1 flex-fill">
+                                                                <span class="fw-semibold d-block mb-2">GTHB (Gituhb, Demo Inc.)</span>
+                                                                <span class="d-block text-muted fs-12">16 Shares</span>
+                                                            </div>
+                                                            <div class="text-end me-3">
+                                                                <span class="d-block fw-semibold mb-1">
+                                                                    $12,390.02
+                                                                </span>
+                                                                <span class="d-block text-success"><i class="ti ti-arrow-narrow-up"></i>0.14%</span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="fs-14">
+                                                                    <i class="bi bi-star-fill text-muted op-5"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex align-items-center flex-fill lh-1">
+                                                            <div class="me-2">
+                                                                <span class="avatar avatar-rounded bg-light p-2">
+                                                                    <i class="bi bi-twitter-x text-info fs-18"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="lh-1 flex-fill">
+                                                                <span class="fw-semibold d-block mb-2">TTR (Twiter.com, Inc.)</span>
+                                                                <span class="d-block text-muted fs-12">289 Shares</span>
+                                                            </div>
+                                                            <div class="text-end me-3">
+                                                                <span class="d-block fw-semibold mb-1">
+                                                                    $15,526.01
+                                                                </span>
+                                                                <span class="d-block text-success"><i class="ti ti-arrow-narrow-up"></i>2.14%</span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="fs-14">
+                                                                    <i class="bi bi-star text-muted op-5"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex align-items-center flex-fill lh-1">
+                                                            <div class="me-2">
+                                                                <span class="avatar avatar-rounded bg-light p-2">
+                                                                    <i class="bi bi-bootstrap-fill text-primary fs-18"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="lh-1 flex-fill">
+                                                                <span class="fw-semibold d-block mb-2">BS (Boostrap, Inc.)</span>
+                                                                <span class="d-block text-muted fs-12">325 shares</span>
+                                                            </div>
+                                                            <div class="text-end me-3">
+                                                                <span class="d-block fw-semibold mb-1">
+                                                                    $30,500.15
+                                                                </span>
+                                                                <span class="d-block text-danger"><i class="ti ti-arrow-narrow-down"></i>2.73%</span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="fs-14">
+                                                                    <i class="bi bi-star-fill text-muted op-5"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex align-items-center flex-fill lh-1">
+                                                            <div class="me-2">
+                                                                <span class="avatar avatar-rounded bg-light p-2">
+                                                                    <i class="bi bi-windows text-success fs-18"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="lh-1 flex-fill">
+                                                                <span class="fw-semibold d-block mb-2">MS (Micorsoft, Inc.)</span>
+                                                                <span class="d-block text-muted fs-12">1,523 shares</span>
+                                                            </div>
+                                                            <div class="text-end me-3">
+                                                                <span class="d-block fw-semibold mb-1">
+                                                                    $1,80,520.02
+                                                                </span>
+                                                                <span class="d-block text-success"><i class="ti ti-arrow-narrow-up"></i>8.63%</span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="fs-14">
+                                                                    <i class="bi bi-star text-muted op-5"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex align-items-center flex-fill lh-1">
+                                                            <div class="me-2">
+                                                                <span class="avatar avatar-rounded bg-light p-2">
+                                                                    <i class="bi bi-apple text-warning fs-18"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="lh-1 flex-fill">
+                                                                <span class="fw-semibold d-block mb-2">AAPL (Apple, Inc.)</span>
+                                                                <span class="d-block text-muted fs-12">30 shares</span>
+                                                            </div>
+                                                            <div class="text-end me-3">
+                                                                <span class="d-block fw-semibold mb-1">
+                                                                    $21,093.20
+                                                                </span>
+                                                                <span class="d-block text-danger"><i class="ti ti-arrow-narrow-down"></i>4.10%</span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="fs-14">
+                                                                    <i class="bi bi-star-fill text-muted op-5"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex align-items-center flex-fill lh-1">
+                                                            <div class="me-2">
+                                                                <span class="avatar avatar-rounded bg-light p-2">
+                                                                    <i class="bi bi-currency-bitcoin text-danger fs-18"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="lh-1 flex-fill">
+                                                                <span class="fw-semibold d-block mb-2">Bitcoin (Bioset Coin, Inc.)</span>
+                                                                <span class="d-block text-muted fs-12">118 shares</span>
+                                                            </div>
+                                                            <div class="text-end me-3">
+                                                                <span class="d-block fw-semibold mb-1">
+                                                                    $14,245.23
+                                                                </span>
+                                                                <span class="d-block text-success"><i class="ti ti-arrow-narrow-up"></i>0.79%</span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="fs-14">
+                                                                    <i class="bi bi-star-fill text-muted op-5"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <h6 class="fw-semibold mb-3">
+                                            Trending Stocks :
+                                        </h6>
+                                        <div class="row">
+                                            <div class="col-xxl-2 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="p-3 card custom-card border bg-white rounded">
+                                                    <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between mb-3">
+                                                        <div class="d-flex flex-fill align-items-center">
+                                                            <div class="me-2">
+                                                                <span class="avatar avatar-rounded bg-light p-2">
+                                                                    <i class="bi bi-apple text-muted fs-18"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="lh-1">
+                                                                <span class="fw-semibold d-block mb-2 text-default">Apple</span>
+                                                                <span class="d-block text-muted fs-12">$12,289.44</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-success fs-12 text-end">
+                                                            <span class="d-block">0.14%<i class="ti ti-arrow-bear-right"></i></span>
+                                                            <span class="d-block">+$1,780.80</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex gap-2">
+                                                        <button type="button" class="btn btn-sm btn-light flex-fill">Short</button>
+                                                        <button type="button" class="btn btn-sm btn-primary-light flex-fill">Buy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-2 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="p-3 card custom-card border bg-white rounded">
+                                                    <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between mb-3">
+                                                        <div class="d-flex flex-fill align-items-center">
+                                                            <div class="me-2">
+                                                                <span class="avatar avatar-rounded bg-light p-2">
+                                                                    <i class="bi bi-currency-bitcoin text-warning fs-18"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="lh-1">
+                                                                <span class="fw-semibold d-block mb-2 text-default">Bitcoin</span>
+                                                                <span class="d-block text-muted fs-12">$58,151.02</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-success fs-12 text-end">
+                                                            <span class="d-block">2.14%<i class="ti ti-arrow-bear-right"></i></span>
+                                                            <span class="d-block">+$5,745.62</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex gap-2">
+                                                        <button type="button" class="btn btn-sm btn-light flex-fill">Short</button>
+                                                        <button type="button" class="btn btn-sm btn-primary-light flex-fill">Buy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-2 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="p-3 card custom-card border bg-white rounded">
+                                                    <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between mb-3">
+                                                        <div class="d-flex flex-fill align-items-center">
+                                                            <div class="me-2">
+                                                                <span class="avatar avatar-rounded bg-light p-2">
+                                                                    <i class="bi bi-card-list text-success fs-18"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="lh-1">
+                                                                <span class="fw-semibold d-block mb-2 text-default">Tesla</span>
+                                                                <span class="d-block text-muted fs-12">$14,452.36</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-success fs-12 text-end">
+                                                            <span class="d-block">4.02%<i class="ti ti-arrow-bear-right"></i></span>
+                                                            <span class="d-block">+$4,125.63</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex gap-2">
+                                                        <button type="button" class="btn btn-sm btn-light flex-fill">Short</button>
+                                                        <button type="button" class="btn btn-sm btn-primary-light flex-fill">Buy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-2 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="p-3 card custom-card border bg-white rounded">
+                                                    <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between mb-3">
+                                                        <div class="d-flex flex-fill align-items-center">
+                                                            <div class="me-2">
+                                                                <span class="avatar avatar-rounded bg-light p-2">
+                                                                    <i class="bi bi-gift text-primary fs-18"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="lh-1">
+                                                                <span class="fw-semibold d-block mb-2 text-default">Amazon</span>
+                                                                <span class="d-block text-muted fs-12">$63,251.11</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-success fs-12 text-end">
+                                                            <span class="d-block">5.14%<i class="ti ti-arrow-bear-right"></i></span>
+                                                            <span class="d-block">+$936.30</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex gap-2">
+                                                        <button type="button" class="btn btn-sm btn-light flex-fill">Short</button>
+                                                        <button type="button" class="btn btn-sm btn-primary-light flex-fill">Buy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-2 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="p-3 card custom-card border bg-white rounded">
+                                                    <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+                                                        <div class="d-flex flex-fill align-items-center">
+                                                            <div class="me-2">
+                                                                <span class="avatar avatar-rounded bg-light p-2">
+                                                                    <i class="bi bi-truck text-danger fs-18"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="lh-1">
+                                                                <span class="fw-semibold d-block mb-2 text-default">Aliexpress</span>
+                                                                <span class="d-block text-muted fs-12">$5,401.50</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-success fs-12 text-end">
+                                                            <span class="d-block">3.32%<i class="ti ti-arrow-bear-right"></i></span>
+                                                            <span class="d-block">+$4,360.65</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex gap-2">
+                                                        <button type="button" class="btn btn-sm btn-light flex-fill">Short</button>
+                                                        <button type="button" class="btn btn-sm btn-primary-light flex-fill">Buy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-2 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="p-3 card custom-card border bg-white rounded">
+                                                    <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+                                                        <div class="d-flex flex-fill align-items-center">
+                                                            <div class="me-2">
+                                                                <span class="avatar avatar-rounded bg-light p-2">
+                                                                    <i class="bi bi-phone text-secondary fs-18"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="lh-1">
+                                                                <span class="fw-semibold d-block mb-2 text-default">Samsung</span>
+                                                                <span class="d-block text-muted fs-12">$10,732.12</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-success fs-12 text-end">
+                                                            <span class="d-block">1.24%<i class="ti ti-arrow-bear-right"></i></span>
+                                                            <span class="d-block">+$3,221.29</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex gap-2">
+                                                        <button type="button" class="btn btn-sm btn-light flex-fill">Short</button>
+                                                        <button type="button" class="btn btn-sm btn-primary-light flex-fill">Buy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-5">
+                                        <div class="card custom-card">
+                                            <div class="card-header justify-content-between">
+                                                <div class="card-title">
+                                                    Transaction History
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a href="javascript:void(0);" class="btn btn-primary-light btn-sm btn-wave waves-effect waves-light" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        All<i class="ri-arrow-down-s-line align-middle ms-1 d-inline-block"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li><a class="dropdown-item" href="javascript:void(0);">Buy</a></li>
+                                                        <li><a class="dropdown-item" href="javascript:void(0);">Sell</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table text-nowrap table-bordered border-primary">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Symbol</th>
+                                                                <th scope="col">Date</th>
+                                                                <th scope="col">Type</th>
+                                                                <th scope="col">Amount</th>
+                                                                <th scope="col">Shares</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    EPA:THI
+                                                                </th>
+                                                                <td>
+                                                                    12-06-2023
+                                                                </td>
+                                                                <td>
+                                                                    <span class="badge bg-primary">Buy</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-danger">-$1,290</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-success">+20</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    EPA:SCB
+                                                                </th>
+                                                                <td>
+                                                                    11-06-2023
+                                                                </td>
+                                                                <td>
+                                                                    <span class="badge bg-primary">Buy</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-danger">-$2,150</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-success">+15</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    EPA:CGIO
+                                                                </th>
+                                                                <td>
+                                                                    11-06-2023
+                                                                </td>
+                                                                <td>
+                                                                    <span class="badge bg-warning">Sell</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-success">+$22,625</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-danger">-12</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    EPA:NTIX
+                                                                </th>
+                                                                <td>
+                                                                    05-06-2023
+                                                                </td>
+                                                                <td>
+                                                                    <span class="badge bg-primary">Buy</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-danger">-$3,680</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-success">+36</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    EPA:MOD
+                                                                </th>
+                                                                <td>
+                                                                    20-05-2023
+                                                                </td>
+                                                                <td>
+                                                                    <span class="badge bg-warning">Sell</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-success">+$30,750</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-danger">-25</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-7">
+                                        <div class="card custom-card">
+                                            <div class="card-header justify-content-between">
+                                                <div class="card-title">
+                                                    Market Movers
+                                                </div>
+                                                <div class="d-flex flex-wrap gap-2">
+                                                    <div class="me-2">
+                                                        <input class="form-control form-control-sm" type="text" placeholder="Search Any Stock" aria-label=".form-control-sm example">
+                                                    </div>
+                                                    <div class="dropdown">
+                                                        <a href="javascript:void(0);" class="btn btn-primary-light btn-sm btn-wave waves-effect waves-light" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            Sort By<i class="ri-arrow-down-s-line align-middle ms-1 d-inline-block"></i>
+                                                        </a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a class="dropdown-item" href="javascript:void(0);">New</a></li>
+                                                            <li><a class="dropdown-item" href="javascript:void(0);">Popular</a></li>
+                                                            <li><a class="dropdown-item" href="javascript:void(0);">Relevant</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table text-nowrap table-bordered border-primary">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Symbol</th>
+                                                                <th scope="col">Name</th>
+                                                                <th scope="col">Price</th>
+                                                                <th scope="col">1D Change</th>
+                                                                <th scope="col">1D Return %</th>
+                                                                <th scope="col">Volume</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    APPL
+                                                                </th>
+                                                                <td>
+                                                                    App1e Inc.<span class="fw-normal text-primary fs-10 ms-1">NASDAQ</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span>$1,116.90</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-success">$28.9<i class="ti ti-arrow-bear-right"></i></span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-success">6.8%</span>
+                                                                </td>
+                                                                <td>
+                                                                    12,389.30
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    TTR
+                                                                </th>
+                                                                <td>
+                                                                    Twiter.com Inc.<span class="fw-normal text-primary fs-10 ms-1">NYSE</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span>$993.21</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-success">$11.6<i class="ti ti-arrow-bear-right"></i></span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-success">10.25%</span>
+                                                                </td>
+                                                                <td>
+                                                                    32,125.03
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    BS
+                                                                </th>
+                                                                <td>
+                                                                    Boostrap.com.<span class="fw-normal text-primary fs-10 ms-1">NSE</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span>$11.00</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-danger">$16.0<i class="ti ti-arrow-narrow-down"></i></span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-danger">9.0%</span>
+                                                                </td>
+                                                                <td>
+                                                                    27,911.16
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    NFLX
+                                                                </th>
+                                                                <td>
+                                                                    Netfilx.com Inc.<span class="fw-normal text-primary fs-10 ms-1">LSE</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span>$161.72</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-danger">$9.8<i class="ti ti-arrow-narrow-down"></i></span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-danger">17.8%</span>
+                                                                </td>
+                                                                <td>
+                                                                    27,161.89
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    ION
+                                                                </th>
+                                                                <td>
+                                                                    Ion.com Corp.<span class="fw-normal text-primary fs-10 ms-1">FSX</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span>$52.65</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-success">$14.2<i class="ti ti-arrow-bear-right"></i></span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-success">30.2%</span>
+                                                                </td>
+                                                                <td>
+                                                                    65,785.01
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane p-0 border-0" id="stocks-market" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-xxl-2 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="card custom-card">
+                                            <div class="card-body">
+                                                <div class="d-flex flex-wrap align-items-center justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2">
+                                                            <span class="avatar bg-danger-transparent">
+                                                                <i class="ti ti-trending-down fs-18"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="d-block fw-semibold">Nifty 50</span>
+                                                            <span class="d-block">$12,289.44</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-end text-danger fs-12">
+                                                        <span class="d-block">-0.14%</span>
+                                                        <span class="d-block">-$1,780.80</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-2 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="card custom-card">
+                                            <div class="card-body">
+                                                <div class="d-flex flex-wrap align-items-center justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2">
+                                                            <span class="avatar bg-danger-transparent">
+                                                                <i class="ti ti-trending-down fs-18"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="d-block fw-semibold">SENSEX</span>
+                                                            <span class="d-block">$12,289.44</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-end text-danger fs-12">
+                                                        <span class="d-block">-0.14%</span>
+                                                        <span class="d-block">-$1,780.80</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-2 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="card custom-card">
+                                            <div class="card-body">
+                                                <div class="d-flex flex-wrap align-items-center justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2">
+                                                            <span class="avatar bg-success-transparent">
+                                                                <i class="ti ti-trending-up fs-18"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="d-block fw-semibold">DJIA</span>
+                                                            <span class="d-block">$12,289.44</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-end text-danger fs-12">
+                                                        <span class="d-block">-0.14%</span>
+                                                        <span class="d-block">-$1,780.80</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-2 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="card custom-card">
+                                            <div class="card-body">
+                                                <div class="d-flex flex-wrap align-items-center justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2">
+                                                            <span class="avatar bg-danger-transparent">
+                                                                <i class="ti ti-trending-up fs-18"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="d-block fw-semibold">S&amp;P 500</span>
+                                                            <span class="d-block">$12,289.44</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-end text-danger fs-12">
+                                                        <span class="d-block">-0.14%</span>
+                                                        <span class="d-block">-$1,780.80</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-2 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="card custom-card">
+                                            <div class="card-body">
+                                                <div class="d-flex flex-wrap align-items-center justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2">
+                                                            <span class="avatar bg-success-transparent">
+                                                                <i class="ti ti-trending-up fs-18"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="d-block fw-semibold">NASDAQ</span>
+                                                            <span class="d-block">$12,289.44</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-end text-danger fs-12">
+                                                        <span class="d-block">-0.14%</span>
+                                                        <span class="d-block">-$1,780.80</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-2 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="card custom-card">
+                                            <div class="card-body">
+                                                <div class="d-flex flex-wrap align-items-center justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2">
+                                                            <span class="avatar bg-success-transparent">
+                                                                <i class="ti ti-trending-up fs-18"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="d-block fw-semibold">NIFTY IT</span>
+                                                            <span class="d-block">$12,289.44</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-end text-danger fs-12">
+                                                        <span class="d-block">-0.14%</span>
+                                                        <span class="d-block">-$1,780.80</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="card custom-card">
+                                            <div class="card-header justify-content-between">
+                                                <div class="card-title">
+                                                    Market Cap
+                                                </div>
+                                                <div>
+                                                    <input class="form-control form-control-sm" type="text" placeholder="Search Any Stock Here" aria-label=".form-control-sm example">
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-0">
+                                                <div class="row">
+                                                    <div class="col-xl-7 border-end">
+                                                        <div class="p-3">
+                                                            <div class="d-flex flex-wrap alilgn-items-center justify-content-between">
+                                                                <div class="d-flex flex-fill gap-3 ms-5">
+                                                                    <div>
+                                                                        <h5 class="fw-semibold text-primary">$12,390.02<span class="fs-12 ms-1 text-danger">0.14%<i class="ti ti-trending-down ms-1"></i></span></h5>
+                                                                        <span class="d-block text-muted mb-1 fs-12"><span class="text-danger me-1">-89.75</span>. Today</span>
+                                                                        <span class="d-block text-muted fs-11">Jun 17, 2023  11:25 AM  UTC +5:30</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex text-end">
+                                                                    <div>
+                                                                        <h6 class="fw-semibold">GITUHB</h6>
+                                                                        <span class="d-block text-muted fs-11 mb-1">GTHB  INDEXNSE</span>
+                                                                        <span class="d-block"><a href="javascript:void(0);" class="text-primary fw-semibold">+ Compare</a></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="stocks-marketcap">
+                                                                <ApexChart TItem="StocksMarketcapchart" Options=StocksMarketcapChartOptions>
+                                                                    <ApexCandleSeries TItem="StocksMarketcapchart"
+                                                                                    Items="StocksMarketcapcharts"
+                                                                                    XValue="@(e => e.Date)"
+                                                                                    Open="@(e => e.Open)"
+                                                                                    High="@(e => e.High)"
+                                                                                    Low="@(e => e.Low)"
+                                                                                    Close="@(e => e.Close)"
+                                                                                    OrderByDescending="e => e.X" />
+                                                                </ApexChart>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-5">
+                                                        <div class="p-3">
+                                                            <div class="table-responsive mb-5">
+                                                                <table class="table text-nowrap table-borderless table-sm text-muted">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">Open</th>
+                                                                            <td>125.80</td>
+                                                                            <td>Volume</td>
+                                                                            <td>1,253.20</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">High</th>
+                                                                            <td>352.15</td>
+                                                                            <td>Avg. Volume</td>
+                                                                            <td>1.05M</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">Low</th>
+                                                                            <td>120.13</td>
+                                                                            <td>52 Week High</td>
+                                                                            <td>2569.25</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">Dividend Yield</th>
+                                                                            <td>3.5%</td>
+                                                                            <td>52 Week Low</td>
+                                                                            <td>1586.20</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">P/E Ratio</th>
+                                                                            <td>25%</td>
+                                                                            <td>Market Cap</td>
+                                                                            <td>2.15Cr</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div>
+                                                                <h6 class="fw-semibold mb-2">
+                                                                    Market Depth:
+                                                                </h6>
+                                                                <div class="row">
+                                                                    <div class="col-xl-6">
+                                                                        <div class="table-responsive">
+                                                                            <table class="table text-nowrap table-sm text-center table-borderless text-muted">
+                                                                                <thead class="text-default bg-light">
+                                                                                    <tr>
+                                                                                        <th scope="col">Qty</th>
+                                                                                        <th scope="col">Orders</th>
+                                                                                        <th scope="col">Bid</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <span class="text-success">20</span>
+                                                                                        </th>
+                                                                                        <td>2</td>
+                                                                                        <td>$12,908</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <span class="text-success">12</span>
+                                                                                        </th>
+                                                                                        <td>1</td>
+                                                                                        <td>$20,632</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <span class="text-success">36</span>
+                                                                                        </th>
+                                                                                        <td>1</td>
+                                                                                        <td>$19,102</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <span class="text-success">10</span>
+                                                                                        </th>
+                                                                                        <td>3</td>
+                                                                                        <td>$16,650</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <span class="text-success">15</span>
+                                                                                        </th>
+                                                                                        <td>2</td>
+                                                                                        <td>$18,850</td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-xl-6">
+                                                                        <div class="table-responsive mb-3">
+                                                                            <table class="table text-nowrap table-sm text-center table-borderless text-muted">
+                                                                                <thead class="text-default bg-light">
+                                                                                    <tr>
+                                                                                        <th scope="col">Qty</th>
+                                                                                        <th scope="col">Orders</th>
+                                                                                        <th scope="col">Bid</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <span class="text-danger">20</span>
+                                                                                        </th>
+                                                                                        <td>2</td>
+                                                                                        <td>$12,908</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <span class="text-danger">12</span>
+                                                                                        </th>
+                                                                                        <td>1</td>
+                                                                                        <td>$20,632</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <span class="text-danger">36</span>
+                                                                                        </th>
+                                                                                        <td>1</td>
+                                                                                        <td>$19,102</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <span class="text-danger">10</span>
+                                                                                        </th>
+                                                                                        <td>3</td>
+                                                                                        <td>$16,650</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th scope="row">
+                                                                                            <span class="text-danger">15</span>
+                                                                                        </th>
+                                                                                        <td>2</td>
+                                                                                        <td>$18,850</td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <div class="d-flex gap-3">
+                                                                            <button type="button" class="flex-fill btn btn-sm btn-primary btn-wave">Buy</button>
+                                                                            <button type="button" class="flex-fill btn btn-sm btn-secondary btn-wave">Sell</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End::row-2 -->
+
+            </div>
+
+@code {
+    
+    // TotalInvested Start //
+    private List<TotalInvested> totalinvested { get; set; } = InvestedchartData.GetTotalInvesteds();
+    private ApexChartOptions<TotalInvested> TotalInvestedChartOptions { get; set; } = new();
+    public class TotalInvested {
+        public decimal InvestedSeries { get; set; }
+        public decimal InvestedValue { get; set; }
+        
+    } ;
+    public static class InvestedchartData {
+            public static List<TotalInvested> GetTotalInvesteds()
+            {
+                List<TotalInvested> totalinvested = new List<TotalInvested>
+                {
+                    new TotalInvested { InvestedSeries = 1, InvestedValue = 20},
+                    new TotalInvested { InvestedSeries = 2, InvestedValue = 14},
+                    new TotalInvested { InvestedSeries = 3, InvestedValue = 19},
+                    new TotalInvested { InvestedSeries = 4, InvestedValue = 10},
+                    new TotalInvested { InvestedSeries = 5, InvestedValue = 23},
+                    new TotalInvested { InvestedSeries = 6, InvestedValue = 20},
+                    new TotalInvested { InvestedSeries = 7, InvestedValue = 22},
+                    new TotalInvested { InvestedSeries = 8, InvestedValue = 09},
+                    new TotalInvested { InvestedSeries = 9, InvestedValue = 12},
+                };
+
+                return totalinvested;
+            }
+    }
+    //  TotalInvested End //
+
+    // TotalInvestments Start //
+    private List<TotalInvestments> totalinvestments { get; set; } = InvestmentschartData.GetTotalInvestmentss();
+    private ApexChartOptions<TotalInvestments> TotalInvestmentsChartOptions { get; set; } = new();
+    public class TotalInvestments {
+        public decimal InvestmentsSeries { get; set; }
+        public decimal InvestmentsValue { get; set; }
+        
+    } ;
+    public static class InvestmentschartData {
+            public static List<TotalInvestments> GetTotalInvestmentss()
+            {
+                List<TotalInvestments> totalinvestments = new List<TotalInvestments>
+                {
+                    new TotalInvestments { InvestmentsSeries = 1, InvestmentsValue = 20},
+                    new TotalInvestments { InvestmentsSeries = 2, InvestmentsValue = 14},
+                    new TotalInvestments { InvestmentsSeries = 3, InvestmentsValue = 19},
+                    new TotalInvestments { InvestmentsSeries = 4, InvestmentsValue = 10},
+                    new TotalInvestments { InvestmentsSeries = 5, InvestmentsValue = 23},
+                    new TotalInvestments { InvestmentsSeries = 6, InvestmentsValue = 20},
+                    new TotalInvestments { InvestmentsSeries = 7, InvestmentsValue = 22},
+                    new TotalInvestments { InvestmentsSeries = 8, InvestmentsValue = 09},
+                    new TotalInvestments { InvestmentsSeries = 9, InvestmentsValue = 12},
+                };
+
+                return totalinvestments;
+            }
+    }
+    //  TotalInvestments End //
+
+    // TotalPortfolio Start //
+    private List<TotalPortfolio> totalportfolio { get; set; } = PortfoliochartData.GetTotalPortfolios();
+    private ApexChartOptions<TotalPortfolio> TotalPortfolioChartOptions { get; set; } = new();
+    public class TotalPortfolio {
+        public decimal PortfolioSeries { get; set; }
+        public decimal PortfolioValue { get; set; }
+        
+    } ;
+    public static class PortfoliochartData {
+            public static List<TotalPortfolio> GetTotalPortfolios()
+            {
+                List<TotalPortfolio> totalportfolio = new List<TotalPortfolio>
+                {
+                    new TotalPortfolio { PortfolioSeries = 1, PortfolioValue = 20},
+                    new TotalPortfolio { PortfolioSeries = 2, PortfolioValue = 14},
+                    new TotalPortfolio { PortfolioSeries = 3, PortfolioValue = 19},
+                    new TotalPortfolio { PortfolioSeries = 4, PortfolioValue = 10},
+                    new TotalPortfolio { PortfolioSeries = 5, PortfolioValue = 23},
+                    new TotalPortfolio { PortfolioSeries = 6, PortfolioValue = 20},
+                    new TotalPortfolio { PortfolioSeries = 7, PortfolioValue = 22},
+                    new TotalPortfolio { PortfolioSeries = 8, PortfolioValue = 09},
+                    new TotalPortfolio { PortfolioSeries = 9, PortfolioValue = 12},
+                };
+
+                return totalportfolio;
+            }
+    }
+    //  TotalPortfolio End //
+
+    // TotalReturns Start //
+    private List<TotalReturns> totalreturns { get; set; } = ReturnschartData.GetTotalReturnss();
+    private ApexChartOptions<TotalReturns> TotalReturnsChartOptions { get; set; } = new();
+    public class TotalReturns {
+        public decimal ReturnsSeries { get; set; }
+        public decimal ReturnsValue { get; set; }
+        
+    } ;
+    public static class ReturnschartData {
+            public static List<TotalReturns> GetTotalReturnss()
+            {
+                List<TotalReturns> totalreturns = new List<TotalReturns>
+                {
+                    new TotalReturns { ReturnsSeries = 1, ReturnsValue = 20},
+                    new TotalReturns { ReturnsSeries = 2, ReturnsValue = 14},
+                    new TotalReturns { ReturnsSeries = 3, ReturnsValue = 19},
+                    new TotalReturns { ReturnsSeries = 4, ReturnsValue = 10},
+                    new TotalReturns { ReturnsSeries = 5, ReturnsValue = 23},
+                    new TotalReturns { ReturnsSeries = 6, ReturnsValue = 20},
+                    new TotalReturns { ReturnsSeries = 7, ReturnsValue = 22},
+                    new TotalReturns { ReturnsSeries = 8, ReturnsValue = 09},
+                    new TotalReturns { ReturnsSeries = 9, ReturnsValue = 12},
+                };
+
+                return totalreturns;
+            }
+    }
+    //  TotalReturns End //
+
+    
+    // Crypto Candle Chart Start //
+    private List<InvestmentsStats> investmentsstats { get; set; } = DataInvestmentsStats.GetCryptoData();
+    private ApexChartOptions<InvestmentsStats> investmentsstatsChartOptions { get; set; } = new();
+
+    public static class DataInvestmentsStats
+    {
+        public static List<InvestmentsStats> GetCryptoData()
+        {
+            List<InvestmentsStats> InvestmentsStatsData = new List<InvestmentsStats>
+            {
+                new InvestmentsStats { Date =new DateTime(1327359600000), Value = 30.95M},
+                new InvestmentsStats { Date =new DateTime(1327446000000), Value = 31.34M},
+                new InvestmentsStats { Date =new DateTime(1327532400000), Value = 31.18M},
+                new InvestmentsStats { Date =new DateTime(1327618800000), Value = 31.05M},
+                new InvestmentsStats { Date =new DateTime(1327878000000), Value = 31.00M},
+                new InvestmentsStats { Date =new DateTime(1327964400000), Value = 30.95M},
+                new InvestmentsStats { Date =new DateTime(1328050800000), Value = 31.24M},
+                new InvestmentsStats { Date =new DateTime(1328137200000), Value = 31.29M},
+                new InvestmentsStats { Date =new DateTime(1328223600000), Value = 31.85M},
+                new InvestmentsStats { Date =new DateTime(1328482800000), Value = 31.86M},
+                new InvestmentsStats { Date =new DateTime(1328569200000), Value = 32.28M},
+                new InvestmentsStats { Date =new DateTime(1328655600000), Value = 32.10M},
+                new InvestmentsStats { Date =new DateTime(1328742000000), Value = 32.65M},
+                new InvestmentsStats { Date =new DateTime(1328828400000), Value = 32.21M},
+                new InvestmentsStats { Date =new DateTime(1329087600000), Value = 32.35M},
+                new InvestmentsStats { Date =new DateTime(1329174000000), Value = 32.44M},
+                new InvestmentsStats { Date =new DateTime(1329260400000), Value = 32.46M},
+                new InvestmentsStats { Date =new DateTime(1329346800000), Value = 32.86M},
+                new InvestmentsStats { Date =new DateTime(1329433200000), Value = 32.75M},
+                new InvestmentsStats { Date =new DateTime(1329778800000), Value = 32.54M},
+                new InvestmentsStats { Date =new DateTime(1329865200000), Value = 32.33M},
+                new InvestmentsStats { Date =new DateTime(1329951600000), Value = 32.97M},
+                new InvestmentsStats { Date =new DateTime(1330038000000), Value = 33.41M},
+                new InvestmentsStats { Date =new DateTime(1330297200000), Value = 33.27M},
+                new InvestmentsStats { Date =new DateTime(1330383600000), Value = 33.27M},
+                new InvestmentsStats { Date =new DateTime(1330470000000), Value = 32.89M},
+                new InvestmentsStats { Date =new DateTime(1330556400000), Value = 33.10M},
+                new InvestmentsStats { Date =new DateTime(1330642800000), Value = 33.73M},
+                new InvestmentsStats { Date =new DateTime(1330902000000), Value = 33.22M},
+                new InvestmentsStats { Date =new DateTime(1330988400000), Value = 31.99M},
+                new InvestmentsStats { Date =new DateTime(1331074800000), Value = 32.41M},
+                new InvestmentsStats { Date =new DateTime(1331161200000), Value = 33.05M},
+                new InvestmentsStats { Date =new DateTime(1331247600000), Value = 33.64M},
+                new InvestmentsStats { Date =new DateTime(1331506800000), Value = 33.56M},
+                new InvestmentsStats { Date =new DateTime(1331593200000), Value = 34.22M},
+                new InvestmentsStats { Date =new DateTime(1331679600000), Value = 33.77M},
+                new InvestmentsStats { Date =new DateTime(1331766000000), Value = 34.17M},
+                new InvestmentsStats { Date =new DateTime(1331852400000), Value = 33.82M},
+                new InvestmentsStats { Date =new DateTime(1332111600000), Value = 34.51M},
+                new InvestmentsStats { Date =new DateTime(1332198000000), Value = 33.16M},
+                new InvestmentsStats { Date =new DateTime(1332284400000), Value = 33.56M},
+                new InvestmentsStats { Date =new DateTime(1332370800000), Value = 33.71M},
+                new InvestmentsStats { Date =new DateTime(1332457200000), Value = 33.81M},
+                new InvestmentsStats { Date =new DateTime(1332712800000), Value = 34.40M},
+                new InvestmentsStats { Date =new DateTime(1332799200000), Value = 34.63M},
+                new InvestmentsStats { Date =new DateTime(1332885600000), Value = 34.46M},
+                new InvestmentsStats { Date =new DateTime(1332972000000), Value = 34.48M},
+                new InvestmentsStats { Date =new DateTime(1333058400000), Value = 34.31M},
+                new InvestmentsStats { Date =new DateTime(1333317600000), Value = 34.70M},
+                new InvestmentsStats { Date =new DateTime(1333404000000), Value = 34.31M},
+                new InvestmentsStats { Date =new DateTime(1333490400000), Value = 33.46M},
+                new InvestmentsStats { Date =new DateTime(1333576800000), Value = 33.59M},
+                new InvestmentsStats { Date =new DateTime(1333922400000), Value = 33.22M},
+                new InvestmentsStats { Date =new DateTime(1334008800000), Value = 32.61M},
+                new InvestmentsStats { Date =new DateTime(1334095200000), Value = 33.01M},
+                new InvestmentsStats { Date =new DateTime(1334181600000), Value = 33.55M},
+                new InvestmentsStats { Date =new DateTime(1334268000000), Value = 33.18M},
+                new InvestmentsStats { Date =new DateTime(1334527200000), Value = 32.84M},
+                new InvestmentsStats { Date =new DateTime(1334613600000), Value = 33.84M},
+                new InvestmentsStats { Date =new DateTime(1334700000000), Value = 33.39M},
+                new InvestmentsStats { Date =new DateTime(1334786400000), Value = 32.91M},
+                new InvestmentsStats { Date =new DateTime(1334872800000), Value = 33.06M},
+                new InvestmentsStats { Date =new DateTime(1335132000000), Value = 32.62M},
+                new InvestmentsStats { Date =new DateTime(1335218400000), Value = 32.40M},
+                new InvestmentsStats { Date =new DateTime(1335304800000), Value = 33.13M},
+                new InvestmentsStats { Date =new DateTime(1335391200000), Value = 33.26M},
+                new InvestmentsStats { Date =new DateTime(1335477600000), Value = 33.58M},
+                new InvestmentsStats { Date =new DateTime(1335736800000), Value = 33.55M},
+                new InvestmentsStats { Date =new DateTime(1335823200000), Value = 33.77M},
+                new InvestmentsStats { Date =new DateTime(1335909600000), Value = 33.76M},
+                new InvestmentsStats { Date =new DateTime(1335996000000), Value = 33.32M},
+                new InvestmentsStats { Date =new DateTime(1336082400000), Value = 32.61M},
+                new InvestmentsStats { Date =new DateTime(1336341600000), Value = 32.52M},
+                new InvestmentsStats { Date =new DateTime(1336428000000), Value = 32.67M},
+                new InvestmentsStats { Date =new DateTime(1336514400000), Value = 32.52M},
+                new InvestmentsStats { Date =new DateTime(1336600800000), Value = 31.92M},
+                new InvestmentsStats { Date =new DateTime(1336687200000), Value = 32.20M},
+                new InvestmentsStats { Date =new DateTime(1336946400000), Value = 32.23M},
+                new InvestmentsStats { Date =new DateTime(1337032800000), Value = 32.33M},
+                new InvestmentsStats { Date =new DateTime(1337119200000), Value = 32.36M},
+                new InvestmentsStats { Date =new DateTime(1337205600000), Value = 32.01M},
+                new InvestmentsStats { Date =new DateTime(1337292000000), Value = 31.31M},
+                new InvestmentsStats { Date =new DateTime(1337551200000), Value = 32.01M},
+                new InvestmentsStats { Date =new DateTime(1337637600000), Value = 32.01M},
+                new InvestmentsStats { Date =new DateTime(1337724000000), Value = 32.18M},
+                new InvestmentsStats { Date =new DateTime(1337810400000), Value = 31.54M},
+                new InvestmentsStats { Date =new DateTime(1337896800000), Value = 31.60M},
+                new InvestmentsStats { Date =new DateTime(1338242400000), Value = 32.05M},
+                new InvestmentsStats { Date =new DateTime(1338328800000), Value = 31.29M},
+                new InvestmentsStats { Date =new DateTime(1338415200000), Value = 31.05M},
+                new InvestmentsStats { Date =new DateTime(1338501600000), Value = 29.82M},
+                new InvestmentsStats { Date =new DateTime(1338760800000), Value = 30.31M},
+                new InvestmentsStats { Date =new DateTime(1338847200000), Value = 30.70M},
+                new InvestmentsStats { Date =new DateTime(1338933600000), Value = 31.69M},
+                new InvestmentsStats { Date =new DateTime(1339020000000), Value = 31.32M},
+                new InvestmentsStats { Date =new DateTime(1339106400000), Value = 31.65M},
+                new InvestmentsStats { Date =new DateTime(1339365600000), Value = 31.13M},
+                new InvestmentsStats { Date =new DateTime(1339452000000), Value = 31.77M},
+                new InvestmentsStats { Date =new DateTime(1339538400000), Value = 31.79M},
+                new InvestmentsStats { Date =new DateTime(1339624800000), Value = 31.67M},
+                new InvestmentsStats { Date =new DateTime(1339711200000), Value = 32.39M},
+                new InvestmentsStats { Date =new DateTime(1339970400000), Value = 32.63M},
+                new InvestmentsStats { Date =new DateTime(1340056800000), Value = 32.89M},
+                new InvestmentsStats { Date =new DateTime(1340143200000), Value = 31.99M},
+                new InvestmentsStats { Date =new DateTime(1340229600000), Value = 31.23M},
+                new InvestmentsStats { Date =new DateTime(1340316000000), Value = 31.57M},
+                new InvestmentsStats { Date =new DateTime(1340575200000), Value = 30.84M},
+                new InvestmentsStats { Date =new DateTime(1340661600000), Value = 31.07M},
+                new InvestmentsStats { Date =new DateTime(1340748000000), Value = 31.41M},
+                new InvestmentsStats { Date =new DateTime(1340834400000), Value = 31.17M},
+                new InvestmentsStats { Date =new DateTime(1340920800000), Value = 32.37M},
+                new InvestmentsStats { Date =new DateTime(1341180000000), Value = 32.19M},
+                new InvestmentsStats { Date =new DateTime(1341266400000), Value = 32.51M},
+                new InvestmentsStats { Date =new DateTime(1341439200000), Value = 32.53M},
+                new InvestmentsStats { Date =new DateTime(1341525600000), Value = 31.37M},
+                new InvestmentsStats { Date =new DateTime(1341784800000), Value = 30.43M},
+                new InvestmentsStats { Date =new DateTime(1341871200000), Value = 30.44M},
+                new InvestmentsStats { Date =new DateTime(1341957600000), Value = 30.20M},
+                new InvestmentsStats { Date =new DateTime(1342044000000), Value = 30.14M},
+                new InvestmentsStats { Date =new DateTime(1342130400000), Value = 30.65M},
+                new InvestmentsStats { Date =new DateTime(1342389600000), Value = 30.40M},
+                new InvestmentsStats { Date =new DateTime(1342476000000), Value = 30.65M},
+                new InvestmentsStats { Date =new DateTime(1342562400000), Value = 31.43M},
+                new InvestmentsStats { Date =new DateTime(1342648800000), Value = 31.89M},
+                new InvestmentsStats { Date =new DateTime(1342735200000), Value = 31.38M},
+                new InvestmentsStats { Date =new DateTime(1342994400000), Value = 30.64M},
+                new InvestmentsStats { Date =new DateTime(1343080800000), Value = 30.02M},
+                new InvestmentsStats { Date =new DateTime(1343167200000), Value = 30.33M},
+                new InvestmentsStats { Date =new DateTime(1343253600000), Value = 30.95M},
+                new InvestmentsStats { Date =new DateTime(1343340000000), Value = 31.89M},
+                new InvestmentsStats { Date =new DateTime(1343599200000), Value = 31.01M},
+                new InvestmentsStats { Date =new DateTime(1343685600000), Value = 30.88M},
+                new InvestmentsStats { Date =new DateTime(1343772000000), Value = 30.69M},
+                new InvestmentsStats { Date =new DateTime(1343858400000), Value = 30.58M},
+                new InvestmentsStats { Date =new DateTime(1343944800000), Value = 32.02M},
+                new InvestmentsStats { Date =new DateTime(1344204000000), Value = 32.14M},
+                new InvestmentsStats { Date =new DateTime(1344290400000), Value = 32.37M},
+                new InvestmentsStats { Date =new DateTime(1344376800000), Value = 32.51M},
+                new InvestmentsStats { Date =new DateTime(1344463200000), Value = 32.65M},
+                new InvestmentsStats { Date =new DateTime(1344549600000), Value = 32.64M},
+                new InvestmentsStats { Date =new DateTime(1344808800000), Value = 32.27M},
+                new InvestmentsStats { Date =new DateTime(1344895200000), Value = 32.10M},
+                new InvestmentsStats { Date =new DateTime(1344981600000), Value = 32.91M},
+                new InvestmentsStats { Date =new DateTime(1345068000000), Value = 33.65M},
+                new InvestmentsStats { Date =new DateTime(1345154400000), Value = 33.80M},
+                new InvestmentsStats { Date =new DateTime(1345413600000), Value = 33.92M},
+                new InvestmentsStats { Date =new DateTime(1345500000000), Value = 33.75M},
+                new InvestmentsStats { Date =new DateTime(1345586400000), Value = 33.84M},
+                new InvestmentsStats { Date =new DateTime(1345672800000), Value = 33.50M},
+                new InvestmentsStats { Date =new DateTime(1345759200000), Value = 32.26M},
+                new InvestmentsStats { Date =new DateTime(1346018400000), Value = 32.32M},
+                new InvestmentsStats { Date =new DateTime(1346104800000), Value = 32.06M},
+                new InvestmentsStats { Date =new DateTime(1346191200000), Value = 31.96M},
+                new InvestmentsStats { Date =new DateTime(1346277600000), Value = 31.46M},
+                new InvestmentsStats { Date =new DateTime(1346364000000), Value = 31.27M},
+                new InvestmentsStats { Date =new DateTime(1346709600000), Value = 31.43M},
+                new InvestmentsStats { Date =new DateTime(1346796000000), Value = 32.26M},
+                new InvestmentsStats { Date =new DateTime(1346882400000), Value = 32.79M},
+                new InvestmentsStats { Date =new DateTime(1346968800000), Value = 32.46M},
+                new InvestmentsStats { Date =new DateTime(1347228000000), Value = 32.13M},
+                new InvestmentsStats { Date =new DateTime(1347314400000), Value = 32.43M},
+                new InvestmentsStats { Date =new DateTime(1347400800000), Value = 32.42M},
+                new InvestmentsStats { Date =new DateTime(1347487200000), Value = 32.81M},
+                new InvestmentsStats { Date =new DateTime(1347573600000), Value = 33.34M},
+                new InvestmentsStats { Date =new DateTime(1347832800000), Value = 33.41M},
+                new InvestmentsStats { Date =new DateTime(1347919200000), Value = 32.57M},
+                new InvestmentsStats { Date =new DateTime(1348005600000), Value = 33.12M},
+                new InvestmentsStats { Date =new DateTime(1348092000000), Value = 34.53M},
+                new InvestmentsStats { Date =new DateTime(1348178400000), Value = 33.83M},
+                new InvestmentsStats { Date =new DateTime(1348437600000), Value = 33.41M},
+                new InvestmentsStats { Date =new DateTime(1348524000000), Value = 32.90M},
+                new InvestmentsStats { Date =new DateTime(1348610400000), Value = 32.53M},
+                new InvestmentsStats { Date =new DateTime(1348696800000), Value = 32.80M},
+                new InvestmentsStats { Date =new DateTime(1348783200000), Value = 32.44M},
+                new InvestmentsStats { Date =new DateTime(1349042400000), Value = 32.62M},
+                new InvestmentsStats { Date =new DateTime(1349128800000), Value = 32.57M},
+                new InvestmentsStats { Date =new DateTime(1349215200000), Value = 32.60M},
+                new InvestmentsStats { Date =new DateTime(1349301600000), Value = 32.68M},
+                new InvestmentsStats { Date =new DateTime(1349388000000), Value = 32.47M},
+                new InvestmentsStats { Date =new DateTime(1349647200000), Value = 32.23M},
+                new InvestmentsStats { Date =new DateTime(1349733600000), Value = 31.68M},
+                new InvestmentsStats { Date =new DateTime(1349820000000), Value = 31.51M},
+                new InvestmentsStats { Date =new DateTime(1349906400000), Value = 31.78M},
+                new InvestmentsStats { Date =new DateTime(1349992800000), Value = 31.94M},
+                new InvestmentsStats { Date =new DateTime(1350252000000), Value = 32.33M},
+                new InvestmentsStats { Date =new DateTime(1350338400000), Value = 33.24M},
+                new InvestmentsStats { Date =new DateTime(1350424800000), Value = 33.44M},
+                new InvestmentsStats { Date =new DateTime(1350511200000), Value = 33.48M},
+                new InvestmentsStats { Date =new DateTime(1350597600000), Value = 33.24M},
+                new InvestmentsStats { Date =new DateTime(1350856800000), Value = 33.49M},
+                new InvestmentsStats { Date =new DateTime(1350943200000), Value = 33.31M},
+                new InvestmentsStats { Date =new DateTime(1351029600000), Value = 33.36M},
+                new InvestmentsStats { Date =new DateTime(1351116000000), Value = 33.40M},
+                new InvestmentsStats { Date =new DateTime(1351202400000), Value = 34.01M},
+                new InvestmentsStats { Date =new DateTime(1351638000000), Value = 34.02M},
+                new InvestmentsStats { Date =new DateTime(1351724400000), Value = 34.36M},
+                new InvestmentsStats { Date =new DateTime(1351810800000), Value = 34.39M},
+                new InvestmentsStats { Date =new DateTime(1352070000000), Value = 34.24M},
+                new InvestmentsStats { Date =new DateTime(1352156400000), Value = 34.39M},
+                new InvestmentsStats { Date =new DateTime(1352242800000), Value = 33.47M},
+                new InvestmentsStats { Date =new DateTime(1352329200000), Value = 32.98M},
+                new InvestmentsStats { Date =new DateTime(1352415600000), Value = 32.90M},
+                new InvestmentsStats { Date =new DateTime(1352674800000), Value = 32.70M},
+                new InvestmentsStats { Date =new DateTime(1352761200000), Value = 32.54M},
+                new InvestmentsStats { Date =new DateTime(1352847600000), Value = 32.23M},
+                new InvestmentsStats { Date =new DateTime(1352934000000), Value = 32.64M},
+                new InvestmentsStats { Date =new DateTime(1353020400000), Value = 32.65M},
+                new InvestmentsStats { Date =new DateTime(1353279600000), Value = 32.92M},
+                new InvestmentsStats { Date =new DateTime(1353366000000), Value = 32.64M},
+                new InvestmentsStats { Date =new DateTime(1353452400000), Value = 32.84M},
+                new InvestmentsStats { Date =new DateTime(1353625200000), Value = 33.40M},
+                new InvestmentsStats { Date =new DateTime(1353884400000), Value = 33.30M},
+                new InvestmentsStats { Date =new DateTime(1353970800000), Value = 33.18M},
+                new InvestmentsStats { Date =new DateTime(1354057200000), Value = 33.88M},
+                new InvestmentsStats { Date =new DateTime(1354143600000), Value = 34.09M},
+                new InvestmentsStats { Date =new DateTime(1354230000000), Value = 34.61M},
+                new InvestmentsStats { Date =new DateTime(1354489200000), Value = 34.70M},
+                new InvestmentsStats { Date =new DateTime(1354575600000), Value = 35.30M},
+                new InvestmentsStats { Date =new DateTime(1354662000000), Value = 35.40M},
+                new InvestmentsStats { Date =new DateTime(1354748400000), Value = 35.14M},
+                new InvestmentsStats { Date =new DateTime(1354834800000), Value = 35.48M},
+                new InvestmentsStats { Date =new DateTime(1355094000000), Value = 35.75M},
+                new InvestmentsStats { Date =new DateTime(1355180400000), Value = 35.54M},
+                new InvestmentsStats { Date =new DateTime(1355266800000), Value = 35.96M},
+                new InvestmentsStats { Date =new DateTime(1355353200000), Value = 35.53M},
+                new InvestmentsStats { Date =new DateTime(1355439600000), Value = 37.56M},
+                new InvestmentsStats { Date =new DateTime(1355698800000), Value = 37.42M},
+                new InvestmentsStats { Date =new DateTime(1355785200000), Value = 37.49M},
+                new InvestmentsStats { Date =new DateTime(1355871600000), Value = 38.09M},
+                new InvestmentsStats { Date =new DateTime(1355958000000), Value = 37.87M},
+                new InvestmentsStats { Date =new DateTime(1356044400000), Value = 37.71M},
+                new InvestmentsStats { Date =new DateTime(1356303600000), Value = 37.53M},
+                new InvestmentsStats { Date =new DateTime(1356476400000), Value = 37.55M},
+                new InvestmentsStats { Date =new DateTime(1356562800000), Value = 37.30M},
+                new InvestmentsStats { Date =new DateTime(1356649200000), Value = 36.90M},
+                new InvestmentsStats { Date =new DateTime(1356908400000), Value = 37.68M},
+                new InvestmentsStats { Date =new DateTime(1357081200000), Value = 38.34M},
+                new InvestmentsStats { Date =new DateTime(1357167600000), Value = 37.75M},
+                new InvestmentsStats { Date =new DateTime(1357254000000), Value = 38.13M},
+                new InvestmentsStats { Date =new DateTime(1357513200000), Value = 37.94M},
+                new InvestmentsStats { Date =new DateTime(1357599600000), Value = 38.14M},
+                new InvestmentsStats { Date =new DateTime(1357686000000), Value = 38.66M},
+                new InvestmentsStats { Date =new DateTime(1357772400000), Value = 38.62M},
+                new InvestmentsStats { Date =new DateTime(1357858800000), Value = 38.09M},
+                new InvestmentsStats { Date =new DateTime(1358118000000), Value = 38.16M},
+                new InvestmentsStats { Date =new DateTime(1358204400000), Value = 38.15M},
+                new InvestmentsStats { Date =new DateTime(1358290800000), Value = 37.88M},
+                new InvestmentsStats { Date =new DateTime(1358377200000), Value = 37.73M},
+                new InvestmentsStats { Date =new DateTime(1358463600000), Value = 37.98M},
+                new InvestmentsStats { Date =new DateTime(1358809200000), Value = 37.95M},
+                new InvestmentsStats { Date =new DateTime(1358895600000), Value = 38.25M},
+                new InvestmentsStats { Date =new DateTime(1358982000000), Value = 38.10M},
+                new InvestmentsStats { Date =new DateTime(1359068400000), Value = 38.32M},
+                new InvestmentsStats { Date =new DateTime(1359327600000), Value = 38.24M},
+                new InvestmentsStats { Date =new DateTime(1359414000000), Value = 38.52M},
+                new InvestmentsStats { Date =new DateTime(1359500400000), Value = 37.94M},
+                new InvestmentsStats { Date =new DateTime(1359586800000), Value = 37.83M},
+                new InvestmentsStats { Date =new DateTime(1359673200000), Value = 38.34M},
+                new InvestmentsStats { Date =new DateTime(1359932400000), Value = 38.10M},
+                new InvestmentsStats { Date =new DateTime(1360018800000), Value = 38.51M},
+                new InvestmentsStats { Date =new DateTime(1360105200000), Value = 38.40M},
+                new InvestmentsStats { Date =new DateTime(1360191600000), Value = 38.07M},
+                new InvestmentsStats { Date =new DateTime(1360278000000), Value = 39.12M},
+                new InvestmentsStats { Date =new DateTime(1360537200000), Value = 38.64M},
+                new InvestmentsStats { Date =new DateTime(1360623600000), Value = 38.89M},
+                new InvestmentsStats { Date =new DateTime(1360710000000), Value = 38.81M},
+                new InvestmentsStats { Date =new DateTime(1360796400000), Value = 38.61M},
+                new InvestmentsStats { Date =new DateTime(1360882800000), Value = 38.63M},
+                new InvestmentsStats { Date =new DateTime(1361228400000), Value = 38.99M},
+                new InvestmentsStats { Date =new DateTime(1361314800000), Value = 38.77M},
+                new InvestmentsStats { Date =new DateTime(1361401200000), Value = 38.34M},
+                new InvestmentsStats { Date =new DateTime(1361487600000), Value = 38.55M},
+                new InvestmentsStats { Date =new DateTime(1361746800000), Value = 38.11M},
+                new InvestmentsStats { Date =new DateTime(1361833200000), Value = 38.59M},
+                new InvestmentsStats { Date =new DateTime(1361919600000), Value = 39.60M},
+            };
+
+            return InvestmentsStatsData;
+
+        }
+    }
+
+    public class InvestmentsStats
+    {
+        public DateTime Date { get; set; }
+        public decimal Value { get; set; }
+    }
+
+    // Crypto Candle Chart End //
+
+    // StocksMarketcap Candle Chart Start //
+    private List<StocksMarketcapchart> StocksMarketcapcharts { get; set; } = DataStocksMarketcapchart.GetStocksMarketcapData();
+    private ApexChartOptions<StocksMarketcapchart> StocksMarketcapChartOptions { get; set; } = new();
+
+    public static class DataStocksMarketcapchart
+    {
+        public static List<StocksMarketcapchart> GetStocksMarketcapData()
+        {
+            List<StocksMarketcapchart> StocksMarketcapData = new List<StocksMarketcapchart>
+            {
+                new StocksMarketcapchart { Date =new DateTime(1538778600000), Open = 6629.81M, High = 6650.5M, Low = 6623.04M, Close = 6633.33M },
+                new StocksMarketcapchart { Date =new DateTime(1538780400000), Open = 6632.01M, High = 6643.59M, Low = 6620M, Close = 6630.11M },
+                new StocksMarketcapchart { Date =new DateTime(1538782200000), Open = 6630.71M, High = 6648.95M, Low = 6623.34M, Close = 6635.65M },
+                new StocksMarketcapchart { Date =new DateTime(1538784000000), Open = 6635.65M, High = 6651M, Low = 6629.67M, Close = 6638.24M },
+                new StocksMarketcapchart { Date =new DateTime(1538785800000), Open = 6638.24M, High = 6640M, Low = 6620M, Close = 6624.47M },
+                new StocksMarketcapchart { Date =new DateTime(1538787600000), Open = 6624.53M, High = 6636.03M, Low = 6621.68M, Close = 6624.31M },
+                new StocksMarketcapchart { Date =new DateTime(1538789400000), Open = 6624.61M, High = 6632.2M, Low = 6617M, Close = 6626.02M },
+                new StocksMarketcapchart { Date =new DateTime(1538791200000), Open = 6627M, High = 6627.62M, Low = 6584.22M, Close = 6603.02M },
+                new StocksMarketcapchart { Date =new DateTime(1538793000000), Open = 6605M, High = 6608.03M, Low = 6598.95M, Close = 6604.01M },
+                new StocksMarketcapchart { Date =new DateTime(1538794800000), Open = 6604.5M, High = 6614.4M, Low = 6602.26M, Close = 6608.02M },
+                new StocksMarketcapchart { Date =new DateTime(1538796600000), Open = 6608.02M, High = 6610.68M, Low = 6601.99M, Close = 6608.91M },
+                new StocksMarketcapchart { Date =new DateTime(1538798400000), Open = 6608.91M, High = 6618.99M, Low = 6608.01M, Close = 6612M },
+                new StocksMarketcapchart { Date =new DateTime(1538800200000), Open = 6612M, High = 6615.13M, Low = 6605.09M, Close = 6612M },
+                new StocksMarketcapchart { Date =new DateTime(1538802000000), Open = 6612M, High = 6624.12M, Low = 6608.43M, Close = 6622.95M },
+                new StocksMarketcapchart { Date =new DateTime(1538803800000), Open = 6623.91M, High = 6623.91M, Low = 6615M, Close = 6615.67M },
+                new StocksMarketcapchart { Date =new DateTime(1538805600000), Open = 6618.69M, High = 6618.74M, Low = 6610M, Close = 6610.4M },
+                new StocksMarketcapchart { Date =new DateTime(1538807400000), Open = 6611M, High = 6622.78M, Low = 6610.4M, Close = 6614.9M },
+                new StocksMarketcapchart { Date =new DateTime(1538809200000), Open = 6614.9M, High = 6626.2M, Low = 6613.33M, Close = 6623.45M },
+                new StocksMarketcapchart { Date =new DateTime(1538811000000), Open = 6623.48M, High = 6627M, Low = 6618.38M, Close = 6620.35M },
+                new StocksMarketcapchart { Date =new DateTime(1538812800000), Open = 6619.43M, High = 6620.35M, Low = 6610.05M, Close = 6615.53M },
+                new StocksMarketcapchart { Date =new DateTime(1538814600000), Open = 6615.53M, High = 6617.93M, Low = 6610M, Close = 6615.19M },
+                new StocksMarketcapchart { Date =new DateTime(1538816400000), Open = 6615.19M, High = 6621.6M, Low = 6608.2M, Close = 6620M },
+                new StocksMarketcapchart { Date =new DateTime(1538818200000), Open = 6619.54M, High = 6625.17M, Low = 6614.15M, Close = 6620M },
+                new StocksMarketcapchart { Date =new DateTime(1538820000000), Open = 6620.33M, High = 6634.15M, Low = 6617.24M, Close = 6624.61M },
+                new StocksMarketcapchart { Date =new DateTime(1538821800000), Open = 6625.95M, High = 6626M, Low = 6611.66M, Close = 6617.58M },
+                new StocksMarketcapchart { Date =new DateTime(1538823600000), Open = 6619M, High = 6625.97M, Low = 6595.27M, Close = 6598.86M },
+                new StocksMarketcapchart { Date =new DateTime(1538825400000), Open = 6598.86M, High = 6598.88M, Low = 6570M, Close = 6587.16M },
+                new StocksMarketcapchart { Date =new DateTime(1538827200000), Open = 6588.86M, High = 6600M, Low = 6580M, Close = 6593.4M },
+                new StocksMarketcapchart { Date =new DateTime(1538829000000), Open = 6593.99M, High = 6598.89M, Low = 6585M, Close = 6587.81M },
+                new StocksMarketcapchart { Date =new DateTime(1538830800000), Open = 6587.81M, High = 6592.73M, Low = 6567.14M, Close = 6578M },
+                new StocksMarketcapchart { Date =new DateTime(1538832600000), Open = 6578.35M, High = 6581.72M, Low = 6567.39M, Close = 6579M },
+                new StocksMarketcapchart { Date =new DateTime(1538834400000), Open = 6579.38M, High = 6580.92M, Low = 6566.77M, Close = 6575.96M },
+                new StocksMarketcapchart { Date =new DateTime(1538836200000), Open = 6575.96M, High = 6589M, Low = 6571.77M, Close = 6588.92M },
+                new StocksMarketcapchart { Date =new DateTime(1538838000000), Open = 6588.92M, High = 6594M, Low = 6577.55M, Close = 6589.22M },
+                new StocksMarketcapchart { Date =new DateTime(1538839800000), Open = 6589.3M, High = 6598.89M, Low = 6589.1M, Close = 6596.08M },
+                new StocksMarketcapchart { Date =new DateTime(1538841600000), Open = 6597.5M, High = 6600M, Low = 6588.39M, Close = 6596.25M },
+                new StocksMarketcapchart { Date =new DateTime(1538843400000), Open = 6598.03M, High = 6600M, Low = 6588.73M, Close = 6595.97M },
+                new StocksMarketcapchart { Date =new DateTime(1538845200000), Open = 6595.97M, High = 6602.01M, Low = 6588.17M, Close = 6602M },
+                new StocksMarketcapchart { Date =new DateTime(1538847000000), Open = 6602M, High = 6607M, Low = 6596.51M, Close = 6599.95M },
+                new StocksMarketcapchart { Date =new DateTime(1538848800000), Open = 6600.63M, High = 6601.21M, Low = 6590.39M, Close = 6591.02M },
+                new StocksMarketcapchart { Date =new DateTime(1538850600000), Open = 6591.02M, High = 6603.08M, Low = 6591M, Close = 6591M },
+                new StocksMarketcapchart { Date =new DateTime(1538852400000), Open = 6591M, High = 6601.32M, Low = 6585M, Close = 6592M },
+                new StocksMarketcapchart { Date =new DateTime(1538854200000), Open = 6593.13M, High = 6596.01M, Low = 6590M, Close = 6593.34M },
+                new StocksMarketcapchart { Date =new DateTime(1538856000000), Open = 6593.34M, High = 6604.76M, Low = 6582.63M, Close = 6593.86M },
+                new StocksMarketcapchart { Date =new DateTime(1538857800000), Open = 6593.86M, High = 6604.28M, Low = 6586.57M, Close = 6600.01M },
+                new StocksMarketcapchart { Date =new DateTime(1538859600000), Open = 6601.81M, High = 6603.21M, Low = 6592.78M, Close = 6596.25M },
+                new StocksMarketcapchart { Date =new DateTime(1538861400000), Open = 6596.25M, High = 6604.2M, Low = 6590M, Close = 6602.99M },
+                new StocksMarketcapchart { Date =new DateTime(1538863200000), Open = 6602.99M, High = 6606M, Low = 6584.99M, Close = 6587.81M },
+                new StocksMarketcapchart { Date =new DateTime(1538865000000), Open = 6587.81M, High = 6595M, Low = 6583.27M, Close = 6591.96M },
+                new StocksMarketcapchart { Date =new DateTime(1538866800000), Open = 6591.97M, High = 6596.07M, Low = 6585M, Close = 6588.39M },
+                new StocksMarketcapchart { Date =new DateTime(1538868600000), Open = 6587.6M, High = 6598.21M, Low = 6587.6M, Close = 6594.27M },
+                new StocksMarketcapchart { Date =new DateTime(1538870400000), Open = 6596.44M, High = 6601M, Low = 6590M, Close = 6596.55M },
+                new StocksMarketcapchart { Date =new DateTime(1538872200000), Open = 6598.91M, High = 6605M, Low = 6596.61M, Close = 6600.02M },
+                new StocksMarketcapchart { Date =new DateTime(1538874000000), Open = 6600.55M, High = 6605M, Low = 6589.14M, Close = 6593.01M },
+                new StocksMarketcapchart { Date =new DateTime(1538875800000), Open = 6593.15M, High = 6605M, Low = 6592M, Close = 6603.06M },
+                new StocksMarketcapchart { Date =new DateTime(1538877600000), Open = 6603.07M, High = 6604.5M, Low = 6599.09M, Close =6603.89M },
+                new StocksMarketcapchart { Date =new DateTime(1538879400000), Open = 6604.44M, High = 6604.44M, Low = 6600M, Close = 6603.5M },
+                new StocksMarketcapchart { Date =new DateTime(1538881200000), Open = 6603.5M, High = 6603.99M, Low = 6597.5M, Close = 6603.86M },
+                new StocksMarketcapchart { Date =new DateTime(1538883000000), Open = 6603.85M, High = 6605M, Low = 6600M, Close = 6604.07M },
+                new StocksMarketcapchart { Date =new DateTime(1538884800000), Open = 6604.98M, High = 6606M, Low = 6604.07M, Close = 6606M },
+            };
+
+            return StocksMarketcapData;
+
+        }
+    }
+    
+    public class StocksMarketcapchart
+    {
+        public DateTime Date { get; set; }
+        public decimal Open { get; set; }
+        public decimal High { get; set; }
+        public decimal Low { get; set; }
+        public decimal Close { get; set; }
+    }
+
+    // StocksMarketcap Candle Chart End //
+
+    protected override void OnInitialized() {
+
+        TotalInvestedChartOptions = new ApexChartOptions<TotalInvested> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width = 100,
+                Height = 30,
+                Sparkline = new () {
+                    Enabled = true
+                },
+            },  
+            Tooltip = new Tooltip { 
+                Enabled= false,
+            },
+            Colors = new Color(new List<string> { "var(--primary-color)" }),
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            },
+            Fill = new Fill {
+                Type = new List<FillType> { FillType.Gradient, FillType.Gradient },
+                Gradient = new FillGradient
+                {
+                    OpacityFrom = 0.9,
+                    OpacityTo = 0.9,
+                    Stops= [0, 98],
+                }
+            }
+        };
+       
+        TotalInvestmentsChartOptions = new ApexChartOptions<TotalInvestments> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width = 100,
+                Height = 30,
+                Sparkline = new () {
+                    Enabled = true
+                },
+            },  
+            Tooltip = new Tooltip { 
+                Enabled= false,
+            },
+            Colors = new Color(new List<string> { "rgb(14, 168, 186)" }),
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            },
+            Fill = new Fill {
+                Type = new List<FillType> { FillType.Gradient, FillType.Gradient },
+                Gradient = new FillGradient
+                {
+                    OpacityFrom = 0.9,
+                    OpacityTo = 0.9,
+                    Stops= [0, 98],
+                }
+            }
+        };
+
+        TotalPortfolioChartOptions = new ApexChartOptions<TotalPortfolio> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width = 100,
+                Height = 30,
+                Sparkline = new () {
+                    Enabled = true
+                },
+            },  
+            Tooltip = new Tooltip { 
+                Enabled= false,
+            },
+            Colors = new Color(new List<string> { "rgb(245, 184, 73)" }),
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            },
+            Fill = new Fill {
+                Type = new List<FillType> { FillType.Gradient, FillType.Gradient },
+                Gradient = new FillGradient
+                {
+                    OpacityFrom = 0.9,
+                    OpacityTo = 0.9,
+                    Stops= [0, 98],
+                }
+            }
+        };
+
+        TotalReturnsChartOptions = new ApexChartOptions<TotalReturns> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width = 100,
+                Height = 30,
+                Sparkline = new () {
+                    Enabled = true
+                },
+            },  
+            Tooltip = new Tooltip { 
+                Enabled= false,
+            },
+            Colors = new Color(new List<string> { "rgb(38, 191, 148)" }),
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            },
+            Fill = new Fill {
+                Type = new List<FillType> { FillType.Gradient, FillType.Gradient },
+                Gradient = new FillGradient
+                {
+                    OpacityFrom = 0.9,
+                    OpacityTo = 0.9,
+                    Stops= [0, 98],
+                }
+            }
+        };
+
+        investmentsstatsChartOptions = new ApexChartOptions<InvestmentsStats> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+            },  
+            Colors = new Color(new List<string> {"var(--primary-color)","#fff"}),
+            Grid = new Grid {
+                BorderColor = "#f3f3f3", 
+                StrokeDashArray = 3,
+            }, 
+            DataLabels = new DataLabels {
+                Enabled = false,
+            }, 
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                @* LineCap = ApexCharts.LineCap.Butt, *@
+                Width = 1.2,
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis {
+                    Title = new AxisTitle {
+                        Style = new AxisTitleStyle {
+                            Color = "#adb5be",
+                            FontSize = "14px",
+                            FontFamily = "poppins, sans-serif",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label"
+                        }
+                    },
+                    Min = 27.00,
+                    Max = 42.00,
+                    StepSize = 03.00,
+                    Labels = new YAxisLabels {
+                        Show = true,
+                        Style = new AxisLabelStyle {
+                            FontWeight = 400,
+                            CssClass = "apexcharts-xaxis-label"
+                        }
+                    },
+                },
+            },
+            Xaxis =  new XAxis {  
+                TickAmount = 6,
+                AxisBorder = new () {
+                    Show = true,
+                    Color = "rgba(119, 119, 142, 0.05)",
+                    OffsetX = 0,
+                    OffsetY = 0,
+                },
+                AxisTicks = new () {
+                    Show = true,
+                    Color = "rgba(119, 119, 142, 0.05)",
+                    OffsetX = 0,
+                    OffsetY = 0,
+                },
+                Labels = new XAxisLabels {
+                    Rotate = -90,
+                    Style = new() {
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Fill = new Fill {
+                Type = new List<FillType> { FillType.Gradient, FillType.Gradient },
+                Gradient = new ApexCharts.FillGradient {
+                    ShadeIntensity = 0,
+                    Shade = ApexCharts.GradientShade.Light,
+                    Type = ApexCharts.GradientType.Vertical,
+                    GradientToColors = new Color(new List<string> {"var(--primary-color)","#fff"}),
+                    OpacityFrom = 0.2,
+                    OpacityTo = 0.1,
+                    Stops = [0, 100],
+                }
+            }
+        };
+
+        StocksMarketcapChartOptions = new ApexChartOptions<StocksMarketcapchart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Height = 350,
+            },  
+            Grid = new Grid {
+                BorderColor = "#e7e7e7",
+            },
+            PlotOptions = new PlotOptions {
+                Candlestick = new PlotOptionsCandlestick  {
+                    Colors = new () {
+                        Upward = "var(--primary-color)",
+                        Downward = "rgb(35, 183, 229)"
+                    }
+                 },
+            },
+            Xaxis  =  new XAxis {
+                Type = ApexCharts.XAxisType.Datetime,
+                AxisBorder = new AxisBorder {
+                    Show = false,
+                    Color = "rgba(119, 119, 142, 0.05)",
+                    OffsetX = 0,
+                    OffsetY = 0,
+                },
+                DecimalsInFloat = 0,
+                AxisTicks = new AxisTicks {
+                    Show = false,
+                    Color = "rgba(119, 119, 142, 0.05)",
+                    OffsetX = 0,
+                    OffsetY = 0,
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis {
+                    DecimalsInFloat = 0,
+                    StepSize = 20.00M,
+                    Tooltip= new () {
+                        Enabled = true
+                    }
+                },
+            },
+        };
+
+    }
+}

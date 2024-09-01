@@ -1,0 +1,1193 @@
+@page "/chat"
+
+            <div class="container-fluid">
+                <div class="main-chart-wrapper p-2 gap-2 d-lg-flex @mainChartWrapperRef">
+                    <div class="chat-info border">
+                        <a aria-label="anchor" href="javascript:void(0)" class="btn btn-secondary btn-icon rounded-circle chat-add-icon">
+                            <i class="ri-add-line"></i>
+                        </a>
+                        <div class="d-flex align-items-center justify-content-between w-100 p-3 border-bottom">
+                            <div>
+                                <h5 class="fw-semibold mb-0">Messages</h5>
+                            </div>
+                            <div class="dropdown">
+                                <button aria-label="button" class="btn btn-icon btn-secondary-light btn-wave waves-light"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="ri-settings-3-line"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="chat-search p-3 border-bottom">
+                            <div class="input-group">
+                                <input type="text" class="form-control bg-light border-0" placeholder="Search Chat"
+                                    aria-describedby="button-addon2">
+                                <button aria-label="button" class="btn btn-light" type="button" id="button-addon2"><i
+                                        class="ri-search-line text-muted"></i></button>
+                            </div>
+                        </div>
+                        <ul class="nav nav-tabs tab-style-2 nav-justified mb-0 border-bottom d-flex"
+                            id="myTab1" role="tablist">
+                            <li class="nav-item border-end me-0" role="presentation">
+                                <button class="nav-link active h-100" id="users-tab" data-bs-toggle="tab"
+                                    data-bs-target="#users-tab-pane" type="button" role="tab"
+                                    aria-controls="users-tab-pane" aria-selected="true"><i
+                                        class="ri-history-line me-1 align-middle d-inline-block"></i>Recent</button>
+                            </li>
+                            <li class="nav-item border-end me-0" role="presentation">
+                                <button class="nav-link h-100" id="groups-tab" data-bs-toggle="tab"
+                                    data-bs-target="#groups-tab-pane" type="button" role="tab"
+                                    aria-controls="groups-tab-pane" aria-selected="false"><i
+                                        class="ri-group-2-line me-1 align-middle d-inline-block"></i>Groups</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link h-100" id="calls-tab" data-bs-toggle="tab"
+                                    data-bs-target="#calls-tab-pane" type="button" role="tab"
+                                    aria-controls="calls-tab-pane" aria-selected="false"><i
+                                        class="ri-phone-line me-1 align-middle d-inline-block"></i>Calls</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active border-0 chat-users-tab" id="users-tab-pane" role="tabpanel" aria-labelledby="users-tab" tabindex="0">
+                                <BlazorOverlayScrollbars>
+                                    <BlazorOverlayScrollbarsContent>
+                                        <ul class="list-unstyled mb-0 mt-2 chat-users-tab" id="chat-msg-scroll">
+                                            <li class="pb-0">
+                                                <p class="text-muted fs-11 fw-semibold mb-2 op-7">ACTIVE CHATS</p>
+                                            </li>
+                                            @foreach (var ChatList in ActiveChats)
+                                            {
+                                                <li @onclick="@(() => ShowChat(ChatList))" class="@(ChatList.seen ? "" : "chat-msg-unread")  checkforactive">
+                                                    <a href="javascript:void(0);">
+                                                        <div class="d-flex align-items-top">
+                                                            <div class="me-1 lh-1">
+                                                                <span class="avatar avatar-md online me-2 avatar-rounded">
+                                                                    <img src="@ChatList.img" alt="img" />
+                                                                </span>
+                                                            </div>
+                                                            <div class="flex-fill">
+                                                                <p class="mb-0 fw-semibold">
+                                                                    @ChatList.name
+                                                                    <span class="float-end text-muted fw-normal fs-11">@ChatList.lastMessageTime</span>
+                                                                </p>
+                                                                <p class="fs-12 mb-0 @(ChatList.isTyping ? "chat-msg-typing" : "")">
+                                                                    @if(!string.IsNullOrEmpty(ChatList.lastMsg))
+                                                                    {
+                                                                        <span class="chat-msg text-truncate"> @((MarkupString)ChatList.lastMsg)</span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="chat-msg text-truncate">Typing...</span>
+                                                                    }
+                                                                    @if(!string.IsNullOrEmpty(ChatList.unReadMessages))
+                                                                    {
+                                                                        <span class="badge bg-success-transparent rounded-circle float-end">@ChatList.unReadMessages</span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="chat-read-icon float-end align-middle"><i class="ri-check-double-fill"></i></span>
+                                                                    }
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            }
+                                            <li class="pb-0">
+                                                <p class="text-muted fs-11 fw-semibold mb-2 op-7">ALL CHATS</p>
+                                            </li>
+                                            @foreach (var ChatList in AllChats)
+                                            {
+                                                <li @onclick="@(() => ShowChat(ChatList))" class="@(ChatList.seen ? "" : "chat-msg-unread") chat-inactive checkforactive">
+                                                    <a href="javascript:void(0);">
+                                                        <div class="d-flex align-items-top">
+                                                            <div class="me-1 lh-1">
+                                                                <span class="avatar avatar-md offline me-2 avatar-rounded">
+                                                                    <img src="@ChatList.img" alt="img" />
+                                                                </span>
+                                                            </div>
+                                                            <div class="flex-fill">
+                                                                <p class="mb-0 fw-semibold">
+                                                                    @ChatList.name
+                                                                    <span class="float-end text-muted fw-normal fs-11" v-if="!inactive.isTyping">@ChatList.lastMessageTime</span>
+                                                                </p>
+                                                                <p class="fs-12 mb-0" >
+                                                                    <span class="chat-msg text-truncate">@((MarkupString)(ChatList.lastMsg ?? "Last Message"))</span>
+                                                                    @if (!string.IsNullOrEmpty(ChatList.unReadMessages))
+                                                                    {
+                                                                        <span class="chat-read-icon float-end align-middle">
+                                                                            <i class="ri-check-double-fill"></i>
+                                                                        </span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="chat-read-icon badge bg-success-transparent rounded-circle float-end">2</span>
+                                                                    }
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </BlazorOverlayScrollbarsContent>
+                                </BlazorOverlayScrollbars>
+                            </div>
+                            <div class="tab-pane fade border-0 chat-groups-tab" id="groups-tab-pane" role="tabpanel" aria-labelledby="groups-tab" tabindex="0">
+                                <BlazorOverlayScrollbars>
+                                    <BlazorOverlayScrollbarsContent>
+                                        <div class="chat-groups-tab">
+                                            <ul class="list-unstyled mb-0 mt-2 ">
+                                                <li class="pb-0">
+                                                    <p class="text-muted fs-11 fw-semibold mb-1 op-7">MY CHAT GROUPS</p>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <div>
+                                                            <p class="mb-0">1) Family Together</p>
+                                                            <p class="mb-0"><span class="badge bg-success-transparent">4
+                                                                    Online</span></p>
+                                                        </div>
+                                                        <div class="avatar-list-stacked my-auto">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/2.jpg" alt="img">
+                                                            </span>
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/8.jpg" alt="img">
+                                                            </span>
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/2.jpg" alt="img">
+                                                            </span>
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/10.jpg" alt="img">
+                                                            </span>
+                                                            <a class="avatar avatar-sm bg-primary text-fixed-white avatar-rounded"
+                                                                href="javascript:void(0);">
+                                                                +19
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <div>
+                                                            <p class="mb-0">2) Work Buddies </p>
+                                                            <p class="mb-0"><span class="badge bg-secondary-transparent">32
+                                                                    Online</span></p>
+                                                        </div>
+                                                        <div class="avatar-list-stacked my-auto">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/1.jpg" alt="img">
+                                                            </span>
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/7.jpg" alt="img">
+                                                            </span>
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/3.jpg" alt="img">
+                                                            </span>
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/9.jpg" alt="img">
+                                                            </span>
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/12.jpg" alt="img">
+                                                            </span>
+                                                            <a class="avatar avatar-sm bg-primary text-fixed-white avatar-rounded"
+                                                                href="javascript:void(0);">
+                                                                +123
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <div>
+                                                            <p class="mb-0">3) Friends Forever</p>
+                                                            <p class="mb-0"><span class="badge bg-warning-transparent">3
+                                                                    Online</span></p>
+                                                        </div>
+                                                        <div class="avatar-list-stacked my-auto">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/4.jpg" alt="img">
+                                                            </span>
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/8.jpg" alt="img">
+                                                            </span>
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/13.jpg" alt="img">
+                                                            </span>
+                                                            <a class="avatar avatar-sm bg-primary text-fixed-white avatar-rounded"
+                                                                href="javascript:void(0);">
+                                                                +15
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <div>
+                                                            <p class="mb-0">4) Social Media Deals</p>
+                                                            <p class="mb-0"><span class="badge bg-danger-transparent">5
+                                                                    Online</span></p>
+                                                        </div>
+                                                        <div class="avatar-list-stacked my-auto">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/1.jpg" alt="img">
+                                                            </span>
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/7.jpg" alt="img">
+                                                            </span>
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/14.jpg" alt="img">
+                                                            </span>
+                                                            <a class="avatar avatar-sm bg-primary text-fixed-white avatar-rounded"
+                                                                href="javascript:void(0);">
+                                                                +28
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <div>
+                                                            <p class="mb-0">4) Apartment Group</p>
+                                                            <p class="mb-0"><span class="badge bg-light text-dark">0 Online</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="avatar-list-stacked my-auto">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/5.jpg" alt="img">
+                                                            </span>
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/6.jpg" alt="img">
+                                                            </span>
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/12.jpg" alt="img">
+                                                            </span>
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="../assets/images/faces/3.jpg" alt="img">
+                                                            </span>
+                                                            <a class="avatar avatar-sm bg-primary text-fixed-white avatar-rounded"
+                                                                href="javascript:void(0);">
+                                                                +53
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <ul class="list-unstyled mb-0 mt-2 ">
+                                                <li class="pb-0">
+                                                    <p class="text-muted fs-11 fw-semibold mb-1 op-7">GROUP CHATS</p>
+                                                </li>
+                                                @foreach (var ChatList in GroupData)
+                                                {
+                                                    <li  @onclick="@(() => ShowChat(ChatList))" class="@(ChatList.seen ? "chat-msg-unread" : "") checkforactive">
+                                                        <a href="javascript:void(0);">
+                                                            <div class="d-flex align-items-top">
+                                                                <div class="me-1 lh-1">
+                                                                    <span class="avatar avatar-md me-2 avatar-rounded @(ChatList.isOnline ? "online" : "offline")">
+                                                                        <img src="@ChatList.img" alt="img" />
+                                                                    </span>
+                                                                </div>
+                                                                <div class="flex-fill">
+                                                                    <p class="mb-0 fw-semibold">
+                                                                        @((MarkupString)(ChatList.name ?? "name")) <span class="float-end text-muted fw-normal fs-11">@ChatList.lastMessageTime</span>
+                                                                    </p>
+                                                                    <p class="fs-12 mb-0 @(ChatList.isTyping ? "chat-msg-typing" : "")">
+                                                                        <span class="chat-msg text-truncate">
+                                                                            @if(!string.IsNullOrEmpty(ChatList.lastMsg))
+                                                                            {
+                                                                                @($"{ChatList.whoslastMsg} : {ChatList.lastMsg}")
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                @($"{ChatList.howisTyping} Typing...")
+                                                                            }
+                                                                        </span>
+                                                                        @if (ChatList.allSeen)
+                                                                        {
+                                                                            <span class="chat-read-icon float-end align-middle"><i class="ri-check-double-fill"></i></span>
+                                                                        }
+                                                                        @if (int.TryParse(ChatList.unReadMessages, out int unReadMessages) && unReadMessages > 0)
+                                                                        {
+                                                                            <span class="badge bg-success-transparent rounded-circle float-end">@unReadMessages</span>
+                                                                        }
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </BlazorOverlayScrollbarsContent>
+                                </BlazorOverlayScrollbars>
+                            </div>
+                            <div class="tab-pane fade border-0 chat-calls-tab" id="calls-tab-pane" role="tabpanel" aria-labelledby="calls-tab" tabindex="0">
+                                <BlazorOverlayScrollbars>
+                                    <BlazorOverlayScrollbarsContent>
+                                            <ul class="list-unstyled mb-0 mt-2 chat-calls-tab">
+                                                <li>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-1 lh-1">
+                                                            <span class="avatar avatar-md online me-2 avatar-rounded">
+                                                                <img src="../assets/images/faces/5.jpg" alt="img">
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex-fill my-auto">
+                                                            <p class="mb-0 fw-semibold">
+                                                                Sujika
+                                                                <span class="ms-1 incoming-call-success"><i
+                                                                        class="ti ti-arrow-down-left"></i></span>
+                                                            </p>
+                                                            <p class="fs-12 mb-0">
+                                                                <span class="text-muted text-truncate">Today,12:47PM</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="">
+                                                            <button aria-label="button" type="button" class="btn btn-sm btn-icon btn-primary-light">
+                                                                <i class="ti ti-phone"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li >
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-1 lh-1">
+                                                            <span class="avatar avatar-md online me-2 avatar-rounded">
+                                                                <img src="../assets/images/faces/7.jpg" alt="img">
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex-fill my-auto">
+                                                            <p class="mb-0 fw-semibold">
+                                                                Melissa
+                                                                <span class="ms-1 outgoing-call-failed"><i
+                                                                        class="ti ti-arrow-up-right"></i></span>
+                                                            </p>
+                                                            <p class="fs-12 mb-0">
+                                                                <span class="text-muted text-truncate">Today,10:27AM</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="">
+                                                            <button aria-label="button" type="button" class="btn btn-sm btn-icon btn-primary-light">
+                                                                <i class="ti ti-phone"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-1 lh-1">
+                                                            <span class="avatar avatar-md offline me-2 avatar-rounded">
+                                                                <img src="../assets/images/faces/21.jpg" alt="img">
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex-fill my-auto">
+                                                            <p class="mb-0 fw-semibold">
+                                                                Sharukh Sam
+                                                                <span class="ms-1 outgoing-call-success"><i
+                                                                        class="ti ti-arrow-up-right"></i></span>
+                                                            </p>
+                                                            <p class="fs-12 mb-0">
+                                                                <span class="text-muted text-truncate">Yesterday,12:45PM</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="">
+                                                            <button aria-label="button" type="button" class="btn btn-sm btn-icon btn-primary-light">
+                                                                <i class="ti ti-video"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-1 lh-1">
+                                                            <span class="avatar avatar-md offline me-2 avatar-rounded">
+                                                                <img src="../assets/images/faces/15.jpg" alt="img">
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex-fill my-auto">
+                                                            <p class="mb-0 fw-semibold">
+                                                                Kiram Kumal
+                                                                <span class="ms-1 incoming-call-success"><i
+                                                                        class="ti ti-arrow-down-left"></i></span>
+                                                            </p>
+                                                            <p class="fs-12 mb-0">
+                                                                <span class="text-muted text-truncate">3 Days ago</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="">
+                                                            <button aria-label="button" type="button" class="btn btn-sm btn-icon btn-primary-light">
+                                                                <i class="ti ti-phone"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-1 lh-1">
+                                                            <span class="avatar avatar-md offline me-2 avatar-rounded">
+                                                                <img src="../assets/images/faces/4.jpg" alt="img">
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex-fill my-auto">
+                                                            <p class="mb-0 fw-semibold">
+                                                                Amanda Sams
+                                                                <span class="ms-1 incoming-call-success"><i
+                                                                        class="ti ti-arrow-down-left"></i></span>
+                                                            </p>
+                                                            <p class="fs-12 mb-0">
+                                                                <span class="text-muted text-truncate">22, Oct 2022</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="">
+                                                            <button aria-label="button" type="button" class="btn btn-sm btn-icon btn-primary-light">
+                                                                <i class="ti ti-video"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-1 lh-1">
+                                                            <span class="avatar avatar-md offline me-2 avatar-rounded">
+                                                                <img src="../assets/images/faces/16.jpg" alt="img">
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex-fill my-auto">
+                                                            <p class="mb-0 fw-semibold">
+                                                                Azimo Peter
+                                                                <span class="ms-1 incoming-call-failed"><i
+                                                                        class="ti ti-arrow-up-right"></i></span>
+                                                            </p>
+                                                            <p class="fs-12 mb-0">
+                                                                <span class="text-muted text-truncate">24, Oct 2022</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="">
+                                                            <button aria-label="button" type="button" class="btn btn-sm btn-icon btn-primary-light">
+                                                                <i class="ti ti-phone"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-1 lh-1">
+                                                            <span class="avatar avatar-md offline me-2 avatar-rounded">
+                                                                <img src="../assets/images/faces/8.jpg" alt="img">
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex-fill my-auto">
+                                                            <p class="mb-0 fw-semibold">
+                                                                Sierra Adams
+                                                                <span class="ms-1 incoming-call-success"><i
+                                                                        class="ti ti-arrow-down-left"></i></span>
+                                                            </p>
+                                                            <p class="fs-12 mb-0">
+                                                                <span class="text-muted text-truncate">22, Oct 2022</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="">
+                                                            <button aria-label="button" type="button" class="btn btn-sm btn-icon btn-primary-light">
+                                                                <i class="ti ti-phone"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-1 lh-1">
+                                                            <span class="avatar avatar-md online me-2 avatar-rounded">
+                                                                <img src="../assets/images/faces/3.jpg" alt="img">
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex-fill my-auto">
+                                                            <p class="mb-0 fw-semibold">
+                                                                Dimple Kanns
+                                                                <span class="ms-1 incoming-call-success"><i
+                                                                        class="ti ti-arrow-down-left"></i></span>
+                                                            </p>
+                                                            <p class="fs-12 mb-0">
+                                                                <span class="text-muted text-truncate">13, Oct 2022</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="">
+                                                            <button aria-label="button" type="button" class="btn btn-sm btn-icon btn-primary-light">
+                                                                <i class="ti ti-video"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-1 lh-1">
+                                                            <span class="avatar avatar-md online me-2 avatar-rounded">
+                                                                <img src="../assets/images/faces/9.jpg" alt="img">
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex-fill my-auto">
+                                                            <p class="mb-0 fw-semibold">
+                                                                Adrea Jaremiah
+                                                                <span class="ms-1 outgoing-call-failed"><i
+                                                                        class="ti ti-arrow-up-right"></i></span>
+                                                            </p>
+                                                            <p class="fs-12 mb-0">
+                                                                <span class="text-muted text-truncate">13, Sep 2022</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="">
+                                                            <button aria-label="button" type="button" class="btn btn-sm btn-icon btn-primary-light">
+                                                                <i class="ti ti-phone"></i>
+                                                            </button>
+                                                        </div>
+                                                        </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-1 lh-1">
+                                                            <span class="avatar avatar-md offline me-2 avatar-rounded">
+                                                                <img src="../assets/images/faces/21.jpg" alt="img">
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex-fill my-auto">
+                                                            <p class="mb-0 fw-semibold">
+                                                                Anjaneliyu
+                                                                <span class="ms-1 outgoing-call-success"><i
+                                                                        class="ti ti-arrow-up-right"></i></span>
+                                                            </p>
+                                                            <p class="fs-12 mb-0">
+                                                                <span class="text-muted text-truncate">10, July 2022</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="">
+                                                            <button aria-label="button" type="button" class="btn btn-sm btn-icon btn-primary-light">
+                                                                <i class="ti ti-phone"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-1 lh-1">
+                                                            <span class="avatar avatar-md offline me-2 avatar-rounded">
+                                                                <img src="../assets/images/faces/14.jpg" alt="img">
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex-fill my-auto">
+                                                            <p class="mb-0 fw-semibold">
+                                                                Jason Steph
+                                                                <span class="ms-1 incoming-call-success"><i
+                                                                        class="ti ti-arrow-down-left"></i></span>
+                                                            </p>
+                                                            <p class="fs-12 mb-0">
+                                                                <span class="text-muted text-truncate">1, Apr 2022</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="">
+                                                            <button aria-label="button" type="button" class="btn btn-sm btn-icon btn-primary-light">
+                                                                <i class="ti ti-phone"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                    </BlazorOverlayScrollbarsContent>
+                                </BlazorOverlayScrollbars>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-chat-area border">
+                        <div class="d-flex align-items-center p-2 border-bottom">
+                            <div class="me-2 lh-1">
+                                <span class="avatar avatar-lg @(ActiveUser?.isOnline == true ? "online" : "offline") me-2 avatar-rounded chatstatusperson">
+                                    <img class="chatimageperson" src="@ActiveUser?.img" alt="img">
+                                </span>
+                            </div>
+                            <div class="flex-fill">
+                                <p class="mb-0 fw-semibold fs-14">
+                                    <a href="javascript:void(0);" class="chatnameperson responsive-userinfo-open" @onclick="ShowChatUser">@((MarkupString)(ActiveUser?.name ?? "name"))</a>
+                                </p>
+                                <p class="text-muted mb-0 chatpersonstatus">@(ActiveUser?.isOnline == true ? "online" : "offline")</p>
+                            </div>
+                            <div class="d-flex flex-wrap rightIcons">
+                                <button aria-label="button" type="button" class="btn btn-icon btn-outline-light my-1 ms-2">
+                                    <i class="ti ti-phone"></i>
+                                </button>
+                                <button aria-label="button" type="button" class="btn btn-icon btn-outline-light my-1 ms-2">
+                                    <i class="ti ti-video"></i>
+                                </button>
+                                <button aria-label="button" type="button" class="btn btn-icon btn-outline-light my-1 ms-2 responsive-userinfo-open" @onclick="ShowChatUser">
+                                    <i class="ti ti-user-circle" id="responsive-chat-close"></i>
+                                </button>
+                                <div class="dropdown ms-2">
+                                    <button aria-label="button" class="btn btn-icon btn-outline-light my-1 btn-wave waves-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="ti ti-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="javascript:void(0);">Profile</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">Clear Chat</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">Delete User</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">Block User</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">Report</a></li>
+                                    </ul>
+                                </div>
+                                <button aria-label="button" type="button" class="btn btn-icon btn-outline-light my-1 ms-2 responsive-chat-close" @onclick="removeChat">
+                                    <i class="ri-close-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <BlazorOverlayScrollbars>
+                            <BlazorOverlayScrollbarsContent>
+                                <div class="chat-content" id="main-chat-content">
+                                    <ul class="list-unstyled">
+                                        <li class="chat-day-label">
+                                            <span>Today</span>
+                                        </li>
+                                        <li class="chat-item-start">
+                                            <div class="chat-list-inner">
+                                                <div class="chat-user-profile">
+                                                    <span class="avatar avatar-md @(ActiveUser?.isOnline == true ? "online" : "offline") avatar-rounded chatstatusperson">
+                                                        <img class="chatimageperson" src="@ActiveUser?.img" alt="img">
+                                                    </span>
+                                                </div>
+                                                <div class="ms-3">
+                                                    <span class="chatting-user-info">
+                                                        <span class="chatnameperson">@((MarkupString)(ActiveUser?.name ?? "name"))</span> <span class="msg-sent-time">11:48PM</span>
+                                                    </span>
+                                                    <div class="main-chat-msg">
+                                                        <div>
+                                                            <p class="mb-0">Nice to meet you &#128512;</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="chat-item-end">
+                                            <div class="chat-list-inner">
+                                                <div class="me-3">
+                                                    <span class="chatting-user-info">
+                                                        <span class="msg-sent-time"><span class="chat-read-mark align-middle d-inline-flex"><i
+                                                                    class="ri-check-double-line"></i></span>11:50PM</span> You
+                                                    </span>
+                                                    <div class="main-chat-msg">
+                                                        <div>
+                                                            <p class="mb-0">It is a long established fact that a reader will be
+                                                                distracted by the readable content of a page when looking at its
+                                                                layout</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="chat-user-profile">
+                                                    <span class="avatar avatar-md online avatar-rounded">
+                                                        <img src="../assets/images/faces/15.jpg" alt="img">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="chat-item-start">
+                                            <div class="chat-list-inner">
+                                                <div class="chat-user-profile">
+                                                    <span class="avatar avatar-md @(ActiveUser?.isOnline == true ? "online" : "offline") avatar-rounded chatstatusperson">
+                                                        <img class="chatimageperson" src="@ActiveUser?.img" alt="img">
+                                                    </span>
+                                                </div>
+                                                <div class="ms-3">
+                                                    <span class="chatting-user-info">
+                                                        <span class="chatnameperson">@((MarkupString)(ActiveUser?.name ?? "name"))</span> <span class="msg-sent-time">11:51PM</span>
+                                                    </span>
+                                                    <div class="main-chat-msg">
+                                                        <div>
+                                                            <p class="mb-0">Who are you ?</p>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-0">I don't know anyone named jeremiah.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="chat-item-end">
+                                            <div class="chat-list-inner">
+                                                <div class="me-3">
+                                                    <span class="chatting-user-info">
+                                                        <span class="msg-sent-time"><span class="chat-read-mark align-middle d-inline-flex"><i
+                                                                    class="ri-check-double-line"></i></span>11:52PM</span> You
+                                                    </span>
+                                                    <div class="main-chat-msg">
+                                                        <div>
+                                                            <p class="mb-0">Some of the recent images taken are nice &#128076;</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="chat-user-profile">
+                                                    <span class="avatar avatar-md online avatar-rounded">
+                                                        <img src="../assets/images/faces/15.jpg" alt="img">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="chat-item-start">
+                                            <div class="chat-list-inner">
+                                                <div class="chat-user-profile">
+                                                    <span class="avatar avatar-md @(ActiveUser?.isOnline == true ? "online" : "offline") avatar-rounded chatstatusperson">
+                                                        <img class="chatimageperson" src="@ActiveUser?.img" alt="img">
+                                                    </span>
+                                                </div>
+                                                <div class="ms-3">
+                                                    <span class="chatting-user-info">
+                                                        <span class="chatnameperson">@((MarkupString)(ActiveUser?.name ?? "name"))</span> <span class="msg-sent-time">11:55PM</span>
+                                                    </span>
+                                                    <div class="main-chat-msg">
+                                                        <div>
+                                                            <p class="mb-0">Here are some of them have a look</p>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-0 d-sm-flex d-block">
+                                                                <a aria-label="anchor" href="/gallery" class="avatar avatar-xl m-1"><img src="../assets/images/media/media-64.jpg" alt=""></a>
+                                                                <a aria-label="anchor" href="/gallery" class="avatar avatar-xl m-1"><img src="../assets/images/media/media-63.jpg" alt=""></a>
+                                                                <a aria-label="anchor" href="/gallery" class="avatar avatar-xl m-1"><img src="../assets/images/media/media-62.jpg" alt=""></a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="chat-item-end">
+                                            <div class="chat-list-inner">
+                                                <div class="me-3">
+                                                    <span class="chatting-user-info">
+                                                        <span class="msg-sent-time"><span class="chat-read-mark align-middle d-inline-flex"><i
+                                                                    class="ri-check-double-line"></i></span>11:52PM</span> You
+                                                    </span>
+                                                    <div class="main-chat-msg">
+                                                        <div class="">
+                                                            <a aria-label="anchor" href="javascript:void(0)" class="text-fixed-white"><i
+                                                                    class="ri-play-circle-line align-middle"></i></a>
+                                                            <span class="mx-1">
+                                                                <svg width="20" height="20">
+                                                                    <defs></defs>
+                                                                    <g transform="matrix(1,0,0,1,0,0)"><svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            data-name="Layer 3" viewBox="0 0 24 24" width="20"
+                                                                            height="20">
+                                                                            <path
+                                                                                d="M6 19a1 1 0 0 1-1-1V6A1 1 0 0 1 7 6V18A1 1 0 0 1 6 19zM12 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 12 18zM9 21a1 1 0 0 1-1-1V4a1 1 0 0 1 2 0V20A1 1 0 0 1 9 21zM3 17a1 1 0 0 1-1-1V8A1 1 0 0 1 4 8v8A1 1 0 0 1 3 17zM21 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 21 16zM15 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 15 16zM18 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 18 18z"
+                                                                                fill="rgba(255, 255, 255, 0.5)"
+                                                                                class="fill-primary"></path>
+                                                                        </svg></g>
+                                                                </svg>
+                                                                <svg class="chat_audio" width="20" height="20">
+                                                                    <defs></defs>
+                                                                    <g transform="matrix(1,0,0,1,0,0)"><svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            data-name="Layer 3" viewBox="0 0 24 24" width="20"
+                                                                            height="20">
+                                                                            <path
+                                                                                d="M6 19a1 1 0 0 1-1-1V6A1 1 0 0 1 7 6V18A1 1 0 0 1 6 19zM12 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 12 18zM9 21a1 1 0 0 1-1-1V4a1 1 0 0 1 2 0V20A1 1 0 0 1 9 21zM3 17a1 1 0 0 1-1-1V8A1 1 0 0 1 4 8v8A1 1 0 0 1 3 17zM21 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 21 16zM15 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 15 16zM18 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 18 18z"
+                                                                                fill="rgba(255, 255, 255, 0.5)"
+                                                                                class="fill-primary"></path>
+                                                                        </svg></g>
+                                                                </svg>
+                                                                <svg class="chat_audio" width="20" height="20">
+                                                                    <defs></defs>
+                                                                    <g transform="matrix(1,0,0,1,0,0)"><svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            data-name="Layer 3" viewBox="0 0 24 24" width="20"
+                                                                            height="20">
+                                                                            <path
+                                                                                d="M6 19a1 1 0 0 1-1-1V6A1 1 0 0 1 7 6V18A1 1 0 0 1 6 19zM12 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 12 18zM9 21a1 1 0 0 1-1-1V4a1 1 0 0 1 2 0V20A1 1 0 0 1 9 21zM3 17a1 1 0 0 1-1-1V8A1 1 0 0 1 4 8v8A1 1 0 0 1 3 17zM21 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 21 16zM15 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 15 16zM18 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 18 18z"
+                                                                                fill="rgba(255, 255, 255, 0.5)"
+                                                                                class="fill-primary"></path>
+                                                                        </svg></g>
+                                                                </svg>
+                                                                <svg class="chat_audio" width="20" height="20">
+                                                                    <defs></defs>
+                                                                    <g transform="matrix(1,0,0,1,0,0)"><svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            data-name="Layer 3" viewBox="0 0 24 24" width="20"
+                                                                            height="20">
+                                                                            <path
+                                                                                d="M6 19a1 1 0 0 1-1-1V6A1 1 0 0 1 7 6V18A1 1 0 0 1 6 19zM12 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 12 18zM9 21a1 1 0 0 1-1-1V4a1 1 0 0 1 2 0V20A1 1 0 0 1 9 21zM3 17a1 1 0 0 1-1-1V8A1 1 0 0 1 4 8v8A1 1 0 0 1 3 17zM21 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 21 16zM15 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 15 16zM18 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 18 18z"
+                                                                                fill="rgba(255, 255, 255, 0.5)"
+                                                                                class="fill-primary"></path>
+                                                                        </svg></g>
+                                                                </svg>
+                                                                <svg class="chat_audio" width="20" height="20">
+                                                                    <defs></defs>
+                                                                    <g transform="matrix(1,0,0,1,0,0)"><svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            data-name="Layer 3" viewBox="0 0 24 24" width="20"
+                                                                            height="20">
+                                                                            <path
+                                                                                d="M6 19a1 1 0 0 1-1-1V6A1 1 0 0 1 7 6V18A1 1 0 0 1 6 19zM12 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 12 18zM9 21a1 1 0 0 1-1-1V4a1 1 0 0 1 2 0V20A1 1 0 0 1 9 21zM3 17a1 1 0 0 1-1-1V8A1 1 0 0 1 4 8v8A1 1 0 0 1 3 17zM21 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 21 16zM15 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 15 16zM18 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 18 18z"
+                                                                                fill="rgba(255, 255, 255, 0.5)"
+                                                                                class="fill-primary"></path>
+                                                                        </svg></g>
+                                                                </svg>
+                                                                <svg class="chat_audio" width="20" height="20">
+                                                                    <defs></defs>
+                                                                    <g transform="matrix(1,0,0,1,0,0)"><svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            data-name="Layer 3" viewBox="0 0 24 24" width="20"
+                                                                            height="20">
+                                                                            <path
+                                                                                d="M6 19a1 1 0 0 1-1-1V6A1 1 0 0 1 7 6V18A1 1 0 0 1 6 19zM12 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 12 18zM9 21a1 1 0 0 1-1-1V4a1 1 0 0 1 2 0V20A1 1 0 0 1 9 21zM3 17a1 1 0 0 1-1-1V8A1 1 0 0 1 4 8v8A1 1 0 0 1 3 17zM21 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 21 16zM15 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 15 16zM18 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 18 18z"
+                                                                                fill="rgba(255, 255, 255, 0.5)"
+                                                                                class="fill-primary"></path>
+                                                                        </svg></g>
+                                                                </svg>
+                                                                <svg class="chat_audio" width="20" height="20">
+                                                                    <defs></defs>
+                                                                    <g transform="matrix(1,0,0,1,0,0)"><svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            data-name="Layer 3" viewBox="0 0 24 24" width="20"
+                                                                            height="20">
+                                                                            <path
+                                                                                d="M6 19a1 1 0 0 1-1-1V6A1 1 0 0 1 7 6V18A1 1 0 0 1 6 19zM12 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 12 18zM9 21a1 1 0 0 1-1-1V4a1 1 0 0 1 2 0V20A1 1 0 0 1 9 21zM3 17a1 1 0 0 1-1-1V8A1 1 0 0 1 4 8v8A1 1 0 0 1 3 17zM21 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 21 16zM15 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 15 16zM18 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 18 18z"
+                                                                                fill="rgba(255, 255, 255, 0.5)"
+                                                                                class="fill-primary"></path>
+                                                                        </svg></g>
+                                                                </svg>
+                                                                <svg class="chat_audio" width="20" height="20">
+                                                                    <defs></defs>
+                                                                    <g transform="matrix(1,0,0,1,0,0)"><svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            data-name="Layer 3" viewBox="0 0 24 24" width="20"
+                                                                            height="20">
+                                                                            <path
+                                                                                d="M6 19a1 1 0 0 1-1-1V6A1 1 0 0 1 7 6V18A1 1 0 0 1 6 19zM12 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 12 18zM9 21a1 1 0 0 1-1-1V4a1 1 0 0 1 2 0V20A1 1 0 0 1 9 21zM3 17a1 1 0 0 1-1-1V8A1 1 0 0 1 4 8v8A1 1 0 0 1 3 17zM21 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 21 16zM15 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 15 16zM18 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 18 18z"
+                                                                                fill="rgba(255, 255, 255, 0.5)"
+                                                                                class="fill-primary"></path>
+                                                                        </svg></g>
+                                                                </svg>
+                                                                <svg class="chat_audio" width="20" height="20">
+                                                                    <defs></defs>
+                                                                    <g transform="matrix(1,0,0,1,0,0)"><svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            data-name="Layer 3" viewBox="0 0 24 24" width="20"
+                                                                            height="20">
+                                                                            <path
+                                                                                d="M6 19a1 1 0 0 1-1-1V6A1 1 0 0 1 7 6V18A1 1 0 0 1 6 19zM12 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 12 18zM9 21a1 1 0 0 1-1-1V4a1 1 0 0 1 2 0V20A1 1 0 0 1 9 21zM3 17a1 1 0 0 1-1-1V8A1 1 0 0 1 4 8v8A1 1 0 0 1 3 17zM21 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 21 16zM15 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 15 16zM18 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 18 18z"
+                                                                                fill="rgba(255, 255, 255, 0.5)"
+                                                                                class="fill-primary"></path>
+                                                                        </svg></g>
+                                                                </svg>
+                                                                <svg class="chat_audio" width="20" height="20">
+                                                                    <defs></defs>
+                                                                    <g transform="matrix(1,0,0,1,0,0)"><svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            data-name="Layer 3" viewBox="0 0 24 24" width="20"
+                                                                            height="20">
+                                                                            <path
+                                                                                d="M6 19a1 1 0 0 1-1-1V6A1 1 0 0 1 7 6V18A1 1 0 0 1 6 19zM12 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 12 18zM9 21a1 1 0 0 1-1-1V4a1 1 0 0 1 2 0V20A1 1 0 0 1 9 21zM3 17a1 1 0 0 1-1-1V8A1 1 0 0 1 4 8v8A1 1 0 0 1 3 17zM21 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 21 16zM15 16a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6A1 1 0 0 1 15 16zM18 18a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0V17A1 1 0 0 1 18 18z"
+                                                                                fill="rgba(255, 255, 255, 0.5)"
+                                                                                class="fill-primary"></path>
+                                                                        </svg></g>
+                                                                </svg>
+                                                            </span>
+                                                            <a aria-label="anchor" href="javascript:void(0)" class="text-fixed-white"><i
+                                                                    class="ri-download-2-line align-middle"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="chat-user-profile">
+                                                    <span class="avatar avatar-md online avatar-rounded">
+                                                        <img src="../assets/images/faces/15.jpg" alt="img">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="chat-item-start">
+                                            <div class="chat-list-inner">
+                                                <div class="chat-user-profile">
+                                                    <span class="avatar avatar-md @(ActiveUser?.isOnline == true ? "online" : "offline") avatar-rounded">
+                                                        <img class="chatimageperson" src="@ActiveUser?.img" alt="img">
+                                                    </span>
+                                                </div>
+                                                <div class="ms-3">
+                                                    <span class="chatting-user-info chatnameperson">
+                                                        @((MarkupString)(ActiveUser?.name ?? "name")) <span class="msg-sent-time">11:45PM</span>
+                                                    </span>
+                                                    <div class="main-chat-msg">
+                                                        <div>
+                                                            <p class="mb-0">Happy to talk with you,chat you later &#128075;</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </BlazorOverlayScrollbarsContent>
+                        </BlazorOverlayScrollbars>
+                        <div class="chat-footer">
+                            <input class="form-control" placeholder="Type your message here..." type="text">
+                            <a aria-label="anchor" class="btn btn-icon mx-2 btn-success-light" href="javascript:void(0)">
+                                <i class="ri-emotion-line"></i>
+                            </a>
+                            <a aria-label="anchor" class="btn btn-primary btn-icon btn-send" href="javascript:void(0)">
+                                <i class="ri-send-plane-2-line"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="chat-user-details border @chatUserDetailsRef" id="chat-user-details">
+                        <BlazorOverlayScrollbars>
+                            <BlazorOverlayScrollbarsContent>
+                                <div class="chat-user-details1">
+                                    <button aria-label="button" type="button" class="btn btn-icon btn-outline-light my-1 ms-2 responsive-chat-close2" @onclick="CloseChatUser">
+                                        <i class="ri-close-line"></i>
+                                    </button>
+                                    <div class="text-center mb-5">
+                                        <span class="avatar avatar-rounded @(ActiveUser?.isOnline == true ? "online" : "offline") avatar-xxl me-2 mb-3 chatstatusperson">
+                                            <img class="chatimageperson" src="@ActiveUser?.img" alt="img">
+                                        </span>
+                                        <p class="mb-1 fs-15 fw-semibold text-dark lh-1 chatnameperson">@((MarkupString)(ActiveUser?.name ?? "Name"))</p>
+                                        <p class="fs-12 text-muted"><span class="chatnameperson">@ActiveUser?.email</span></p>
+                                        <p class="text-center mb-0">
+                                            <button type="button" aria-label="button" class="btn btn-icon rounded-pill btn-primary-light"><i
+                                                    class="ri-phone-line"></i></button>
+                                            <button type="button" aria-label="button" class="btn btn-icon rounded-pill btn-primary-light ms-2"><i
+                                                    class="ri-video-add-line"></i></button>
+                                            <button type="button" aria-label="button" class="btn btn-icon rounded-pill btn-primary-light ms-2"><i
+                                                    class="ri-chat-1-line"></i></button>
+                                        </p>
+                                    </div>
+                                    <div class="mb-5">
+                                        <div class="fw-semibold mb-4">Shared Files
+                                            <span class="badge bg-primary-transparent rounded-circle ms-1">4</span>
+                                            <span class="float-end fs-11"><a href="javascript:void(0);" class="link-primary text-underline"><u>View All</u></a></span>
+                                        </div>
+                                        <ul class="shared-files list-unstyled">
+                                            <li>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="me-2">
+                                                        <span class="shared-file-icon">
+                                                            <i class="ti ti-file-text"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="flex-fill">
+                                                        <p class="fs-12 fw-semibold mb-0">Project Details.pdf</p>
+                                                        <p class="mb-0 text-muted fs-11">24,Oct 2022 - 14:24PM</p>
+                                                    </div>
+                                                    <div class="fs-18">
+                                                        <a aria-label="anchor" href="javascript:void(0)"><i class="ri-download-2-line text-muted"></i></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="me-2">
+                                                        <span class="shared-file-icon">
+                                                            <i class="ri-image-line"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="flex-fill">
+                                                        <p class="fs-12 fw-semibold mb-0">Img_02.Jpg</p>
+                                                        <p class="mb-0 text-muted fs-11">22,Oct 2022 - 10:19AM</p>
+                                                    </div>
+                                                    <div class="fs-18">
+                                                        <a aria-label="anchor" href="javascript:void(0)"><i class="ri-download-2-line text-muted"></i></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="me-2">
+                                                        <span class="shared-file-icon">
+                                                            <i class="ri-image-line"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="flex-fill">
+                                                        <p class="fs-12 fw-semibold mb-0">Img_15.Jpg</p>
+                                                        <p class="mb-0 text-muted fs-11">22,Oct 2022 - 10:18AM</p>
+                                                    </div>
+                                                    <div class="fs-18">
+                                                        <a aria-label="anchor" href="javascript:void(0)"><i class="ri-download-2-line text-muted"></i></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="me-2">
+                                                        <span class="shared-file-icon">
+                                                            <i class="ri-video-line"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="flex-fill">
+                                                        <p class="fs-12 fw-semibold mb-0">Video_15_02_2022.MP4</p>
+                                                        <p class="mb-0 text-muted fs-11">22,Oct 2022 - 10:18AM</p>
+                                                    </div>
+                                                    <div class="fs-18">
+                                                        <a href="javascript:void(0)"><i class="ri-download-2-line text-muted"></i></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="mb-0">
+                                        <div class="fw-semibold mb-4">Photos & Media
+                                            <span class="badge bg-primary-transparent rounded-circle ms-1">22</span>
+                                            <span class="float-end fs-11"><a href="javascript:void(0);" class="link-primary text-underline"><u>View All</u></a></span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                                                <a aria-label="anchor" href="/gallery" class="chat-media">
+                                                    <img src="../assets/images/media/media-56.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                                                <a aria-label="anchor" href="/gallery" class="chat-media">
+                                                    <img src="../assets/images/media/media-52.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                                                <a href="/gallery" class="chat-media">
+                                                    <img src="../assets/images/media/media-53.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                                                <a href="/gallery" class="chat-media">
+                                                    <img src="../assets/images/media/media-62.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                                                <a href="/gallery" class="chat-media">
+                                                    <img src="../assets/images/media/media-63.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                                                <a href="/gallery" class="chat-media">
+                                                    <img src="../assets/images/media/media-64.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                                                <a href="/gallery" class="chat-media">
+                                                    <img src="../assets/images/media/media-13.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                                                <a href="/gallery" class="chat-media">
+                                                    <img src="../assets/images/media/media-19.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                                                <a href="/gallery" class="chat-media">
+                                                    <img src="../assets/images/media/media-20.jpg" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </BlazorOverlayScrollbarsContent>
+                        </BlazorOverlayScrollbars>
+                    </div>
+                </div>
+            </div>
+
+
+@code {
+    public class ChatList
+    {
+        public int id { get; set; }
+        public string? img { get; set; }
+        public string? email { get; set; }
+        public string? name { get; set; }
+        public string? lastMsg { get; set; }
+        public bool isOnline { get; set; }
+        public bool isTyping { get; set; }
+        public bool seen { get; set; }
+        public string? unReadMessages { get; set; }
+        public string? lastMessageTime { get; set; }
+        public string? whoslastMsg { get; set; }
+        public string? howisTyping { get; set; }
+        public bool allSeen { get; set; }
+        
+    }
+    List<ChatList> ActiveChats = new List<ChatList>()
+    {  
+        new ChatList {
+            id= 1, img= "../assets/images/faces/5.jpg", email= "sujika@mail.com", name= "Sujika", lastMsg= "Need to go for lunch?", isOnline= true, isTyping= false, seen= true, unReadMessages= "", lastMessageTime= "1:32PM"
+        },
+        new ChatList {
+            id= 2, img= "../assets/images/faces/2.jpg", email= "emileyJackson@mail.com", name= "Emiley Jackson", lastMsg= "", isOnline= true, isTyping= true, seen= true, unReadMessages= "2", lastMessageTime= "12:24PM"
+        },
+        new ChatList {
+            id= 3, img= "../assets/images/faces/10.jpg", email= "mcGreggor@mail.com", name= "McGreggor", lastMsg= "Nice to meet you &#128522;", isOnline= true, isTyping= false, seen= false, unReadMessages= "", lastMessageTime= "1:16PM"
+        },
+        new ChatList {
+            id= 4, img= "../assets/images/faces/8.jpg", email= "alissa@mail.com", name= "Alissa", lastMsg= "Chat with you later,bye", isOnline= true, isTyping= false, seen= true, unReadMessages= "", lastMessageTime= "12:45PM"
+        },
+    };
+    List<ChatList> AllChats = new List<ChatList>()
+    {
+        new ChatList {
+            id= 5, img= "../assets/images/faces/11.jpg", email= "andreas@mail.com", name= "Andreas", lastMsg= "Congratulations on your new project", isOnline= false, isTyping= false, seen= false, unReadMessages= "", lastMessageTime= "11:54AM"
+        },
+        new ChatList {
+            id= 6, img= "../assets/images/faces/3.jpg", email= "melissasean@mail.com", name= "Melissa Sean", lastMsg= "Nice work,Congrats &#128079;", isOnline= false, isTyping= false, seen= false, unReadMessages= "", lastMessageTime= "9:45AM"
+        },
+        new ChatList {
+            id= 7, img= "../assets/images/faces/6.jpg", email= "samanthaPaul@mail.com", name= "Samantha Paul", lastMsg= "Great work keep it up =-)", isOnline= false, isTyping= false, seen= false, unReadMessages= "", lastMessageTime= "8:31AM"
+        },
+        new ChatList {
+            id= 8, img= "../assets/images/faces/4.jpg", email= "meganFox@mail.com", name= "Megan Fox", lastMsg= "You are need to be appreaciated for what you have done,congs", isOnline= false, isTyping= false, seen= false, unReadMessages= "", lastMessageTime= "7:23AM"
+        },
+        new ChatList {
+            id= 9, img= "../assets/images/faces/13.jpg", email= "nicholassams@mail.com", name= "Nicholas Sams", lastMsg= "Great Project", isOnline= false, isTyping= false, seen= false, unReadMessages= "", lastMessageTime= "10:22AM"
+        },
+        new ChatList {
+            id= 10, img= "../assets/images/faces/15.jpg", email= "popeJohnson@mail.com", name= "Pope Johnson", lastMsg= "Hike management fixed", isOnline= false, isTyping= false, seen= false, unReadMessages= "", lastMessageTime= "9:10AM"
+        },
+        };
+    List<ChatList> GroupData = new List<ChatList>()
+    {
+        new ChatList {
+            id= 1, img= "../assets/images/faces/17.jpg", email= "familyTogether@mail.com", name= "Family Together &#128525; ", whoslastMsg= "", lastMsg= "", isOnline= true, isTyping= true, howisTyping= "Hira", allSeen= false, unReadMessages= "2", lastMessageTime= "12:24PM"
+        },
+        new ChatList {
+            id= 2, img= "../assets/images/faces/18.jpg", email= "workBuddies@mail.com", name= "Work Buddies", whoslastMsg= "Ramas", lastMsg= "Happy to be part of this group", isOnline= true, isTyping= false, howisTyping= "", allSeen= true, unReadMessages= "", lastMessageTime= "1:16PM"
+        },
+        new ChatList {
+            id= 3, img= "../assets/images/faces/19.jpg", email= "friendsForever@mail.com", name= "Friends Forever &#128526; ", whoslastMsg= "Simon", lastMsg= "Simon, Melissa, Amanda, Patrick, Siddique", isOnline= false, isTyping= false, howisTyping= "", allSeen= false, unReadMessages= "", lastMessageTime= "3 days ago"
+        },
+        new ChatList {
+            id= 4, img= "../assets/images/faces/20.jpg", email= "socialMedia@mail.com", name= "Social Media Deals", whoslastMsg= "Subha", lastMsg= "Kamalan, Subha, Ambrose, Kiara, Jackson", isOnline= false, isTyping= false, howisTyping= "", allSeen= false, unReadMessages= "", lastMessageTime= "5 days ago"
+        },
+        new ChatList {
+            id= 5, img= "../assets/images/faces/21.jpg", email= "apartmentGroup@mail.com", name= "Apartment Group", whoslastMsg= "Alexa", lastMsg= "Subman, Rajen, Kairo, Dibasha, Alexa", isOnline= false, isTyping= false, howisTyping= "", allSeen= false, unReadMessages= "", lastMessageTime= "12 days ago"
+        },
+    };
+    
+    
+    ChatList? ActiveUser { get; set; }
+    string chatUserDetailsRef = "";
+    string mainChartWrapperRef = "";
+    protected override void OnInitialized()
+    {
+        ActiveUser = ActiveChats.FirstOrDefault();
+    }
+    private void ShowChat(ChatList Selected)
+    {
+       ActiveUser = Selected;
+       mainChartWrapperRef = "responsive-chat-open";
+
+    }    
+    private void removeChat()
+    {
+        mainChartWrapperRef = "";
+    }
+
+    private void ShowChatUser()
+    {
+        chatUserDetailsRef = "open";
+    }
+    private void CloseChatUser()
+    {
+        chatUserDetailsRef = "";
+    }
+    
+}

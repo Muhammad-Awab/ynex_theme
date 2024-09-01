@@ -1,0 +1,305 @@
+@page "/apex-treemap-charts"
+
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <h1 class="page-title fw-semibold fs-18 mb-0">Apex Treemap Charts</h1>
+                    <div class="ms-md-1 ms-0">
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Apex Charts</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Apex Treemap Charts</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start::row-1 -->
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Basic Treemap Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="treemap-basic">
+                                    <ApexChart TItem="BasicTreemapchart" Options=BasicTreemapchartOptions Height="350" Title="Basic Treemap">
+                                        <ApexPointSeries TItem="BasicTreemapchart" Items="BasicTreemapcharts" Name="Team" SeriesType="SeriesType.Treemap" XValue="@(e => e.BasicTreemapData)" YAggregate="@(e => e.Sum(e => e.BasicTreemapValue))" ShowDataLabels/>
+                                    </ApexChart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Multi Dimensional Treemap Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="treemap-multi">
+                                    <ApexChart TItem="MultiTreemapchart" Options=MultiTreemapchartOptions Height="350" Title="Multi-dimensional Treemap">
+                                        <ApexPointSeries TItem="MultiTreemapchart" Items="MultiTreemapcharts" Name="Desktops" SeriesType="SeriesType.Treemap" XValue="@(e => e.MultiTreemapData)" YAggregate="@(e => e.Sum(e => e.MultiTreemapValue))" ShowDataLabels/>
+                                        <ApexPointSeries TItem="MultiTreemapchart" Items="MultiTreemapcharts" Name="Mobile" SeriesType="SeriesType.Treemap" XValue="@(e => e.MultiTreemapData)" YAggregate="@(e => e.Sum(e => e.MultiTreemapValue2))" ShowDataLabels/>
+                                    </ApexChart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Distributed Treemap Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="treemap-distributed">
+                                    <ApexChart TItem="DistributedTreemapchart" Options=DistributedTreemapchartOptions Height="350" Title="Distibuted Treemap (different color for each cell)">
+                                        <ApexPointSeries TItem="DistributedTreemapchart" Items="DistributedTreemapcharts" Name="Team" SeriesType="SeriesType.Treemap" XValue="@(e => e.DistributedTreemapData)" YAggregate="@(e => e.Sum(e => e.DistributedTreemapValue))" ShowDataLabels/>
+                                    </ApexChart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Treemap with color ranges</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="treemap-colorranges">
+                                    <ApexChart TItem="ColorRangesTreemapchart" Options=ColorRangesTreemapchartOptions Height="350" Title="Treemap with Color scale">
+                                        <ApexPointSeries TItem="ColorRangesTreemapchart" Items="ColorRangesTreemapcharts" Name="Team" SeriesType="SeriesType.Treemap" XValue="@(e => e.ColorRangesTreemapData)" YAggregate="@(e => e.Sum(e => e.ColorRangesTreemapValue))" ShowDataLabels/>
+                                    </ApexChart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+            </div>
+@code {
+    
+    
+    // Basic Pie Chart Start //
+    private List<BasicTreemapchart> BasicTreemapcharts { get; set; } = DataBasicTreemapchart.BasicTreemapchart();
+    private ApexChartOptions<BasicTreemapchart> BasicTreemapchartOptions { get; set; } = new();
+    public static class DataBasicTreemapchart
+    {
+        public static List<BasicTreemapchart> BasicTreemapchart()
+        {
+            return new List<BasicTreemapchart>
+            {
+                new BasicTreemapchart { BasicTreemapData = "New Delhi", BasicTreemapValue = 218},
+                new BasicTreemapchart { BasicTreemapData = "Kolkata", BasicTreemapValue = 149},
+                new BasicTreemapchart { BasicTreemapData = "Mumbai", BasicTreemapValue = 184},
+                new BasicTreemapchart { BasicTreemapData = "Ahmedabad", BasicTreemapValue = 55},
+                new BasicTreemapchart { BasicTreemapData = "Bangaluru", BasicTreemapValue = 84},
+                new BasicTreemapchart { BasicTreemapData = "Pune", BasicTreemapValue = 31},
+                new BasicTreemapchart { BasicTreemapData = "Chennai", BasicTreemapValue = 70},
+                new BasicTreemapchart { BasicTreemapData = "Jaipur", BasicTreemapValue = 30},
+                new BasicTreemapchart { BasicTreemapData = "Surat", BasicTreemapValue = 44},
+                new BasicTreemapchart { BasicTreemapData = "Hyderabad", BasicTreemapValue = 68},
+                new BasicTreemapchart { BasicTreemapData = "Lucknow", BasicTreemapValue = 28},
+                new BasicTreemapchart { BasicTreemapData = "Indore", BasicTreemapValue = 19},
+                new BasicTreemapchart { BasicTreemapData = "Kanpur", BasicTreemapValue = 29},
+            };
+        }
+    }
+    public class BasicTreemapchart
+    {
+        public string? BasicTreemapData { get; set; }
+        public decimal BasicTreemapValue { get; set; }
+    }
+    // Basic Pie Chart End //
+
+    
+    // Multi Pie Chart Start //
+    private List<MultiTreemapchart> MultiTreemapcharts { get; set; } = DataMultiTreemapchart.MultiTreemapchart();
+    private ApexChartOptions<MultiTreemapchart> MultiTreemapchartOptions { get; set; } = new();
+    public static class DataMultiTreemapchart
+    {
+        public static List<MultiTreemapchart> MultiTreemapchart()
+        {
+            return new List<MultiTreemapchart>
+            {
+                new MultiTreemapchart { MultiTreemapData = "ABC", MultiTreemapValue = 10},
+                new MultiTreemapchart { MultiTreemapData = "DEF", MultiTreemapValue = 60},
+                new MultiTreemapchart { MultiTreemapData = "XYZ", MultiTreemapValue = 41},
+                new MultiTreemapchart { MultiTreemapData = "ABCD", MultiTreemapValue2 = 10},
+                new MultiTreemapchart { MultiTreemapData = "DEFG", MultiTreemapValue2 = 20},
+                new MultiTreemapchart { MultiTreemapData = "WXYZ", MultiTreemapValue2 = 51},
+                new MultiTreemapchart { MultiTreemapData = "PQR", MultiTreemapValue2 = 30},
+                new MultiTreemapchart { MultiTreemapData = "MNO", MultiTreemapValue2 = 20},
+                new MultiTreemapchart { MultiTreemapData = "CDE", MultiTreemapValue2 = 30},
+            };
+        }
+    }
+    public class MultiTreemapchart
+    {
+        public string? MultiTreemapData { get; set; }
+        public decimal MultiTreemapValue { get; set; }  
+        public decimal MultiTreemapValue2 { get; set; }
+    }
+    // Multi Pie Chart End //
+    
+    // Distributed Pie Chart Start //
+    private List<DistributedTreemapchart> DistributedTreemapcharts { get; set; } = DataDistributedTreemapchart.DistributedTreemapchart();
+    private ApexChartOptions<DistributedTreemapchart> DistributedTreemapchartOptions { get; set; } = new();
+    public static class DataDistributedTreemapchart
+    {
+        public static List<DistributedTreemapchart> DistributedTreemapchart()
+        {
+            return new List<DistributedTreemapchart>
+            {
+                new DistributedTreemapchart { DistributedTreemapData = "New Delhi", DistributedTreemapValue = 218},
+                new DistributedTreemapchart { DistributedTreemapData = "Kolkata", DistributedTreemapValue = 149},
+                new DistributedTreemapchart { DistributedTreemapData = "Mumbai", DistributedTreemapValue = 184},
+                new DistributedTreemapchart { DistributedTreemapData = "Ahmedabad", DistributedTreemapValue = 55},
+                new DistributedTreemapchart { DistributedTreemapData = "Bangaluru", DistributedTreemapValue = 84},
+                new DistributedTreemapchart { DistributedTreemapData = "Pune", DistributedTreemapValue = 31},
+                new DistributedTreemapchart { DistributedTreemapData = "Chennai", DistributedTreemapValue = 70},
+                new DistributedTreemapchart { DistributedTreemapData = "Jaipur", DistributedTreemapValue = 30},
+                new DistributedTreemapchart { DistributedTreemapData = "Surat", DistributedTreemapValue = 44},
+                new DistributedTreemapchart { DistributedTreemapData = "Hyderabad", DistributedTreemapValue = 68},
+                new DistributedTreemapchart { DistributedTreemapData = "Lucknow", DistributedTreemapValue = 28},
+                new DistributedTreemapchart { DistributedTreemapData = "Indore", DistributedTreemapValue = 19},
+                new DistributedTreemapchart { DistributedTreemapData = "Kanpur", DistributedTreemapValue = 29},
+            };
+        }
+    }
+    public class DistributedTreemapchart
+    {
+        public string? DistributedTreemapData { get; set; }
+        public decimal DistributedTreemapValue { get; set; }
+    }
+    // Distributed Pie Chart End //
+
+    // ColorRanges Pie Chart Start //
+    private List<ColorRangesTreemapchart> ColorRangesTreemapcharts { get; set; } = DataColorRangesTreemapchart.ColorRangesTreemapchart();
+    private ApexChartOptions<ColorRangesTreemapchart> ColorRangesTreemapchartOptions { get; set; } = new();
+    public static class DataColorRangesTreemapchart
+    {
+        public static List<ColorRangesTreemapchart> ColorRangesTreemapchart()
+        {
+            return new List<ColorRangesTreemapchart>
+            {
+                new ColorRangesTreemapchart { ColorRangesTreemapData = "INTC", ColorRangesTreemapValue = 1.2M},
+                new ColorRangesTreemapchart { ColorRangesTreemapData = "GS", ColorRangesTreemapValue = 0.4M},
+                new ColorRangesTreemapchart { ColorRangesTreemapData = "CVX", ColorRangesTreemapValue = -1.4M},
+                new ColorRangesTreemapchart { ColorRangesTreemapData = "GE", ColorRangesTreemapValue = 2.7M},
+                new ColorRangesTreemapchart { ColorRangesTreemapData = "CAT", ColorRangesTreemapValue = -0.3M},
+                new ColorRangesTreemapchart { ColorRangesTreemapData = "RTX", ColorRangesTreemapValue = 5.1M},
+                new ColorRangesTreemapchart { ColorRangesTreemapData = "CSCO", ColorRangesTreemapValue = -2.3M},
+                new ColorRangesTreemapchart { ColorRangesTreemapData = "JNJ", ColorRangesTreemapValue = 2.1M},
+                new ColorRangesTreemapchart { ColorRangesTreemapData = "PG", ColorRangesTreemapValue = 0.3M},
+                new ColorRangesTreemapchart { ColorRangesTreemapData = "TRV", ColorRangesTreemapValue = 0.12M},
+                new ColorRangesTreemapchart { ColorRangesTreemapData = "MMM", ColorRangesTreemapValue = -2.31M},
+                new ColorRangesTreemapchart { ColorRangesTreemapData = "NKE", ColorRangesTreemapValue = 3.98M},
+                new ColorRangesTreemapchart { ColorRangesTreemapData = "IYT", ColorRangesTreemapValue = 1.67M},
+            };
+        }
+    }
+    public class ColorRangesTreemapchart
+    {
+        public string? ColorRangesTreemapData { get; set; }
+        public decimal ColorRangesTreemapValue { get; set; }
+    }
+    // ColorRanges Pie Chart End //
+
+    protected override void OnInitialized() {
+
+        BasicTreemapchartOptions = new ApexChartOptions<BasicTreemapchart>{
+            Legend = new Legend
+            {
+                Show = false,
+            },
+            Colors = new Color(new List<string> { "#845adf"}),
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+        };
+        
+        MultiTreemapchartOptions = new ApexChartOptions<MultiTreemapchart>{
+            Legend = new Legend
+            {
+                Show = false,
+            },
+            Colors = new Color(new List<string> { "#845adf", "#23b7e5"}),
+            Title = new Title{
+                Align = ApexCharts.Align.Center,
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+        };
+        
+        DistributedTreemapchartOptions = new ApexChartOptions<DistributedTreemapchart>{
+            Legend = new Legend
+            {
+                Show = false,
+            },
+            PlotOptions = new PlotOptions {
+                Treemap = new() {
+                    Distributed = true,
+                    EnableShades = false
+                }
+            },
+            Colors = new Color(new List<string> { "#845adf","#a65e76","#f5b849","#a66a5e","#a65e9a","#26bf94","#e6533c","#49b6f5","#5b67c7","#2dce89","#EF6537","#8c9097"}),
+            Title = new Title{
+                Align = ApexCharts.Align.Center,
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+        };
+        
+        ColorRangesTreemapchartOptions = new ApexChartOptions<ColorRangesTreemapchart>{
+            Legend = new Legend
+            {
+                Show = false,
+            },
+            PlotOptions = new PlotOptions {
+                Treemap = new() {
+                    EnableShades = true,
+                    ShadeIntensity = 0.5,
+                    ReverseNegativeShade = true,
+                    ColorScale = new (){
+                        Ranges = new () {
+                            new (){
+                                From = -6,
+                                To = 0,
+                                Color = "#845adf"
+                            },
+                            new (){
+                                From = 0.001,
+                                To = 6,
+                                Color = "#23b7e5"
+                            }
+                        }
+                    }
+                }
+            },
+            Colors = new Color(new List<string> { "#845adf","#a65e76","#f5b849","#a66a5e","#a65e9a","#26bf94","#e6533c","#49b6f5","#5b67c7","#2dce89","#EF6537","#8c9097"}),
+            Title = new Title{
+                Align = ApexCharts.Align.Center,
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+        };
+
+
+    }
+}

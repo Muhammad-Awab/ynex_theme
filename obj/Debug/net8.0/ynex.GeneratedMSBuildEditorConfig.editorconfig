@@ -1,0 +1,855 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ynex
+build_property.RootNamespace = ynex
+build_property.ProjectDir = C:\Users\dell\Downloads\Ynex\Ynex\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\dell\Downloads\Ynex\Ynex
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Advancedui/Accordions-collpase.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWR2YW5jZWR1aVxBY2NvcmRpb25zLWNvbGxwYXNlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Advancedui/Carousel.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWR2YW5jZWR1aVxDYXJvdXNlbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Advancedui/Draggable-cards.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWR2YW5jZWR1aVxEcmFnZ2FibGUtY2FyZHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Advancedui/Modals-closes.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWR2YW5jZWR1aVxNb2RhbHMtY2xvc2VzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Advancedui/Navbar.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWR2YW5jZWR1aVxOYXZiYXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Advancedui/Offcanvas.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWR2YW5jZWR1aVxPZmZjYW52YXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Advancedui/Placeholders.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWR2YW5jZWR1aVxQbGFjZWhvbGRlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Advancedui/Ratings.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWR2YW5jZWR1aVxSYXRpbmdzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Advancedui/SlickCarousel.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWR2YW5jZWR1aVxTbGlja0Nhcm91c2VsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Advancedui/Treeview.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWR2YW5jZWR1aVxUcmVldmlldy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Blazor-calendar.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xCbGF6b3ItY2FsZW5kYXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Crm-companies.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xDcm0tY29tcGFuaWVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Crm-contacts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xDcm0tY29udGFjdHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Crm-deals.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xDcm0tZGVhbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Crm-leads.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xDcm0tbGVhZHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Crypto-buy-sell.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xDcnlwdG8tYnV5LXNlbGwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Crypto-currency-exchange.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xDcnlwdG8tY3VycmVuY3ktZXhjaGFuZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Crypto-marketcap.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xDcnlwdG8tbWFya2V0Y2FwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Crypto-transactions.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xDcnlwdG8tdHJhbnNhY3Rpb25zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Crypto-wallet.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xDcnlwdG8td2FsbGV0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Full-calendar.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xGdWxsLWNhbGVuZGFyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Gallery.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xHYWxsZXJ5LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Job-candidate-details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xKb2ItY2FuZGlkYXRlLWRldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Job-candidate-search.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xKb2ItY2FuZGlkYXRlLXNlYXJjaC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Job-company-search.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xKb2ItY29tcGFueS1zZWFyY2gucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Job-details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xKb2ItZGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Job-post.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xKb2ItcG9zdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Job-search.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xKb2Itc2VhcmNoLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Jobs-list.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xKb2JzLWxpc3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Nft-create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xOZnQtY3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Nft-details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xOZnQtZGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Nft-live-auction.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xOZnQtbGl2ZS1hdWN0aW9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Nft-marketplace.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xOZnQtbWFya2V0cGxhY2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Nft-wallet-integration.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xOZnQtd2FsbGV0LWludGVncmF0aW9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Projects-create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xQcm9qZWN0cy1jcmVhdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Projects-list.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xQcm9qZWN0cy1saXN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Projects-overview.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xQcm9qZWN0cy1vdmVydmlldy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Apps/Sweet-alerts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwc1xTd2VldC1hbGVydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Authentication/Comingsoon.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cQ29taW5nc29vbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Authentication/Create-Password-Basic.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cQ3JlYXRlLVBhc3N3b3JkLUJhc2ljLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Authentication/Create-Password-Cover.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cQ3JlYXRlLVBhc3N3b3JkLUNvdmVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Authentication/Lockscreen-Basic.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cTG9ja3NjcmVlbi1CYXNpYy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Authentication/Lockscreen-Cover.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cTG9ja3NjcmVlbi1Db3Zlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Authentication/PasswordToggle.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cUGFzc3dvcmRUb2dnbGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Authentication/Reset-Password-Basic.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cUmVzZXQtUGFzc3dvcmQtQmFzaWMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Authentication/Reset-Password-Cover.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cUmVzZXQtUGFzc3dvcmQtQ292ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Authentication/Sign-In-Basic.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cU2lnbi1Jbi1CYXNpYy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Authentication/Sign-In-Cover.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cU2lnbi1Jbi1Db3Zlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Authentication/Sign-Up-Basic.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cU2lnbi1VcC1CYXNpYy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Authentication/Sign-Up-Cover.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cU2lnbi1VcC1Db3Zlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Authentication/TwoStep-Verfication-Basic.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cVHdvU3RlcC1WZXJmaWNhdGlvbi1CYXNpYy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Authentication/TwoStep-Verfication-Cover.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cVHdvU3RlcC1WZXJmaWNhdGlvbi1Db3Zlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Authentication/UnderMaintenance.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cVW5kZXJNYWludGVuYW5jZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-area-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtYXJlYS1jaGFydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-bar-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtYmFyLWNoYXJ0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-boxplot-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtYm94cGxvdC1jaGFydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-bubble-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtYnViYmxlLWNoYXJ0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-candlestick-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtY2FuZGxlc3RpY2stY2hhcnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-column-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtY29sdW1uLWNoYXJ0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-funnel-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtZnVubmVsLWNoYXJ0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-heatmap-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtaGVhdG1hcC1jaGFydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-line-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtbGluZS1jaGFydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-mixed-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtbWl4ZWQtY2hhcnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-pie-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtcGllLWNoYXJ0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-polararea-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtcG9sYXJhcmVhLWNoYXJ0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-radar-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtcmFkYXItY2hhcnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-radialbar-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtcmFkaWFsYmFyLWNoYXJ0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-rangearea-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtcmFuZ2VhcmVhLWNoYXJ0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-scatter-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtc2NhdHRlci1jaGFydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-timeline-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtdGltZWxpbmUtY2hhcnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Apex-treemap-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXEFwZXgtdHJlZW1hcC1jaGFydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Charts/Chartjs-charts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhcnRzXENoYXJ0anMtY2hhcnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Dashboards/Index10.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkc1xJbmRleDEwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Dashboards/Index11.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkc1xJbmRleDExLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Dashboards/Index12.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkc1xJbmRleDEyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Dashboards/Index2.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkc1xJbmRleDIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Dashboards/Index3.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkc1xJbmRleDMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Dashboards/Index4.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkc1xJbmRleDQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Dashboards/Index5.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkc1xJbmRleDUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Dashboards/Index6.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkc1xJbmRleDYucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Dashboards/Index7.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkc1xJbmRleDcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Dashboards/Index8.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkc1xJbmRleDgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Dashboards/Index9.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkc1xJbmRleDkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Error/401.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3JcNDAxLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Error/404.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3JcNDA0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Error/500.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3JcNTAwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/FetchData.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Blazor-Form-Wizard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcQmxhem9yLUZvcm0tV2l6YXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Floating-labels.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcRmxvYXRpbmctbGFiZWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Form-check-radios.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcRm9ybS1jaGVjay1yYWRpb3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Form-color-pickers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcRm9ybS1jb2xvci1waWNrZXJzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Form-datetime-pickers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcRm9ybS1kYXRldGltZS1waWNrZXJzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Form-file-uploads.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcRm9ybS1maWxlLXVwbG9hZHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Form-input-group.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcRm9ybS1pbnB1dC1ncm91cC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Form-input-masks.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcRm9ybS1pbnB1dC1tYXNrcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Form-inputs.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcRm9ybS1pbnB1dHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Form-layout.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcRm9ybS1sYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Form-range.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcRm9ybS1yYW5nZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Form-select.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcRm9ybS1zZWxlY3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Form-select2.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcRm9ybS1zZWxlY3QyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Form-validation.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcRm9ybS12YWxpZGF0aW9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Form-Wizard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcRm9ybS1XaXphcmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Forms/Quill-editor.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9ybXNcUXVpbGwtZWRpdG9yLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Icons/Icons.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSWNvbnNcSWNvbnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Maps/Google-maps.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFwc1xHb29nbGUtbWFwcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Maps/Leaflet-maps.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFwc1xMZWFmbGV0LW1hcHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Maps/Vector-maps.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFwc1xWZWN0b3ItbWFwcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/About-us.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcQWJvdXQtdXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Add-products.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcQWRkLXByb2R1Y3RzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Blog-create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcQmxvZy1jcmVhdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Blog-details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcQmxvZy1kZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Blog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcQmxvZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Cart.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcQ2FydC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Chat.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcQ2hhdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Checkout.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcQ2hlY2tvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Contact-us.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcQ29udGFjdC11cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Contacts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcQ29udGFjdHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Edit-products.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcRWRpdC1wcm9kdWN0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Email.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcRW1haWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Emptypage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcRW1wdHlwYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Faqs.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcRmFxcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/File-manager.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcRmlsZS1tYW5hZ2VyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Invoice-create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcSW52b2ljZS1jcmVhdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Invoice-details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcSW52b2ljZS1kZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Invoice-list.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcSW52b2ljZS1saXN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Landing.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcTGFuZGluZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Landingjobs.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcTGFuZGluZ2pvYnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Mail-settings.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcTWFpbC1zZXR0aW5ncy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Notifications.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcTm90aWZpY2F0aW9ucy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Order-details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcT3JkZXItZGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Orders.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcT3JkZXJzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Pricing.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcUHJpY2luZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Product-details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcUHJvZHVjdC1kZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Product-list.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcUHJvZHVjdC1saXN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Products.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcUHJvZHVjdHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Profile.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcUHJvZmlsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Reviews.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcUmV2aWV3cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Team.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcVGVhbS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Terms-conditions.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcVGVybXMtY29uZGl0aW9ucy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Timeline.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcVGltZWxpbmUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/To-do-list.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcVG8tZG8tbGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Pages/Wishlist.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnZXNcV2lzaGxpc3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Tables/Data-tables.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFibGVzXERhdGEtdGFibGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Tables/Grid-tables.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFibGVzXEdyaWQtdGFibGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Tables/Tables.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFibGVzXFRhYmxlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Tasks/Kanban-board.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcS2FuYmFuLWJvYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Tasks/List-View.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcTGlzdC1WaWV3LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Tasks/Task-Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcVGFzay1EZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Alerts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xBbGVydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Badge.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xCYWRnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Breadcrumb.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xCcmVhZGNydW1iLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Buttongroup.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xCdXR0b25ncm91cC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Buttons.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xCdXR0b25zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Cards.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xDYXJkcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Dropdowns.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xEcm9wZG93bnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Images-figures.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xJbWFnZXMtZmlndXJlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Links-Interactions.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xMaW5rcy1JbnRlcmFjdGlvbnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Listgroup.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xMaXN0Z3JvdXAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Navs-tabs.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xOYXZzLXRhYnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Object-fit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xPYmplY3QtZml0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Pagination.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xQYWdpbmF0aW9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Popovers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xQb3BvdmVycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Progress.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xQcm9ncmVzcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Spinners.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xTcGlubmVycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Toasts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xUb2FzdHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Tooltips.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xUb29sdGlwcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Uielements/Typography.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWllbGVtZW50c1xUeXBvZ3JhcGh5LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Utilities/Avatars.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXRpbGl0aWVzXEF2YXRhcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Utilities/Borders.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXRpbGl0aWVzXEJvcmRlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Utilities/Breakpoints.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXRpbGl0aWVzXEJyZWFrcG9pbnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Utilities/Colors.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXRpbGl0aWVzXENvbG9ycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Utilities/Columns.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXRpbGl0aWVzXENvbHVtbnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Utilities/Flex.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXRpbGl0aWVzXEZsZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Utilities/Gutters.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXRpbGl0aWVzXEd1dHRlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Utilities/Helpers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXRpbGl0aWVzXEhlbHBlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Utilities/More.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXRpbGl0aWVzXE1vcmUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Utilities/Position.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXRpbGl0aWVzXFBvc2l0aW9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Widgets/Widgets.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2lkZ2V0c1xXaWRnZXRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/CustomLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEN1c3RvbUxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/Footer.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEZvb3Rlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/JobsLandingFooter.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEpvYnNMYW5kaW5nRm9vdGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/JobsLandingLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEpvYnNMYW5kaW5nTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/JobsLandingSidebar.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEpvYnNMYW5kaW5nU2lkZWJhci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/LandingFooter.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExhbmRpbmdGb290ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/LandingHeader.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExhbmRpbmdIZWFkZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/LandingHeader1.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExhbmRpbmdIZWFkZXIxLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/LandingLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExhbmRpbmdMYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/LandingSidebar.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExhbmRpbmdTaWRlYmFyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/LandingSwitcher.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExhbmRpbmdTd2l0Y2hlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/MainHeader.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5IZWFkZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/MainHeader1.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5IZWFkZXIxLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/Modal.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1vZGFsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/SubLandingSidebar.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1YkxhbmRpbmdTaWRlYmFyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/SubNavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1Yk5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/Switcher.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN3aXRjaGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-h0h3coajq0
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-qcwtgltcxe
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/_LandingHost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xhbmRpbmdIb3N0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/_LandingJobsHost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xhbmRpbmdKb2JzSG9zdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/_LayoutJobLanding.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dEpvYkxhbmRpbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dell/Downloads/Ynex/Ynex/Pages/_LayoutLanding.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dExhbmRpbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

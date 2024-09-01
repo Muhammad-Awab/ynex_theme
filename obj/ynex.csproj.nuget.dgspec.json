@@ -1,0 +1,157 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\dell\\Downloads\\Ynex\\Ynex\\ynex.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\dell\\Downloads\\Ynex\\Ynex\\ynex.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\dell\\Downloads\\Ynex\\Ynex\\ynex.csproj",
+        "projectName": "ynex",
+        "projectPath": "C:\\Users\\dell\\Downloads\\Ynex\\Ynex\\ynex.csproj",
+        "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dell\\Downloads\\Ynex\\Ynex\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Blazor-ApexCharts": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "BlazorCalendar": {
+              "target": "Package",
+              "version": "[2.6.8, )"
+            },
+            "BlazorCleave": {
+              "target": "Package",
+              "version": "[1.0.102, )"
+            },
+            "BlazorColorPicker": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Blazored.TextEditor": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "CurrieTechnologies.Razor.SweetAlert2": {
+              "target": "Package",
+              "version": "[5.6.0, )"
+            },
+            "Excubo.Blazor.TreeViews": {
+              "target": "Package",
+              "version": "[4.0.12, )"
+            },
+            "FlatpickrBlazor": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Fun.Blazor.ApexCharts": {
+              "target": "Package",
+              "version": "[2.3.3, )"
+            },
+            "LeafletForBlazor": {
+              "target": "Package",
+              "version": "[2.0.2.8, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Cookies": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Components": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.AspNetCore.Components.Web": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "NoUiSlider.Blazor": {
+              "target": "Package",
+              "version": "[0.1.5, )"
+            },
+            "Soenneker.Blazor.FilePond": {
+              "target": "Package",
+              "version": "[2.1.604, )"
+            },
+            "Soenneker.Blazor.TomSelect": {
+              "target": "Package",
+              "version": "[2.1.231, )"
+            },
+            "Soenneker.Blazor.Utils.InteropEventListener": {
+              "target": "Package",
+              "version": "[2.1.800, )"
+            },
+            "VDT.Core.Blazor.Wizard": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "WMBlazorOverlayScrollbars": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "WMBlazorSlickCarousel": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

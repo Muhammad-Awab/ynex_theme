@@ -1,0 +1,770 @@
+@page "/blazor-form-wizard"
+@using VDT.Core.Blazor.Wizard
+@using FlatpickrBlazor
+@using FlatpickrBlazor.Components
+@inject IJSRuntime JSRuntime
+@using Soenneker.Blazor.TomSelect
+@using Soenneker.Blazor.TomSelect.Base 
+@using Soenneker.Blazor.TomSelect.Dtos
+@using System.Collections.Generic
+@inject SweetAlertService Swal
+@using System.Text;
+@inject NavigationManager NavigationManager
+@using System.ComponentModel.DataAnnotations;
+
+<!-- Flatpickr Css -->
+<link href="_content/FlatpickrBlazor/flatpickr.min.css" rel="stylesheet" />
+
+<!-- Tom Select CSS -->
+<link rel="stylesheet" href="../assets/libs/tom-select/css/tom-select.bootstrap5.min.css">
+
+<div class="container-fluid">
+
+    <!-- Page Header -->
+    <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+        <h1 class="page-title fw-semibold fs-18 mb-0">Blazor Form Wizards</h1>
+        <div class="ms-md-1 ms-0">
+            <nav>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Blazor Form Wizards</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header Close -->
+
+
+    <!-- Start::row-1 -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card custom-card overflow-hidden">
+                <div class="card-header">
+                    <div class="card-title">
+                        FORM WIZARD
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <Wizard @ref="Wizard2" 
+                        ButtonClass="wizard-button" 
+                        ButtonPreviousClass="btn-light btn"
+                        ButtonPreviousText="<< Prev " 
+                        ButtonFinishClass="btn-primary btn"
+                        ButtonFinishText="Complete" 
+                        ButtonNextClass="btn-primary btn" 
+                        ButtonNextText="Next >>" 
+                        StepTitleClass="blazorwizard-step btn-primary-transparent btn w-100 mb-2 mb-lg-0"
+                        ActiveStepTitleClass="fw-bold btn-primary btn active"
+                        AllowCancel="true"
+                        AllowPrevious="true" OnFinish="OnWizardFinish">
+                        <Layout>
+                            <div class="wizard ">
+                                <div class="container-lg">
+                                    <div class="card-body px-0 d-md-flex justify-content-between gap-4">
+                                        @context.StepTitles
+                                    </div> 
+                                    <div class="wizard-body card-body">
+                                        @context.Content
+                                    </div>
+                                </div>
+
+                                <div class="wizard-buttons card-footer d-flex justify-content-between">
+                                    @context.ButtonPrevious
+                                    <div class="text-end">
+                                        @context.ButtonNext
+                                        @context.ButtonFinish
+                                    </div>
+                                </div>
+                            </div>
+                        </Layout>
+                        <Steps>
+                            <WizardStep Title="Personal Information"  OnInitialize="args => InitializeStep(args, 1)" OnTryComplete="args => args.IsCancelled = !AccountContext?.Validate() ?? true">
+                                <div class="row justify-content-center">
+                                    <EditForm EditContext="AccountContext">
+                                        <DataAnnotationsValidator />
+                                        <div class="col-xl-12">
+                                            <div class="register-page">
+                                                <h6 class="mb-3">Registration :</h6>
+                                                <div class="row gy-3">
+                                                    <div class="col-xl-6">
+                                                        <label for="Customer" class="form-label">First Name</label>
+                                                        <InputText @bind-Value="Account.personName" id="personName" class="form-control" placeholder="Enter first name" />
+                                                        <ValidationMessage For="() => Account.personName" class="text-danger fs-13" />
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <label for="last-name" class="form-label">Last Name</label>
+                                                        <InputText @bind-Value="Account.LastName" id="LastName" class="form-control" placeholder="Enter Last name" />
+                                                        <ValidationMessage For="() => Account.LastName" class="text-danger fs-13" />
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <label for="Email" class="form-label">Email Address</label>
+                                                        <InputText @bind-Value="Account.EmailAddress" id="EmailAddress" class="form-control" placeholder="Enter Email Adress" />
+                                                        <ValidationMessage For="() => Account.EmailAddress" class="text-danger fs-13" />
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <label class="form-label">Phone Number</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text"
+                                                                id="inputGroup-sizing-default">+99</span>
+                                                            <InputText @bind-Value="Account.PhoneNumber" id="PhoneNumber" class="form-control" placeholder="Enter Phone number" />
+                                                        </div>
+                                                        <ValidationMessage For="() => Account.PhoneNumber" class="text-danger fs-13" />
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <label class="form-label">Date of Birth</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-text text-muted">
+                                                                <i class="ri-calendar-line"></i>
+                                                            </div> 
+                                                            <Flatpickr class="form-control" @ref="_flatpickr" placeholder="Choose date"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <label class="form-label">Select Gender :</label>
+                                                        <TomSelect TItem="SelectItem" Items=_selectedItems  TType="string" Multiple="false" @bind-Value="_selectedValue" Data="_options" TextField="@(item => item.Name)" ValueField="@(item => item.Id)" Placeholder="Open this select menu" />
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label class="form-label">Country</label>
+                                                        <TomSelect TItem="CountryItem" Items=_CountryItems  TType="string" Multiple="false" @bind-Value="_CountryValue" Data="_Countryoptions" TextField="@(item => item.CountryName)" ValueField="@(item => item.CountryId)" Placeholder="Open this select menu" />
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <label class="form-label">Select City:</label>
+                                                        <TomSelect TItem="CityItem" Items=_CityItems  TType="string" Multiple="false" @bind-Value="_CityValue" Data="_Cityoptions" TextField="@(item => item.CityName)" ValueField="@(item => item.CityId)" Placeholder="Open this select menu" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-7">
+                                            <div class="login-page d-none">
+                                                <h6 class="mb-3">Sign In :</h6>
+                                                <div class="row justify-content-center gy-4">
+                                                    <div class="col-xl-12">
+                                                        <label for="email-adress" class="form-label">Email
+                                                            Address</label>
+                                                        <input type="text" class="form-control " id="email-adress"
+                                                            placeholder="Enter Email Adress">
+                                                    </div>
+                                                    <div class="col-xl-12">
+                                                        <label for="password" class="form-label">Enter
+                                                            Password</label>
+                                                        <input type="text" class="form-control " id="password"
+                                                            placeholder="Enter Password">
+                                                    </div>
+                                                    <div class="col-xl-12">
+                                                        <div class="d-grid">
+                                                            <a href="javascript:void(0);"
+                                                                class="btn btn-primary px-4">Login</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </EditForm>
+                                </div>
+                            </WizardStep>
+                            <WizardStep Title="Select Service" OnInitialize="args => InitializeStep(args, 2)">
+                                <div class="row gy-4">
+                                    <div class="col-xl-3">
+                                        <div class="col">
+                                            <div class="form-check d-flex align-items-center gap-3 p-2 border rounded-pill">
+                                                <div>
+                                                    <span class="avatar avatar-lg avatar-rounded bg-primary-transparent">
+                                                        <i class="bi bi-hospital fs-5"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <label class="form-check-label d-block fw-medium fs-15" for="flexCheckChecked">Cardio Check</label>
+                                                    <span class="fs-12 text-muted">$249</span>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input form-checked-primary rounded-circle" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="col">
+                                            <div class="form-check d-flex align-items-center gap-3 p-2 border rounded-pill">
+                                                <div>
+                                                    <span class="avatar avatar-lg avatar-rounded bg-secondary-transparent">
+                                                        <i class="bi bi-hospital fs-5"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <label class="form-check-label d-block fw-medium fs-15" for="flexCheckChecked1">Ortho Consult</label>
+                                                    <span class="fs-12 text-muted">$120</span>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input form-checked-secondary rounded-circle" type="checkbox" value="" id="flexCheckChecked1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="col">
+                                            <div class="form-check d-flex align-items-center gap-3 p-2 border rounded-pill">
+                                                <div>
+                                                    <span class="avatar avatar-lg avatar-rounded bg-success-transparent">
+                                                        <i class="bi bi-hospital fs-5"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <label class="form-check-label d-block fw-medium fs-15" for="flexCheckChecked2">Gyn Exam</label>
+                                                    <span class="fs-12 text-muted">$100</span>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input form-checked-success rounded-circle" type="checkbox" value="" id="flexCheckChecked2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="col">
+                                            <div class="form-check d-flex align-items-center gap-3 p-2 border rounded-pill">
+                                                <div>
+                                                    <span class="avatar avatar-lg avatar-rounded bg-orange-transparent">
+                                                        <i class="bi bi-hospital fs-5"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <label class="form-check-label d-block fw-medium fs-15" for="flexCheckChecked3">Pediatric Vaccines</label>
+                                                    <span class="fs-12 text-muted">$50</span>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input form-checked-orange rounded-circle" type="checkbox" value="" id="flexCheckChecked3">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="col">
+                                            <div class="form-check d-flex align-items-center gap-3 p-2 border rounded-pill">
+                                                <div>
+                                                    <span class="avatar avatar-lg avatar-rounded bg-info-transparent">
+                                                        <i class="bi bi-hospital fs-5"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <label class="form-check-label d-block fw-medium fs-15" for="flexCheckChecked4">Dental Checkup</label>
+                                                    <span class="fs-12 text-muted">$80</span>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input form-checked-info rounded-circle" type="checkbox" value="" id="flexCheckChecked4">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="col">
+                                            <div class="form-check d-flex align-items-center gap-3 p-2 border rounded-pill">
+                                                <div>
+                                                    <span class="avatar avatar-lg avatar-rounded bg-warning-transparent">
+                                                        <i class="bi bi-hospital fs-5"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <label class="form-check-label d-block fw-medium fs-15" for="flexCheckChecked5">X-ray Imaging</label>
+                                                    <span class="fs-12 text-muted">$80</span>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input form-checked-warning rounded-circle" type="checkbox" value="" id="flexCheckChecked5">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="col">
+                                            <div class="form-check d-flex align-items-center gap-3 p-2 border rounded-pill">
+                                                <div>
+                                                    <span class="avatar avatar-lg avatar-rounded bg-danger-transparent">
+                                                        <i class="bi bi-hospital fs-5"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <label class="form-check-label d-block fw-medium fs-15" for="flexCheckChecked6">Blood Tests</label>
+                                                    <span class="fs-12 text-muted">Varies</span>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input form-checked-danger rounded-circle" type="checkbox" value="" id="flexCheckChecked6">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class="col">
+                                            <div class="form-check d-flex align-items-center gap-3 p-2 border rounded-pill">
+                                                <div>
+                                                    <span class="avatar avatar-lg avatar-rounded bg-dark-transparent">
+                                                        <i class="bi bi-hospital fs-5"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <label class="form-check-label d-block fw-medium fs-15" for="flexCheckChecked7">Eye Exam</label>
+                                                    <span class="fs-12 text-muted">$90</span>
+                                                </div>
+                                                <div>
+                                                    <input class="form-check-input form-checked-dark rounded-circle" type="checkbox" value="" id="flexCheckChecked7">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </WizardStep>
+                            <WizardStep Title="Appointment Details" OnInitialize="args => InitializeStep(args, 3)">
+                                <div class="row justify-content-center summary-view">
+                                    <div class="col-xl-7">
+                                        <div class="border border-bottom-0 rounded-1 mb-3 ">
+                                            <div class="card-body p-0">
+                                                <div class="table-responsive">
+                                                    <table class="table text-nowrap">
+                                                        <thead>
+                                                            <tr class="bg-light">
+                                                                <th scope="col">Personal Details</th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="w-25">
+                                                                    <span class="d-block fw-semibold">First
+                                                                        Name</span>
+                                                                </td>
+                                                                <td class="w-10">:</td>
+                                                                <td class="text-start  text-muted">
+                                                                    @Account.personName
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="w-25">
+                                                                    <span class="d-block fw-semibold">Last Name
+                                                                    </span>
+                                                                </td>
+                                                                <td class="w-10">:</td>
+                                                                <td class="text-start text-muted">
+                                                                    @Account.LastName
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="w-25">
+                                                                    <span class="d-block fw-semibold">EmailAddress</span>
+                                                                </td>
+                                                                <td class="w-10">:</td>
+                                                                <td class="text-start text-muted">
+                                                                    @Account.EmailAddress
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="w-25">
+                                                                    <span class="d-block fw-semibold">Phone
+                                                                        Number</span>
+                                                                </td>
+                                                                <td class="w-10">:</td>
+                                                                <td class="text-start text-muted">
+                                                                    @Account.PhoneNumber
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="w-25">
+                                                                    <span class="d-block fw-semibold">Country
+                                                                    </span>
+                                                                </td>
+                                                                <td class="w-10">:</td>
+                                                                <td class="text-start text-muted">
+                                                                    India
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-7">
+                                        <div class="border border-bottom-0 rounded-1 mb-3 ">
+                                            <div class="card-body p-0">
+                                                <div class="table-responsive">
+                                                    <table class="table  text-nowrap">
+                                                        <thead>
+                                                            <tr class="bg-light">
+                                                                <th scope="col">Appointment Details</th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="w-25">
+                                                                    <span
+                                                                        class="d-block fw-semibold">Category</span>
+                                                                </td>
+                                                                <td class="w-10">:</td>
+                                                                <td class="text-start  text-muted">
+                                                                    Neuro Clinic
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="w-25">
+                                                                    <span
+                                                                        class="d-block fw-semibold">Service</span>
+                                                                </td>
+                                                                <td class="w-10">:</td>
+                                                                <td class="text-start text-muted">
+                                                                    Heart Care
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="w-25">
+                                                                    <span class="d-block fw-semibold">Service
+                                                                        providers</span>
+                                                                </td>
+                                                                <td class="w-10">:</td>
+                                                                <td class="text-start text-muted">
+                                                                    Jiohn Alzian
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="w-25">
+                                                                    <span
+                                                                        class="d-block fw-semibold">Branch</span>
+                                                                </td>
+                                                                <td class="w-10">:</td>
+                                                                <td class="text-start text-muted">
+                                                                    India
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="w-25">
+                                                                    <span
+                                                                        class="d-block fw-semibold">Appointment
+                                                                        Date</span>
+                                                                </td>
+                                                                <td class="w-10">:</td>
+                                                                <td class="text-start text-muted">
+                                                                    12-Sep-2024
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="w-25">
+                                                                    <span
+                                                                        class="d-block fw-semibold">Appointment
+                                                                        Time</span>
+                                                                </td>
+                                                                <td class="w-10">:</td>
+                                                                <td class="text-start text-muted">
+                                                                    10:00 AM
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-7">
+                                        <div class="border border-bottom-0 rounded-1 mb-3 ">
+                                            <div class="card-body p-0">
+                                                <div class="table-responsive">
+                                                    <table class="table text-nowrap">
+                                                        <thead>
+                                                            <tr class="bg-light">
+                                                                <th scope="col">Payment Details</th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="w-25">
+                                                                    <span class="d-block fw-semibold">Mode of
+                                                                        Payment</span>
+                                                                </td>
+                                                                <td class="w-10">:</td>
+                                                                <td class="text-start  text-muted">
+                                                                    Paypal
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-7">
+                                        <div class="p-3 rounded-2 bg-light">
+                                            <label  class="mb-1 fw-semibold">Source Information:</label>
+                                            <div class="d-flex align-items-center flex-wrap gap-2">
+                                                <div class="form-check-sm">
+                                                    <input class="form-check-input" type="radio" name="Radio"
+                                                        id="Radio-sm">
+                                                    <label class="form-check-label" for="Radio-sm"> Google
+                                                    </label>
+                                                </div>
+                                                <div class="form-check-sm ">
+                                                    <input class="form-check-input" type="radio" name="Radio"
+                                                        id="Radio-md">
+                                                    <label class="form-check-label" for="Radio-md">
+                                                        Advertisement </label>
+                                                </div>
+                                                <div class="form-check-sm ">
+                                                    <input class="form-check-input" type="radio" name="Radio"
+                                                        id="Radio-s">
+                                                    <label class="form-check-label" for="Radio-s"> Other</label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </WizardStep>
+                            <WizardStep Title="Payment" OnInitialize="args => InitializeStep(args, 4)">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div>
+                                            <div class="fs-15 fw-medium d-sm-flex d-block align-items-center justify-content-between mb-3">
+                                                <div>Payment Details :</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Delivery Address</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" placeholder="Address" aria-label="address" aria-describedby="payment-address" value="1234 Elm Street,Anytown, USA,12345">
+                                                            <button type="button"  class="btn btn-info-light input-group-text" id="payment-address">Change</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card custom-card border shadow-none mb-3">
+                                                        <div class="card-header">
+                                                            <div class="card-title">
+                                                                Payment Methods
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="btn-group mb-3 d-sm-flex d-block" role="group" aria-label="Basic radio toggle button group">
+                                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1">
+                                                                <label class="btn btn-outline-light text-default mt-sm-0 mt-1" for="btnradio1">C.O.D(Cash on delivery)</label>
+                                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2">
+                                                                <label class="btn btn-outline-light text-default mt-sm-0 mt-1" for="btnradio2">UPI</label>
+                                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" checked>
+                                                                <label class="btn btn-outline-light text-default mt-sm-0 mt-1" for="btnradio3">Credit/Debit Card</label>
+                                                            </div>
+                                                            <div class="row gy-3">
+                                                                <div class="col-xl-12">
+                                                                    <label for="payment-card-number" class="form-label">Card Number</label>
+                                                                    <input type="text" class="form-control" id="payment-card-number" placeholder="Card Number" value="1245 - 5447 - 8934 - XXXX">
+                                                                </div>
+                                                                <div class="col-xl-12">
+                                                                    <label for="payment-card-name" class="form-label">Name On Card</label>
+                                                                    <input type="text" class="form-control" id="payment-card-name" placeholder="Name On Card" value="Jack Miller">
+                                                                </div>
+                                                                <div class="col-xl-4">
+                                                                    <label for="payment-cardexpiry-date" class="form-label">Expiration Date</label>
+                                                                    <input type="text" class="form-control" id="payment-cardexpiry-date" placeholder="MM/YY" value="08/2024">
+                                                                </div>
+                                                                <div class="col-xl-4">
+                                                                    <label for="payment-cvv" class="form-label">CVV</label>
+                                                                    <input type="text" class="form-control" id="payment-cvv" placeholder="XXX" value="341">
+                                                                </div>
+                                                                <div class="col-xl-4">
+                                                                    <label for="payment-security" class="form-label">O.T.P</label>
+                                                                    <input type="text" class="form-control" id="payment-security" placeholder="XXXXXX" value="183467">
+                                                                    <label for="payment-security" class="form-label mt-1 text-success fs-11"><sup><i class="ri-star-s-fill"></i></sup>Do not share O.T.P with anyone</label>
+                                                                </div>
+                                                                <div class="col-xl-12">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input form-checked-success" type="checkbox" value="" id="payment-card-save" checked>
+                                                                        <label class="form-check-label" for="payment-card-save">
+                                                                            Save this card
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-footer">
+                                                            <div class="row gy-3">
+                                                                <p class="fs-15 fw-medium mb-1">Saved Cards :</p>
+                                                                <div class="col-xl-6">
+                                                                    <div class="form-check payment-card-container mb-0 lh-1">
+                                                                        <input id="payment-card1" name="payment-cards" type="radio" class="form-check-input" checked>
+                                                                        <div class="form-check-label">
+                                                                            <div class="d-sm-flex d-block align-items-center justify-content-between">
+                                                                                <div class="me-2 lh-1">
+                                                                                    <span class="avatar avatar-md">
+                                                                                        <img src="../assets/images/ecommerce/png/26.png" alt="">
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="saved-card-details pe-5">
+                                                                                    <p class="mb-0 fw-medium">XXXX - XXXX - XXXX - 7646</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-6">
+                                                                    <div class="form-check payment-card-container mb-0 lh-1">
+                                                                        <input id="payment-card2" name="payment-cards" type="radio" class="form-check-input">
+                                                                        <div class="form-check-label">
+                                                                            <div class="d-sm-flex d-block align-items-center justify-content-between">
+                                                                                <div class="me-2 lh-1">
+                                                                                    <span class="avatar avatar-md">
+                                                                                        <img src="../assets/images/ecommerce/png/27.png" alt="">
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="saved-card-details pe-5">
+                                                                                    <p class="mb-0 fw-medium">XXXX - XXXX - XXXX - 9556</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </WizardStep>
+                            <WizardStep Title="Confirmation" OnInitialize="args => InitializeStep(args, 5)">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="checkout-payment-success">
+                                            <div class="mb-4">
+                                                <h5 class="text-success fw-medium">Appointment Booked...</h5>
+                                            </div>
+                                            <div class="mb-4">
+                                                <img src="../assets/images/ecommerce/png/24.png" alt="" class="img-fluid">
+                                            </div>
+                                            <div class="mb-4">
+                                                <p class="mb-1 fs-14">You will get the appointment details with appointment id <b>SPK#1FR</b> to <a class="link-success" href="javascript:void(0);"><u>Jogh12@gamil.com</u></a></p>
+                                                <p class="text-muted">Thank you for booking an appointment .</p>
+                                            </div>
+                                            <a href="javascript:void(0);" class="btn btn-success">Book Another Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </WizardStep>
+                        </Steps>
+                    </Wizard>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End::row-1 -->
+
+</div>
+
+<!-- TomSelect JS -->
+<script src="../assets/libs/tom-select/js/tom-select.complete.min.js"></script>
+
+
+@code {
+    private string? _selectedValue;
+    private List<SelectItem>? _options;
+    private List<SelectItem> _selectedItems = [];
+
+    public class SelectItem
+    {
+        public string? Id { get; set; }
+        public string? Name { get; set; }
+    }    
+    
+    private string? _CountryValue;
+    private List<CountryItem>? _Countryoptions;
+    private List<CountryItem> _CountryItems = [];
+
+    public class CountryItem
+    {
+        public string? CountryId { get; set; }
+        public string? CountryName { get; set; }
+    }
+    private string? _CityValue;
+    private List<CityItem>? _Cityoptions;
+    private List<CityItem> _CityItems = [];
+
+    public class CityItem
+    {
+        public string? CityId { get; set; }
+        public string? CityName { get; set; }
+    }
+    protected override void OnInitialized()
+    {
+        // Fetch or initialize your data
+        _options = new List<SelectItem>
+        {
+            new SelectItem { Id = "1", Name = "Female"},
+            new SelectItem { Id = "2", Name = "Male"},
+        };
+        _selectedItems =  _options!.Take(1).ToList();
+
+        // Fetch or initialize your data
+        _Countryoptions = new List<CountryItem>
+        {
+            new CountryItem { CountryId = "1", CountryName = "United States"},
+            new CountryItem { CountryId = "2", CountryName = "China"},
+            new CountryItem { CountryId = "3", CountryName = "India"},
+            new CountryItem { CountryId = "4", CountryName = "Brazil"},
+            new CountryItem { CountryId = "5", CountryName = "Russia"},
+        };
+        _CountryItems =  _Countryoptions!.Take(1).ToList();
+        // Fetch or initialize your data
+        _Cityoptions = new List<CityItem>
+        {
+            new CityItem { CityId = "1", CityName = "India"},
+            new CityItem { CityId = "2", CityName = "USA"},
+            new CityItem { CityId = "3", CityName = "Australia"},
+        };
+        _CityItems =  _Cityoptions!.Take(1).ToList();
+
+        AccountContext = new EditContext(Account);
+        
+    }
+    
+}
+
+@code {
+    public Flatpickr? _flatpickr;
+    public Wizard? Wizard2 { get; set; }
+    private AccountModel Account { get; set; } = new AccountModel();
+    private EditContext? AccountContext { get; set; }
+    public bool GoNext { get; set; } = true;
+    public string? StepData = string.Empty;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        { 
+            if(Wizard2 != null) {
+                await Wizard2.Start();
+            }
+            
+        }
+    }
+    public void InitializeStep(WizardStepInitializedEventArgs args, int step) {
+        StepData += $"{nameof(InitializeStep)} step {step}{Environment.NewLine}";
+        GoNext = true;
+    }
+
+     private void OnWizardFinish(WizardFinishedEventArgs args) {
+        NavigationManager.NavigateTo("/floating_labels");
+     } 
+
+    private class AccountModel
+    {
+        [Required(ErrorMessage = "Please enter a First name")]
+        public string? personName { get; set; }
+
+        [Required(ErrorMessage = "Please enter a Last name")]
+        public string? LastName { get; set; }
+
+        [Required(ErrorMessage = "Please enter Email adress")]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address")]        
+        public string? EmailAddress { get; set; }
+
+        [Required(ErrorMessage = "Please enter phone number")] 
+        [RegularExpression(@"^\+?[1-9]\d{1,14}$", ErrorMessage = "Invalid phone number.")]
+        public string? PhoneNumber { get; set; }
+    }
+
+}

@@ -1,0 +1,1484 @@
+@page "/apex-line-charts"
+@using ApexCharts
+@using System.Timers
+@implements IDisposable
+
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <h1 class="page-title fw-semibold fs-18 mb-0">Apex Line Charts</h1>
+                    <div class="ms-md-1 ms-0">
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Apex Charts</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Apex Line Charts</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start::row-1 -->
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Basic Line Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <ApexChart TItem="Linebasicchart" Height="320" Title="Product Trends by Month" Options=BasicLineChartOptions>
+                                    <ApexPointSeries TItem="Linebasicchart" Items="Linebasiccharts"
+                                                    Color="var(--primary-color)"
+                                                    Name="Desktops"  SeriesType="SeriesType.Line" XValue="@(e => e.Month)" 
+                                                    YAggregate="@(e => e.Sum(e => e.GrossValue))" />
+                                </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Line Chart With Data Labels</div>
+                            </div>
+                            <div class="card-body">
+                                <ApexChart TItem="LinebasicDatalabelchart" Height="320" Title="Average High & Low Temperature" Options=BasicLineDatalabelChartOptions>
+                                    <ApexPointSeries TItem="LinebasicDatalabelchart" Items="LinebasicDatalabelcharts"
+                                                    Color="var(--primary-color)"
+                                                    Name="High - 2013"  SeriesType="SeriesType.Line" XValue="@(e => e.Month)" 
+                                                    YAggregate="@(e => e.Sum(e => e.High))" ShowDataLabels />
+                                    <ApexPointSeries TItem="LinebasicDatalabelchart" Items="LinebasicDatalabelcharts"
+                                                    Color="#23b7e5"
+                                                    Name="Low - 2013"  SeriesType="SeriesType.Line" XValue="@(e => e.Month)" 
+                                                    YAggregate="@(e => e.Sum(e => e.Low))" ShowDataLabels />
+                                </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Zoomable Time Series</div>
+                            </div>
+                            <div class="card-body">
+                                <ApexChart @ref=Zoomablechart TItem="TimeSeries"  Height="320" Title="Stock Price Movement" XAxisType="XAxisType.Datetime" Options=ZoomableChartOptions>
+                                    <ApexPointSeries TItem="TimeSeries" Items="generator.TimeSeries" Name="XYZ MOTORS" Color="var(--primary-color)" SeriesType="SeriesType.Area" XValue="@(e => e.Date)" YValue="@(e => e.Value)"/>
+                                </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Line With Annotations</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="annotation-chart">
+                                    <ApexChart TItem="Annotationschart" XAxisType="XAxisType.Datetime" Height="320" Title="Line with Annotations" Options=AnnotationsChartOptions>
+                                        <ApexPointSeries TItem="Annotationschart" Items="Annotationscharts"
+                                            Color="var(--primary-color)"
+                                            Name="Series"  SeriesType="SeriesType.Line" XValue="@(e => e.AnnotationsDates)" 
+                                            YAggregate="@(e => e.Sum(e => e.AnnotationsPrices))" />
+                                    </ApexChart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Brush Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <ApexChart TItem="TimeSeries" Options=Brushoptions1 Height="150" XAxisType="XAxisType.Datetime">
+                                    <ApexPointSeries TItem="TimeSeries" Items="Brushdata" Name="Value" SeriesType="SeriesType.Line" XValue="@(e => e.Date)"
+                                                YAggregate="@(e => e.Sum(e => e.Value))" OrderBy="e=>e.X"
+                                                Stroke="@(new SeriesStroke { Width = 2, Color="var(--primary-color)"})" />
+                                </ApexChart>
+
+                                <ApexChart TItem="TimeSeries" Options=Brushoptions2 Height="150" XAxisType="XAxisType.Datetime">
+                                    <ApexPointSeries TItem="TimeSeries" Items="Brushdata" Name="Quantity" SeriesType="SeriesType.Area" XValue="@(e => e.Date)"
+                                                YValue="@(e => e.Quantity)" OrderBy="e=>e.X"
+                                                Stroke="@(new SeriesStroke { Width = 2, Color="#23b7e5"})" />
+                                </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">StepLine Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <ApexChart TItem="StepLinechart" Height="320" Title="Stepline Chart" Options=StepLineChartOptions>
+                                    <ApexPointSeries TItem="StepLinechart" Items="StepLinecharts"
+                                                    Color="var(--primary-color)"
+                                                    Name="High - 2013"  SeriesType="SeriesType.Line" XValue="@(e => e.StepLineSeries)" 
+                                                    YAggregate="@(e => e.Sum(e => e.StepLineValue))" />
+                                </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Gradient Line Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <ApexChart TItem="GradientLinechart" Height="320" Title="Forecast" Options=GradientLineChartOptions  XAxisType="XAxisType.Datetime">
+                                    <ApexPointSeries TItem="GradientLinechart" Items="GradientLinecharts"
+                                        Name="Sales"  SeriesType="SeriesType.Line" XValue="@(e => e.GradientLineDate)" 
+                                        YAggregate="@(e => e.Sum(e => e.GradientLineValue))" />
+                                </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Missing/Null Values Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <ApexChart TItem="NullLinechart" Height="320" Title="Missing data (null values)" Options=NullLineChartOptions>
+                                    <ApexPointSeries TItem="NullLinechart" Items="NullLinecharts"
+                                                    Color="var(--primary-color)"
+                                                    Name="Peter"  SeriesType="SeriesType.Line" XValue="@(e => e.NullLineSeries)" 
+                                                    YValue="@(e => e.NullLineValue)" />
+                                    <ApexPointSeries TItem="NullLinechart" Items="NullLinecharts"
+                                                    Color="#23b7e5"
+                                                    Name="Johnny"  SeriesType="SeriesType.Line" XValue="@(e => e.NullLineSeries)" 
+                                                    YValue="@(e => e.NullLineValue2)" />
+                                    <ApexPointSeries TItem="NullLinechart" Items="NullLinecharts"
+                                                    Color="#f5b849"
+                                                    Name="David"  SeriesType="SeriesType.Line" XValue="@(e => e.NullLineSeries)" 
+                                                    YValue="@(e => e.NullLineValue3)" />
+                                </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Real Time Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <ApexChart @ref=chart Height="320" TItem="TimeSeries" Title="Dynamic Updating Chart" XAxisType="XAxisType.Datetime" Options=Realtimeoptions>
+                                    <ApexPointSeries TItem="TimeSeries" Items="generator1.TimeSeries"
+                                        SeriesType="SeriesType.Line" XValue="@(e => e.Date)" YValue="@(e => e.Value)" OrderBy="e=>e.X" />
+                                </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Dashed Line Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <ApexChart TItem="DashedLinechart" Height="320" Title="Page Statistics" Options=DashedLineChartOptions>
+                                    <ApexPointSeries TItem="DashedLinechart" Items="DashedLinecharts"
+                                                    Name="Session Duration"  SeriesType="SeriesType.Line" XValue="@(e => e.DashedLineSeries)" 
+                                                    YAggregate="@(e => e.Sum(e => e.DashedLineValue))" />
+                                    <ApexPointSeries TItem="DashedLinechart" Items="DashedLinecharts"
+                                                    Name="Page Views"  SeriesType="SeriesType.Line" XValue="@(e => e.DashedLineSeries)" 
+                                                    YAggregate="@(e => e.Sum(e => e.DashedLineValue1))" />
+                                    <ApexPointSeries TItem="DashedLinechart" Items="DashedLinecharts"
+                                                    Name="Total Visits"  SeriesType="SeriesType.Line" XValue="@(e => e.DashedLineSeries)" 
+                                                    YAggregate="@(e => e.Sum(e => e.DashedLineValue2))" />
+                                </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Syncing Charts</div>
+                            </div>
+                            <div class="card-body">
+                                 <ApexChart TItem="TimeSeries" Height="150" XAxisType="XAxisType.Datetime"  Options=SyncingChartOptions>
+                                    <ApexPointSeries TItem="TimeSeries" Items="Syncingchartsdata"
+                                                    SeriesType="SeriesType.Line" XValue="@(e => e.Date)"
+                                                YAggregate="@(e => e.Sum(e => e.Value))" OrderBy="e=>e.X"
+                                                Stroke="@(new SeriesStroke { Width = 2, Color="var(--primary-color)"})"/>  
+                                </ApexChart>
+                                <ApexChart TItem="TimeSeries" Height="150" XAxisType="XAxisType.Datetime"  Options=SyncingChartOptions1>
+                                    <ApexPointSeries TItem="TimeSeries" Items="Syncingchartsdata"
+                                                    SeriesType="SeriesType.Area" XValue="@(e => e.Date)"
+                                                YValue="@(e => e.Quantity)" OrderBy="e=>e.X"
+                                                Stroke="@(new SeriesStroke { Width = 2, Color="#23b7e5"})" />
+                                </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+            </div>
+@code {
+
+    // Basic Line Chart Start //
+    private List<Linebasicchart> Linebasiccharts { get; set; } = LinebasicData.GetLinebasiccharts();
+    private ApexChartOptions<Linebasicchart> BasicLineChartOptions { get; set; } = new();
+    public class Linebasicchart {
+        public string? Month { get; set; }
+        public decimal GrossValue { get; set; }
+        
+    } ;
+    public static class LinebasicData {
+            public static List<Linebasicchart> GetLinebasiccharts()
+            {
+                List<Linebasicchart> Linebasiccharts = new List<Linebasicchart>
+                {
+                    new Linebasicchart { Month = "Jan", GrossValue = 10},
+                    new Linebasicchart { Month = "Feb", GrossValue = 41},
+                    new Linebasicchart { Month = "Mar", GrossValue = 35},
+                    new Linebasicchart { Month = "Apr", GrossValue = 51},
+                    new Linebasicchart { Month = "May", GrossValue = 49},
+                    new Linebasicchart { Month = "Jun", GrossValue = 62},
+                    new Linebasicchart { Month = "Jul", GrossValue = 69},
+                    new Linebasicchart { Month = "Aug", GrossValue = 91},
+                    new Linebasicchart { Month = "Sep", GrossValue = 148},
+
+                };
+
+                return Linebasiccharts;
+            }
+        }
+    //  Basic Line Chart End //
+
+    // Basic Line Data Label Chart Start //
+    private List<LinebasicDatalabelchart> LinebasicDatalabelcharts { get; set; } = LinebasicDatalabelData.GetLinebasicDatalabelcharts();
+    private ApexChartOptions<LinebasicDatalabelchart> BasicLineDatalabelChartOptions { get; set; } = new();
+    public class LinebasicDatalabelchart {
+        public string? Month { get; set; }
+        public decimal High { get; set; }
+        public decimal Low { get; set; }
+        
+    } ;
+    public static class LinebasicDatalabelData {
+            public static List<LinebasicDatalabelchart> GetLinebasicDatalabelcharts()
+            {
+                List<LinebasicDatalabelchart> LinebasicDatalabelcharts = new List<LinebasicDatalabelchart>
+                {
+                    new LinebasicDatalabelchart { Month = "Jan", High = 28 , Low=12},
+                    new LinebasicDatalabelchart { Month = "Feb", High = 29 , Low=11},
+                    new LinebasicDatalabelchart { Month = "Mar", High = 33 , Low=14},
+                    new LinebasicDatalabelchart { Month = "Apr", High = 36 , Low=18},
+                    new LinebasicDatalabelchart { Month = "May", High = 32 , Low=17},
+                    new LinebasicDatalabelchart { Month = "Jun", High = 32 , Low=13},
+                    new LinebasicDatalabelchart { Month = "Jul", High = 33 , Low=13},
+
+                };
+
+                return LinebasicDatalabelcharts;
+            }
+        }
+    //  Basic Line Data Label Chart End //
+
+    // Zoomable Chart Start //
+    public class TimeSeriesGenerator
+    {
+        public List<TimeSeries> TimeSeries { get; set; } = new();
+        public long Range { get; private set; }
+        public TimeSeriesGenerator(int points)
+        {
+            SetRange(points);
+            var date = DateTimeOffset.Now.AddDays(-100);
+            for (int i = 0; i < points; i++)
+            {
+                TimeSeries.Add(GenerateNewPoint(date));
+                date = date.AddDays(1);
+            }
+        }
+        private void SetRange(int points)
+        {
+            Range = DateTimeOffset.Now.ToUnixTimeMilliseconds() - DateTimeOffset.Now.AddDays(-points).ToUnixTimeMilliseconds();
+        }
+        public TimeSeries GenerateNewPoint(DateTimeOffset newDate)
+        {
+            var rnd = new Random();
+            var value = rnd.Next(100, 300);
+            return new TimeSeries { Date = newDate, Value = value, Quantity = rnd.Next(100, 200) };
+        }
+    }
+    public class TimeSeries
+    {
+        public long DateMilliseconds => Date.ToUnixTimeMilliseconds();
+        public DateTimeOffset Date { get; set; }
+        public decimal Value { get; set; }
+        public int Quantity { get; set; }
+    }
+    private ApexChart<TimeSeries>? Zoomablechart;
+    private ApexChartOptions<TimeSeries>? ZoomableChartOptions;
+    private TimeSeriesGenerator generator = new TimeSeriesGenerator(80);
+    //  Zoomable Chart End //
+
+    // Annotations Chart Start //
+    private List<Annotationschart> Annotationscharts { get; set; } = AnnotationsData.GetAnnotationscharts();
+    private ApexChartOptions<Annotationschart> AnnotationsChartOptions { get; set; } = new();
+    public class Annotationschart {
+        public string? AnnotationsDates { get; set; }
+        public decimal AnnotationsPrices { get; set; }
+        
+    } ;
+    public static class AnnotationsData {
+            public static List<Annotationschart> GetAnnotationscharts()
+            {
+                List<Annotationschart> Annotationscharts = new List<Annotationschart>
+                {
+                    new Annotationschart { AnnotationsDates = "13 Nov 2017", AnnotationsPrices = 8423.7M},
+                    new Annotationschart { AnnotationsDates = "14 Nov 2017", AnnotationsPrices = 8423.5M},
+                    new Annotationschart { AnnotationsDates = "15 Nov 2017", AnnotationsPrices = 8514.3M},
+                    new Annotationschart { AnnotationsDates = "16 Nov 2017", AnnotationsPrices = 8481.85M},
+                    new Annotationschart { AnnotationsDates = "17 Nov 2017", AnnotationsPrices = 8487.7M},
+                    new Annotationschart { AnnotationsDates = "20 Nov 2017", AnnotationsPrices = 8506.9M},
+                    new Annotationschart { AnnotationsDates = "21 Nov 2017", AnnotationsPrices = 8626.2M},
+                    new Annotationschart { AnnotationsDates = "22 Nov 2017", AnnotationsPrices = 8668.95M},
+                    new Annotationschart { AnnotationsDates = "23 Nov 2017", AnnotationsPrices = 8602.3M},
+                    new Annotationschart { AnnotationsDates = "24 Nov 2017", AnnotationsPrices = 8607.55M},
+                    new Annotationschart { AnnotationsDates = "27 Nov 2017", AnnotationsPrices = 8512.9M},
+                    new Annotationschart { AnnotationsDates = "28 Nov 2017", AnnotationsPrices = 8496.25M},
+                    new Annotationschart { AnnotationsDates = "29 Nov 2017", AnnotationsPrices = 8600.65M},
+                    new Annotationschart { AnnotationsDates = "30 Nov 2017", AnnotationsPrices = 8881.1M},
+                    new Annotationschart { AnnotationsDates = "01 Dec 2017", AnnotationsPrices = 9040.85M},
+                    new Annotationschart { AnnotationsDates = "04 Dec 2017", AnnotationsPrices = 8340.7M},
+                    new Annotationschart { AnnotationsDates = "05 Dec 2017", AnnotationsPrices = 8165.5M},
+                    new Annotationschart { AnnotationsDates = "06 Dec 2017", AnnotationsPrices = 8122.9M},
+                    new Annotationschart { AnnotationsDates = "07 Dec 2017", AnnotationsPrices = 8107.85M},
+                    new Annotationschart { AnnotationsDates = "08 Dec 2017", AnnotationsPrices = 8128.0M},
+
+                };
+
+                return Annotationscharts;
+            }
+        }
+    //  Annotations Chart End //
+
+    // Brush Data Chart Start //
+    private List<TimeSeries> Brushdata { get; set; } = new TimeSeriesGenerator(100).TimeSeries;
+    private ApexChartOptions<TimeSeries> Brushoptions1 { get; set; } = new();
+    private ApexChartOptions<TimeSeries> Brushoptions2 { get; set; } = new();
+ //  Brush Data Chart End //
+
+    // Step Line Chart Start //
+    private List<StepLinechart> StepLinecharts { get; set; } = StepLinechartData.GetStepLinecharts();
+    private ApexChartOptions<StepLinechart> StepLineChartOptions { get; set; } = new();
+    public class StepLinechart {
+        public decimal StepLineSeries { get; set; }
+        public decimal StepLineValue { get; set; }
+        
+    } ;
+    public static class StepLinechartData {
+            public static List<StepLinechart> GetStepLinecharts()
+            {
+                List<StepLinechart> StepLinecharts = new List<StepLinechart>
+                {
+                    new StepLinechart {StepLineSeries = 1, StepLineValue = 34},
+                    new StepLinechart {StepLineSeries = 2, StepLineValue = 44},
+                    new StepLinechart {StepLineSeries = 3, StepLineValue = 54},
+                    new StepLinechart {StepLineSeries = 4, StepLineValue = 21},
+                    new StepLinechart {StepLineSeries = 5, StepLineValue = 12},
+                    new StepLinechart {StepLineSeries = 6, StepLineValue = 43},
+                    new StepLinechart {StepLineSeries = 7, StepLineValue = 33},
+                    new StepLinechart {StepLineSeries = 8, StepLineValue = 23},
+                    new StepLinechart {StepLineSeries = 9, StepLineValue = 66},
+                    new StepLinechart {StepLineSeries = 10, StepLineValue = 66},
+                    new StepLinechart {StepLineSeries = 11, StepLineValue = 58},
+                };
+
+                return StepLinecharts;
+            }
+        }
+    //  Step Line Chart End //
+
+    // Gradient Line Chart Start //
+    private List<GradientLinechart> GradientLinecharts { get; set; } = GradientData.GetGradientLinecharts();
+    private ApexChartOptions<GradientLinechart>GradientLineChartOptions { get; set; } = new();
+    public class GradientLinechart {
+        public string? GradientLineDate { get; set; }
+        public decimal GradientLineValue { get; set; }
+        
+    } ;
+    public static class GradientData {
+            public static List<GradientLinechart> GetGradientLinecharts()
+            {
+                List<GradientLinechart> GradientLinecharts = new List<GradientLinechart>
+                {
+                    new GradientLinechart {GradientLineDate = "1/11/2000", GradientLineValue = 4},
+                    new GradientLinechart {GradientLineDate = "2/11/2000", GradientLineValue = 3},
+                    new GradientLinechart {GradientLineDate = "3/11/2000", GradientLineValue = 10},
+                    new GradientLinechart {GradientLineDate = "4/11/2000", GradientLineValue = 9},
+                    new GradientLinechart {GradientLineDate = "5/11/2000", GradientLineValue = 29},
+                    new GradientLinechart {GradientLineDate = "6/11/2000", GradientLineValue = 19},
+                    new GradientLinechart {GradientLineDate = "7/11/2000", GradientLineValue = 22},
+                    new GradientLinechart {GradientLineDate = "8/11/2000", GradientLineValue = 9},
+                    new GradientLinechart {GradientLineDate = "9/11/2000", GradientLineValue = 12},
+                    new GradientLinechart {GradientLineDate = "10/11/2000", GradientLineValue = 7},
+                    new GradientLinechart {GradientLineDate = "11/11/2000", GradientLineValue = 19},
+                    new GradientLinechart {GradientLineDate = "12/11/2000", GradientLineValue = 5},
+                    new GradientLinechart {GradientLineDate = "1/11/2001", GradientLineValue = 13},
+                    new GradientLinechart {GradientLineDate = "2/11/2001", GradientLineValue = 9},
+                    new GradientLinechart {GradientLineDate = "3/11/2001", GradientLineValue = 17},
+                    new GradientLinechart {GradientLineDate = "4/11/2001", GradientLineValue = 2},
+                    new GradientLinechart {GradientLineDate = "5/11/2001", GradientLineValue = 7},
+                    new GradientLinechart {GradientLineDate = "6/11/2001", GradientLineValue = 5},
+                };
+
+                return GradientLinecharts;
+            }
+        }
+    //  Gradient Line Chart End //
+
+    // Null Line Chart Start //
+    private List<NullLinechart> NullLinecharts { get; set; } = NullLinechartData.GetNullLinecharts();
+    private ApexChartOptions<NullLinechart> NullLineChartOptions { get; set; } = new();
+    public class NullLinechart {
+        public decimal NullLineSeries { get; set; }
+        public decimal? NullLineValue { get; set; }
+        public decimal? NullLineValue2 { get; set; }
+        public decimal? NullLineValue3 { get; set; }
+        
+    } ;
+    public static class NullLinechartData {
+            public static List<NullLinechart> GetNullLinecharts()
+            {
+                List<NullLinechart> NullLinecharts = new List<NullLinechart>
+                {
+                    new NullLinechart {NullLineSeries = 1,  NullLineValue = 5 ,    NullLineValue2 = 10,   NullLineValue3 = null },
+                    new NullLinechart {NullLineSeries = 2,  NullLineValue = 5 ,    NullLineValue2 = 15,   NullLineValue3 = null },
+                    new NullLinechart {NullLineSeries = 3,  NullLineValue = 10,    NullLineValue2 = null, NullLineValue3 = null },
+                    new NullLinechart {NullLineSeries = 4,  NullLineValue = 8 ,    NullLineValue2 = 12,   NullLineValue3 = null },
+                    new NullLinechart {NullLineSeries = 5,  NullLineValue = 7 ,    NullLineValue2 = null, NullLineValue3 = 3    },
+                    new NullLinechart {NullLineSeries = 6,  NullLineValue = 5 ,    NullLineValue2 = 10,   NullLineValue3 = 4    },
+                    new NullLinechart {NullLineSeries = 7,  NullLineValue = 4 ,    NullLineValue2 = 12,   NullLineValue3 = 1    },
+                    new NullLinechart {NullLineSeries = 8,  NullLineValue = null , NullLineValue2 = 15,   NullLineValue3 = 3    },
+                    new NullLinechart {NullLineSeries = 9,  NullLineValue = null , NullLineValue2 = null, NullLineValue3 = 4    },
+                    new NullLinechart {NullLineSeries = 10, NullLineValue = null , NullLineValue2 = null, NullLineValue3 = 6    },
+                    new NullLinechart {NullLineSeries = 11, NullLineValue = 10 ,   NullLineValue2 = 12,   NullLineValue3 = 7    },
+                    new NullLinechart {NullLineSeries = 12, NullLineValue = 10 ,   NullLineValue2 = null, NullLineValue3 = 9    },
+                    new NullLinechart {NullLineSeries = 13, NullLineValue = 7 ,    NullLineValue2 = 14,   NullLineValue3 = 5    },
+                    new NullLinechart {NullLineSeries = 14, NullLineValue = 8 ,    NullLineValue2 = null, NullLineValue3 = null },
+                    new NullLinechart {NullLineSeries = 15, NullLineValue = 6 ,    NullLineValue2 = null, NullLineValue3 = null },
+                    new NullLinechart {NullLineSeries = 16, NullLineValue = 9 ,    NullLineValue2 = null, NullLineValue3 = null },
+                };
+                return NullLinecharts;
+            }
+        }
+    //  Null Line Chart End //
+
+    // RealTime Line Chart Start //   
+     private ApexChart<TimeSeries>? chart;
+    private ApexChartOptions<TimeSeries>? Realtimeoptions;
+    private TimeSeriesGenerator generator1 = new TimeSeriesGenerator(30);
+    private bool timerInitialized;
+    private Timer? timer;
+    private DateTimeOffset maxDate;
+    private int counter;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender && !timerInitialized)
+        {
+            timerInitialized = true;
+            timer = new Timer(1000);
+            timer.Elapsed += async delegate { await UpdateChartSeries(); };
+            timer.Enabled = true;
+        }
+    }
+
+    private async Task UpdateChartSeries()
+    {
+
+        if (counter > 100) //Reset the chart
+        {
+            if(chart != null){
+                await chart.UpdateSeriesAsync(true);
+            }
+            counter = 0;
+            maxDate = DateTimeOffset.MinValue;
+            return;
+        }
+
+        if (maxDate == DateTimeOffset.MinValue)
+        {
+            maxDate = generator.TimeSeries.Max(e => e.Date);
+        }
+
+        maxDate = maxDate.AddDays(1);
+        if(chart != null){
+            await chart.AppendDataAsync(new List<TimeSeries> { generator.GenerateNewPoint(maxDate) });
+        }
+        counter++;
+
+    }
+
+    public void Dispose()
+    {
+        timer?.Stop();
+        timer = null;
+    }
+
+    //  RealTime Line Chart End //
+
+    // Dashed Line Chart Start //
+    private List<DashedLinechart> DashedLinecharts { get; set; } = DashedLineData.GetDashedLinecharts();
+    private ApexChartOptions<DashedLinechart> DashedLineChartOptions { get; set; } = new();
+    public class DashedLinechart {
+        public string? DashedLineSeries { get; set; }
+        public decimal DashedLineValue { get; set; }
+        public decimal DashedLineValue1 { get; set; }
+        public decimal DashedLineValue2 { get; set; }
+        
+    } ;
+    public static class DashedLineData {
+            public static List<DashedLinechart> GetDashedLinecharts()
+            {
+                List<DashedLinechart> DashedLinecharts = new List<DashedLinechart>
+                {
+                    new DashedLinechart { DashedLineSeries = "01 Jan", DashedLineValue = 45, DashedLineValue1=35 ,DashedLineValue2=87},
+                    new DashedLinechart { DashedLineSeries = "02 Jan", DashedLineValue = 52, DashedLineValue1=41 ,DashedLineValue2=57},
+                    new DashedLinechart { DashedLineSeries = "03 Jan", DashedLineValue = 38, DashedLineValue1=62 ,DashedLineValue2=74},
+                    new DashedLinechart { DashedLineSeries = "04 Jan", DashedLineValue = 24, DashedLineValue1=42 ,DashedLineValue2=99},
+                    new DashedLinechart { DashedLineSeries = "05 Jan", DashedLineValue = 33, DashedLineValue1=13 ,DashedLineValue2=75},
+                    new DashedLinechart { DashedLineSeries = "06 Jan", DashedLineValue = 26, DashedLineValue1=18 ,DashedLineValue2=38},
+                    new DashedLinechart { DashedLineSeries = "07 Jan", DashedLineValue = 21, DashedLineValue1=29 ,DashedLineValue2=62},
+                    new DashedLinechart { DashedLineSeries = "08 Jan", DashedLineValue = 20, DashedLineValue1=37 ,DashedLineValue2=47},
+                    new DashedLinechart { DashedLineSeries = "09 Jan", DashedLineValue = 06, DashedLineValue1=36 ,DashedLineValue2=82},
+                    new DashedLinechart { DashedLineSeries = "10 Jan", DashedLineValue = 08, DashedLineValue1=51 ,DashedLineValue2=56},
+                    new DashedLinechart { DashedLineSeries = "11 Jan", DashedLineValue = 15, DashedLineValue1=32 ,DashedLineValue2=45},
+                    new DashedLinechart { DashedLineSeries = "12 Jan", DashedLineValue = 10, DashedLineValue1=35 ,DashedLineValue2=47},
+
+                };
+
+                return DashedLinecharts;
+            }
+        }
+    //  Dashed Line Chart End //
+
+    // Syncingchartsdata Chart Start //
+    private List<TimeSeries> Syncingchartsdata { get; set; } = new TimeSeriesGenerator(10).TimeSeries;
+    private ApexChartOptions<TimeSeries> SyncingChartOptions { get; set; } = new();
+    private ApexChartOptions<TimeSeries> SyncingChartOptions1 { get; set; } = new();
+    //  Syncingchartsdata Chart End //
+
+    protected override void OnInitialized() {
+
+        BasicLineChartOptions = new ApexChartOptions<Linebasicchart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = true},
+                }, 
+            }, 
+            Title = new Title{
+                Text = "Product Trends by Month",
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            DataLabels = new DataLabels {
+                Enabled=false,
+            }, 
+            Colors = new Color(new List<string> { "var(--primary-color)" }),
+            Stroke = new Stroke { 
+                Curve = Curve.Straight,
+                Width = 3,
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 0,
+                    Max = 150,
+                    StepSize = 30,
+                }
+            },
+        };
+
+        BasicLineDatalabelChartOptions = new ApexChartOptions<LinebasicDatalabelchart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                DropShadow = new ApexCharts.DropShadow {
+                    Enabled = true,
+                    Color = "#000",
+                    Top = 18,
+                    Left = 7,
+                    Blur = 10,
+                    Opacity = 0.2
+                }
+            }, 
+            Title = new Title{
+                Text = "Average High & Low Temperature",
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            DataLabels = new ApexCharts.DataLabels {
+                Enabled = true,
+            }, 
+            Colors = new Color(new List<string> { "var(--primary-color)" }),
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                Width = 3,
+            },
+            Markers = new Markers { Size = 1 },
+            Xaxis =  new XAxis {  
+                Title = new AxisTitle
+                {
+                    OffsetY = 5,
+                    Text = "Month",
+                    Style = new AxisTitleStyle { 
+                        FontSize = "13px",
+                        FontWeight = "bold",
+                        Color = "#8c9097" 
+                    }
+                },
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Title = new AxisTitle
+                    {
+                        OffsetY = 5,
+                        Text = "Temperature",
+                        Style = new AxisTitleStyle { 
+                            FontSize = "13px",
+                            FontWeight = "bold",
+                            Color = "#8c9097" 
+                        }
+                    },
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 5,
+                    Max = 40,
+                    StepSize = 4,
+                }
+            },
+            Legend = new Legend  { 
+                Show=true,
+                Position = LegendPosition.Top,
+                HorizontalAlign = Align.Right,
+            }, 
+        };
+
+        ZoomableChartOptions = new ApexChartOptions<TimeSeries>{
+             Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = true, Zoomin = true, Zoomout = true,Pan = true, Reset = true,  Download = true},
+                }, 
+            }, 
+            Title = new Title{
+                Text = "Average High & Low Temperature",
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            DataLabels = new ApexCharts.DataLabels {
+                Enabled = true,
+            }, 
+            Colors = new Color(new List<string> { "var(--primary-color)" }),
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                Width = 3,
+            },
+            Fill = new Fill {
+                Type = new List<FillType> { FillType.Gradient, FillType.Gradient },
+                Gradient = new ApexCharts.FillGradient {
+                    ShadeIntensity = 0,
+                    Shade = ApexCharts.GradientShade.Light,
+                    Type = ApexCharts.GradientType.Horizontal,
+                    GradientToColors = new Color(new List<string> {"var(--primary-color)","#fff"}),
+                    OpacityFrom = 0.1,
+                    OpacityTo = 0.01,
+                    Stops = [0, 100],
+                }
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Title = new AxisTitle
+                    {
+                        OffsetY = 5,
+                        Text = "Price",
+                        Style = new AxisTitleStyle { 
+                            FontSize = "13px",
+                            FontWeight = "bold",
+                            Color = "#8c9097" 
+                        }
+                    },
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    }, 
+                    Min = 0,
+                    @* Max = 240, *@
+                    @* StepSize = 40, *@
+                }
+            },
+            Legend = new Legend  { 
+                Show=true,
+                Position = LegendPosition.Top,
+                HorizontalAlign = Align.Right,
+            }, 
+        };
+
+        AnnotationsChartOptions = new ApexChartOptions<Annotationschart>{
+             Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = true, Zoomin = true, Zoomout = true,Pan = true, Reset = true,  Download = true},
+                }, 
+            }, 
+            Title = new Title{
+                Text = "Line with Annotations",
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            Annotations = new Annotations
+            {
+                Points = new List<AnnotationsPoint> { 
+                    new AnnotationsPoint {
+                        Label = new ApexCharts.Label {
+                            BorderColor = "#FF4560",
+                            Text = "Point Annotation!!",
+                            OffsetY = 0,
+                            Style = new Style{ Background="#FF4560" , Color="#fff"}
+                        },
+                        X = 1512066600000,
+                        Y = 8607.55
+                    },
+                    new AnnotationsPoint { 
+                        X = 1512671400000,
+                        Y = 9340.85,
+                        @* Image = new ApexCharts.ImagePaths {
+                            Paths  = "../assets/images/faces/1.jpg"
+                        }, *@
+                        Label = new ApexCharts.Label {
+                            BorderColor = "#FF4560",
+                            OffsetY = 0,
+                            Style = new Style{ Background="#FF4560" , Color="#fff"}
+                        },
+                    }
+                },
+                Xaxis = new List<AnnotationsXAxis> {
+                    new AnnotationsXAxis
+                    {
+                       Label = new ApexCharts.Label {
+                            Text = "Anno Test",
+                            BorderColor = "775DD0",
+                            Style = new Style{ Background="#775DD0" , Color="#fff"}
+                        },
+                        X = 1511395200000, // Example timestamp value for '23 Nov 2017'
+                        StrokeDashArray = 0,
+                        BorderColor = "#775DD0"
+                    }   ,
+                    new AnnotationsXAxis
+                    {
+                       Label = new ApexCharts.Label {
+                            Text = "X-axis range",
+                            OffsetY = -10,
+                            BorderColor = "B3F7CA",
+                            Style = new Style{ Background="#00E396" , Color="#fff", FontSize="10px"}
+                        },
+                        X = 1511634600000, // Example timestamp value for '26 Nov 2017'
+                        X2 = 1511807400000, // Example timestamp value for '28 Nov 2017'
+                        FillColor = "#B3F7CA",
+                        Opacity = 0.4,
+                    }   
+                },
+                Yaxis = new List<AnnotationsYAxis> { 
+                    new AnnotationsYAxis
+                    {
+                        Label = new ApexCharts.Label
+                        {
+                            Text = "Support",
+                            BorderColor = "#00E396",
+                            Style = new Style { Background = "#00E396", Color="#fff"}
+                        },
+                        Y = 8200,
+                        BorderColor = "#00E396",
+                        StrokeDashArray = 0
+                    },
+                    new AnnotationsYAxis
+                    {
+                        Label = new ApexCharts.Label
+                        {
+                            Text = "Y-axis range",
+                            BorderColor = "#333",
+                            Style = new Style { Background = "#FEB019", Color="#333"}
+                        },
+                        Y = 8600,
+                        Y2 = 9000,
+                        BorderColor = "#000",
+                        FillColor = "#FEB019",
+                        Opacity = 0.2,
+                        StrokeDashArray = 0
+                    }
+                }
+            },
+            DataLabels = new ApexCharts.DataLabels {
+                Enabled = true,
+            }, 
+            Colors = new Color(new List<string> { "var(--primary-color)" }),
+            Stroke = new Stroke { 
+                Curve = Curve.Straight,
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    }, 
+                    Min = 7800,
+                    Max = 9300,
+                    StepSize = 30000,
+                }
+            },
+            Legend = new Legend  { 
+                Show=true,
+                Position = LegendPosition.Top,
+                HorizontalAlign = Align.Right,
+            }, 
+        };
+
+        const string mainChartId = "mainChart";
+        Brushoptions1 = new ApexChartOptions<TimeSeries>{
+             Chart = new () {
+                Id = mainChartId,
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+            }, 
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            DataLabels = new ApexCharts.DataLabels {
+                Enabled = true,
+            }, 
+            Colors = new Color(new List<string> { "var(--primary-color)" }),
+            Stroke = new Stroke { 
+                Width = 3,
+                Curve = Curve.Straight,
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    }, 
+                }
+            },
+        };
+        
+        Brushoptions2 = new ApexChartOptions<TimeSeries>{
+             Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Brush = new ApexCharts.Brush { Enabled = true, Target = mainChartId },
+                Selection = new Selection
+                {
+                    Enabled = true,
+                    Xaxis = new SelectionXaxis
+                    {
+                        Min = 1708281000000,
+                        Max = 1710786600000
+                    }
+                }
+            }, 
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            DataLabels = new ApexCharts.DataLabels {
+                Enabled = true,
+            }, 
+            Colors = new Color(new List<string> { "#23b7e5" }),
+            Stroke = new Stroke { 
+                Width = 3,
+                Curve = Curve.Straight,
+            }, 
+            Fill = new Fill {
+                Type = new List<FillType> { FillType.Gradient, FillType.Gradient },
+                Gradient = new ApexCharts.FillGradient {
+                    ShadeIntensity = 0,
+                    Shade = ApexCharts.GradientShade.Light,
+                    Type = ApexCharts.GradientType.Horizontal,
+                    GradientToColors = new Color(new List<string> {"#23b7e5","#fff"}),
+                    OpacityFrom = 0.5,
+                    OpacityTo = 0.2,
+                    Stops = [0, 100],
+                }
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    }, 
+                }
+            },
+        };
+
+        StepLineChartOptions = new ApexChartOptions<StepLinechart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = true, Zoomin = true, Zoomout = true,Pan = true, Reset = true,  Download = true},
+                }, 
+            }, 
+            Title = new Title{
+                Text = "Stepline Chart",
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= 900,
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            DataLabels = new DataLabels {
+                Enabled=false,
+            }, 
+            Colors = new Color(new List<string> { "var(--primary-color)" }),
+            Stroke = new Stroke { 
+                Curve = Curve.Stepline,
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 0,
+                    Max = 70,
+                    StepSize = 10,
+                }
+            },
+        }; 
+        
+        GradientLineChartOptions = new ApexChartOptions<GradientLinechart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = true, Zoomin = true, Zoomout = true,Pan = true, Reset = true,  Download = true},
+                }, 
+            }, 
+            Title = new Title{
+                Text = "Forecast",
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= 600,
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            DataLabels = new DataLabels {
+                Enabled=false,
+            }, 
+            Stroke = new Stroke { 
+                Width = 3,
+                Curve = Curve.Smooth,
+            },
+            ForecastDataPoints = new ForecastDataPoints
+            {
+                Count = 7,
+            },
+            Fill = new Fill {
+                Type = new List<FillType> { FillType.Gradient, FillType.Gradient },
+                Gradient = new ApexCharts.FillGradient {
+                    ShadeIntensity = 0,
+                    Shade = ApexCharts.GradientShade.Dark,
+                    GradientToColors = new Color(new List<string> {"var(--primary-color)","#fff"}),
+                    OpacityFrom = 1,
+                    OpacityTo = 1,
+                    Stops = [0, 100, 100, 100],
+                }
+            },
+            Xaxis =  new XAxis {  
+                TickAmount= 10,
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                },
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = -10,
+                    Max = 40,
+                    StepSize = 5,
+                }
+            },
+        };
+
+        NullLineChartOptions = new ApexChartOptions<NullLinechart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = true, Zoomin = true, Zoomout = true,Pan = true, Reset = true,  Download = true},
+                }, 
+            }, 
+            Title = new Title{
+                Text = "Stepline Chart",
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= 900,
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            DataLabels = new DataLabels {
+                Enabled=false,
+            }, 
+            Colors = new Color(new List<string> { "var(--primary-color)" }),
+            Stroke = new Stroke { 
+                Width = [3, 3, 2],
+                Curve = Curve.Straight,
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 0,
+                    Max = 16,
+                    StepSize = 4,
+                }
+            },
+        }; 
+
+        Realtimeoptions = new ApexChartOptions<TimeSeries> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                 Animations = new Animations
+                {
+                    Easing = Easing.Linear,
+                    DynamicAnimation = new DynamicAnimation
+                    {
+                        Speed = 50
+                    }
+                },
+            }, 
+            Title = new Title{
+                Text = "Dynamic Updating Chart",
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= 900,
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            DataLabels = new DataLabels {
+                Enabled=false,
+            }, 
+            Colors = new Color(new List<string> { "var(--primary-color)" }),
+            Stroke = new Stroke { 
+                Width = 3,
+                Curve = Curve.Smooth,
+            },
+            Xaxis =  new XAxis {  
+                Range = generator.Range,
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 0,
+                    Max = 300,
+                    StepSize = 100,
+                }
+            },
+        }; 
+
+        DashedLineChartOptions = new ApexChartOptions<DashedLinechart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = true},
+                }, 
+            }, 
+            Title = new Title{
+                Text = "Product Trends by Month",
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            DataLabels = new DataLabels {
+                Enabled=false,
+            }, 
+            Colors = new Color(new List<string> { "var(--primary-color)","#23b7e5","#f5b849" }),
+            Stroke = new Stroke { 
+                Curve = Curve.Straight,
+                Width = [3,4,3],
+                DashArray= [0, 8, 5]
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 0,
+                    Max = 180,
+                    StepSize = 90,
+                }
+            },
+        };
+
+        const string groupName = "SyncGroup";
+        SyncingChartOptions = new ApexChartOptions<TimeSeries>{
+             Chart = new () {
+                Group = groupName,
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = true, Zoomin = true, Zoomout = true,Pan = true, Reset = true,  Download = true},
+                }, 
+            }, 
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            DataLabels = new ApexCharts.DataLabels {
+                Enabled = true,
+            }, 
+            Colors = new Color(new List<string> { "var(--primary-color)" }),
+            Stroke = new Stroke { 
+                Width = 3,
+                Curve = Curve.Straight,
+            },
+            
+            Markers = new Markers {
+                Size = 6,
+                Hover = new () {
+                    SizeOffset = 10
+                }
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis 
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    }, 
+                    Min = 0,
+                    Max = 300,
+                    StepSize = 100,
+                }
+            },
+        };
+        
+        SyncingChartOptions1 = new ApexChartOptions<TimeSeries>{
+             Chart = new () {
+                Group = groupName,
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = true, Zoomin = true, Zoomout = true,Pan = true, Reset = true,  Download = true},
+                }, 
+            }, 
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            DataLabels = new ApexCharts.DataLabels {
+                Enabled = true,
+            }, 
+            Colors = new Color(new List<string> { "#23b7e5" }),
+            Stroke = new Stroke { 
+                Width = 3,
+                Curve = Curve.Straight,
+            }, 
+            
+            Markers = new Markers {
+                Size = 6,
+                Hover = new () {
+                    SizeOffset = 10
+                }
+            },
+            Fill = new Fill {
+                Type = new List<FillType> { FillType.Gradient, FillType.Gradient },
+                Gradient = new ApexCharts.FillGradient {
+                    ShadeIntensity = 0,
+                    Shade = ApexCharts.GradientShade.Light,
+                    Type = ApexCharts.GradientType.Horizontal,
+                    GradientToColors = new Color(new List<string> {"#23b7e5","#fff"}),
+                    OpacityFrom = 0.5,
+                    OpacityTo = 0.2,
+                    Stops = [0, 100],
+                }
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    }, 
+                    Min = 0,
+                    Max = 300,
+                    StepSize = 100,
+                }
+            },
+        };
+
+
+    }
+
+
+}

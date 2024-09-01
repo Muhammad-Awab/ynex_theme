@@ -1,0 +1,1184 @@
+@page "/apex-column-charts"
+@using ApexCharts
+@using System.Collections.Generic
+@inject IJSRuntime JSRuntime
+
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <h1 class="page-title fw-semibold fs-18 mb-0">Apex Column Charts</h1>
+                    <div class="ms-md-1 ms-0">
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Apex Charts</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Apex Column Charts</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start::row-1 -->
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Basic Column Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="column-basic">
+                                    <ApexChart TItem="Columnbasicchart" Height="320" Options=ColumnbasicChartOptions>
+                                        <ApexPointSeries TItem="Columnbasicchart" Items="Columnbasiccharts" Name="Net Profit" SeriesType="SeriesType.Bar" XValue="@(e => e.Month)" YAggregate="@(e => e.Sum(e => e.ProfitValue))" />
+                                        <ApexPointSeries TItem="Columnbasicchart" Items="Columnbasiccharts" Name="Revenue" SeriesType="SeriesType.Bar" XValue="@(e => e.Month)" YAggregate="@(e => e.Sum(e => e.RevenueValue))" />
+                                        <ApexPointSeries TItem="Columnbasicchart" Items="Columnbasiccharts" Name="Free Cash Flow" SeriesType="SeriesType.Bar" XValue="@(e => e.Month)" YAggregate="@(e => e.Sum(e => e.CashFlowValue))" />
+                                    </ApexChart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Column Chart With Datalabels</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="column-datalabels">
+                                    <ApexChart TItem="ColumnDatalabelschart" Height="320" Options=ColumnDatalabelsChartOptions>
+                                        <ApexPointSeries TItem="ColumnDatalabelschart" Items="ColumnDatalabelscharts" Name="Inflation" SeriesType="SeriesType.Bar" XValue="@(e => e.Month)" YAggregate="@(e => e.Sum(e => e.Inflation))" ShowDataLabels />
+                                    </ApexChart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Stacked Column Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="column-stacked">
+                                    <ApexChart TItem="ColumnStackedchart" XAxisType="XAxisType.Datetime" Height="320" Options=ColumnStackedChartOptions>
+                                        <ApexPointSeries TItem="ColumnStackedchart" Items="ColumnStackedcharts" Name="PRODUCT A" SeriesType="SeriesType.Bar" XValue="@(e => e.ProductValue)" YAggregate="@(e => e.Sum(e => e.ProductA))" ShowDataLabels />
+                                        <ApexPointSeries TItem="ColumnStackedchart" Items="ColumnStackedcharts" Name="PRODUCT B" SeriesType="SeriesType.Bar" XValue="@(e => e.ProductValue)" YAggregate="@(e => e.Sum(e => e.ProductB))" ShowDataLabels />
+                                        <ApexPointSeries TItem="ColumnStackedchart" Items="ColumnStackedcharts" Name="PRODUCT C" SeriesType="SeriesType.Bar" XValue="@(e => e.ProductValue)" YAggregate="@(e => e.Sum(e => e.ProductC))" ShowDataLabels />
+                                        <ApexPointSeries TItem="ColumnStackedchart" Items="ColumnStackedcharts" Name="PRODUCT D" SeriesType="SeriesType.Bar" XValue="@(e => e.ProductValue)" YAggregate="@(e => e.Sum(e => e.ProductD))" ShowDataLabels />
+                                    </ApexChart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">100% Stacked Column Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="column-stacked-full">
+                                    <ApexChart TItem="ColumnFullStackedchart" Height="320" Options=ColumnFullStackedChartOptions>
+                                        <ApexPointSeries TItem="ColumnFullStackedchart" Items="ColumnFullStackedcharts" Name="PRODUCT A" SeriesType="SeriesType.Bar" XValue="@(e => e.ProductValue)" YAggregate="@(e => e.Sum(e => e.ProductA))" ShowDataLabels />
+                                        <ApexPointSeries TItem="ColumnFullStackedchart" Items="ColumnFullStackedcharts" Name="PRODUCT B" SeriesType="SeriesType.Bar" XValue="@(e => e.ProductValue)" YAggregate="@(e => e.Sum(e => e.ProductB))" ShowDataLabels />
+                                        <ApexPointSeries TItem="ColumnFullStackedchart" Items="ColumnFullStackedcharts" Name="PRODUCT C" SeriesType="SeriesType.Bar" XValue="@(e => e.ProductValue)" YAggregate="@(e => e.Sum(e => e.ProductC))" ShowDataLabels />
+                                    </ApexChart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Column Chart With Markers</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="column-markers">
+                                    <ApexChart TItem="ColumnMarkerschart" Height="320" Options=MarkersColumnChartOptions>
+                                        <ApexPointSeries TItem="ColumnMarkerschart" Items="ColumnMarkerscharts" Name="Actual" SeriesType="SeriesType.Bar" XValue="@(e => e.MarkersData)" YAggregate="@(e => e.Sum(e => e.GrossValue))" DataPointMutator=SetGoals />
+                                    </ApexChart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Column Chart With Rotated Labels</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="column-rotated-labels">
+                                    <ApexChart TItem="ColumnRotatedchart" Height="320" Options=RotatedColumnChartOptions>
+                                        <ApexPointSeries TItem="ColumnRotatedchart" Items="ColumnRotatedcharts" Name="Servings" SeriesType="SeriesType.Bar" XValue="@(e => e.Fruits)" YAggregate="@(e => e.Sum(e => e.ServingsValue))"/>
+                                    </ApexChart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Column Chart With Negative Values</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="column-negative">
+                                    <ApexChart TItem="ColumnNegativechart" Height="320" XAxisType="XAxisType.Datetime" Options=NegativeColumnChartOptions>
+                                        <ApexPointSeries TItem="ColumnNegativechart" Items="ColumnNegativecharts" Name="Cash Flow" SeriesType="SeriesType.Bar" XValue="@(e => e.FlowDate)" YAggregate="@(e => e.Sum(e => e.CashFlowValue))"/>
+                                    </ApexChart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Range Column Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="column-range">
+                                    <ApexChart TItem="Activity" Height="320" Options=MultiseriesTImelineoptions>
+                                        @foreach (var TeamGroup in activities.GroupBy(e => e.Team))
+                                        {
+                                            <ApexRangeSeries TItem="Activity" Items="TeamGroup" XValue="@(e=> e.Name)" YMinValue="@(e => e.StartValue)" YMaxValue="@(e => e.EndValue)" Name="@TeamGroup.Key" ShowDataLabels />
+                                        }
+                                    </ApexChart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Distributed Columns Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="columns-distributed">
+                                    <ApexChart TItem="ColumnDistributedchart" Height="320" Options=ColumnDistributedChartOptions>
+                                        <ApexPointSeries TItem="ColumnDistributedchart" Items="ColumnDistributedcharts" Name="Series-1" SeriesType="SeriesType.Bar" XValue="@(e => e.Persons)" YAggregate="@(e => e.Sum(e => e.SeriesValue))" />
+                                    </ApexChart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+            </div>
+@code {
+    
+    // Basic Column Chart Start //
+    private List<Columnbasicchart> Columnbasiccharts { get; set; } = ColumnbasicData.GetColumnbasiccharts();
+    private ApexChartOptions<Columnbasicchart> ColumnbasicChartOptions { get; set; } = new();
+    public class Columnbasicchart {
+        public string? Month { get; set; }
+        public decimal ProfitValue { get; set; }
+        public decimal RevenueValue { get; set; }
+        public decimal CashFlowValue { get; set; }
+        
+    } ;
+    public static class ColumnbasicData {
+            public static List<Columnbasicchart> GetColumnbasiccharts()
+            {
+                List<Columnbasicchart> Columnbasiccharts = new List<Columnbasicchart>
+                {
+                    new Columnbasicchart { Month = "Feb", ProfitValue = 44, RevenueValue = 76,  CashFlowValue = 31},
+                    new Columnbasicchart { Month = "Mar", ProfitValue = 55, RevenueValue = 85,  CashFlowValue = 41},
+                    new Columnbasicchart { Month = "Apr", ProfitValue = 57, RevenueValue = 101, CashFlowValue = 36},
+                    new Columnbasicchart { Month = "May", ProfitValue = 56, RevenueValue = 98,  CashFlowValue = 26},
+                    new Columnbasicchart { Month = "Jun", ProfitValue = 61, RevenueValue = 87,  CashFlowValue = 45},
+                    new Columnbasicchart { Month = "Jul", ProfitValue = 58, RevenueValue = 105, CashFlowValue = 48},
+                    new Columnbasicchart { Month = "Aug", ProfitValue = 63, RevenueValue = 91,  CashFlowValue = 52},
+                    new Columnbasicchart { Month = "Sep", ProfitValue = 60, RevenueValue = 114, CashFlowValue = 53},
+                    new Columnbasicchart { Month = "Oct", ProfitValue = 66, RevenueValue = 94,  CashFlowValue = 41},
+
+                };
+
+                return Columnbasiccharts;
+            }
+        }
+    //  Basic Column Chart End //    
+    
+    // Datalabels Column Chart Start //
+    private List<ColumnDatalabelschart> ColumnDatalabelscharts { get; set; } = ColumnDatalabelsData.GetColumnDatalabelscharts();
+    private ApexChartOptions<ColumnDatalabelschart> ColumnDatalabelsChartOptions { get; set; } = new();
+    public class ColumnDatalabelschart {
+        public string? Month { get; set; }
+        public decimal Inflation { get; set; }
+        
+    } ;
+    public static class ColumnDatalabelsData {
+            public static List<ColumnDatalabelschart> GetColumnDatalabelscharts()
+            {
+                List<ColumnDatalabelschart> ColumnDatalabelscharts = new List<ColumnDatalabelschart>
+                {
+                    new ColumnDatalabelschart { Month = "Jan", Inflation = 2.3M },
+                    new ColumnDatalabelschart { Month = "Feb", Inflation = 3.1M },
+                    new ColumnDatalabelschart { Month = "Mar", Inflation = 4.0M  },
+                    new ColumnDatalabelschart { Month = "Apr", Inflation = 10.1M},
+                    new ColumnDatalabelschart { Month = "May", Inflation = 4.0M },
+                    new ColumnDatalabelschart { Month = "Jun", Inflation = 3.6M },
+                    new ColumnDatalabelschart { Month = "Jul", Inflation = 3.2M },
+                    new ColumnDatalabelschart { Month = "Aug", Inflation = 2.3M },
+                    new ColumnDatalabelschart { Month = "Sep", Inflation = 1.4M },
+                    new ColumnDatalabelschart { Month = "Oct", Inflation = 0.8M },
+                    new ColumnDatalabelschart { Month = "Nov", Inflation = 0.5M },
+                    new ColumnDatalabelschart { Month = "Dec", Inflation = 0.2M },
+
+                };
+
+                return ColumnDatalabelscharts;
+            }
+        }
+    //  Datalabels Column Chart End //   
+
+    // Stacked Bar Chart Start //
+    private List<ColumnStackedchart> ColumnStackedcharts { get; set; } = ColumnStackedData.GetColumnStackedcharts();
+    private ApexChartOptions<ColumnStackedchart> ColumnStackedChartOptions { get; set; } = new();
+    public class ColumnStackedchart {
+        public string? ProductValue { get; set; }
+        public decimal ProductA { get; set; }
+        public decimal ProductB { get; set; }
+        public decimal ProductC { get; set; }
+        public decimal ProductD { get; set; }
+        
+    } ;
+    public static class ColumnStackedData {
+            public static List<ColumnStackedchart> GetColumnStackedcharts()
+            {
+                List<ColumnStackedchart> ColumnStackedcharts = new List<ColumnStackedchart>
+                {
+                    new ColumnStackedchart { ProductValue = "01/01/2011 GMT", ProductA = 44, ProductB = 13, ProductC = 11 , ProductD = 21 },
+                    new ColumnStackedchart { ProductValue = "01/02/2011 GMT", ProductA = 55, ProductB = 23, ProductC = 17 , ProductD = 7 },
+                    new ColumnStackedchart { ProductValue = "01/03/2011 GMT", ProductA = 41, ProductB = 20, ProductC = 15 , ProductD = 25 },
+                    new ColumnStackedchart { ProductValue = "01/04/2011 GMT", ProductA = 67, ProductB = 8, ProductC =  15 , ProductD = 13 },
+                    new ColumnStackedchart { ProductValue = "01/05/2011 GMT", ProductA = 22, ProductB = 13, ProductC = 21 , ProductD = 22 },
+                    new ColumnStackedchart { ProductValue = "01/06/2011 GMT", ProductA = 43, ProductB = 27, ProductC = 14 , ProductD = 8 },
+                };
+
+                return ColumnStackedcharts;
+            }
+        }
+    //  Stacked Bar Chart End // 
+
+    // FullStacked Bar Chart Start //
+    private List<ColumnFullStackedchart> ColumnFullStackedcharts { get; set; } = ColumnFullStackedData.GetColumnFullStackedcharts();
+    private ApexChartOptions<ColumnFullStackedchart> ColumnFullStackedChartOptions { get; set; } = new();
+    public class ColumnFullStackedchart {
+        public string? ProductValue { get; set; }
+        public decimal ProductA { get; set; }
+        public decimal ProductB { get; set; }
+        public decimal ProductC { get; set; }
+        
+    } ;
+    public static class ColumnFullStackedData {
+            public static List<ColumnFullStackedchart> GetColumnFullStackedcharts()
+            {
+                List<ColumnFullStackedchart> ColumnFullStackedcharts = new List<ColumnFullStackedchart>
+                {
+                    new ColumnFullStackedchart { ProductValue = "2011 Q1", ProductA = 44, ProductB = 13, ProductC = 11 },
+                    new ColumnFullStackedchart { ProductValue = "2011 Q2", ProductA = 55, ProductB = 23, ProductC = 17 },
+                    new ColumnFullStackedchart { ProductValue = "2011 Q3", ProductA = 41, ProductB = 20, ProductC = 15 },
+                    new ColumnFullStackedchart { ProductValue = "2011 Q4", ProductA = 67, ProductB = 8, ProductC =  15 },
+                    new ColumnFullStackedchart { ProductValue = "2012 Q1", ProductA = 22, ProductB = 13, ProductC = 21 },
+                    new ColumnFullStackedchart { ProductValue = "2012 Q2", ProductA = 43, ProductB = 27, ProductC = 14 },
+                    new ColumnFullStackedchart { ProductValue = "2012 Q3", ProductA = 21, ProductB = 33, ProductC = 15 },
+                    new ColumnFullStackedchart { ProductValue = "2012 Q4", ProductA = 49, ProductB = 12, ProductC = 13 },
+                };
+
+                return ColumnFullStackedcharts;
+            }
+        }
+    //  FullStacked Bar Chart End // 
+    
+    // Markers Column Chart Start //
+    private List<ColumnMarkerschart> ColumnMarkerscharts { get; set; } = ColumnMarkersData.GetColumnMarkerscharts();
+    private ApexChartOptions<ColumnMarkerschart> MarkersColumnChartOptions { get; set; } = new();
+    public class ColumnMarkerschart {
+        public string? MarkersData { get; set; }
+        public decimal GrossValue { get; set; }
+        
+    } ;
+    public static class ColumnMarkersData {
+            public static List<ColumnMarkerschart> GetColumnMarkerscharts()
+            {
+                List<ColumnMarkerschart> ColumnMarkerscharts = new List<ColumnMarkerschart>
+                {
+                    new ColumnMarkerschart { MarkersData = "2011", GrossValue = 1292},
+                    new ColumnMarkerschart { MarkersData = "2012", GrossValue = 4432},
+                    new ColumnMarkerschart { MarkersData = "2013", GrossValue = 5423},
+                    new ColumnMarkerschart { MarkersData = "2014", GrossValue = 6653},
+                    new ColumnMarkerschart { MarkersData = "2015", GrossValue = 8133},
+                    new ColumnMarkerschart { MarkersData = "2016", GrossValue = 7132},
+                    new ColumnMarkerschart { MarkersData = "2017", GrossValue = 7332},
+                    new ColumnMarkerschart { MarkersData = "2018", GrossValue = 6553},
+
+                };
+
+                return ColumnMarkerscharts;
+            }
+    }
+    private void SetGoals(DataPoint<ColumnMarkerschart> datapoint)
+    {
+        datapoint.Goals = new();
+        var goal = new DataPointGoal { Name = "Expected" };
+        datapoint.Goals.Add(goal);
+
+        switch (datapoint.X.ToString())
+        {
+            case "2011":
+                goal.Value = 1400;
+                goal.StrokeHeight = 5;
+                goal.StrokeColor = "#775DD0";
+                break;
+
+            case "2012":
+                goal.Value = 5400;
+                goal.StrokeHeight = 5;
+                goal.StrokeColor = "#775DD0";
+                break;
+
+            case "2013":
+                goal.Value = 5200;
+                goal.StrokeHeight = 5;
+                goal.StrokeColor = "#775DD0";
+                break;
+
+            case "2014":
+                goal.Value = 6500;
+                goal.StrokeHeight = 5;
+                goal.StrokeColor = "#775DD0";
+                break;
+
+            case "2015":
+                goal.Value = 6600;
+                goal.StrokeWidth = 0;
+                goal.StrokeHeight = 13;
+                goal.StrokeLineCap = LineCap.Round;
+                goal.StrokeColor = "#775DD0";
+                break;
+
+            case "2016":
+                goal.Value = 7500;
+                goal.StrokeHeight = 5;
+                goal.StrokeColor = "#775DD0";
+                break;
+
+            case "2017":
+                goal.Value = 8700;
+                goal.StrokeHeight = 5;
+                goal.StrokeColor = "#775DD0";
+                break;
+
+            default:
+                goal.Value = 7300;
+                goal.StrokeHeight = 2;
+                goal.StrokeDashArray = 2;
+                goal.StrokeColor = "#775DD0";
+                break;
+        }
+    }
+    //  Markers Column Chart End //
+
+    // Rotated Column Chart Start //
+    private List<ColumnRotatedchart> ColumnRotatedcharts { get; set; } = ColumnRotatedData.GetColumnRotatedcharts();
+    private ApexChartOptions<ColumnRotatedchart> RotatedColumnChartOptions { get; set; } = new();
+    public class ColumnRotatedchart {
+        public string? Fruits { get; set; }
+        public decimal ServingsValue { get; set; }
+        
+    } ;
+    public static class ColumnRotatedData {
+            public static List<ColumnRotatedchart> GetColumnRotatedcharts()
+            {
+                List<ColumnRotatedchart> ColumnRotatedcharts = new List<ColumnRotatedchart>
+                {
+                    new ColumnRotatedchart { Fruits = "Apples", ServingsValue = 44},
+                    new ColumnRotatedchart { Fruits = "Oranges", ServingsValue = 55},
+                    new ColumnRotatedchart { Fruits = "Strawberries", ServingsValue = 41},
+                    new ColumnRotatedchart { Fruits = "Pineapples", ServingsValue = 67},
+                    new ColumnRotatedchart { Fruits = "Mangoes", ServingsValue = 22},
+                    new ColumnRotatedchart { Fruits = "Bananas", ServingsValue = 43},
+                    new ColumnRotatedchart { Fruits = "Blackberries", ServingsValue = 21},
+                    new ColumnRotatedchart { Fruits = "Pears", ServingsValue = 33},
+                    new ColumnRotatedchart { Fruits = "Watermelons", ServingsValue = 45},
+                    new ColumnRotatedchart { Fruits = "Cherries", ServingsValue = 31},
+                    new ColumnRotatedchart { Fruits = "Pomegranates", ServingsValue = 87},
+                    new ColumnRotatedchart { Fruits = "Tangerines", ServingsValue = 65},
+                    new ColumnRotatedchart { Fruits = "Papayas", ServingsValue = 35},
+
+                };
+
+                return ColumnRotatedcharts;
+            }
+        }
+    //  Rotated Column Chart End //    
+
+    // Negative Column Chart Start //
+    private List<ColumnNegativechart> ColumnNegativecharts { get; set; } = ColumnNegativeData.GetColumnNegativecharts();
+    private ApexChartOptions<ColumnNegativechart> NegativeColumnChartOptions { get; set; } = new();
+    public class ColumnNegativechart {
+        public string? FlowDate { get; set; }
+        public decimal CashFlowValue { get; set; }
+        
+    } ;
+    public static class ColumnNegativeData {
+            public static List<ColumnNegativechart> GetColumnNegativecharts()
+            {
+                List<ColumnNegativechart> ColumnNegativecharts = new List<ColumnNegativechart>
+                {
+                    new ColumnNegativechart { FlowDate = "2011-01-01", CashFlowValue = 1.45M   },
+                    new ColumnNegativechart { FlowDate = "2011-02-01", CashFlowValue = 5.42M   },
+                    new ColumnNegativechart { FlowDate = "2011-03-01", CashFlowValue = 5.9M    },
+                    new ColumnNegativechart { FlowDate = "2011-04-01", CashFlowValue = -0.42M  },
+                    new ColumnNegativechart { FlowDate = "2011-05-01", CashFlowValue = -12.6M  },
+                    new ColumnNegativechart { FlowDate = "2011-06-01", CashFlowValue = -18.1M  },
+                    new ColumnNegativechart { FlowDate = "2011-07-01", CashFlowValue = -18.2M  },
+                    new ColumnNegativechart { FlowDate = "2011-08-01", CashFlowValue = -14.16M },
+                    new ColumnNegativechart { FlowDate = "2011-09-01", CashFlowValue = -11.1M  },
+                    new ColumnNegativechart { FlowDate = "2011-10-01", CashFlowValue = -6.09M  },
+                    new ColumnNegativechart { FlowDate = "2011-11-01", CashFlowValue = 0.34M   },
+                    new ColumnNegativechart { FlowDate = "2011-12-01", CashFlowValue = 3.88M   },
+                    new ColumnNegativechart { FlowDate = "2012-01-01", CashFlowValue = 13.07M  },
+                    new ColumnNegativechart { FlowDate = "2012-02-01", CashFlowValue = 5.8M    },
+                    new ColumnNegativechart { FlowDate = "2012-03-01", CashFlowValue = 2.0M    },
+                    new ColumnNegativechart { FlowDate = "2012-04-01", CashFlowValue = 7.37M   },
+                    new ColumnNegativechart { FlowDate = "2012-05-01", CashFlowValue = 8.1M    },
+                    new ColumnNegativechart { FlowDate = "2012-06-01", CashFlowValue = 13.57M  },
+                    new ColumnNegativechart { FlowDate = "2012-07-01", CashFlowValue = 15.75M  },
+                    new ColumnNegativechart { FlowDate = "2012-08-01", CashFlowValue = 17.1M   },
+                    new ColumnNegativechart { FlowDate = "2012-09-01", CashFlowValue = 19.8M   },
+                    new ColumnNegativechart { FlowDate = "2012-10-01", CashFlowValue = -27.03M },
+                    new ColumnNegativechart { FlowDate = "2012-11-01", CashFlowValue = -54.4M  },
+                    new ColumnNegativechart { FlowDate = "2012-12-01", CashFlowValue = -47.2M  },
+                    new ColumnNegativechart { FlowDate = "2013-01-01", CashFlowValue = -43.3M  },
+                    new ColumnNegativechart { FlowDate = "2013-02-01", CashFlowValue = -18.6M  },
+                    new ColumnNegativechart { FlowDate = "2013-03-01", CashFlowValue = -48.6M  },
+                    new ColumnNegativechart { FlowDate = "2013-04-01", CashFlowValue = -41.1M  },
+                    new ColumnNegativechart { FlowDate = "2013-05-01", CashFlowValue = -39.6M  },
+                    new ColumnNegativechart { FlowDate = "2013-06-01", CashFlowValue = -37.6M  },
+                    new ColumnNegativechart { FlowDate = "2013-07-01", CashFlowValue = -29.4M  },
+                    new ColumnNegativechart { FlowDate = "2013-08-01", CashFlowValue = -21.4M  },
+                    new ColumnNegativechart { FlowDate = "2013-09-01", CashFlowValue = -2.4M   },
+
+                };
+
+                return ColumnNegativecharts;
+            }
+        }
+    //  Negative Column Chart End //    
+
+
+    // Multiseries TImeline Chart Start //
+     private List<Activity> activities { get; set; } = new();
+    private ApexChartOptions<Activity> MultiseriesTImelineoptions { get; set; } = new();
+
+    private class Activity
+    {
+        public string? Team { get; set; }
+        public string? Name { get; set; }
+        public decimal StartValue { get; set; }
+        public decimal EndValue { get; set; }
+    }
+    //  Multiseries TImeline Chart End //
+    
+    // Distributed Column Chart Start //
+    private List<ColumnDistributedchart> ColumnDistributedcharts { get; set; } = ColumnDistributedData.GetColumnDistributedcharts();
+    private ApexChartOptions<ColumnDistributedchart> ColumnDistributedChartOptions { get; set; } = new();
+    public class ColumnDistributedchart {
+        public string? Persons { get; set; }
+        public decimal SeriesValue { get; set; }
+        
+    } ;
+    public static class ColumnDistributedData {
+            public static List<ColumnDistributedchart> GetColumnDistributedcharts()
+            {
+                List<ColumnDistributedchart> ColumnDistributedcharts = new List<ColumnDistributedchart>
+                {
+                    new ColumnDistributedchart { Persons = "JohnDoe", SeriesValue = 21},
+                    new ColumnDistributedchart { Persons = "JoeSmith", SeriesValue = 22},
+                    new ColumnDistributedchart { Persons = "JakeWilliams", SeriesValue = 10},
+                    new ColumnDistributedchart { Persons = "Amber", SeriesValue = 28},
+                    new ColumnDistributedchart { Persons = "Peter Brown", SeriesValue = 16},
+                    new ColumnDistributedchart { Persons = "MaryEvans", SeriesValue = 21},
+                    new ColumnDistributedchart { Persons = "DavidWilson", SeriesValue = 13},
+                    new ColumnDistributedchart { Persons = "LilyRoberts", SeriesValue = 30},
+
+                };
+
+                return ColumnDistributedcharts;
+            }
+        }
+    //  Distributed Column Chart End //    
+    
+    protected override void OnInitialized() {
+
+        ColumnbasicChartOptions = new ApexChartOptions<Columnbasicchart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = true},
+                }, 
+            }, 
+            PlotOptions = new PlotOptions
+            {
+                Bar = new PlotOptionsBar
+                {
+                    Horizontal = false,
+                    ColumnWidth = "80%",
+                    BorderRadiusApplication = BorderRadiusApplication.Around,
+                }
+            },
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            DataLabels = new DataLabels {
+                Enabled=false,
+            }, 
+            Colors = new Color(new List<string> { "var(--primary-color)" ,"#23b7e5", "#f5b849"}),
+            Tooltip = new(){
+                Y = new(){
+                    Formatter =@" function (val) {
+                        return '$'  + val + 'thousands'
+                    }"
+                }
+            },
+            Stroke = new Stroke { 
+                Width = 2,
+                Show = true,
+                Colors =["transparent"],
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Title= new(){
+                        Text = "$ (thousands)",
+                        Style = new() {
+                            Color = "#8c9097",
+                        }
+                    },
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 0,
+                    Max = 120,
+                    StepSize = 30,
+                }
+            },
+        };
+
+        ColumnDatalabelsChartOptions = new ApexChartOptions<ColumnDatalabelschart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = true},
+                }, 
+            }, 
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            PlotOptions = new PlotOptions
+            {
+                Bar = new PlotOptionsBar
+                {
+                    BorderRadius = 10,
+                    DataLabels = new() {
+                        Position = ApexCharts.BarDataLabelPosition.Top, 
+                    },
+                }
+            },
+            DataLabels = new DataLabels {
+                Enabled=true,
+                Formatter = @"function (val) {
+                    return val + '%';
+                }",
+                OffsetY = -20,
+                Style = new(){
+                    FontSize = "12px",
+                    Colors = ["#8c9097"]
+                }
+            }, 
+            Colors = new Color(new List<string> { "var(--primary-color)"}),
+            Stroke = new Stroke { 
+                Width = 2,
+                Show = true,
+                Colors =["transparent"],
+            },
+            Xaxis =  new XAxis {  
+                Position = ApexCharts.XAxisPosition.Top,
+                AxisBorder = new AxisBorder{
+                    Show = false
+                },
+                AxisTicks=new AxisTicks {
+                    Show = false
+                },
+                Crosshairs = new (){
+                    Fill = new ApexCharts.CrosshairsFill {
+                        Type = ApexCharts.FillType.Gradient,
+                        Gradient = new() {
+                            ColorFrom = "#D8E3F0",
+                            ColorTo = "#BED1E6",
+                            Stops = [0, 100],
+                            OpacityFrom = 0.4,
+                            OpacityTo = 0.5,
+                        }
+                    }
+                },
+                Tooltip = new() {
+                    Enabled = true,
+                },
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    AxisBorder = new AxisBorder{
+                        Show = false
+                    },
+                    AxisTicks=new AxisTicks {
+                        Show = false
+                    },
+                    Labels = new YAxisLabels
+                    {
+                        Show = false,
+                        Formatter = @"function (val) {
+                            return val + '%';
+                        }"
+                    },
+                    Min = 0,
+                    Max = 12,
+                    StepSize = 3,
+                }
+            },
+        };
+
+        ColumnStackedChartOptions = new ApexChartOptions<ColumnStackedchart> {
+            Chart = new () {
+                Stacked = true,
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = true, Zoomin = true, Zoomout = true,Pan = true, Reset = true,  Download = true},
+                }, 
+            }, 
+            PlotOptions = new PlotOptions
+            {
+                Bar = new PlotOptionsBar
+                {
+                    Horizontal = false,
+                }
+            },
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            Colors = new Color(new List<string> { "var(--primary-color)", "#23b7e5", "#f5b849", "#e6533c", "#49b6f5" }),
+            Stroke = new Stroke { 
+                Width = 1,
+            },
+            Fill = new Fill {
+                Opacity = 1,
+            },
+            Legend = new Legend  { 
+                Show=true,
+                OffsetY = 40,
+                Position = LegendPosition.Right,
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true, 
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 0,
+                    Max = 120,
+                    StepSize = 30,
+                }
+            },
+        };
+
+        ColumnFullStackedChartOptions = new ApexChartOptions<ColumnFullStackedchart> {
+            Chart = new () {
+                Stacked = true,
+                StackType = StackType.Percent100,
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = true, Zoomin = true, Zoomout = true,Pan = true, Reset = true,  Download = true},
+                }, 
+            }, 
+            PlotOptions = new PlotOptions
+            {
+                Bar = new PlotOptionsBar
+                {
+                    Horizontal = false,
+                }
+            },
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            Colors = new Color(new List<string> { "var(--primary-color)", "#23b7e5", "#f5b849"}),
+            Stroke = new Stroke { 
+                Width = 0,
+            },
+            Fill = new Fill {
+                Opacity = 1,
+            },
+            Legend = new Legend  { 
+                Show=true,
+                OffsetY = 50,
+                OffsetX = 0,
+                Position = LegendPosition.Right,
+            }, 
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true, 
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 0,
+                    Max = 100,
+                    StepSize = 10,
+                }
+            },
+        };
+
+        MarkersColumnChartOptions = new ApexChartOptions<ColumnMarkerschart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = true},
+                }, 
+            }, 
+            PlotOptions = new PlotOptions
+            {
+                Bar = new PlotOptionsBar
+                {
+                    ColumnWidth = "60%",
+                    Horizontal = false,
+                }
+            },
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            DataLabels = new DataLabels {
+                Enabled=false,
+            }, 
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            Colors = new Color(new List<string> { "#23b7e5" }),
+            Stroke = new Stroke { 
+                Width = 1,
+            },
+            Tooltip = new ApexCharts.Tooltip {
+                Shared = false,
+            },
+            Fill = new Fill {
+                Opacity = 1,
+            },
+            Legend = new Legend  { 
+                Show = true,
+                ShowForSingleSeries = true,
+                CustomLegendItems = new List<string> { "Actual","Expected" },
+                Markers = new() {
+                    FillColors = ["#00E396", "#775DD0"],
+                },
+            }, 
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true, 
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis 
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 0,
+                    Max = 10000,
+                    StepSize = 2000,
+                }
+            },
+        };
+
+        RotatedColumnChartOptions = new ApexChartOptions<ColumnRotatedchart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = true},
+                }, 
+            }, 
+            Annotations = new Annotations
+            {
+                Points = new List<AnnotationsPoint> { 
+                    new AnnotationsPoint {
+                        X = "Bananas",
+                        SeriesIndex = 0,
+                        Label = new ApexCharts.Label {
+                            BorderColor = "#775DD0",
+                            Text = "Bananas are good",
+                            OffsetY = 0,
+                            Style = new Style{ Background="#775DD0" , Color="#fff"}
+                        },
+                    },
+                },
+            },
+            PlotOptions = new PlotOptions
+            {
+                Bar = new PlotOptionsBar
+                {
+                    BorderRadius = 10,
+                    ColumnWidth = "50%",
+                    Horizontal = false,
+                }
+            },
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            DataLabels = new DataLabels {
+                Enabled=false,
+            }, 
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            Colors = new Color(new List<string> { "#845adf" }),
+            Stroke = new Stroke { 
+                Width = 2,
+            },
+            Xaxis =  new XAxis {  
+                TickPlacement = ApexCharts.TickPlacement.On,
+                Labels = new XAxisLabels {
+                    Show = true, 
+                    Rotate = 45,
+                    RotateAlways = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis 
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Title = new() {
+                        Text ="Servings",
+                        Style = new() {
+                            Color = "#8c9097",
+                        }
+                    },
+                    Min = 0,
+                    Max = 100,
+                    StepSize = 20,
+                }
+            },
+            Fill = new Fill {
+                Type = new List<FillType> { FillType.Gradient},
+                Gradient = new ApexCharts.FillGradient {
+                    ShadeIntensity = .25,
+                    Shade = ApexCharts.GradientShade.Light,
+                    Type = ApexCharts.GradientType.Horizontal,
+                    InverseColors = true,
+                    OpacityFrom =0.85,
+                    OpacityTo = 0.85,
+                    Stops = [50, 0, 100],
+                }
+            },
+        };
+        
+        NegativeColumnChartOptions = new ApexChartOptions<ColumnNegativechart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = true, Zoomin = true, Zoomout = true,Pan = true, Reset = true,  Download = true},
+                }, 
+            }, 
+            PlotOptions = new PlotOptions
+            {
+                Bar = new PlotOptionsBar
+                {
+                    Colors = new (){
+                        Ranges = new () {
+                            new (){
+                                From = -100,
+                                To = -46,
+                                Color = "#e6533c"
+                            },
+                            new (){
+                                From = -45,
+                                To = 0,
+                                Color = "#a66a5e"
+                            }
+                        }
+                    },
+                    ColumnWidth = "80%",
+                    Horizontal = false,
+                }
+            },
+            DataLabels = new DataLabels {
+                Enabled=false,
+            }, 
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            Colors = new Color(new List<string> { "#845adf" }),
+            Stroke = new Stroke { 
+                Width = 2,
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true, 
+                    Rotate = 90,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis 
+                {
+                    Title = new(){
+                        Text = "Growth",
+                        Style = new(){
+                            Color = "#8c9097",
+                        }
+                    },
+                    Labels = new YAxisLabels
+                    {
+                        Formatter =@"function (y) {
+                            return y.toFixed(0) + '%';
+                        }",
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = -60,
+                    Max = 20,
+                    StepSize = 20,
+                }
+            },
+        };
+        
+        activities.Add(new Activity { Team = "Series1", Name = "TeamA", StartValue = 1, EndValue = 5 });
+        activities.Add(new Activity { Team = "Series1", Name = "TeamB", StartValue = 4, EndValue = 6});
+        activities.Add(new Activity { Team = "Series1", Name = "TeamC", StartValue = 5, EndValue = 8 });
+        activities.Add(new Activity { Team = "Series1", Name = "TeamD", StartValue = 3, EndValue = 11 });
+
+        activities.Add(new Activity { Team = "Series2", Name = "TeamA", StartValue = 2, EndValue = 6 });
+        activities.Add(new Activity { Team = "Series2", Name = "TeamB", StartValue = 1, EndValue = 3 });
+        activities.Add(new Activity { Team = "Series2", Name = "TeamC", StartValue = 7, EndValue = 8 });
+        activities.Add(new Activity { Team = "Series2", Name = "TeamD", StartValue = 5, EndValue = 9 });
+
+        MultiseriesTImelineoptions = new ApexChartOptions<Activity>
+        {
+            Colors = new Color(new List<string> { "var(--primary-color)","rgb(35, 183, 229)" }),
+            PlotOptions = new PlotOptions
+            {
+                Bar = new PlotOptionsBar
+                {
+                    Horizontal = false,
+                }
+            },
+            DataLabels = new ApexCharts.DataLabels {
+                Enabled = true,
+            }, 
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true, 
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis 
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 0,
+                    Max = 12,
+                    StepSize = 3,
+                }
+            },
+        };
+
+        ColumnDistributedChartOptions = new ApexChartOptions<ColumnDistributedchart>
+        {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+            }, 
+            Colors = new Color(new List<string> { "var(--primary-color)","#23b7e5", "#f5b849", "#49b6f5", "#e6533c", "#26bf94", "#5b67c7", "#a65e76"}),
+            PlotOptions = new PlotOptions
+            {
+                Bar = new PlotOptionsBar
+                {
+                    Horizontal = false,
+                    ColumnWidth = "45%",
+                    Distributed = true,
+                }
+            },
+            DataLabels = new ApexCharts.DataLabels {
+                Enabled = true,
+            }, 
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            Legend = new Legend  { 
+                Show=false,
+            }, 
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true, 
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "12px",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis 
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Min = 0,
+                    Max = 32,
+                    StepSize = 8,
+                }
+            },
+        };
+
+
+
+    }
+}

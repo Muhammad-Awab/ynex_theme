@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\dell\.nuget\packages\;C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.8.0</NuGetToolVersion>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <SourceRoot Include="C:\Users\dell\.nuget\packages\" />
+    <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Content Include="$(NuGetPackageRoot)nouislider.blazor\0.1.5\contentFiles\any\netstandard2.1\package-lock.json" Condition="Exists('$(NuGetPackageRoot)nouislider.blazor\0.1.5\contentFiles\any\netstandard2.1\package-lock.json')">
+      <NuGetPackageId>NoUiSlider.Blazor</NuGetPackageId>
+      <NuGetPackageVersion>0.1.5</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>package-lock.json</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)nouislider.blazor\0.1.5\contentFiles\any\netstandard2.1\package.json" Condition="Exists('$(NuGetPackageRoot)nouislider.blazor\0.1.5\contentFiles\any\netstandard2.1\package.json')">
+      <NuGetPackageId>NoUiSlider.Blazor</NuGetPackageId>
+      <NuGetPackageVersion>0.1.5</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>package.json</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Content Include="$(NuGetPackageRoot)leafletforblazor\2.0.2.8\contentFiles\any\net7.0\map_color.ico" Condition="Exists('$(NuGetPackageRoot)leafletforblazor\2.0.2.8\contentFiles\any\net7.0\map_color.ico')">
+      <NuGetPackageId>LeafletForBlazor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.2.8</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>map_color.ico</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Content Include="$(NuGetPackageRoot)flatpickrblazor\5.0.8\contentFiles\any\net5.0\package-lock.json" Condition="Exists('$(NuGetPackageRoot)flatpickrblazor\5.0.8\contentFiles\any\net5.0\package-lock.json')">
+      <NuGetPackageId>FlatpickrBlazor</NuGetPackageId>
+      <NuGetPackageVersion>5.0.8</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>package-lock.json</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)flatpickrblazor\5.0.8\contentFiles\any\net5.0\package.json" Condition="Exists('$(NuGetPackageRoot)flatpickrblazor\5.0.8\contentFiles\any\net5.0\package.json')">
+      <NuGetPackageId>FlatpickrBlazor</NuGetPackageId>
+      <NuGetPackageVersion>5.0.8</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>package.json</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Content Include="$(NuGetPackageRoot)blazorcleave\1.0.102\contentFiles\any\netstandard2.0\StaticAssets\package-lock.json" Condition="Exists('$(NuGetPackageRoot)blazorcleave\1.0.102\contentFiles\any\netstandard2.0\StaticAssets\package-lock.json')">
+      <NuGetPackageId>BlazorCleave</NuGetPackageId>
+      <NuGetPackageVersion>1.0.102</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>StaticAssets\package-lock.json</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)blazorcleave\1.0.102\contentFiles\any\netstandard2.0\StaticAssets\package.json" Condition="Exists('$(NuGetPackageRoot)blazorcleave\1.0.102\contentFiles\any\netstandard2.0\StaticAssets\package.json')">
+      <NuGetPackageId>BlazorCleave</NuGetPackageId>
+      <NuGetPackageVersion>1.0.102</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>StaticAssets\package.json</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)blazorcleave\1.0.102\contentFiles\any\netstandard2.0\StaticAssets\style.css" Condition="Exists('$(NuGetPackageRoot)blazorcleave\1.0.102\contentFiles\any\netstandard2.0\StaticAssets\style.css')">
+      <NuGetPackageId>BlazorCleave</NuGetPackageId>
+      <NuGetPackageVersion>1.0.102</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>StaticAssets\style.css</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)blazorcleave\1.0.102\contentFiles\any\netstandard2.0\StaticAssets\tsconfig.json" Condition="Exists('$(NuGetPackageRoot)blazorcleave\1.0.102\contentFiles\any\netstandard2.0\StaticAssets\tsconfig.json')">
+      <NuGetPackageId>BlazorCleave</NuGetPackageId>
+      <NuGetPackageVersion>1.0.102</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>StaticAssets\tsconfig.json</Link>
+    </Content>
+  </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)wmblazorslickcarousel\1.0.1\buildTransitive\WMBlazorSlickCarousel.props" Condition="Exists('$(NuGetPackageRoot)wmblazorslickcarousel\1.0.1\buildTransitive\WMBlazorSlickCarousel.props')" />
+    <Import Project="$(NuGetPackageRoot)wmblazoroverlayscrollbars\1.0.0\buildTransitive\WMBlazorOverlayScrollbars.props" Condition="Exists('$(NuGetPackageRoot)wmblazoroverlayscrollbars\1.0.0\buildTransitive\WMBlazorOverlayScrollbars.props')" />
+    <Import Project="$(NuGetPackageRoot)soenneker.blazor.tomselect\2.1.231\buildTransitive\Soenneker.Blazor.TomSelect.props" Condition="Exists('$(NuGetPackageRoot)soenneker.blazor.tomselect\2.1.231\buildTransitive\Soenneker.Blazor.TomSelect.props')" />
+    <Import Project="$(NuGetPackageRoot)soenneker.blazor.filepond\2.1.604\buildTransitive\Soenneker.Blazor.FilePond.props" Condition="Exists('$(NuGetPackageRoot)soenneker.blazor.filepond\2.1.604\buildTransitive\Soenneker.Blazor.FilePond.props')" />
+    <Import Project="$(NuGetPackageRoot)nouislider.blazor\0.1.5\buildTransitive\NoUiSlider.Blazor.props" Condition="Exists('$(NuGetPackageRoot)nouislider.blazor\0.1.5\buildTransitive\NoUiSlider.Blazor.props')" />
+    <Import Project="$(NuGetPackageRoot)leafletforblazor\2.0.2.8\buildTransitive\LeafletForBlazor.props" Condition="Exists('$(NuGetPackageRoot)leafletforblazor\2.0.2.8\buildTransitive\LeafletForBlazor.props')" />
+    <Import Project="$(NuGetPackageRoot)blazor-apexcharts\3.1.0\buildTransitive\Blazor-ApexCharts.props" Condition="Exists('$(NuGetPackageRoot)blazor-apexcharts\3.1.0\buildTransitive\Blazor-ApexCharts.props')" />
+    <Import Project="$(NuGetPackageRoot)flatpickrblazor\5.0.8\buildTransitive\FlatpickrBlazor.props" Condition="Exists('$(NuGetPackageRoot)flatpickrblazor\5.0.8\buildTransitive\FlatpickrBlazor.props')" />
+    <Import Project="$(NuGetPackageRoot)excubo.blazor.treeviews\4.0.12\buildTransitive\Excubo.Blazor.TreeViews.props" Condition="Exists('$(NuGetPackageRoot)excubo.blazor.treeviews\4.0.12\buildTransitive\Excubo.Blazor.TreeViews.props')" />
+    <Import Project="$(NuGetPackageRoot)currietechnologies.razor.sweetalert2\5.6.0\buildTransitive\CurrieTechnologies.Razor.SweetAlert2.props" Condition="Exists('$(NuGetPackageRoot)currietechnologies.razor.sweetalert2\5.6.0\buildTransitive\CurrieTechnologies.Razor.SweetAlert2.props')" />
+    <Import Project="$(NuGetPackageRoot)blazored.texteditor\1.1.0\buildTransitive\Blazored.TextEditor.props" Condition="Exists('$(NuGetPackageRoot)blazored.texteditor\1.1.0\buildTransitive\Blazored.TextEditor.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorcolorpicker\3.1.1\buildTransitive\BlazorColorPicker.props" Condition="Exists('$(NuGetPackageRoot)blazorcolorpicker\3.1.1\buildTransitive\BlazorColorPicker.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorcleave\1.0.102\buildTransitive\BlazorCleave.props" Condition="Exists('$(NuGetPackageRoot)blazorcleave\1.0.102\buildTransitive\BlazorCleave.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorcalendar\2.6.8\buildTransitive\BlazorCalendar.props" Condition="Exists('$(NuGetPackageRoot)blazorcalendar\2.6.8\buildTransitive\BlazorCalendar.props')" />
+  </ImportGroup>
+</Project>

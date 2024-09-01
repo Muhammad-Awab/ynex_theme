@@ -1,0 +1,125 @@
+@page "/products-list"
+@inject ProductListService ProductListService
+@inject NavigationManager NavigationManager
+
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <h1 class="page-title fw-semibold fs-18 mb-0">Products List</h1>
+                    <div class="ms-md-1 ms-0">
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Ecommerce</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Products List</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start::row-1 -->
+                <div class="row">   
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Products List
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive mb-4">
+                                    <table class="table text-nowrap table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">
+                                                    <input class="form-check-input check-all" type="checkbox" id="all-products" @bind="@selectAll" @onclick="ToggleSelectAll" value="" aria-label="...">
+                                                </th>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Category</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Stock</th>
+                                                <th scope="col">Gender</th>
+                                                <th scope="col">Seller</th>
+                                                <th scope="col">Published</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                             @foreach (var ProductList in ProductListService.GetProductLists())
+                                            {
+                                                <tr class="product-list">
+                                                    <td class="product-checkbox"><input class="form-check-input" type="checkbox" id="@ProductList.ProductId" value="" @bind="@ProductList.Selected" aria-label="..."></td>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="me-2">
+                                                                <span class="avatar avatar-md avatar-rounded">
+                                                                    <img src=@ProductList.Product alt="">
+                                                                </span>
+                                                            </div>
+                                                            <div class="fw-semibold">
+                                                               @ProductList.ProductTitle
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge bg-light text-default">@ProductList.Category</span>
+                                                    </td>
+                                                    <td>@ProductList.Price</td>
+                                                    <td>@ProductList.Stock</td>
+                                                    <td>@ProductList.Gender</td>
+                                                    <td>@ProductList.Seller</td>
+                                                    <td>@ProductList.Published</td>
+                                                    <td>
+                                                        <div class="hstack gap-2 fs-15">
+                                                            <a href="/edit-products" class="btn btn-icon btn-sm btn-info-light"><i class="ri-edit-line"></i></a>
+                                                            <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-danger-light product-btn" @onclick="@(() => DeleteProductList(ProductList))"><i class="ri-delete-bin-line"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                    <nav aria-label="...">
+                                        <ul class="pagination mb-0">
+                                            <li class="page-item disabled">
+                                                <span class="page-link">Previous</span>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+                                            <li class="page-item active" aria-current="page">
+                                                <span class="page-link">2</span>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="javascript:void(0);">Next</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                    <button class="btn btn-danger btn-wave m-1">Delete All</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+            </div>
+@code {
+    protected async Task DeleteProductList(ProductList ProductId)
+    {
+        ProductListService.DeleteProductList(ProductId?.ProductId);
+        await Task.Delay(1000);
+        NavigationManager.NavigateTo("/products-list", forceLoad: false);
+    }
+    private bool selectAll;
+    private void ToggleSelectAll()
+    {
+        selectAll = !selectAll;
+        foreach (var ProductList in ProductListService.GetProductLists())
+        {
+           ProductList.Selected = selectAll;
+        }
+    }
+}

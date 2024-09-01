@@ -1,0 +1,117 @@
+@page "/form_color_pickers"
+@using BlazorColorPicker
+
+<link href="_content/BlazorColorPicker/colorpicker.css" rel="stylesheet" />
+<link href="_content/BlazorColorPicker/BlazorColorPicker.bundle.scp.css" rel="stylesheet" />
+
+<div class="container-fluid">
+
+    <!-- Page Header -->
+    <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+        <h1 class="page-title fw-semibold fs-18 mb-0">Color Pickers</h1>
+        <div class="ms-md-1 ms-0">
+            <nav>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Form Elements</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Color Pickers</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header Close -->
+
+    <!-- Start::row-1 -->
+    <div class="row">
+        <div class="col-xl-3">
+            <div class="card custom-card">
+                <div class="card-header justify-content-between">
+                    <div class="card-title">
+                        Bootstrap Color Picker
+                    </div>
+                </div>
+                <div class="card-body">
+                    <input type="color" class="form-control form-control-color border-0" id="exampleColorInput"
+                        value="#136ad0" title="Choose your color">
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Blazor Color Picker
+                    </div>
+                </div>
+                <div class="card-body d-flex justify-content-between">
+                    <a href="javascript:void(0);" @onclick="OpenModal">
+                        <div style="background-color:@color" class="buttonColor m-0"></div>
+                    </a>
+
+                    <a href="javascript:void(0);" @onclick="OpenModalCustom">
+                        <div style="background-color:@customColor" class="buttonColor m-0"></div>
+                    </a>
+
+                    <a href="javascript:void(0);" @onclick="OpenModalCustomSizes">
+                        <div style="background-color:@customColorSize" class="buttonColor m-0"></div>
+                    </a>
+
+                    <ColorPicker IsOpened="isOpened" 
+                                Closed="ClosedEvent" 
+                                MyColor="@color" />
+
+                    <ColorPicker IsOpened="isOpenedCustom" 
+                                Closed="ClosedCustomEvent" 
+                                MyColor="@customColor" 
+                                MyColorPallet="@colors" 
+                                OverwriteBackgroundColor="#CCCCCC" 
+                                Title="Custom Colors" />
+
+
+                    <ColorPicker IsOpened="isOpenedCustomSizes"
+                                Closed="ClosedEventCustomSize"
+                                MyColor="@customColorSize"
+                                Style="width:304px;height:304px" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End::row-1 -->
+
+</div>
+            
+@code {
+    string[] colors = new string[] { "#FFFFFF", "#000000", "#999999","#845adf" };
+    bool isOpened = false;
+    bool isOpenedCustom = false;
+    bool isOpenedCustomSizes = false;
+    string color = "#845adf";
+    string customColor = "rgb(35, 183, 229)";
+    string customColorSize = "#845adf";
+
+
+    void OpenModal() => isOpened = true;
+    
+    void ClosedEvent(string value)
+    {
+        color = value;
+        isOpened = false;
+    }
+
+    void OpenModalCustom() => isOpenedCustom = true;
+
+    void ClosedCustomEvent(string value)
+    {
+        customColor = value;
+        isOpenedCustom = false;
+    }
+
+
+    void OpenModalCustomSizes() => isOpenedCustomSizes = true;
+
+    void ClosedEventCustomSize(string value)
+    {
+        customColorSize = value;
+        isOpenedCustomSizes = false;
+    }
+
+}

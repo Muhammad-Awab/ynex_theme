@@ -1,0 +1,1086 @@
+@page "/Apex-heatmap-charts"
+@using ApexCharts
+@using System.Collections.Generic
+
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+        <h1 class="page-title fw-semibold fs-18 mb-0">Apex Heatmap Charts</h1>
+        <div class="ms-md-1 ms-0">
+            <nav>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Apex Charts</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Apex Heatmap Charts</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header Close -->
+
+    <!-- Start::row-1 -->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Basic Heatmap Chart</div>
+                </div> 
+                <div class="card-body">
+                    <ApexChart TItem="Heatmapbasic" Title="HeatMap Chart (Single color)" Options="Heatmapbasicoptions" Height="350">
+                        @foreach (var source in incidents.GroupBy(e => e.Source))
+                        {
+                            <ApexPointSeries TItem="Heatmapbasic"
+                                        Items="source.OrderBy(e=>e.WeekNumber)"
+                                        Name="@source.Key!.ToString()"
+                                        SeriesType="SeriesType.Heatmap"
+                                        XValue="@(e => e.WeekName)"
+                                        YAggregate="@(e => (int)e.Average(a=>a.Severity))" />
+                        }
+                    </ApexChart>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Multi Series Heatmap Chart</div>
+                </div> 
+                <div class="card-body">
+                    <ApexChart TItem="HeatmapMulticolor" Title="HeatMap Chart (Different color shades for each series)" Options="HeatmapMulticoloroptions" Height="350">
+                            @foreach (var source in HeatmapMulticolorincidents.GroupBy(e => e.Source))
+                            {
+                                <ApexPointSeries TItem="HeatmapMulticolor"
+                                            Items="source.OrderBy(e=>e.WeekNumber)"
+                                            Name="@source.Key!.ToString()"
+                                            SeriesType="SeriesType.Heatmap"
+                                            XValue="@(e => e.WeekName)"
+                                            YAggregate="@(e => (int)e.Average(a=>a.Severity))" />
+                            }
+
+                        </ApexChart>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Color Range Heatmap Chart</div>
+                </div> 
+                <div class="card-body">
+                     <ApexChart TItem="HeatmapColorRange" Title="HeatMap Chart with Color Range" Options="HeatmapColorRangeoptions" Debug Height="350">
+
+                            @foreach (var source in HeatmapColorRangeincidents.GroupBy(e => e.Source))
+                            {
+                                <ApexPointSeries TItem="HeatmapColorRange"
+                                            Items="source.OrderBy(e=>e.WeekNumber)"
+                                            Name="@source.Key!.ToString()"
+                                            SeriesType="SeriesType.Heatmap"
+                                            XValue="@(e => e.WeekName)"
+                                            YAggregate="@(e => (int)e.Average(a=>a.Severity))" />
+                            }
+
+                        </ApexChart>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Heatmap Range Without Shades</div>
+                </div> 
+                <div class="card-body">
+                    <ApexChart TItem="HeatmapShades" Title="Rounded (Range without Shades)" Options="HeatmapShadesoptions" Height="350">
+
+                            @foreach (var source in HeatmapShadesincidents.GroupBy(e => e.Source).OrderBy(e => e.Key))
+                            {
+                                <ApexPointSeries TItem="HeatmapShades"
+                                            Items="source.OrderBy(e=>e.WeekNumber)"
+                                            Name="@source.Key!.ToString()"
+                                            SeriesType="SeriesType.Heatmap"
+                                            XValue="@(e => e.WeekName)"
+                                            YAggregate="@(e => (int)e.Average(a=>a.Severity))" ShowDataLabels />
+                            }
+
+                    </ApexChart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End::row-1 -->
+</div>
+
+@code {
+
+    // Heatmapbasic Chart Start //
+    private List<Heatmapbasic> incidents { get; set; } = DataHeatmapbasic.GetHeatmapbasics();
+    private ApexChartOptions<Heatmapbasic> Heatmapbasicoptions { get; set; } = new();
+    public static class DataHeatmapbasic
+    {
+        public static List<Heatmapbasic> GetHeatmapbasics()
+        {
+            List<Heatmapbasic> Heatmapbasics = new List<Heatmapbasic>
+            {
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 1, WeekName = "Week1", Severity = 3 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 2, WeekName = "Week2", Severity = 2 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 4, WeekName = "Week4", Severity = 4 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 5, WeekName = "Week5", Severity = 5 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 6, WeekName = "Week6", Severity = 6 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 8, WeekName = "Week8", Severity = 4 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 9, WeekName = "Week9", Severity = 5 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 10, WeekName = "Week10", Severity = 6 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 11, WeekName = "Week11", Severity = 3 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 12, WeekName = "Week12", Severity = 2 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 13, WeekName = "Week13", Severity = 1 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 14, WeekName = "Week14", Severity = 4 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 15, WeekName = "Week15", Severity = 5 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 16, WeekName = "Week16", Severity = 6 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 17, WeekName = "Week17", Severity = 1 },
+                new Heatmapbasic { Source = "Metric1", WeekNumber = 18, WeekName = "Week18", Severity = 4 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 1, WeekName = "Week1", Severity = 2 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 4, WeekName = "Week4", Severity = 2 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 5, WeekName = "Week5", Severity = 3 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 6, WeekName = "Week6", Severity = 1 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 7, WeekName = "Week7", Severity = 2 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 9, WeekName = "Week9", Severity = 1 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 10, WeekName = "Week10", Severity = 2 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 11, WeekName = "Week11", Severity = 3 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 12, WeekName = "Week12", Severity = 1 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 13, WeekName = "Week13", Severity = 2 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 14, WeekName = "Week14", Severity = 3 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 15, WeekName = "Week15", Severity = 1 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 16, WeekName = "Week16", Severity = 2 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 17, WeekName = "Week17", Severity = 3 },
+                new Heatmapbasic { Source = "Metric2", WeekNumber = 18, WeekName = "Week18", Severity = 1 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 1, WeekName = "Week1", Severity = 1 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 3, WeekName = "Week3", Severity = 2 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 4, WeekName = "Week4", Severity = 1 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 5, WeekName = "Week5", Severity = 3 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 6, WeekName = "Week6", Severity = 2 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 9, WeekName = "Week9", Severity = 2 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 10, WeekName = "Week10", Severity = 1 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 11, WeekName = "Week11", Severity = 3 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 12, WeekName = "Week12", Severity = 2 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 13, WeekName = "Week13", Severity = 1 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 14, WeekName = "Week14", Severity = 3 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 15, WeekName = "Week15", Severity = 2 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 16, WeekName = "Week16", Severity = 1 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 17, WeekName = "Week17", Severity = 3 },
+                new Heatmapbasic { Source = "Metric3", WeekNumber = 18, WeekName = "Week18", Severity = 2 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 1, WeekName = "Week1", Severity = 2 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 2, WeekName = "Week2", Severity = 1 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 3, WeekName = "Week3", Severity = 3 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 4, WeekName = "Week4", Severity = 2 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 5, WeekName = "Week5", Severity = 1 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 6, WeekName = "Week6", Severity = 3 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 7, WeekName = "Week7", Severity = 2 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 8, WeekName = "Week8", Severity = 1 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 9, WeekName = "Week9", Severity = 3 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 10, WeekName = "Week10", Severity = 2 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 11, WeekName = "Week11", Severity = 1 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 12, WeekName = "Week12", Severity = 3 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 13, WeekName = "Week13", Severity = 2 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 14, WeekName = "Week14", Severity = 1 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 15, WeekName = "Week15", Severity = 3 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 16, WeekName = "Week16", Severity = 2 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 17, WeekName = "Week17", Severity = 1 },
+                new Heatmapbasic { Source = "Metric4", WeekNumber = 18, WeekName = "Week18", Severity = 3 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 1, WeekName = "Week1", Severity = 1 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 3, WeekName = "Week3", Severity = 2 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 4, WeekName = "Week4", Severity = 1 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 5, WeekName = "Week5", Severity = 3 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 6, WeekName = "Week6", Severity = 2 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 9, WeekName = "Week9", Severity = 2 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 10, WeekName = "Week10", Severity = 1 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 11, WeekName = "Week11", Severity = 3 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 12, WeekName = "Week12", Severity = 2 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 13, WeekName = "Week13", Severity = 1 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 14, WeekName = "Week14", Severity = 3 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 15, WeekName = "Week15", Severity = 2 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 16, WeekName = "Week16", Severity = 1 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 17, WeekName = "Week17", Severity = 3 },
+                new Heatmapbasic { Source = "Metric5", WeekNumber = 18, WeekName = "Week18", Severity = 2 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 1, WeekName = "Week1", Severity = 3 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 2, WeekName = "Week2", Severity = 2 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 4, WeekName = "Week4", Severity = 4 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 5, WeekName = "Week5", Severity = 5 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 6, WeekName = "Week6", Severity = 6 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 8, WeekName = "Week8", Severity = 4 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 9, WeekName = "Week9", Severity = 5 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 10, WeekName = "Week10", Severity = 6 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 11, WeekName = "Week11", Severity = 3 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 12, WeekName = "Week12", Severity = 2 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 13, WeekName = "Week13", Severity = 1 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 14, WeekName = "Week14", Severity = 4 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 15, WeekName = "Week15", Severity = 5 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 16, WeekName = "Week16", Severity = 6 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 17, WeekName = "Week17", Severity = 1 },
+                new Heatmapbasic { Source = "Metric6", WeekNumber = 18, WeekName = "Week18", Severity = 4 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 1, WeekName = "Week1", Severity = 2 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 4, WeekName = "Week4", Severity = 2 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 5, WeekName = "Week5", Severity = 3 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 6, WeekName = "Week6", Severity = 1 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 7, WeekName = "Week7", Severity = 2 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 9, WeekName = "Week9", Severity = 1 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 10, WeekName = "Week10", Severity = 2 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 11, WeekName = "Week11", Severity = 3 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 12, WeekName = "Week12", Severity = 1 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 13, WeekName = "Week13", Severity = 2 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 14, WeekName = "Week14", Severity = 3 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 15, WeekName = "Week15", Severity = 1 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 16, WeekName = "Week16", Severity = 2 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 17, WeekName = "Week17", Severity = 3 },
+                new Heatmapbasic { Source = "Metric7", WeekNumber = 18, WeekName = "Week18", Severity = 1 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 1, WeekName = "Week1", Severity = 3 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 2, WeekName = "Week2", Severity = 2 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 4, WeekName = "Week4", Severity = 4 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 5, WeekName = "Week5", Severity = 5 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 6, WeekName = "Week6", Severity = 6 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 8, WeekName = "Week8", Severity = 4 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 9, WeekName = "Week9", Severity = 5 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 10, WeekName = "Week10", Severity = 6 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 11, WeekName = "Week11", Severity = 3 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 12, WeekName = "Week12", Severity = 2 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 13, WeekName = "Week13", Severity = 1 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 14, WeekName = "Week14", Severity = 4 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 15, WeekName = "Week15", Severity = 5 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 16, WeekName = "Week16", Severity = 6 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 17, WeekName = "Week17", Severity = 1 },
+                new Heatmapbasic { Source = "Metric8", WeekNumber = 18, WeekName = "Week18", Severity = 4 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 1, WeekName = "Week1", Severity = 2 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 4, WeekName = "Week4", Severity = 2 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 5, WeekName = "Week5", Severity = 3 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 6, WeekName = "Week6", Severity = 1 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 7, WeekName = "Week7", Severity = 2 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 9, WeekName = "Week9", Severity = 1 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 10, WeekName = "Week10", Severity = 2 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 11, WeekName = "Week11", Severity = 3 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 12, WeekName = "Week12", Severity = 1 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 13, WeekName = "Week13", Severity = 2 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 14, WeekName = "Week14", Severity = 3 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 15, WeekName = "Week15", Severity = 1 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 16, WeekName = "Week16", Severity = 2 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 17, WeekName = "Week17", Severity = 3 },
+                new Heatmapbasic { Source = "Metric9", WeekNumber = 18, WeekName = "Week18", Severity = 1 },
+            };
+            return Heatmapbasics;
+        }
+    }
+    public class Heatmapbasic
+    {
+        public string? Source { get; set; }
+        public int WeekNumber { get; set; }
+        public string? WeekName { get; set; }
+        public int Severity { get; set; }
+    }
+    //  Heatmapbasic Chart End //
+
+    // Heatmap Multi Chart Start //
+    private List<HeatmapMulticolor> HeatmapMulticolorincidents { get; set; } = DataHeatmapMulticolor.GetHeatmapMulticolors();
+    private ApexChartOptions<HeatmapMulticolor> HeatmapMulticoloroptions { get; set; } = new();
+    public static class DataHeatmapMulticolor
+    {
+        public static List<HeatmapMulticolor> GetHeatmapMulticolors()
+        {
+            // Sample data for HeatmapMulticolors
+            List<HeatmapMulticolor> HeatmapMulticolors = new List<HeatmapMulticolor>
+            {
+                new HeatmapMulticolor { Source = "w1", WeekNumber = 1, WeekName = "Week1", Severity = 3 },
+                new HeatmapMulticolor { Source = "w1", WeekNumber = 2, WeekName = "Week2", Severity = 2 },
+                new HeatmapMulticolor { Source = "w1", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new HeatmapMulticolor { Source = "w1", WeekNumber = 4, WeekName = "Week4", Severity = 4 },
+                new HeatmapMulticolor { Source = "w1", WeekNumber = 5, WeekName = "Week5", Severity = 5 },
+                new HeatmapMulticolor { Source = "w1", WeekNumber = 6, WeekName = "Week6", Severity = 6 },
+                new HeatmapMulticolor { Source = "w1", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new HeatmapMulticolor { Source = "w1", WeekNumber = 8, WeekName = "Week8", Severity = 4 },
+                new HeatmapMulticolor { Source = "w2", WeekNumber = 1, WeekName = "Week1", Severity = 2 },
+                new HeatmapMulticolor { Source = "w2", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new HeatmapMulticolor { Source = "w2", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new HeatmapMulticolor { Source = "w2", WeekNumber = 4, WeekName = "Week4", Severity = 2 },
+                new HeatmapMulticolor { Source = "w2", WeekNumber = 5, WeekName = "Week5", Severity = 3 },
+                new HeatmapMulticolor { Source = "w2", WeekNumber = 6, WeekName = "Week6", Severity = 1 },
+                new HeatmapMulticolor { Source = "w2", WeekNumber = 7, WeekName = "Week7", Severity = 2 },
+                new HeatmapMulticolor { Source = "w2", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new HeatmapMulticolor { Source = "w3", WeekNumber = 1, WeekName = "Week1", Severity = 1 },
+                new HeatmapMulticolor { Source = "w3", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new HeatmapMulticolor { Source = "w3", WeekNumber = 3, WeekName = "Week3", Severity = 2 },
+                new HeatmapMulticolor { Source = "w3", WeekNumber = 4, WeekName = "Week4", Severity = 1 },
+                new HeatmapMulticolor { Source = "w3", WeekNumber = 5, WeekName = "Week5", Severity = 3 },
+                new HeatmapMulticolor { Source = "w3", WeekNumber = 6, WeekName = "Week6", Severity = 2 },
+                new HeatmapMulticolor { Source = "w3", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new HeatmapMulticolor { Source = "w3", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new HeatmapMulticolor { Source = "w4", WeekNumber = 1, WeekName = "Week1", Severity = 2 },
+                new HeatmapMulticolor { Source = "w4", WeekNumber = 2, WeekName = "Week2", Severity = 1 },
+                new HeatmapMulticolor { Source = "w4", WeekNumber = 3, WeekName = "Week3", Severity = 3 },
+                new HeatmapMulticolor { Source = "w4", WeekNumber = 4, WeekName = "Week4", Severity = 2 },
+                new HeatmapMulticolor { Source = "w4", WeekNumber = 5, WeekName = "Week5", Severity = 1 },
+                new HeatmapMulticolor { Source = "w4", WeekNumber = 6, WeekName = "Week6", Severity = 3 },
+                new HeatmapMulticolor { Source = "w4", WeekNumber = 7, WeekName = "Week7", Severity = 2 },
+                new HeatmapMulticolor { Source = "w4", WeekNumber = 8, WeekName = "Week8", Severity = 1 },
+                new HeatmapMulticolor { Source = "w5", WeekNumber = 1, WeekName = "Week1", Severity = 3 },
+                new HeatmapMulticolor { Source = "w5", WeekNumber = 2, WeekName = "Week2", Severity = 2 },
+                new HeatmapMulticolor { Source = "w5", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new HeatmapMulticolor { Source = "w5", WeekNumber = 4, WeekName = "Week4", Severity = 4 },
+                new HeatmapMulticolor { Source = "w5", WeekNumber = 5, WeekName = "Week5", Severity = 5 },
+                new HeatmapMulticolor { Source = "w5", WeekNumber = 6, WeekName = "Week6", Severity = 6 },
+                new HeatmapMulticolor { Source = "w5", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new HeatmapMulticolor { Source = "w5", WeekNumber = 8, WeekName = "Week8", Severity = 4 },
+                new HeatmapMulticolor { Source = "w6", WeekNumber = 1, WeekName = "Week1", Severity = 2 },
+                new HeatmapMulticolor { Source = "w6", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new HeatmapMulticolor { Source = "w6", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new HeatmapMulticolor { Source = "w6", WeekNumber = 4, WeekName = "Week4", Severity = 2 },
+                new HeatmapMulticolor { Source = "w6", WeekNumber = 5, WeekName = "Week5", Severity = 3 },
+                new HeatmapMulticolor { Source = "w6", WeekNumber = 6, WeekName = "Week6", Severity = 1 },
+                new HeatmapMulticolor { Source = "w6", WeekNumber = 7, WeekName = "Week7", Severity = 2 },
+                new HeatmapMulticolor { Source = "w6", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new HeatmapMulticolor { Source = "w7", WeekNumber = 1, WeekName = "Week1", Severity = 1 },
+                new HeatmapMulticolor { Source = "w7", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new HeatmapMulticolor { Source = "w7", WeekNumber = 3, WeekName = "Week3", Severity = 2 },
+                new HeatmapMulticolor { Source = "w7", WeekNumber = 4, WeekName = "Week4", Severity = 1 },
+                new HeatmapMulticolor { Source = "w7", WeekNumber = 5, WeekName = "Week5", Severity = 3 },
+                new HeatmapMulticolor { Source = "w7", WeekNumber = 6, WeekName = "Week6", Severity = 2 },
+                new HeatmapMulticolor { Source = "w7", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new HeatmapMulticolor { Source = "w7", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new HeatmapMulticolor { Source = "w8", WeekNumber = 1, WeekName = "Week1", Severity = 2 },
+                new HeatmapMulticolor { Source = "w8", WeekNumber = 2, WeekName = "Week2", Severity = 1 },
+                new HeatmapMulticolor { Source = "w8", WeekNumber = 3, WeekName = "Week3", Severity = 3 },
+                new HeatmapMulticolor { Source = "w8", WeekNumber = 4, WeekName = "Week4", Severity = 2 },
+                new HeatmapMulticolor { Source = "w8", WeekNumber = 5, WeekName = "Week5", Severity = 1 },
+                new HeatmapMulticolor { Source = "w8", WeekNumber = 6, WeekName = "Week6", Severity = 3 },
+                new HeatmapMulticolor { Source = "w8", WeekNumber = 7, WeekName = "Week7", Severity = 2 },
+                new HeatmapMulticolor { Source = "w8", WeekNumber = 8, WeekName = "Week8", Severity = 1 },
+                new HeatmapMulticolor { Source = "w9", WeekNumber = 1, WeekName = "Week1", Severity = 3 },
+                new HeatmapMulticolor { Source = "w9", WeekNumber = 2, WeekName = "Week2", Severity = 2 },
+                new HeatmapMulticolor { Source = "w9", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new HeatmapMulticolor { Source = "w9", WeekNumber = 4, WeekName = "Week4", Severity = 4 },
+                new HeatmapMulticolor { Source = "w9", WeekNumber = 5, WeekName = "Week5", Severity = 5 },
+                new HeatmapMulticolor { Source = "w9", WeekNumber = 6, WeekName = "Week6", Severity = 6 },
+                new HeatmapMulticolor { Source = "w9", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new HeatmapMulticolor { Source = "w9", WeekNumber = 8, WeekName = "Week8", Severity = 4 },
+                new HeatmapMulticolor { Source = "w10", WeekNumber = 1, WeekName = "Week1", Severity = 2 },
+                new HeatmapMulticolor { Source = "w10", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new HeatmapMulticolor { Source = "w10", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new HeatmapMulticolor { Source = "w10", WeekNumber = 4, WeekName = "Week4", Severity = 2 },
+                new HeatmapMulticolor { Source = "w10", WeekNumber = 5, WeekName = "Week5", Severity = 3 },
+                new HeatmapMulticolor { Source = "w10", WeekNumber = 6, WeekName = "Week6", Severity = 1 },
+                new HeatmapMulticolor { Source = "w10", WeekNumber = 7, WeekName = "Week7", Severity = 2 },
+                new HeatmapMulticolor { Source = "w10", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new HeatmapMulticolor { Source = "w11", WeekNumber = 1, WeekName = "Week1", Severity = 1 },
+                new HeatmapMulticolor { Source = "w11", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new HeatmapMulticolor { Source = "w11", WeekNumber = 3, WeekName = "Week3", Severity = 2 },
+                new HeatmapMulticolor { Source = "w11", WeekNumber = 4, WeekName = "Week4", Severity = 1 },
+                new HeatmapMulticolor { Source = "w11", WeekNumber = 5, WeekName = "Week5", Severity = 3 },
+                new HeatmapMulticolor { Source = "w11", WeekNumber = 6, WeekName = "Week6", Severity = 2 },
+                new HeatmapMulticolor { Source = "w11", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new HeatmapMulticolor { Source = "w11", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new HeatmapMulticolor { Source = "w12", WeekNumber = 1, WeekName = "Week1", Severity = 2 },
+                new HeatmapMulticolor { Source = "w12", WeekNumber = 2, WeekName = "Week2", Severity = 1 },
+                new HeatmapMulticolor { Source = "w12", WeekNumber = 3, WeekName = "Week3", Severity = 3 },
+                new HeatmapMulticolor { Source = "w12", WeekNumber = 4, WeekName = "Week4", Severity = 2 },
+                new HeatmapMulticolor { Source = "w12", WeekNumber = 5, WeekName = "Week5", Severity = 1 },
+                new HeatmapMulticolor { Source = "w12", WeekNumber = 6, WeekName = "Week6", Severity = 3 },
+                new HeatmapMulticolor { Source = "w12", WeekNumber = 7, WeekName = "Week7", Severity = 2 },
+                new HeatmapMulticolor { Source = "w12", WeekNumber = 8, WeekName = "Week8", Severity = 1 },
+                
+                new HeatmapMulticolor { Source = "w13", WeekNumber = 1, WeekName = "Week1", Severity = 3 },
+                new HeatmapMulticolor { Source = "w13", WeekNumber = 2, WeekName = "Week2", Severity = 2 },
+                new HeatmapMulticolor { Source = "w13", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new HeatmapMulticolor { Source = "w13", WeekNumber = 4, WeekName = "Week4", Severity = 4 },
+                new HeatmapMulticolor { Source = "w13", WeekNumber = 5, WeekName = "Week5", Severity = 5 },
+                new HeatmapMulticolor { Source = "w13", WeekNumber = 6, WeekName = "Week6", Severity = 6 },
+                new HeatmapMulticolor { Source = "w13", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new HeatmapMulticolor { Source = "w13", WeekNumber = 8, WeekName = "Week8", Severity = 4 },
+                new HeatmapMulticolor { Source = "w14", WeekNumber = 1, WeekName = "Week1", Severity = 2 },
+                new HeatmapMulticolor { Source = "w14", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new HeatmapMulticolor { Source = "w14", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new HeatmapMulticolor { Source = "w14", WeekNumber = 4, WeekName = "Week4", Severity = 2 },
+                new HeatmapMulticolor { Source = "w14", WeekNumber = 5, WeekName = "Week5", Severity = 3 },
+                new HeatmapMulticolor { Source = "w14", WeekNumber = 6, WeekName = "Week6", Severity = 1 },
+                new HeatmapMulticolor { Source = "w14", WeekNumber = 7, WeekName = "Week7", Severity = 2 },
+                new HeatmapMulticolor { Source = "w14", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new HeatmapMulticolor { Source = "w15", WeekNumber = 1, WeekName = "Week1", Severity = 1 },
+                new HeatmapMulticolor { Source = "w15", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new HeatmapMulticolor { Source = "w15", WeekNumber = 3, WeekName = "Week3", Severity = 2 },
+                new HeatmapMulticolor { Source = "w15", WeekNumber = 4, WeekName = "Week4", Severity = 1 },
+                new HeatmapMulticolor { Source = "w15", WeekNumber = 5, WeekName = "Week5", Severity = 3 },
+                new HeatmapMulticolor { Source = "w15", WeekNumber = 6, WeekName = "Week6", Severity = 2 },
+                new HeatmapMulticolor { Source = "w15", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new HeatmapMulticolor { Source = "w15", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+            };
+
+            return HeatmapMulticolors;
+        }
+    }
+    public class HeatmapMulticolor
+    {
+        public string? Source { get; set; }
+        public int WeekNumber { get; set; }
+        public string? WeekName { get; set; }
+        public int Severity { get; set; }
+    }
+    //  Heatmap Multi Chart End //
+
+    // Heatmap Color Range Chart Start //
+    private List<HeatmapColorRange> HeatmapColorRangeincidents { get; set; } = DataHeatmapColorRange.GetHeatmapColorRanges();
+    private ApexChartOptions<HeatmapColorRange>? HeatmapColorRangeoptions;
+    public static class DataHeatmapColorRange
+    {
+        public static List<HeatmapColorRange> GetHeatmapColorRanges()
+        {
+            List<HeatmapColorRange> HeatmapColorRanges = new List<HeatmapColorRange>
+            {
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 1, WeekName = "Week1", Severity = 3 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 2, WeekName = "Week2", Severity = 72 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 4, WeekName = "Week4", Severity = 64 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 5, WeekName = "Week5", Severity = 5 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 6, WeekName = "Week6", Severity = 76 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 8, WeekName = "Week8", Severity = 88 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 9, WeekName = "Week9", Severity = 5 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 10, WeekName = "Week10", Severity = 99 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 11, WeekName = "Week11", Severity = 3 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 12, WeekName = "Week12", Severity = 77 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 13, WeekName = "Week13", Severity = 1 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 14, WeekName = "Week14", Severity = 66 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 15, WeekName = "Week15", Severity = 5 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 16, WeekName = "Week16", Severity = 55 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 17, WeekName = "Week17", Severity = 1 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 18, WeekName = "Week18", Severity = 98 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 19, WeekName = "Week19", Severity = 5 },
+                new HeatmapColorRange { Source = "Jan", WeekNumber = 20, WeekName = "Week20", Severity = 100 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 1, WeekName = "Week1", Severity = 2 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 3, WeekName = "Week3", Severity = 81 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 4, WeekName = "Week4", Severity = 2 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 5, WeekName = "Week5", Severity = 73 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 6, WeekName = "Week6", Severity = 1 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 7, WeekName = "Week7", Severity = 82 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 9, WeekName = "Week9", Severity = 91 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 10, WeekName = "Week10", Severity = 2 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 11, WeekName = "Week11", Severity = 83 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 12, WeekName = "Week12", Severity = 1 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 13, WeekName = "Week13", Severity = 62 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 14, WeekName = "Week14", Severity = 3 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 15, WeekName = "Week15", Severity = 91 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 16, WeekName = "Week16", Severity = 2 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 17, WeekName = "Week17", Severity = 73 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 18, WeekName = "Week18", Severity = 1 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 19, WeekName = "Week19", Severity = 93 },
+                new HeatmapColorRange { Source = "Feb", WeekNumber = 20, WeekName = "Week20", Severity = 1 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 1, WeekName = "Week1", Severity = 91 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 3, WeekName = "Week3", Severity = 2 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 4, WeekName = "Week4", Severity = 71 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 5, WeekName = "Week5", Severity = 63 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 6, WeekName = "Week6", Severity = 2 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 7, WeekName = "Week7", Severity = 71 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 9, WeekName = "Week9", Severity = 2 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 10, WeekName = "Week10", Severity = 7 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 11, WeekName = "Week11", Severity = 83 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 12, WeekName = "Week12", Severity = 2 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 13, WeekName = "Week13", Severity = 1 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 14, WeekName = "Week14", Severity = 93 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 15, WeekName = "Week15", Severity = 62 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 16, WeekName = "Week16", Severity = 71 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 17, WeekName = "Week17", Severity = 3 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 18, WeekName = "Week18", Severity = 2 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 19, WeekName = "Week19", Severity = 83 },
+                new HeatmapColorRange { Source = "Mar", WeekNumber = 20, WeekName = "Week20", Severity = 82 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 1, WeekName = "Week1", Severity = 2 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 2, WeekName = "Week2", Severity = 81 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 3, WeekName = "Week3", Severity = 93 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 4, WeekName = "Week4", Severity = 2 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 5, WeekName = "Week5", Severity = 1 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 6, WeekName = "Week6", Severity = 73 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 7, WeekName = "Week7", Severity = 32 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 8, WeekName = "Week8", Severity = 31 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 9, WeekName = "Week9", Severity = 43 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 10, WeekName = "Week10", Severity = 52 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 11, WeekName = "Week11", Severity = 41 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 12, WeekName = "Week12", Severity = 83 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 13, WeekName = "Week13", Severity = 72 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 14, WeekName = "Week14", Severity = 1 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 15, WeekName = "Week15", Severity = 3 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 16, WeekName = "Week16", Severity = 52 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 17, WeekName = "Week17", Severity = 61 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 18, WeekName = "Week18", Severity = 3 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 19, WeekName = "Week19", Severity = 1 },
+                new HeatmapColorRange { Source = "Apr", WeekNumber = 20, WeekName = "Week20", Severity = 73 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 1, WeekName = "Week1", Severity = 3 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 2, WeekName = "Week2", Severity = 72 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 4, WeekName = "Week4", Severity = 64 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 5, WeekName = "Week5", Severity = 5 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 6, WeekName = "Week6", Severity = 76 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 8, WeekName = "Week8", Severity = 88 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 9, WeekName = "Week9", Severity = 5 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 10, WeekName = "Week10", Severity = 99 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 11, WeekName = "Week11", Severity = 3 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 12, WeekName = "Week12", Severity = 77 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 13, WeekName = "Week13", Severity = 1 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 14, WeekName = "Week14", Severity = 66 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 15, WeekName = "Week15", Severity = 5 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 16, WeekName = "Week16", Severity = 55 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 17, WeekName = "Week17", Severity = 1 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 18, WeekName = "Week18", Severity = 98 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 19, WeekName = "Week19", Severity = 5 },
+                new HeatmapColorRange { Source = "May", WeekNumber = 20, WeekName = "Week20", Severity = 100 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 1, WeekName = "Week1", Severity = 2 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 3, WeekName = "Week3", Severity = 81 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 4, WeekName = "Week4", Severity = 2 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 5, WeekName = "Week5", Severity = 73 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 6, WeekName = "Week6", Severity = 1 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 7, WeekName = "Week7", Severity = 82 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 9, WeekName = "Week9", Severity = 91 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 10, WeekName = "Week10", Severity = 2 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 11, WeekName = "Week11", Severity = 83 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 12, WeekName = "Week12", Severity = 1 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 13, WeekName = "Week13", Severity = 62 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 14, WeekName = "Week14", Severity = 3 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 15, WeekName = "Week15", Severity = 91 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 16, WeekName = "Week16", Severity = 2 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 17, WeekName = "Week17", Severity = 73 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 18, WeekName = "Week18", Severity = 1 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 19, WeekName = "Week19", Severity = 93 },
+                new HeatmapColorRange { Source = "Jun", WeekNumber = 20, WeekName = "Week20", Severity = 1 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 1, WeekName = "Week1", Severity = 91 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 2, WeekName = "Week2", Severity = 3 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 3, WeekName = "Week3", Severity = 2 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 4, WeekName = "Week4", Severity = 71 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 5, WeekName = "Week5", Severity = 63 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 6, WeekName = "Week6", Severity = 2 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 7, WeekName = "Week7", Severity = 71 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 9, WeekName = "Week9", Severity = 2 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 10, WeekName = "Week10", Severity = 7 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 11, WeekName = "Week11", Severity = 83 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 12, WeekName = "Week12", Severity = 2 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 13, WeekName = "Week13", Severity = 1 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 14, WeekName = "Week14", Severity = 93 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 15, WeekName = "Week15", Severity = 62 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 16, WeekName = "Week16", Severity = 71 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 17, WeekName = "Week17", Severity = 3 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 18, WeekName = "Week18", Severity = 2 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 19, WeekName = "Week19", Severity = 83 },
+                new HeatmapColorRange { Source = "Jul", WeekNumber = 20, WeekName = "Week20", Severity = 82 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 1, WeekName = "Week1", Severity = 2 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 2, WeekName = "Week2", Severity = 81 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 3, WeekName = "Week3", Severity = 93 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 4, WeekName = "Week4", Severity = 2 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 5, WeekName = "Week5", Severity = 1 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 6, WeekName = "Week6", Severity = 73 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 7, WeekName = "Week7", Severity = 32 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 8, WeekName = "Week8", Severity = 31 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 9, WeekName = "Week9", Severity = 43 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 10, WeekName = "Week10", Severity = 52 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 11, WeekName = "Week11", Severity = 41 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 12, WeekName = "Week12", Severity = 83 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 13, WeekName = "Week13", Severity = 72 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 14, WeekName = "Week14", Severity = 1 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 15, WeekName = "Week15", Severity = 3 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 16, WeekName = "Week16", Severity = 52 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 17, WeekName = "Week17", Severity = 61 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 18, WeekName = "Week18", Severity = 3 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 19, WeekName = "Week19", Severity = 1 },
+                new HeatmapColorRange { Source = "Aug", WeekNumber = 20, WeekName = "Week20", Severity = 73 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 1, WeekName = "Week1", Severity = 3 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 2, WeekName = "Week2", Severity = 72 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 3, WeekName = "Week3", Severity = 1 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 4, WeekName = "Week4", Severity = 64 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 5, WeekName = "Week5", Severity = 5 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 6, WeekName = "Week6", Severity = 76 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 7, WeekName = "Week7", Severity = 1 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 8, WeekName = "Week8", Severity = 88 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 9, WeekName = "Week9", Severity = 5 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 10, WeekName = "Week10", Severity = 99 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 11, WeekName = "Week11", Severity = 3 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 12, WeekName = "Week12", Severity = 77 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 13, WeekName = "Week13", Severity = 1 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 14, WeekName = "Week14", Severity = 66 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 15, WeekName = "Week15", Severity = 5 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 16, WeekName = "Week16", Severity = 55 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 17, WeekName = "Week17", Severity = 1 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 18, WeekName = "Week18", Severity = 28 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 19, WeekName = "Week19", Severity = 44 },
+                new HeatmapColorRange { Source = "Sep", WeekNumber = 20, WeekName = "Week20", Severity = -16 },
+            };
+
+            return HeatmapColorRanges;
+        }
+    }
+    public class HeatmapColorRange
+    {
+        public string? Source { get; set; }
+        public int WeekNumber { get; set; }
+        public string? WeekName { get; set; }
+        public int Severity { get; set; }
+    }
+    //  Heatmap Color Range End //
+
+    
+    //  Heatmap Without Shades Start //
+    private List<HeatmapShades> HeatmapShadesincidents { get; set; } = DataHeatmapShades.GetHeatmapShadess();
+    private ApexChartOptions<HeatmapShades> HeatmapShadesoptions = new();
+
+    public static class DataHeatmapShades
+    {
+        public static List<HeatmapShades> GetHeatmapShadess()
+        {
+            List<HeatmapShades> HeatmapShadess = new List<HeatmapShades>
+            {
+                new HeatmapShades { Source = "Metric1", WeekNumber = 1, WeekName = "Week1", Severity = 4 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 2, WeekName = "Week2", Severity = 4 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 3, WeekName = "Week3", Severity = 31 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 4, WeekName = "Week4", Severity = 67 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 5, WeekName = "Week5", Severity = 20 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 6, WeekName = "Week6", Severity = 53 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 7, WeekName = "Week7", Severity = 20 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 8, WeekName = "Week8", Severity = 62 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 9, WeekName = "Week9", Severity = 22 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 10, WeekName = "Week10", Severity = 75 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 11, WeekName = "Week11", Severity = 45 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 12, WeekName = "Week12", Severity = 22 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 13, WeekName = "Week13", Severity = 1 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 14, WeekName = "Week14", Severity = 80 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 15, WeekName = "Week15", Severity = 2 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 16, WeekName = "Week16", Severity = 3 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 17, WeekName = "Week17", Severity = 59 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 18, WeekName = "Week18", Severity = 85 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 19, WeekName = "Week19", Severity = 6 },
+                new HeatmapShades { Source = "Metric1", WeekNumber = 20, WeekName = "Week20", Severity = 54 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 1, WeekName = "Week1", Severity = 68 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 2, WeekName = "Week2", Severity = 67 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 3, WeekName = "Week3", Severity = 52 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 4, WeekName = "Week4", Severity = 16 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 5, WeekName = "Week5", Severity = 19 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 6, WeekName = "Week6", Severity = 1 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 7, WeekName = "Week7", Severity = 73 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 8, WeekName = "Week8", Severity = 3 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 9, WeekName = "Week9", Severity = 13 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 10, WeekName = "Week10", Severity = 7 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 11, WeekName = "Week11", Severity = 70 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 12, WeekName = "Week12", Severity = 13 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 13, WeekName = "Week13", Severity = 3 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 14, WeekName = "Week14", Severity = 5 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 15, WeekName = "Week15", Severity = 69 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 16, WeekName = "Week16", Severity = 46 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 17, WeekName = "Week17", Severity = 23 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 18, WeekName = "Week18", Severity = 24 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 19, WeekName = "Week19", Severity = 3 },
+                new HeatmapShades { Source = "Metric2", WeekNumber = 20, WeekName = "Week20", Severity = 43 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 1, WeekName = "Week1", Severity = 10 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 2, WeekName = "Week2", Severity = 43 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 3, WeekName = "Week3", Severity = 45 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 4, WeekName = "Week4", Severity = 64 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 5, WeekName = "Week5", Severity = 40 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 6, WeekName = "Week6", Severity = 41 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 7, WeekName = "Week7", Severity = 40 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 8, WeekName = "Week8", Severity = 11 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 9, WeekName = "Week9", Severity = 83 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 10, WeekName = "Week10", Severity = 17 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 11, WeekName = "Week11", Severity = 80 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 12, WeekName = "Week12", Severity = 5 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 13, WeekName = "Week13", Severity = 19 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 14, WeekName = "Week14", Severity = 35 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 15, WeekName = "Week15", Severity = 83 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 16, WeekName = "Week16", Severity = 6 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 17, WeekName = "Week17", Severity = 21 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 18, WeekName = "Week18", Severity = 46 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 19, WeekName = "Week19", Severity = 2 },
+                new HeatmapShades { Source = "Metric3", WeekNumber = 20, WeekName = "Week20", Severity = 41 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 1, WeekName = "Week1", Severity = 8 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 2, WeekName = "Week2", Severity = 28 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 3, WeekName = "Week3", Severity = 50 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 4, WeekName = "Week4", Severity = 0 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 5, WeekName = "Week5", Severity = 22 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 6, WeekName = "Week6", Severity = 17 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 7, WeekName = "Week7", Severity = 66 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 8, WeekName = "Week8", Severity = 71 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 9, WeekName = "Week9", Severity = 46 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 10, WeekName = "Week10", Severity = 12 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 11, WeekName = "Week11", Severity = 50 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 12, WeekName = "Week12", Severity = 0 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 13, WeekName = "Week13", Severity = 88 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 14, WeekName = "Week14", Severity = 69 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 15, WeekName = "Week15", Severity = 55 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 16, WeekName = "Week16", Severity = 16 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 17, WeekName = "Week17", Severity = 35 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 18, WeekName = "Week18", Severity = 7 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 19, WeekName = "Week19", Severity = 58 },
+                new HeatmapShades { Source = "Metric4", WeekNumber = 20, WeekName = "Week20", Severity = 65 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 1, WeekName = "Week1", Severity = 43 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 2, WeekName = "Week2", Severity = 54 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 3, WeekName = "Week3", Severity = 42 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 4, WeekName = "Week4", Severity = 21 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 5, WeekName = "Week5", Severity = 18 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 6, WeekName = "Week6", Severity = 23 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 7, WeekName = "Week7", Severity = 42 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 8, WeekName = "Week8", Severity = 64 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 9, WeekName = "Week9", Severity = 42 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 10, WeekName = "Week10", Severity = 2 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 11, WeekName = "Week11", Severity = 7 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 12, WeekName = "Week12", Severity = 79 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 13, WeekName = "Week13", Severity = 24 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 14, WeekName = "Week14", Severity = 75 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 15, WeekName = "Week15", Severity = 53 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 16, WeekName = "Week16", Severity = 83 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 17, WeekName = "Week17", Severity = 24 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 18, WeekName = "Week18", Severity = 85 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 19, WeekName = "Week19", Severity = 44 },
+                new HeatmapShades { Source = "Metric5", WeekNumber = 20, WeekName = "Week20", Severity = 5 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 1, WeekName = "Week1", Severity = 49 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 2, WeekName = "Week2", Severity = 6 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 3, WeekName = "Week3", Severity = 40 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 4, WeekName = "Week4", Severity = 46 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 5, WeekName = "Week5", Severity = 74 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 6, WeekName = "Week6", Severity = 80 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 7, WeekName = "Week7", Severity = 26 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 8, WeekName = "Week8", Severity = 65 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 9, WeekName = "Week9", Severity = 62 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 10, WeekName = "Week10", Severity = 44 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 11, WeekName = "Week11", Severity = 23 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 12, WeekName = "Week12", Severity = 74 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 13, WeekName = "Week13", Severity = 43 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 14, WeekName = "Week14", Severity = 20 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 15, WeekName = "Week15", Severity = 50 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 16, WeekName = "Week16", Severity = 87 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 17, WeekName = "Week17", Severity = 77 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 18, WeekName = "Week18", Severity = 57 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 19, WeekName = "Week19", Severity = 26 },
+                new HeatmapShades { Source = "Metric6", WeekNumber = 20, WeekName = "Week20", Severity = 79 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 1, WeekName = "Week1", Severity = 84 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 2, WeekName = "Week2", Severity = 24 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 3, WeekName = "Week3", Severity = 32 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 4, WeekName = "Week4", Severity = 45 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 5, WeekName = "Week5", Severity = 75 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 6, WeekName = "Week6", Severity = 83 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 7, WeekName = "Week7", Severity = 73 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 8, WeekName = "Week8", Severity = 25 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 9, WeekName = "Week9", Severity = 36 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 10, WeekName = "Week10", Severity = 22 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 11, WeekName = "Week11", Severity = 65 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 12, WeekName = "Week12", Severity = 41 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 13, WeekName = "Week13", Severity = 87 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 14, WeekName = "Week14", Severity = 14 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 15, WeekName = "Week15", Severity = 9 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 16, WeekName = "Week16", Severity = 64 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 17, WeekName = "Week17", Severity = 35 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 18, WeekName = "Week18", Severity = 31 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 19, WeekName = "Week19", Severity = 22 },
+                new HeatmapShades { Source = "Metric7", WeekNumber = 20, WeekName = "Week20", Severity = 52 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 1, WeekName = "Week1", Severity = 8 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 2, WeekName = "Week2", Severity = 16 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 3, WeekName = "Week3", Severity = 3 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 4, WeekName = "Week4", Severity = 24 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 5, WeekName = "Week5", Severity = 72 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 6, WeekName = "Week6", Severity = 82 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 7, WeekName = "Week7", Severity = 83 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 8, WeekName = "Week8", Severity = 38 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 9, WeekName = "Week9", Severity = 41 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 10, WeekName = "Week10", Severity = 67 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 11, WeekName = "Week11", Severity = 80 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 12, WeekName = "Week12", Severity = 10 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 13, WeekName = "Week13", Severity = 75 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 14, WeekName = "Week14", Severity = 57 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 15, WeekName = "Week15", Severity = 90 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 16, WeekName = "Week16", Severity = 40 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 17, WeekName = "Week17", Severity = 52 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 18, WeekName = "Week18", Severity = 3 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 19, WeekName = "Week19", Severity = 1 },
+                new HeatmapShades { Source = "Metric8", WeekNumber = 20, WeekName = "Week20", Severity = 70 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 1, WeekName = "Week1", Severity = 3 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 2, WeekName = "Week2", Severity = 23 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 3, WeekName = "Week3", Severity = 59 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 4, WeekName = "Week4", Severity = 7 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 5, WeekName = "Week5", Severity = 27 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 6, WeekName = "Week6", Severity = 54 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 7, WeekName = "Week7", Severity = 25 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 8, WeekName = "Week8", Severity = 51 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 9, WeekName = "Week9", Severity = 80 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 10, WeekName = "Week10", Severity = 9 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 11, WeekName = "Week11", Severity = 79 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 12, WeekName = "Week12", Severity = 69 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 13, WeekName = "Week13", Severity = 7 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 14, WeekName = "Week14", Severity = 90 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 15, WeekName = "Week15", Severity = 10 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 16, WeekName = "Week16", Severity = 68 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 17, WeekName = "Week17", Severity = 30 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 18, WeekName = "Week18", Severity = 83 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 19, WeekName = "Week19", Severity = 13 },
+                new HeatmapShades { Source = "Metric9", WeekNumber = 20, WeekName = "Week20", Severity = 76 },
+            };
+
+            return HeatmapShadess;
+        }
+    }
+    public class HeatmapShades
+    {
+        public string? Source { get; set; }
+        public int WeekNumber { get; set; }
+        public string? WeekName { get; set; }
+        public int Severity { get; set; }
+    }    
+    //  Heatmap Without Shades End //
+
+    
+    protected override void OnInitialized()
+    {
+        Heatmapbasicoptions = new ApexChartOptions<Heatmapbasic> {
+            DataLabels = new ApexCharts.DataLabels {
+                Enabled = true,
+            }, 
+            Colors = new Color(new List<string> { "#845adf" }),
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                }
+            },
+        };
+
+        HeatmapMulticoloroptions = new ApexChartOptions<HeatmapMulticolor> {
+            DataLabels = new ApexCharts.DataLabels {
+                Enabled = true,
+            }, 
+            Colors = new Color(new List<string> {"#BAFF29", "#7A918D", "#33A1FD", "#2176FF", "#8C5E58", "#A93F55", "#46AF78", "#A9D794", "#18D8D8", "#00A7C6", "#4E88B4", "#6A6E94", "#663F59", "#F27036", "#845adf" }),
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                }
+            },
+        };
+
+        HeatmapColorRangeoptions = new ApexChartOptions<HeatmapColorRange> {
+            DataLabels = new ApexCharts.DataLabels {
+                Enabled = false,
+            }, 
+            Grid = new Grid {
+                BorderColor = "",
+            },
+            Stroke =  new Stroke {
+                Width = 1
+            },
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            PlotOptions = new PlotOptions{
+                Heatmap = new () {
+                    ShadeIntensity = 0.5,
+                    Radius = 0,
+                    UseFillColorAsStroke = true,
+                    ColorScale = new (){
+                        Ranges = new () {
+                            new (){
+                                From = 0,
+                                To = 20,
+                                Color = "#845adf",
+                                Name = "low",
+                            },
+                            new (){
+                                From = 21,
+                                To = 40,
+                                Color = "#23b7e5",
+                                Name = "medium",
+                            },
+                            new (){
+                                From = 41,
+                                To = 60,
+                                Color = "#f5b849",
+                                Name = "high",
+                            },
+                            new (){
+                                From = 61,
+                                To = 80,
+                                Color = "#49b6f5",
+                                Name = "extreme",
+                            }
+                        }
+                    }
+                }
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                }
+            },
+        };
+
+        HeatmapShadesoptions = new ApexChartOptions<HeatmapShades> {
+            DataLabels = new ApexCharts.DataLabels {
+                Enabled = false,
+            }, 
+            Grid = new Grid {
+                BorderColor = "",
+            },
+            Stroke =  new Stroke {
+                Width = 0
+            },
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            PlotOptions = new PlotOptions{
+                Heatmap = new () {
+                    Radius = 30,
+                    EnableShades = false,
+                    ColorScale = new (){
+                        Ranges = new () {
+                            new (){
+                                From = 0,
+                                To = 50,
+                                Color = "#845adf",
+                            },
+                            new (){
+                                From = 51,
+                                To = 100,
+                                Color = "#23b7e5",
+                            },
+                        }
+                    }
+                }
+            },
+            Xaxis =  new XAxis {  
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                }
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                }
+            },
+        };
+
+
+    }
+}

@@ -1,0 +1,2380 @@
+@page "/crypto-marketcap"
+@using ApexCharts
+
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <h1 class="page-title fw-semibold fs-18 mb-0">Marketcap</h1>
+                    <div class="ms-md-1 ms-0">
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Crypto</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Marketcap</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start::row-1 -->
+                <div class="row">
+                    <div class="col-xxl-3 col-xl-6 col-lg-12">
+                        <div class="card custom-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-2">
+                                            <span class="avatar avatar-md avatar-rounded bg-light p-2">
+                                                <img src="../assets/images/crypto-currencies/regular/Bitcoin.svg" alt="">
+                                            </span>
+                                        </div>
+                                        <div class="mb-0 fw-semibold">
+                                            Bitcoin - BTC
+                                        </div>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <div id="bitcoin-chart">
+                                            <ApexChart TItem="BtcChart" Options=BtcChartChartOptions>
+                                                <ApexPointSeries TItem="BtcChart" Items="btcchart" SeriesType="@SeriesType.Line"
+                                                            XValue="@(e => e.BtcSeries)"
+                                                        YAggregate="@(e => e.Sum(e => e.BtcValue))"/>
+                                            </ApexChart>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-end">
+                                    <div>
+                                        <p class="mb-1">BTC / USD</p>
+                                        <p class="fs-20 mb-0 fw-semibold lh-1 text-primary">$35,876.29</p>
+                                    </div>
+                                    <div class="ms-auto text-end">
+                                        <p class="mb-0">$0.04</p>
+                                        <p class="mb-0 text-muted"><span class="text-muted">Vol:</span>(+2.33%)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer p-0">
+                                <div class="list-group border-0">
+                                    <a href="javascript:void(0);" class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom py-3">
+                                        <div class="d-flex w-100 justify-content-between align-items-center">
+                                            <p class="tx-14 mb-0 font-weight-semibold text-dark">Price Change <span class="badge bg-primary-transparent ms-3 text-primary">Increased</span></p>
+                                            <p class="text-success mb-0 font-weight-normal tx-13">
+                                                <span class="numberfont">+280.30(0.96%)</span> <i class="fa fa-arrow-up"></i> today
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0);" class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom py-3">
+                                        <div class="d-flex w-100 justify-content-between align-items-center">
+                                            <p class="tx-14 mb-0 font-weight-semibold text-dark">Market Rank<span class="badge bg-secondary-transparent ms-3">3 Years</span></p>
+                                            <p class="text-dark mb-0 tx-15">
+                                                <span class="numberfont">#1</span>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-6 col-lg-12">
+                        <div class="card custom-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-2">
+                                            <span class="avatar avatar-md avatar-rounded bg-light p-2">
+                                                <img src="../assets/images/crypto-currencies/regular/Ethereum.svg" alt="">
+                                            </span>
+                                        </div>
+                                        <div class="mb-0 fw-semibold">
+                                            Etherium - ETH
+                                        </div>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <div id="etherium-chart">
+                                            <ApexChart TItem="EthChart" Options=EthChartChartOptions>
+                                                <ApexPointSeries TItem="EthChart" Items="ethchart" SeriesType="@SeriesType.Line"
+                                                            XValue="@(e => e.EthSeries)"
+                                                        YAggregate="@(e => e.Sum(e => e.EthValue))"/>
+                                            </ApexChart>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-end">
+                                    <div>
+                                        <p class="mb-1">ETH / USD</p>
+                                        <p class="fs-20 mb-0 fw-semibold lh-1 text-primary">$31,244.12</p>
+                                    </div>
+                                    <div class="ms-auto text-end">
+                                        <p class="mb-0">$2.57</p>
+                                        <p class="mb-0 text-muted"><span class="text-muted">Vol:</span>(+13.45%)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer p-0">
+                                <div class="list-group border-0">
+                                    <a href="javascript:void(0);" class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom py-3">
+                                        <div class="d-flex w-100 justify-content-between align-items-center">
+                                            <p class="tx-14 mb-0 font-weight-semibold text-dark">Price Change <span class="badge bg-primary-transparent ms-3 text-primary">Increased</span></p>
+                                            <p class="text-success mb-0 font-weight-normal tx-13">
+                                                <span class="numberfont">+2,044.24(1.32%)</span> <i class="fa fa-arrow-up"></i> today
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0);" class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom py-3">
+                                        <div class="d-flex w-100 justify-content-between align-items-center">
+                                            <p class="tx-14 mb-0 font-weight-semibold text-dark">Market Rank</p>
+                                            <p class="text-dark mb-0 tx-15">
+                                                <span class="numberfont">#2</span>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-6 col-lg-12">
+                        <div class="card custom-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-2">
+                                            <span class="avatar avatar-md avatar-rounded bg-light p-2">
+                                                <img src="../assets/images/crypto-currencies/regular/Dash.svg" alt="">
+                                            </span>
+                                        </div>
+                                        <div class="mb-0 fw-semibold">
+                                            Dash - DASH
+                                        </div>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <div id="dashcoin-chart">
+                                            <ApexChart TItem="DashChart" Options=DashChartChartOptions>
+                                                <ApexPointSeries TItem="DashChart" Items="dashchart" SeriesType="@SeriesType.Line"
+                                                            XValue="@(e => e.DashSeries)"
+                                                        YAggregate="@(e => e.Sum(e => e.DashValue))"/>
+                                            </ApexChart>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-end">
+                                    <div>
+                                        <p class="mb-1">DASH / USD</p>
+                                        <p class="fs-20 mb-0 fw-semibold lh-1 text-primary">$26,345.000</p>
+                                    </div>
+                                    <div class="ms-auto text-end">
+                                        <p class="mb-0">$12.32</p>
+                                        <p class="mb-0 text-muted"><span class="text-muted">Vol:</span>(+112.95%)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer p-0">
+                                <div class="list-group border-0">
+                                    <a href="javascript:void(0);" class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom py-3">
+                                        <div class="d-flex w-100 justify-content-between align-items-center">
+                                            <p class="tx-14 mb-0 font-weight-semibold text-dark">Price Change <span class="badge bg-primary-transparent ms-3 text-primary">Increased</span></p>
+                                            <p class="text-success mb-0 font-weight-normal tx-13">
+                                                <span class="numberfont">+40.17 (1.52%)</span> <i class="fa fa-arrow-up"></i> today
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0);" class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom py-3">
+                                        <div class="d-flex w-100 justify-content-between align-items-center">
+                                            <p class="tx-14 mb-0 font-weight-semibold text-dark">Market Rank</p>
+                                            <p class="text-dark mb-0 tx-15">
+                                                <span class="numberfont">#105</span>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-6 col-lg-12">
+                        <div class="card custom-card overflow-hidden">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title">
+                                    My Top Currencies
+                                </div>
+                                <div>
+                                    <button class="btn btn-info-light btn-sm btn-wave">View All</button>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center justify-content-between  flex-wrap">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div>
+                                                    <span class="avatar avatar-sm p-1 bg-light">
+                                                        <img src="../assets/images/crypto-currencies/regular/Bitcoin.svg" alt="">
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span class="d-block fw-semibold">Bitcoin</span>
+                                                    <span class="d-block text-muted fs-12 fw-normal">$29,948.80</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <span class="fs-12 text-muted">Max Limit</span>
+                                                <span class="fw-semibold d-block">50 BTC</span>
+                                            </div>
+                                            <div>
+                                                <span class="fs-12 text-muted">My Volume</span>
+                                                <span class="fw-semibold d-block">31.2450 BTC</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center justify-content-between  flex-wrap">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div>
+                                                    <span class="avatar avatar-sm p-1 bg-light">
+                                                        <img src="../assets/images/crypto-currencies/regular/litecoin.svg" alt="">
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span class="d-block fw-semibold">Litecon</span>
+                                                    <span class="d-block text-muted fs-12 fw-normal">$9332.98</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <span class="fs-12 text-muted">Max Limit</span>
+                                                <span class="fw-semibold d-block">200 LTC</span>
+                                            </div>
+                                            <div class="text-end">
+                                                <span class="fs-12 text-muted">My Volume</span>
+                                                <span class="fw-semibold d-block">38.0023 LTC</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center justify-content-between  flex-wrap">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div>
+                                                    <span class="avatar avatar-sm p-1 bg-light">
+                                                        <img src="../assets/images/crypto-currencies/regular/Ethereum.svg" alt="">
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span class="d-block fw-semibold">Etherium</span>
+                                                    <span class="d-block text-muted fs-12 fw-normal">$1,895.96</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <span class="fs-12 text-muted">Max Limit</span>
+                                                <span class="fw-semibold d-block">100 ETH</span>
+                                            </div>
+                                            <div>
+                                                <span class="fs-12 text-muted">My Volume</span>
+                                                <span class="fw-semibold d-block">69.2412 BTC</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+                <!-- Start::row-2  -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title">
+                                    Crypto MarketCap
+                                </div>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <div>
+                                        <input class="form-control form-control-sm" type="text" placeholder="Search Here" aria-label=".form-control-sm example">
+                                    </div>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0);" class="btn btn-primary btn-sm btn-wave waves-effect waves-light" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Sort By<i class="ri-arrow-down-s-line align-middle ms-1 d-inline-block"></i>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu" style="">
+                                            <li><a class="dropdown-item" href="javascript:void(0);">Market Cap</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">Price</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">Trading Volume</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">Price Change (24h)</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">Rank</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">A - Z</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">All-Time High (ATH)</a></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-secondary btn-sm btn-wave waves-effect waves-light">View All</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th scope="col" class="fw-semibold">#</th>
+                                                <th scope="col">Crypto Name</th>
+                                                <th scope="col">MarketCap</th>
+                                                <th scope="col">Price<span class="text-muted ms-1">(USD)</span></th>
+                                                <th scope="col">1h Change</th>
+                                                <th scope="col">24h Change</th>
+                                                <th scope="col">Volume (24h)</th>
+                                                <th scope="col">Circulating Supply</th>
+                                                <th scope="col">last 1Week</th>
+                                                <th scope="col">Trade</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center">
+                                                    <a href="javascript:void(0);"><i class="ri-star-line fs-16 text-muted"></i></a>
+                                                </td>
+                                                <td>1</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-xs avatar-rounded">
+                                                                <img src="../assets/images/crypto-currencies/square-color/Bitcoin.svg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div class="fw-semibold"><a href="javascript:void(0);">Bitcoin (BTC)</a></div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">$582.23B</span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">
+                                                        <a href="javascript:void(0);">$29,948.80</a>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-danger fw-semibold"><i class="ti ti-arrow-narrow-down fs-15 fw-semibold"></i>0.483%</span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-success fw-semibold"><i class="ti ti-arrow-narrow-up fs-15 fw-semibold"></i>0.239%</span>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)">
+                                                        <span class="d-block fw-semibold">$11.79B USD</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);">
+                                                        <span class="fw-semibold d-block mb-2">
+                                                            19.43M of (21M)
+                                                        </span>
+                                                        <div class="progress-stacked progress-xs w-75">
+                                                            <div class="progress-bar bg-success op-5" role="progressbar" style="width: 88%"
+                                                                aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            <div class="progress-bar bg-danger op-5" role="progressbar" style="width: 12%"
+                                                                aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </a>    
+                                                </td>
+                                                <td>
+                                                    <div id="btc-chart" class="overflow-hidden">
+                                                        <ApexChart TItem="MarketBtcChart" Options=MarketBtcChartChartOptions>
+                                                            <ApexPointSeries TItem="MarketBtcChart" Items="Marketbtcchart" SeriesType="@SeriesType.Line"
+                                                                Color="rgba(230, 83, 60)"
+                                                                XValue="@(e => e.MarketBtcSeries)"
+                                                                YAggregate="@(e => e.Sum(e => e.MarketBtcValue))"/>
+                                                        </ApexChart>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-success-light btn-sm">Trade</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">
+                                                    <a href="javascript:void(0);"><i class="ri-star-line fs-16 text-muted"></i></a>
+                                                </td>
+                                                <td>2</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-xs avatar-rounded">
+                                                                <img src="../assets/images/crypto-currencies/square-color/Ethereum.svg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div class="fw-semibold"><a href="javascript:void(0);">Etherium (ETH)</a></div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">$226.91B</span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">
+                                                        <a href="javascript:void(0);">$1,895.96</a>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-danger fw-semibold"><i class="ti ti-arrow-narrow-down fs-15 fw-semibold"></i>0.87%</span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-danger fw-semibold"><i class="ti ti-arrow-narrow-down fs-15 fw-semibold"></i>0.29%</span>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)">
+                                                        <span class="d-block fw-semibold">$2.83B USD</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);">
+                                                        <span class="fw-semibold d-block">
+                                                            120M
+                                                        </span>
+                                                    </a>    
+                                                </td>
+                                                <td>
+                                                    <div id="eth-chart" class="overflow-hidden">
+                                                        <ApexChart TItem="MarketEthChart" Options=MarketEthChartChartOptions>
+                                                            <ApexPointSeries TItem="MarketEthChart" Items="Marketethchart" SeriesType="@SeriesType.Line"
+                                                                Color="rgba(38, 191, 148)"
+                                                                XValue="@(e => e.MarketEthSeries)"
+                                                                YAggregate="@(e => e.Sum(e => e.MarketEthValue))"/>
+                                                        </ApexChart>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-success-light btn-sm">Trade</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">
+                                                    <a href="javascript:void(0);"><i class="ri-star-line fs-16 text-muted"></i></a></td>
+                                                <td>3</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-xs avatar-rounded">
+                                                                <img src="../assets/images/crypto-currencies/square-color/Golem.svg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div class="fw-semibold"><a href="javascript:void(0);">Golem (GLM)</a></div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">$202.07M</span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">
+                                                        <a href="javascript:void(0);">$0.201472</a>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-success fw-semibold"><i class="ti ti-arrow-narrow-up fs-15 fw-semibold"></i>0.61%</span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-danger fw-semibold"><i class="ti ti-arrow-narrow-down fs-15 fw-semibold"></i>34.96%</span>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)">
+                                                        <span class="d-block fw-semibold">$2,112,645 USD</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);">
+                                                        <span class="fw-semibold d-block mb-2">
+                                                            1,000M
+                                                        </span>
+                                                        <div class="progress-stacked progress-xs w-75">
+                                                            <div class="progress-bar bg-success op-5" role="progressbar" style="width: 100%"
+                                                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </a>    
+                                                </td>
+                                                <td>
+                                                    <div id="glm-chart" class="overflow-hidden">
+                                                        <ApexChart TItem="MarketGlmChart" Options=MarketGlmChartChartOptions>
+                                                            <ApexPointSeries TItem="MarketGlmChart" Items="Marketglmchart" SeriesType="@SeriesType.Line"
+                                                                Color="rgba(38, 191, 148)"
+                                                                XValue="@(e => e.MarketGlmSeries)"
+                                                                YAggregate="@(e => e.Sum(e => e.MarketGlmValue))"/>
+                                                        </ApexChart>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-success-light btn-sm">Trade</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">
+                                                    <a href="javascript:void(0);"><i class="ri-star-line fs-16 text-muted"></i></a></td>
+                                                <td>4</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-xs avatar-rounded">
+                                                                <img src="../assets/images/crypto-currencies/square-color/Dash.svg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div class="fw-semibold"><a href="javascript:void(0);">Dash (DASH)</a></div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">$365.877M</span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">
+                                                        <a href="javascript:void(0);">$32.13</a>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-success fw-semibold"><i class="ti ti-arrow-narrow-up fs-15 fw-semibold"></i>0.59%</span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-success fw-semibold"><i class="ti ti-arrow-narrow-down fs-15 fw-semibold"></i>1.24%</span>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)">
+                                                        <span class="d-block fw-semibold">$3.61M USD</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);">
+                                                        <span class="fw-semibold d-block mb-2">
+                                                            11.37M of (18.92M)
+                                                        </span>
+                                                        <div class="progress-stacked progress-xs w-75">
+                                                            <div class="progress-bar bg-success op-5" role="progressbar" style="width:56%"
+                                                                aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            <div class="progress-bar bg-danger op-5" role="progressbar" style="width: 44%"
+                                                                aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </a>    
+                                                </td>
+                                                <td>
+                                                    <div id="dash-chart" class="overflow-hidden">
+                                                        <ApexChart TItem="MarketDashChart" Options=MarketDashChartChartOptions>
+                                                            <ApexPointSeries TItem="MarketDashChart" Items="Marketdashchart" SeriesType="@SeriesType.Line"
+                                                                Color="rgba(38, 191, 148)"
+                                                                XValue="@(e => e.MarketDashSeries)"
+                                                                YAggregate="@(e => e.Sum(e => e.MarketDashValue))"/>
+                                                        </ApexChart>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-success-light btn-sm">Trade</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">
+                                                    <a href="javascript:void(0);"><i class="ri-star-line fs-16 text-muted"></i></a></td>
+                                                <td>5</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-xs avatar-rounded">
+                                                                <img src="../assets/images/crypto-currencies/square-color/Litecoin.svg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div class="fw-semibold"><a href="javascript:void(0);">Litecoin (LTC)</a></div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">$6.80B</span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">
+                                                        <a href="javascript:void(0);">$92.98</a>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-danger fw-semibold"><i class="ti ti-arrow-narrow-up fs-15 fw-semibold"></i>0.90%</span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-success fw-semibold"><i class="ti ti-arrow-narrow-down fs-15 fw-semibold"></i>2.22%</span>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)">
+                                                        <span class="d-block fw-semibold">$11.46B USD</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);">
+                                                        <span class="fw-semibold d-block mb-2">
+                                                            73.40M
+                                                        </span>
+                                                        <div class="progress-stacked progress-xs w-75">
+                                                            <div class="progress-bar bg-success op-5" role="progressbar" style="width:100%"
+                                                                aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </a>    
+                                                </td>
+                                                <td>
+                                                    <div id="lite-chart" class="overflow-hidden">
+                                                        <ApexChart TItem="MarketLtcChart" Options=MarketLtcChartChartOptions>
+                                                            <ApexPointSeries TItem="MarketLtcChart" Items="Marketltcchart" SeriesType="@SeriesType.Line"
+                                                                Color="rgba(230, 83, 60)"
+                                                                XValue="@(e => e.MarketLtcSeries)"
+                                                                YAggregate="@(e => e.Sum(e => e.MarketLtcValue))"/>
+                                                        </ApexChart>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-success-light btn-sm">Trade</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">
+                                                    <a href="javascript:void(0);"><i class="ri-star-line fs-16 text-muted"></i></a></td>
+                                                <td>6</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-xs avatar-rounded">
+                                                                <img src="../assets/images/crypto-currencies/square-color/Ripple.svg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div class="fw-semibold"><a href="javascript:void(0);">Ripple (XRP)</a></div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">$42.48B</span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">
+                                                        <a href="javascript:void(0);">$0.83</a>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-success fw-semibold"><i class="ti ti-arrow-narrow-up fs-15 fw-semibold"></i>0.01%</span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-success fw-semibold"><i class="ti ti-arrow-narrow-down fs-15 fw-semibold"></i>0.91%</span>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)">
+                                                        <span class="d-block fw-semibold">$2.99B USD</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);">
+                                                        <span class="fw-semibold d-block mb-2">
+                                                            52.54B of (100B)
+                                                        </span>
+                                                        <div class="progress-stacked progress-xs w-75">
+                                                            <div class="progress-bar bg-success op-5" role="progressbar" style="width:52%"
+                                                                aria-valuenow="52" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            <div class="progress-bar bg-danger op-5" role="progressbar" style="width: 48%"
+                                                                aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </a>    
+                                                </td>
+                                                <td>
+                                                    <div id="ripple-chart" class="overflow-hidden">
+                                                        <ApexChart TItem="MarketXrpChart" Options=MarketXrpChartChartOptions>
+                                                            <ApexPointSeries TItem="MarketXrpChart" Items="Marketxrpchart" SeriesType="@SeriesType.Line"
+                                                                Color="rgba(38, 191, 148)"
+                                                                XValue="@(e => e.MarketXrpSeries)"
+                                                                YAggregate="@(e => e.Sum(e => e.MarketXrpValue))"/>
+                                                        </ApexChart>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-success-light btn-sm">Trade</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">
+                                                    <a href="javascript:void(0);"><i class="ri-star-line fs-16 text-muted"></i></a></td>
+                                                <td>7</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-xs avatar-rounded">
+                                                                <img src="../assets/images/crypto-currencies/square-color/EOS.svg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div class="fw-semibold"><a href="javascript:void(0);">EOS</a></div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">$85.2M</span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">
+                                                        <a href="javascript:void(0);">$0.765957</a>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-danger fw-semibold"><i class="ti ti-arrow-narrow-up fs-15 fw-semibold"></i>0.61%</span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-danger fw-semibold"><i class="ti ti-arrow-narrow-down fs-15 fw-semibold"></i>20.65%</span>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)">
+                                                        <span class="d-block fw-semibold">$116.91M USD</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);">
+                                                        <span class="fw-semibold d-block mb-2">
+                                                            10.1B of (105B)
+                                                        </span>
+                                                        <div class="progress-stacked progress-xs w-75">
+                                                            <div class="progress-bar bg-success op-5" role="progressbar" style="width:10%"
+                                                                aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            <div class="progress-bar bg-danger op-5" role="progressbar" style="width: 90%"
+                                                                aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </a>    
+                                                </td>
+                                                <td>
+                                                    <div id="eos-chart" class="overflow-hidden">
+                                                        <ApexChart TItem="MarketEosChart" Options=MarketEosChartChartOptions>
+                                                            <ApexPointSeries TItem="MarketEosChart" Items="Marketeoschart" SeriesType="@SeriesType.Line"
+                                                                Color="rgba(38, 191, 148)"
+                                                                XValue="@(e => e.MarketEosSeries)"
+                                                                YAggregate="@(e => e.Sum(e => e.MarketEosValue))"/>
+                                                        </ApexChart>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-success-light btn-sm">Trade</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">
+                                                    <a href="javascript:void(0);"><i class="ri-star-line fs-16 text-muted"></i></a></td>
+                                                <td>8</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-xs avatar-rounded">
+                                                                <img src="../assets/images/crypto-currencies/square-color/Bytecoin.svg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div class="fw-semibold"><a href="javascript:void(0);">Bytecoin (BCN)</a></div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">$6.2M</span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">
+                                                        <a href="javascript:void(0);">$0.00039</a>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-danger fw-semibold"><i class="ti ti-arrow-narrow-up fs-15 fw-semibold"></i>25.24%</span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-danger fw-semibold"><i class="ti ti-arrow-narrow-down fs-15 fw-semibold"></i>27.12%</span>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)">
+                                                        <span class="d-block fw-semibold">$6,184 USD</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);">
+                                                        <span class="fw-semibold d-block mb-2">
+                                                            184.02B of (184.07B)
+                                                        </span>
+                                                        <div class="progress-stacked progress-xs w-75">
+                                                            <div class="progress-bar bg-success op-5" role="progressbar" style="width:99%"
+                                                                aria-valuenow="99" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            <div class="progress-bar bg-danger op-5" role="progressbar" style="width: 1%"
+                                                                aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </a>    
+                                                </td>
+                                                <td>
+                                                    <div id="bytecoin-chart" class="overflow-hidden">
+                                                        <ApexChart TItem="MarketBcnChart" Options=MarketBcnChartChartOptions>
+                                                            <ApexPointSeries TItem="MarketBcnChart" Items="Marketbcnchart" SeriesType="@SeriesType.Line"
+                                                                Color="rgba(230, 83, 60)"
+                                                                XValue="@(e => e.MarketBcnSeries)"
+                                                                YAggregate="@(e => e.Sum(e => e.MarketBcnValue))"/>
+                                                        </ApexChart>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-success-light btn-sm">Trade</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">
+                                                    <a href="javascript:void(0);"><i class="ri-star-line fs-16 text-muted"></i></a></td>
+                                                <td>9</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-xs avatar-rounded">
+                                                                <img src="../assets/images/crypto-currencies/square-color/IOTA.svg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div class="fw-semibold"><a href="javascript:void(0);">IOTA</a></div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">$510.429M</span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">
+                                                        <a href="javascript:void(0);">$0.184992</a>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-danger fw-semibold"><i class="ti ti-arrow-narrow-up fs-15 fw-semibold"></i>1.08%</span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-danger fw-semibold"><i class="ti ti-arrow-narrow-down fs-15 fw-semibold"></i>1.41%</span>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)">
+                                                        <span class="d-block fw-semibold">$7.50M USD</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);">
+                                                        <span class="fw-semibold d-block">
+                                                            2.78B
+                                                        </span>
+                                                    </a>    
+                                                </td>
+                                                <td>
+                                                    <div id="iota-chart" class="overflow-hidden"> 
+                                                        <ApexChart TItem="MarketIotaChart" Options=MarketIotaChartChartOptions>
+                                                            <ApexPointSeries TItem="MarketIotaChart" Items="Marketiotachart" SeriesType="@SeriesType.Line"
+                                                                Color="rgba(230, 83, 60)"
+                                                                XValue="@(e => e.MarketIotaSeries)"
+                                                                YAggregate="@(e => e.Sum(e => e.MarketIotaValue))"/>
+                                                        </ApexChart>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-success-light btn-sm">Trade</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">
+                                                    <a href="javascript:void(0);"><i class="ri-star-line fs-16 text-muted"></i></a></td>
+                                                <td>10</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <div class="lh-1">
+                                                            <span class="avatar avatar-xs avatar-rounded">
+                                                                <img src="../assets/images/crypto-currencies/square-color/Monero.svg" alt="">
+                                                            </span>
+                                                        </div>
+                                                        <div class="fw-semibold"><a href="javascript:void(0);">Monero</a></div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">$3.062B</span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">
+                                                        <a href="javascript:void(0);">$165.76</a>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-danger fw-semibold"><i class="ti ti-arrow-narrow-up fs-15 fw-semibold"></i>3.22%</span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-danger fw-semibold"><i class="ti ti-arrow-narrow-down fs-15 fw-semibold"></i>3.48%</span>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)">
+                                                        <span class="d-block fw-semibold">$105.8M USD</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);">
+                                                        <span class="fw-semibold d-block">
+                                                            18.15M
+                                                        </span>
+                                                    </a>    
+                                                </td>
+                                                <td>
+                                                    <div id="monero-chart" class="overflow-hidden">
+                                                        <ApexChart TItem="MarketMoneroChart" Options=MarketMoneroChartChartOptions>
+                                                            <ApexPointSeries TItem="MarketMoneroChart" Items="Marketmonerochart" SeriesType="@SeriesType.Line"
+                                                                Color="rgba(38, 191, 148)"
+                                                                XValue="@(e => e.MarketMoneroSeries)"
+                                                                YAggregate="@(e => e.Sum(e => e.MarketMoneroValue))"/>
+                                                        </ApexChart>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-success-light btn-sm">Trade</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer border-top-0">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination mb-0 float-end">
+                                        <li class="page-item disabled">
+                                            <a class="page-link">Previous</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="javascript:void(0);">2</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="javascript:void(0);">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End::row-2  -->
+
+            </div>
+
+@code {
+    
+    // BTC CHART SPARKLINE Start //
+    private List<BtcChart> btcchart { get; set; } = BtcchartData.GetBtcCharts();
+    private ApexChartOptions<BtcChart> BtcChartChartOptions { get; set; } = new();
+    public class BtcChart {
+        public decimal BtcSeries { get; set; }
+        public decimal BtcValue { get; set; }
+        
+    } ;
+    public static class BtcchartData {
+            public static List<BtcChart> GetBtcCharts()
+            {
+                List<BtcChart> btcchart = new List<BtcChart>
+                {
+                    new BtcChart { BtcSeries = 1, BtcValue = 0},
+                    new BtcChart { BtcSeries = 2, BtcValue = 45},
+                    new BtcChart { BtcSeries = 3, BtcValue = 54},
+                    new BtcChart { BtcSeries = 4, BtcValue = 38},
+                    new BtcChart { BtcSeries = 5, BtcValue = 56},
+                    new BtcChart { BtcSeries = 6, BtcValue = 24},
+                    new BtcChart { BtcSeries = 7, BtcValue = 65},
+                    new BtcChart { BtcSeries = 8, BtcValue = 31},
+                    new BtcChart { BtcSeries = 9, BtcValue = 37},
+                    new BtcChart { BtcSeries = 10, BtcValue = 39},
+                    new BtcChart { BtcSeries = 11, BtcValue = 62},
+                    new BtcChart { BtcSeries = 12, BtcValue = 51},
+                    new BtcChart { BtcSeries = 13, BtcValue = 35},
+                    new BtcChart { BtcSeries = 14, BtcValue = 41},
+                    new BtcChart { BtcSeries = 15, BtcValue = 35},
+                    new BtcChart { BtcSeries = 16, BtcValue = 27},
+                    new BtcChart { BtcSeries = 17, BtcValue = 93},
+                    new BtcChart { BtcSeries = 18, BtcValue = 53},
+                    new BtcChart { BtcSeries = 19, BtcValue = 61},
+                    new BtcChart { BtcSeries = 21, BtcValue = 27},
+                    new BtcChart { BtcSeries = 22, BtcValue = 54},
+                    new BtcChart { BtcSeries = 23, BtcValue = 43},
+                    new BtcChart { BtcSeries = 24, BtcValue = 19},
+                    new BtcChart { BtcSeries = 25, BtcValue = 46},
+
+                };
+
+                return btcchart;
+            }
+    }
+    // BTC CHART SPARKLINE End //
+
+    // Eth CHART SPARKLINE Start //
+    private List<EthChart> ethchart { get; set; } = EthchartData.GetEthCharts();
+    private ApexChartOptions<EthChart> EthChartChartOptions { get; set; } = new();
+    public class EthChart {
+        public decimal EthSeries { get; set; }
+        public decimal EthValue { get; set; }
+        
+    } ;
+    public static class EthchartData {
+            public static List<EthChart> GetEthCharts()
+            {
+                List<EthChart> ethchart = new List<EthChart>
+                {
+                    new EthChart { EthSeries = 1, EthValue = 0},
+                    new EthChart { EthSeries = 2, EthValue = 45},
+                    new EthChart { EthSeries = 3, EthValue = 54},
+                    new EthChart { EthSeries = 4, EthValue = 38},
+                    new EthChart { EthSeries = 5, EthValue = 56},
+                    new EthChart { EthSeries = 6, EthValue = 24},
+                    new EthChart { EthSeries = 7, EthValue = 65},
+                    new EthChart { EthSeries = 8, EthValue = 31},
+                    new EthChart { EthSeries = 9, EthValue = 37},
+                    new EthChart { EthSeries = 10, EthValue = 39},
+                    new EthChart { EthSeries = 11, EthValue = 62},
+                    new EthChart { EthSeries = 12, EthValue = 51},
+                    new EthChart { EthSeries = 13, EthValue = 35},
+                    new EthChart { EthSeries = 14, EthValue = 41},
+                    new EthChart { EthSeries = 15, EthValue = 35},
+                    new EthChart { EthSeries = 16, EthValue = 27},
+                    new EthChart { EthSeries = 17, EthValue = 93},
+                    new EthChart { EthSeries = 18, EthValue = 53},
+                    new EthChart { EthSeries = 19, EthValue = 61},
+                    new EthChart { EthSeries = 21, EthValue = 27},
+                    new EthChart { EthSeries = 22, EthValue = 54},
+                    new EthChart { EthSeries = 23, EthValue = 43},
+                    new EthChart { EthSeries = 24, EthValue = 19},
+                    new EthChart { EthSeries = 25, EthValue = 46},
+
+                };
+
+                return ethchart;
+            }
+    }
+    //  Eth CHART SPARKLINE End //
+
+    // Dash CHART SPARKLINE Start //
+    private List<DashChart> dashchart { get; set; } = DashchartData.GetDashCharts();
+    private ApexChartOptions<DashChart> DashChartChartOptions { get; set; } = new();
+    public class DashChart {
+        public decimal DashSeries { get; set; }
+        public decimal DashValue { get; set; }
+        
+    } ;
+    public static class DashchartData {
+            public static List<DashChart> GetDashCharts()
+            {
+                List<DashChart> dashchart = new List<DashChart>
+                {
+                    new DashChart { DashSeries = 1, DashValue = 0},
+                    new DashChart { DashSeries = 2, DashValue = 45},
+                    new DashChart { DashSeries = 3, DashValue = 54},
+                    new DashChart { DashSeries = 4, DashValue = 38},
+                    new DashChart { DashSeries = 5, DashValue = 56},
+                    new DashChart { DashSeries = 6, DashValue = 24},
+                    new DashChart { DashSeries = 7, DashValue = 65},
+                    new DashChart { DashSeries = 8, DashValue = 31},
+                    new DashChart { DashSeries = 9, DashValue = 37},
+                    new DashChart { DashSeries = 10, DashValue = 39},
+                    new DashChart { DashSeries = 11, DashValue = 62},
+                    new DashChart { DashSeries = 12, DashValue = 51},
+                    new DashChart { DashSeries = 13, DashValue = 35},
+                    new DashChart { DashSeries = 14, DashValue = 41},
+                    new DashChart { DashSeries = 15, DashValue = 35},
+                    new DashChart { DashSeries = 16, DashValue = 27},
+                    new DashChart { DashSeries = 17, DashValue = 93},
+                    new DashChart { DashSeries = 18, DashValue = 53},
+                    new DashChart { DashSeries = 19, DashValue = 61},
+                    new DashChart { DashSeries = 21, DashValue = 27},
+                    new DashChart { DashSeries = 22, DashValue = 54},
+                    new DashChart { DashSeries = 23, DashValue = 43},
+                    new DashChart { DashSeries = 24, DashValue = 19},
+                    new DashChart { DashSeries = 25, DashValue = 46},
+
+                };
+
+                return dashchart;
+            }
+    }
+    //  Dash CHART SPARKLINE End //  
+    
+    // MarketBtc CHART SPARKLINE Start //
+    private List<MarketBtcChart> Marketbtcchart { get; set; } = MarketBtcchartData.GetMarketBtcCharts();
+    private ApexChartOptions<MarketBtcChart> MarketBtcChartChartOptions { get; set; } = new();
+    public class MarketBtcChart {
+        public decimal MarketBtcSeries { get; set; }
+        public decimal MarketBtcValue { get; set; }
+        
+    } ;
+    public static class MarketBtcchartData {
+            public static List<MarketBtcChart> GetMarketBtcCharts()
+            {
+                List<MarketBtcChart> Marketbtcchart = new List<MarketBtcChart>
+                {
+                    new MarketBtcChart { MarketBtcSeries = 1, MarketBtcValue = 0},
+                    new MarketBtcChart { MarketBtcSeries = 2, MarketBtcValue = 45},
+                    new MarketBtcChart { MarketBtcSeries = 3, MarketBtcValue = 54},
+                    new MarketBtcChart { MarketBtcSeries = 4, MarketBtcValue = 38},
+                    new MarketBtcChart { MarketBtcSeries = 5, MarketBtcValue = 56},
+                    new MarketBtcChart { MarketBtcSeries = 6, MarketBtcValue = 24},
+                    new MarketBtcChart { MarketBtcSeries = 7, MarketBtcValue = 65},
+                    new MarketBtcChart { MarketBtcSeries = 8, MarketBtcValue = 31},
+                    new MarketBtcChart { MarketBtcSeries = 9, MarketBtcValue = 37},
+                    new MarketBtcChart { MarketBtcSeries = 10, MarketBtcValue = 39},
+                    new MarketBtcChart { MarketBtcSeries = 11, MarketBtcValue = 62},
+                    new MarketBtcChart { MarketBtcSeries = 12, MarketBtcValue = 51},
+                    new MarketBtcChart { MarketBtcSeries = 13, MarketBtcValue = 35},
+                    new MarketBtcChart { MarketBtcSeries = 14, MarketBtcValue = 41},
+                    new MarketBtcChart { MarketBtcSeries = 15, MarketBtcValue = 35},
+                    new MarketBtcChart { MarketBtcSeries = 16, MarketBtcValue = 27},
+                    new MarketBtcChart { MarketBtcSeries = 17, MarketBtcValue = 93},
+                    new MarketBtcChart { MarketBtcSeries = 18, MarketBtcValue = 53},
+                    new MarketBtcChart { MarketBtcSeries = 19, MarketBtcValue = 61},
+                    new MarketBtcChart { MarketBtcSeries = 20, MarketBtcValue = 27},
+                    new MarketBtcChart { MarketBtcSeries = 21, MarketBtcValue = 54},
+                    new MarketBtcChart { MarketBtcSeries = 22, MarketBtcValue = 43},
+                    new MarketBtcChart { MarketBtcSeries = 23, MarketBtcValue = 19},
+                    new MarketBtcChart { MarketBtcSeries = 24, MarketBtcValue = 46},
+                    new MarketBtcChart { MarketBtcSeries = 25, MarketBtcValue = 0},
+                    new MarketBtcChart { MarketBtcSeries = 26, MarketBtcValue = 45},
+                    new MarketBtcChart { MarketBtcSeries = 27, MarketBtcValue = 54},
+                    new MarketBtcChart { MarketBtcSeries = 28, MarketBtcValue = 38},
+                    new MarketBtcChart { MarketBtcSeries = 29, MarketBtcValue = 56},
+                    new MarketBtcChart { MarketBtcSeries = 30, MarketBtcValue = 24},
+                    new MarketBtcChart { MarketBtcSeries = 31, MarketBtcValue = 65},
+                    new MarketBtcChart { MarketBtcSeries = 32, MarketBtcValue = 31},
+                    new MarketBtcChart { MarketBtcSeries = 33, MarketBtcValue = 37},
+                    new MarketBtcChart { MarketBtcSeries = 34, MarketBtcValue = 39},
+                    new MarketBtcChart { MarketBtcSeries = 35, MarketBtcValue = 62},
+                    new MarketBtcChart { MarketBtcSeries = 36, MarketBtcValue = 51},
+                    new MarketBtcChart { MarketBtcSeries = 37, MarketBtcValue = 35},
+                    new MarketBtcChart { MarketBtcSeries = 38, MarketBtcValue = 41},
+                    new MarketBtcChart { MarketBtcSeries = 39, MarketBtcValue = 35},
+                    new MarketBtcChart { MarketBtcSeries = 40, MarketBtcValue = 27},
+                    new MarketBtcChart { MarketBtcSeries = 41, MarketBtcValue = 93},
+                    new MarketBtcChart { MarketBtcSeries = 42, MarketBtcValue = 53},
+                    new MarketBtcChart { MarketBtcSeries = 43, MarketBtcValue = 61},
+                    new MarketBtcChart { MarketBtcSeries = 44, MarketBtcValue = 27},
+                    new MarketBtcChart { MarketBtcSeries = 45, MarketBtcValue = 54},
+                    new MarketBtcChart { MarketBtcSeries = 46, MarketBtcValue = 43},
+                    new MarketBtcChart { MarketBtcSeries = 47, MarketBtcValue = 19},
+                    new MarketBtcChart { MarketBtcSeries = 48, MarketBtcValue = 46},
+                    new MarketBtcChart { MarketBtcSeries = 49, MarketBtcValue = 0},
+                    new MarketBtcChart { MarketBtcSeries = 50, MarketBtcValue = 45},
+                    new MarketBtcChart { MarketBtcSeries = 51, MarketBtcValue = 54},
+                    new MarketBtcChart { MarketBtcSeries = 52, MarketBtcValue = 38},
+                    new MarketBtcChart { MarketBtcSeries = 53, MarketBtcValue = 56},
+                    new MarketBtcChart { MarketBtcSeries = 54, MarketBtcValue = 24},
+                    new MarketBtcChart { MarketBtcSeries = 55, MarketBtcValue = 65},
+                    new MarketBtcChart { MarketBtcSeries = 56, MarketBtcValue = 31},
+                    new MarketBtcChart { MarketBtcSeries = 57, MarketBtcValue = 37},
+                    new MarketBtcChart { MarketBtcSeries = 58, MarketBtcValue = 39},
+                    new MarketBtcChart { MarketBtcSeries = 59, MarketBtcValue = 62},
+                    new MarketBtcChart { MarketBtcSeries = 60, MarketBtcValue = 51},
+                    new MarketBtcChart { MarketBtcSeries = 61, MarketBtcValue = 35},
+                    new MarketBtcChart { MarketBtcSeries = 62, MarketBtcValue = 41},
+                    new MarketBtcChart { MarketBtcSeries = 63, MarketBtcValue = 35},
+                    new MarketBtcChart { MarketBtcSeries = 64, MarketBtcValue = 27},
+                    new MarketBtcChart { MarketBtcSeries = 65, MarketBtcValue = 93},
+                    new MarketBtcChart { MarketBtcSeries = 66, MarketBtcValue = 53},
+                    new MarketBtcChart { MarketBtcSeries = 67, MarketBtcValue = 61},
+                    new MarketBtcChart { MarketBtcSeries = 68, MarketBtcValue = 27},
+                    new MarketBtcChart { MarketBtcSeries = 69, MarketBtcValue = 54},
+                    new MarketBtcChart { MarketBtcSeries = 70, MarketBtcValue = 43},
+                    new MarketBtcChart { MarketBtcSeries = 71, MarketBtcValue = 19},
+                    new MarketBtcChart { MarketBtcSeries = 72, MarketBtcValue = 46},
+
+                };
+
+                return Marketbtcchart;
+            }
+    }
+    // MarketBtc CHART SPARKLINE End // 
+    
+    // MarketEth CHART SPARKLINE Start //
+    private List<MarketEthChart> Marketethchart { get; set; } = MarketEthchartData.GetMarketEthCharts();
+    private ApexChartOptions<MarketEthChart> MarketEthChartChartOptions { get; set; } = new();
+    public class MarketEthChart {
+        public decimal MarketEthSeries { get; set; }
+        public decimal MarketEthValue { get; set; }
+        
+    } ;
+    public static class MarketEthchartData {
+            public static List<MarketEthChart> GetMarketEthCharts()
+            {
+                List<MarketEthChart> Marketethchart = new List<MarketEthChart>
+                {
+                    new MarketEthChart { MarketEthSeries = 1, MarketEthValue = 0},
+                    new MarketEthChart { MarketEthSeries = 2, MarketEthValue = 45},
+                    new MarketEthChart { MarketEthSeries = 3, MarketEthValue = 54},
+                    new MarketEthChart { MarketEthSeries = 4, MarketEthValue = 38},
+                    new MarketEthChart { MarketEthSeries = 5, MarketEthValue = 56},
+                    new MarketEthChart { MarketEthSeries = 6, MarketEthValue = 24},
+                    new MarketEthChart { MarketEthSeries = 7, MarketEthValue = 65},
+                    new MarketEthChart { MarketEthSeries = 8, MarketEthValue = 31},
+                    new MarketEthChart { MarketEthSeries = 9, MarketEthValue = 37},
+                    new MarketEthChart { MarketEthSeries = 10, MarketEthValue = 39},
+                    new MarketEthChart { MarketEthSeries = 11, MarketEthValue = 62},
+                    new MarketEthChart { MarketEthSeries = 12, MarketEthValue = 51},
+                    new MarketEthChart { MarketEthSeries = 13, MarketEthValue = 35},
+                    new MarketEthChart { MarketEthSeries = 14, MarketEthValue = 41},
+                    new MarketEthChart { MarketEthSeries = 15, MarketEthValue = 35},
+                    new MarketEthChart { MarketEthSeries = 16, MarketEthValue = 27},
+                    new MarketEthChart { MarketEthSeries = 17, MarketEthValue = 93},
+                    new MarketEthChart { MarketEthSeries = 18, MarketEthValue = 53},
+                    new MarketEthChart { MarketEthSeries = 19, MarketEthValue = 61},
+                    new MarketEthChart { MarketEthSeries = 20, MarketEthValue = 27},
+                    new MarketEthChart { MarketEthSeries = 21, MarketEthValue = 54},
+                    new MarketEthChart { MarketEthSeries = 22, MarketEthValue = 43},
+                    new MarketEthChart { MarketEthSeries = 23, MarketEthValue = 19},
+                    new MarketEthChart { MarketEthSeries = 24, MarketEthValue = 46},
+                    new MarketEthChart { MarketEthSeries = 25, MarketEthValue = 0},
+                    new MarketEthChart { MarketEthSeries = 26, MarketEthValue = 45},
+                    new MarketEthChart { MarketEthSeries = 27, MarketEthValue = 54},
+                    new MarketEthChart { MarketEthSeries = 28, MarketEthValue = 38},
+                    new MarketEthChart { MarketEthSeries = 29, MarketEthValue = 56},
+                    new MarketEthChart { MarketEthSeries = 30, MarketEthValue = 24},
+                    new MarketEthChart { MarketEthSeries = 31, MarketEthValue = 65},
+                    new MarketEthChart { MarketEthSeries = 32, MarketEthValue = 31},
+                    new MarketEthChart { MarketEthSeries = 33, MarketEthValue = 37},
+                    new MarketEthChart { MarketEthSeries = 34, MarketEthValue = 39},
+                    new MarketEthChart { MarketEthSeries = 35, MarketEthValue = 62},
+                    new MarketEthChart { MarketEthSeries = 36, MarketEthValue = 51},
+                    new MarketEthChart { MarketEthSeries = 37, MarketEthValue = 35},
+                    new MarketEthChart { MarketEthSeries = 38, MarketEthValue = 41},
+                    new MarketEthChart { MarketEthSeries = 39, MarketEthValue = 35},
+                    new MarketEthChart { MarketEthSeries = 40, MarketEthValue = 27},
+                    new MarketEthChart { MarketEthSeries = 41, MarketEthValue = 93},
+                    new MarketEthChart { MarketEthSeries = 42, MarketEthValue = 53},
+                    new MarketEthChart { MarketEthSeries = 43, MarketEthValue = 61},
+                    new MarketEthChart { MarketEthSeries = 44, MarketEthValue = 27},
+                    new MarketEthChart { MarketEthSeries = 45, MarketEthValue = 54},
+                    new MarketEthChart { MarketEthSeries = 46, MarketEthValue = 43},
+                    new MarketEthChart { MarketEthSeries = 47, MarketEthValue = 19},
+                    new MarketEthChart { MarketEthSeries = 48, MarketEthValue = 46},
+                    new MarketEthChart { MarketEthSeries = 49, MarketEthValue = 0},
+                    new MarketEthChart { MarketEthSeries = 50, MarketEthValue = 45},
+                    new MarketEthChart { MarketEthSeries = 51, MarketEthValue = 54},
+                    new MarketEthChart { MarketEthSeries = 52, MarketEthValue = 38},
+                    new MarketEthChart { MarketEthSeries = 53, MarketEthValue = 56},
+                    new MarketEthChart { MarketEthSeries = 54, MarketEthValue = 24},
+                    new MarketEthChart { MarketEthSeries = 55, MarketEthValue = 65},
+                    new MarketEthChart { MarketEthSeries = 56, MarketEthValue = 31},
+                    new MarketEthChart { MarketEthSeries = 57, MarketEthValue = 37},
+                    new MarketEthChart { MarketEthSeries = 58, MarketEthValue = 39},
+                    new MarketEthChart { MarketEthSeries = 59, MarketEthValue = 62},
+                    new MarketEthChart { MarketEthSeries = 60, MarketEthValue = 51},
+                    new MarketEthChart { MarketEthSeries = 61, MarketEthValue = 35},
+                    new MarketEthChart { MarketEthSeries = 62, MarketEthValue = 41},
+                    new MarketEthChart { MarketEthSeries = 63, MarketEthValue = 35},
+                    new MarketEthChart { MarketEthSeries = 64, MarketEthValue = 27},
+                    new MarketEthChart { MarketEthSeries = 65, MarketEthValue = 93},
+                    new MarketEthChart { MarketEthSeries = 66, MarketEthValue = 53},
+                    new MarketEthChart { MarketEthSeries = 67, MarketEthValue = 61},
+                    new MarketEthChart { MarketEthSeries = 68, MarketEthValue = 27},
+                    new MarketEthChart { MarketEthSeries = 69, MarketEthValue = 54},
+                    new MarketEthChart { MarketEthSeries = 70, MarketEthValue = 43},
+                    new MarketEthChart { MarketEthSeries = 71, MarketEthValue = 19},
+                    new MarketEthChart { MarketEthSeries = 72, MarketEthValue = 46},
+
+                };
+
+                return Marketethchart;
+            }
+    }
+    // MarketEth CHART SPARKLINE End // 
+
+    // MarketGlm CHART SPARKLINE Start //
+    private List<MarketGlmChart> Marketglmchart { get; set; } = MarketGlmchartData.GetMarketGlmCharts();
+    private ApexChartOptions<MarketGlmChart> MarketGlmChartChartOptions { get; set; } = new();
+    public class MarketGlmChart {
+        public decimal MarketGlmSeries { get; set; }
+        public decimal MarketGlmValue { get; set; }
+        
+    } ;
+    public static class MarketGlmchartData {
+            public static List<MarketGlmChart> GetMarketGlmCharts()
+            {
+                List<MarketGlmChart> Marketglmchart = new List<MarketGlmChart>
+                {
+                    new MarketGlmChart { MarketGlmSeries = 1, MarketGlmValue = 0},
+                    new MarketGlmChart { MarketGlmSeries = 2, MarketGlmValue = 45},
+                    new MarketGlmChart { MarketGlmSeries = 3, MarketGlmValue = 54},
+                    new MarketGlmChart { MarketGlmSeries = 4, MarketGlmValue = 38},
+                    new MarketGlmChart { MarketGlmSeries = 5, MarketGlmValue = 56},
+                    new MarketGlmChart { MarketGlmSeries = 6, MarketGlmValue = 24},
+                    new MarketGlmChart { MarketGlmSeries = 7, MarketGlmValue = 65},
+                    new MarketGlmChart { MarketGlmSeries = 8, MarketGlmValue = 31},
+                    new MarketGlmChart { MarketGlmSeries = 9, MarketGlmValue = 37},
+                    new MarketGlmChart { MarketGlmSeries = 10, MarketGlmValue = 39},
+                    new MarketGlmChart { MarketGlmSeries = 11, MarketGlmValue = 62},
+                    new MarketGlmChart { MarketGlmSeries = 12, MarketGlmValue = 51},
+                    new MarketGlmChart { MarketGlmSeries = 13, MarketGlmValue = 35},
+                    new MarketGlmChart { MarketGlmSeries = 14, MarketGlmValue = 41},
+                    new MarketGlmChart { MarketGlmSeries = 15, MarketGlmValue = 35},
+                    new MarketGlmChart { MarketGlmSeries = 16, MarketGlmValue = 27},
+                    new MarketGlmChart { MarketGlmSeries = 17, MarketGlmValue = 93},
+                    new MarketGlmChart { MarketGlmSeries = 18, MarketGlmValue = 53},
+                    new MarketGlmChart { MarketGlmSeries = 19, MarketGlmValue = 61},
+                    new MarketGlmChart { MarketGlmSeries = 20, MarketGlmValue = 27},
+                    new MarketGlmChart { MarketGlmSeries = 21, MarketGlmValue = 54},
+                    new MarketGlmChart { MarketGlmSeries = 22, MarketGlmValue = 43},
+                    new MarketGlmChart { MarketGlmSeries = 23, MarketGlmValue = 19},
+                    new MarketGlmChart { MarketGlmSeries = 24, MarketGlmValue = 46},
+                    new MarketGlmChart { MarketGlmSeries = 25, MarketGlmValue = 0},
+                    new MarketGlmChart { MarketGlmSeries = 26, MarketGlmValue = 45},
+                    new MarketGlmChart { MarketGlmSeries = 27, MarketGlmValue = 54},
+                    new MarketGlmChart { MarketGlmSeries = 28, MarketGlmValue = 38},
+                    new MarketGlmChart { MarketGlmSeries = 29, MarketGlmValue = 56},
+                    new MarketGlmChart { MarketGlmSeries = 30, MarketGlmValue = 24},
+                    new MarketGlmChart { MarketGlmSeries = 31, MarketGlmValue = 65},
+                    new MarketGlmChart { MarketGlmSeries = 32, MarketGlmValue = 31},
+                    new MarketGlmChart { MarketGlmSeries = 33, MarketGlmValue = 37},
+                    new MarketGlmChart { MarketGlmSeries = 34, MarketGlmValue = 39},
+                    new MarketGlmChart { MarketGlmSeries = 35, MarketGlmValue = 62},
+                    new MarketGlmChart { MarketGlmSeries = 36, MarketGlmValue = 51},
+                    new MarketGlmChart { MarketGlmSeries = 37, MarketGlmValue = 35},
+                    new MarketGlmChart { MarketGlmSeries = 38, MarketGlmValue = 41},
+                    new MarketGlmChart { MarketGlmSeries = 39, MarketGlmValue = 35},
+                    new MarketGlmChart { MarketGlmSeries = 40, MarketGlmValue = 27},
+                    new MarketGlmChart { MarketGlmSeries = 41, MarketGlmValue = 93},
+                    new MarketGlmChart { MarketGlmSeries = 42, MarketGlmValue = 53},
+                    new MarketGlmChart { MarketGlmSeries = 43, MarketGlmValue = 61},
+                    new MarketGlmChart { MarketGlmSeries = 44, MarketGlmValue = 27},
+                    new MarketGlmChart { MarketGlmSeries = 45, MarketGlmValue = 54},
+                    new MarketGlmChart { MarketGlmSeries = 46, MarketGlmValue = 43},
+                    new MarketGlmChart { MarketGlmSeries = 47, MarketGlmValue = 19},
+                    new MarketGlmChart { MarketGlmSeries = 48, MarketGlmValue = 46},
+                    new MarketGlmChart { MarketGlmSeries = 49, MarketGlmValue = 0},
+                    new MarketGlmChart { MarketGlmSeries = 50, MarketGlmValue = 45},
+                    new MarketGlmChart { MarketGlmSeries = 51, MarketGlmValue = 54},
+                    new MarketGlmChart { MarketGlmSeries = 52, MarketGlmValue = 38},
+                    new MarketGlmChart { MarketGlmSeries = 53, MarketGlmValue = 56},
+                    new MarketGlmChart { MarketGlmSeries = 54, MarketGlmValue = 24},
+                    new MarketGlmChart { MarketGlmSeries = 55, MarketGlmValue = 65},
+                    new MarketGlmChart { MarketGlmSeries = 56, MarketGlmValue = 31},
+                    new MarketGlmChart { MarketGlmSeries = 57, MarketGlmValue = 37},
+                    new MarketGlmChart { MarketGlmSeries = 58, MarketGlmValue = 39},
+                    new MarketGlmChart { MarketGlmSeries = 59, MarketGlmValue = 62},
+                    new MarketGlmChart { MarketGlmSeries = 60, MarketGlmValue = 51},
+                    new MarketGlmChart { MarketGlmSeries = 61, MarketGlmValue = 35},
+                    new MarketGlmChart { MarketGlmSeries = 62, MarketGlmValue = 41},
+                    new MarketGlmChart { MarketGlmSeries = 63, MarketGlmValue = 35},
+                    new MarketGlmChart { MarketGlmSeries = 64, MarketGlmValue = 27},
+                    new MarketGlmChart { MarketGlmSeries = 65, MarketGlmValue = 93},
+                    new MarketGlmChart { MarketGlmSeries = 66, MarketGlmValue = 53},
+                    new MarketGlmChart { MarketGlmSeries = 67, MarketGlmValue = 61},
+                    new MarketGlmChart { MarketGlmSeries = 68, MarketGlmValue = 27},
+                    new MarketGlmChart { MarketGlmSeries = 69, MarketGlmValue = 54},
+                    new MarketGlmChart { MarketGlmSeries = 70, MarketGlmValue = 43},
+                    new MarketGlmChart { MarketGlmSeries = 71, MarketGlmValue = 19},
+                    new MarketGlmChart { MarketGlmSeries = 72, MarketGlmValue = 46},
+
+                };
+
+                return Marketglmchart;
+            }
+    }
+    // MarketGlm CHART SPARKLINE End // 
+    
+    // MarketDash CHART SPARKLINE Start //
+    private List<MarketDashChart> Marketdashchart { get; set; } = MarketDashchartData.GetMarketDashCharts();
+    private ApexChartOptions<MarketDashChart> MarketDashChartChartOptions { get; set; } = new();
+    public class MarketDashChart {
+        public decimal MarketDashSeries { get; set; }
+        public decimal MarketDashValue { get; set; }
+        
+    } ;
+    public static class MarketDashchartData {
+            public static List<MarketDashChart> GetMarketDashCharts()
+            {
+                List<MarketDashChart> Marketdashchart = new List<MarketDashChart>
+                {
+                    new MarketDashChart { MarketDashSeries = 1, MarketDashValue = 0},
+                    new MarketDashChart { MarketDashSeries = 2, MarketDashValue = 45},
+                    new MarketDashChart { MarketDashSeries = 3, MarketDashValue = 54},
+                    new MarketDashChart { MarketDashSeries = 4, MarketDashValue = 38},
+                    new MarketDashChart { MarketDashSeries = 5, MarketDashValue = 56},
+                    new MarketDashChart { MarketDashSeries = 6, MarketDashValue = 24},
+                    new MarketDashChart { MarketDashSeries = 7, MarketDashValue = 65},
+                    new MarketDashChart { MarketDashSeries = 8, MarketDashValue = 31},
+                    new MarketDashChart { MarketDashSeries = 9, MarketDashValue = 37},
+                    new MarketDashChart { MarketDashSeries = 10, MarketDashValue = 39},
+                    new MarketDashChart { MarketDashSeries = 11, MarketDashValue = 62},
+                    new MarketDashChart { MarketDashSeries = 12, MarketDashValue = 51},
+                    new MarketDashChart { MarketDashSeries = 13, MarketDashValue = 35},
+                    new MarketDashChart { MarketDashSeries = 14, MarketDashValue = 41},
+                    new MarketDashChart { MarketDashSeries = 15, MarketDashValue = 35},
+                    new MarketDashChart { MarketDashSeries = 16, MarketDashValue = 27},
+                    new MarketDashChart { MarketDashSeries = 17, MarketDashValue = 93},
+                    new MarketDashChart { MarketDashSeries = 18, MarketDashValue = 53},
+                    new MarketDashChart { MarketDashSeries = 19, MarketDashValue = 61},
+                    new MarketDashChart { MarketDashSeries = 20, MarketDashValue = 27},
+                    new MarketDashChart { MarketDashSeries = 21, MarketDashValue = 54},
+                    new MarketDashChart { MarketDashSeries = 22, MarketDashValue = 43},
+                    new MarketDashChart { MarketDashSeries = 23, MarketDashValue = 19},
+                    new MarketDashChart { MarketDashSeries = 24, MarketDashValue = 46},
+                    new MarketDashChart { MarketDashSeries = 25, MarketDashValue = 0},
+                    new MarketDashChart { MarketDashSeries = 26, MarketDashValue = 45},
+                    new MarketDashChart { MarketDashSeries = 27, MarketDashValue = 54},
+                    new MarketDashChart { MarketDashSeries = 28, MarketDashValue = 38},
+                    new MarketDashChart { MarketDashSeries = 29, MarketDashValue = 56},
+                    new MarketDashChart { MarketDashSeries = 30, MarketDashValue = 24},
+                    new MarketDashChart { MarketDashSeries = 31, MarketDashValue = 65},
+                    new MarketDashChart { MarketDashSeries = 32, MarketDashValue = 31},
+                    new MarketDashChart { MarketDashSeries = 33, MarketDashValue = 37},
+                    new MarketDashChart { MarketDashSeries = 34, MarketDashValue = 39},
+                    new MarketDashChart { MarketDashSeries = 35, MarketDashValue = 62},
+                    new MarketDashChart { MarketDashSeries = 36, MarketDashValue = 51},
+                    new MarketDashChart { MarketDashSeries = 37, MarketDashValue = 35},
+                    new MarketDashChart { MarketDashSeries = 38, MarketDashValue = 41},
+                    new MarketDashChart { MarketDashSeries = 39, MarketDashValue = 35},
+                    new MarketDashChart { MarketDashSeries = 40, MarketDashValue = 27},
+                    new MarketDashChart { MarketDashSeries = 41, MarketDashValue = 93},
+                    new MarketDashChart { MarketDashSeries = 42, MarketDashValue = 53},
+                    new MarketDashChart { MarketDashSeries = 43, MarketDashValue = 61},
+                    new MarketDashChart { MarketDashSeries = 44, MarketDashValue = 27},
+                    new MarketDashChart { MarketDashSeries = 45, MarketDashValue = 54},
+                    new MarketDashChart { MarketDashSeries = 46, MarketDashValue = 43},
+                    new MarketDashChart { MarketDashSeries = 47, MarketDashValue = 19},
+                    new MarketDashChart { MarketDashSeries = 48, MarketDashValue = 46},
+                    new MarketDashChart { MarketDashSeries = 49, MarketDashValue = 0},
+                    new MarketDashChart { MarketDashSeries = 50, MarketDashValue = 45},
+                    new MarketDashChart { MarketDashSeries = 51, MarketDashValue = 54},
+                    new MarketDashChart { MarketDashSeries = 52, MarketDashValue = 38},
+                    new MarketDashChart { MarketDashSeries = 53, MarketDashValue = 56},
+                    new MarketDashChart { MarketDashSeries = 54, MarketDashValue = 24},
+                    new MarketDashChart { MarketDashSeries = 55, MarketDashValue = 65},
+                    new MarketDashChart { MarketDashSeries = 56, MarketDashValue = 31},
+                    new MarketDashChart { MarketDashSeries = 57, MarketDashValue = 37},
+                    new MarketDashChart { MarketDashSeries = 58, MarketDashValue = 39},
+                    new MarketDashChart { MarketDashSeries = 59, MarketDashValue = 62},
+                    new MarketDashChart { MarketDashSeries = 60, MarketDashValue = 51},
+                    new MarketDashChart { MarketDashSeries = 61, MarketDashValue = 35},
+                    new MarketDashChart { MarketDashSeries = 62, MarketDashValue = 41},
+                    new MarketDashChart { MarketDashSeries = 63, MarketDashValue = 35},
+                    new MarketDashChart { MarketDashSeries = 64, MarketDashValue = 27},
+                    new MarketDashChart { MarketDashSeries = 65, MarketDashValue = 93},
+                    new MarketDashChart { MarketDashSeries = 66, MarketDashValue = 53},
+                    new MarketDashChart { MarketDashSeries = 67, MarketDashValue = 61},
+                    new MarketDashChart { MarketDashSeries = 68, MarketDashValue = 27},
+                    new MarketDashChart { MarketDashSeries = 69, MarketDashValue = 54},
+                    new MarketDashChart { MarketDashSeries = 70, MarketDashValue = 43},
+                    new MarketDashChart { MarketDashSeries = 71, MarketDashValue = 19},
+                    new MarketDashChart { MarketDashSeries = 72, MarketDashValue = 46},
+
+                };
+
+                return Marketdashchart;
+            }
+    }
+    // MarketDash CHART SPARKLINE End // 
+    
+    // MarketLtc CHART SPARKLINE Start //
+    private List<MarketLtcChart> Marketltcchart { get; set; } = MarketLtcchartData.GetMarketLtcCharts();
+    private ApexChartOptions<MarketLtcChart> MarketLtcChartChartOptions { get; set; } = new();
+    public class MarketLtcChart {
+        public decimal MarketLtcSeries { get; set; }
+        public decimal MarketLtcValue { get; set; }
+        
+    } ;
+    public static class MarketLtcchartData {
+            public static List<MarketLtcChart> GetMarketLtcCharts()
+            {
+                List<MarketLtcChart> Marketltcchart = new List<MarketLtcChart>
+                {
+                    new MarketLtcChart { MarketLtcSeries = 1, MarketLtcValue = 0},
+                    new MarketLtcChart { MarketLtcSeries = 2, MarketLtcValue = 45},
+                    new MarketLtcChart { MarketLtcSeries = 3, MarketLtcValue = 54},
+                    new MarketLtcChart { MarketLtcSeries = 4, MarketLtcValue = 38},
+                    new MarketLtcChart { MarketLtcSeries = 5, MarketLtcValue = 56},
+                    new MarketLtcChart { MarketLtcSeries = 6, MarketLtcValue = 24},
+                    new MarketLtcChart { MarketLtcSeries = 7, MarketLtcValue = 65},
+                    new MarketLtcChart { MarketLtcSeries = 8, MarketLtcValue = 31},
+                    new MarketLtcChart { MarketLtcSeries = 9, MarketLtcValue = 37},
+                    new MarketLtcChart { MarketLtcSeries = 10, MarketLtcValue = 39},
+                    new MarketLtcChart { MarketLtcSeries = 11, MarketLtcValue = 62},
+                    new MarketLtcChart { MarketLtcSeries = 12, MarketLtcValue = 51},
+                    new MarketLtcChart { MarketLtcSeries = 13, MarketLtcValue = 35},
+                    new MarketLtcChart { MarketLtcSeries = 14, MarketLtcValue = 41},
+                    new MarketLtcChart { MarketLtcSeries = 15, MarketLtcValue = 35},
+                    new MarketLtcChart { MarketLtcSeries = 16, MarketLtcValue = 27},
+                    new MarketLtcChart { MarketLtcSeries = 17, MarketLtcValue = 93},
+                    new MarketLtcChart { MarketLtcSeries = 18, MarketLtcValue = 53},
+                    new MarketLtcChart { MarketLtcSeries = 19, MarketLtcValue = 61},
+                    new MarketLtcChart { MarketLtcSeries = 20, MarketLtcValue = 27},
+                    new MarketLtcChart { MarketLtcSeries = 21, MarketLtcValue = 54},
+                    new MarketLtcChart { MarketLtcSeries = 22, MarketLtcValue = 43},
+                    new MarketLtcChart { MarketLtcSeries = 23, MarketLtcValue = 19},
+                    new MarketLtcChart { MarketLtcSeries = 24, MarketLtcValue = 46},
+                    new MarketLtcChart { MarketLtcSeries = 25, MarketLtcValue = 0},
+                    new MarketLtcChart { MarketLtcSeries = 26, MarketLtcValue = 45},
+                    new MarketLtcChart { MarketLtcSeries = 27, MarketLtcValue = 54},
+                    new MarketLtcChart { MarketLtcSeries = 28, MarketLtcValue = 38},
+                    new MarketLtcChart { MarketLtcSeries = 29, MarketLtcValue = 56},
+                    new MarketLtcChart { MarketLtcSeries = 30, MarketLtcValue = 24},
+                    new MarketLtcChart { MarketLtcSeries = 31, MarketLtcValue = 65},
+                    new MarketLtcChart { MarketLtcSeries = 32, MarketLtcValue = 31},
+                    new MarketLtcChart { MarketLtcSeries = 33, MarketLtcValue = 37},
+                    new MarketLtcChart { MarketLtcSeries = 34, MarketLtcValue = 39},
+                    new MarketLtcChart { MarketLtcSeries = 35, MarketLtcValue = 62},
+                    new MarketLtcChart { MarketLtcSeries = 36, MarketLtcValue = 51},
+                    new MarketLtcChart { MarketLtcSeries = 37, MarketLtcValue = 35},
+                    new MarketLtcChart { MarketLtcSeries = 38, MarketLtcValue = 41},
+                    new MarketLtcChart { MarketLtcSeries = 39, MarketLtcValue = 35},
+                    new MarketLtcChart { MarketLtcSeries = 40, MarketLtcValue = 27},
+                    new MarketLtcChart { MarketLtcSeries = 41, MarketLtcValue = 93},
+                    new MarketLtcChart { MarketLtcSeries = 42, MarketLtcValue = 53},
+                    new MarketLtcChart { MarketLtcSeries = 43, MarketLtcValue = 61},
+                    new MarketLtcChart { MarketLtcSeries = 44, MarketLtcValue = 27},
+                    new MarketLtcChart { MarketLtcSeries = 45, MarketLtcValue = 54},
+                    new MarketLtcChart { MarketLtcSeries = 46, MarketLtcValue = 43},
+                    new MarketLtcChart { MarketLtcSeries = 47, MarketLtcValue = 19},
+                    new MarketLtcChart { MarketLtcSeries = 48, MarketLtcValue = 46},
+                    new MarketLtcChart { MarketLtcSeries = 49, MarketLtcValue = 0},
+                    new MarketLtcChart { MarketLtcSeries = 50, MarketLtcValue = 45},
+                    new MarketLtcChart { MarketLtcSeries = 51, MarketLtcValue = 54},
+                    new MarketLtcChart { MarketLtcSeries = 52, MarketLtcValue = 38},
+                    new MarketLtcChart { MarketLtcSeries = 53, MarketLtcValue = 56},
+                    new MarketLtcChart { MarketLtcSeries = 54, MarketLtcValue = 24},
+                    new MarketLtcChart { MarketLtcSeries = 55, MarketLtcValue = 65},
+                    new MarketLtcChart { MarketLtcSeries = 56, MarketLtcValue = 31},
+                    new MarketLtcChart { MarketLtcSeries = 57, MarketLtcValue = 37},
+                    new MarketLtcChart { MarketLtcSeries = 58, MarketLtcValue = 39},
+                    new MarketLtcChart { MarketLtcSeries = 59, MarketLtcValue = 62},
+                    new MarketLtcChart { MarketLtcSeries = 60, MarketLtcValue = 51},
+                    new MarketLtcChart { MarketLtcSeries = 61, MarketLtcValue = 35},
+                    new MarketLtcChart { MarketLtcSeries = 62, MarketLtcValue = 41},
+                    new MarketLtcChart { MarketLtcSeries = 63, MarketLtcValue = 35},
+                    new MarketLtcChart { MarketLtcSeries = 64, MarketLtcValue = 27},
+                    new MarketLtcChart { MarketLtcSeries = 65, MarketLtcValue = 93},
+                    new MarketLtcChart { MarketLtcSeries = 66, MarketLtcValue = 53},
+                    new MarketLtcChart { MarketLtcSeries = 67, MarketLtcValue = 61},
+                    new MarketLtcChart { MarketLtcSeries = 68, MarketLtcValue = 27},
+                    new MarketLtcChart { MarketLtcSeries = 69, MarketLtcValue = 54},
+                    new MarketLtcChart { MarketLtcSeries = 70, MarketLtcValue = 43},
+                    new MarketLtcChart { MarketLtcSeries = 71, MarketLtcValue = 19},
+                    new MarketLtcChart { MarketLtcSeries = 72, MarketLtcValue = 46},
+
+                };
+
+                return Marketltcchart;
+            }
+    }
+    // MarketLtc CHART SPARKLINE End // 
+    
+    // MarketXrp CHART SPARKLINE Start //
+    private List<MarketXrpChart> Marketxrpchart { get; set; } = MarketXrpchartData.GetMarketXrpCharts();
+    private ApexChartOptions<MarketXrpChart> MarketXrpChartChartOptions { get; set; } = new();
+    public class MarketXrpChart {
+        public decimal MarketXrpSeries { get; set; }
+        public decimal MarketXrpValue { get; set; }
+        
+    } ;
+    public static class MarketXrpchartData {
+            public static List<MarketXrpChart> GetMarketXrpCharts()
+            {
+                List<MarketXrpChart> Marketxrpchart = new List<MarketXrpChart>
+                {
+                    new MarketXrpChart { MarketXrpSeries = 1, MarketXrpValue = 0},
+                    new MarketXrpChart { MarketXrpSeries = 2, MarketXrpValue = 45},
+                    new MarketXrpChart { MarketXrpSeries = 3, MarketXrpValue = 54},
+                    new MarketXrpChart { MarketXrpSeries = 4, MarketXrpValue = 38},
+                    new MarketXrpChart { MarketXrpSeries = 5, MarketXrpValue = 56},
+                    new MarketXrpChart { MarketXrpSeries = 6, MarketXrpValue = 24},
+                    new MarketXrpChart { MarketXrpSeries = 7, MarketXrpValue = 65},
+                    new MarketXrpChart { MarketXrpSeries = 8, MarketXrpValue = 31},
+                    new MarketXrpChart { MarketXrpSeries = 9, MarketXrpValue = 37},
+                    new MarketXrpChart { MarketXrpSeries = 10, MarketXrpValue = 39},
+                    new MarketXrpChart { MarketXrpSeries = 11, MarketXrpValue = 62},
+                    new MarketXrpChart { MarketXrpSeries = 12, MarketXrpValue = 51},
+                    new MarketXrpChart { MarketXrpSeries = 13, MarketXrpValue = 35},
+                    new MarketXrpChart { MarketXrpSeries = 14, MarketXrpValue = 41},
+                    new MarketXrpChart { MarketXrpSeries = 15, MarketXrpValue = 35},
+                    new MarketXrpChart { MarketXrpSeries = 16, MarketXrpValue = 27},
+                    new MarketXrpChart { MarketXrpSeries = 17, MarketXrpValue = 93},
+                    new MarketXrpChart { MarketXrpSeries = 18, MarketXrpValue = 53},
+                    new MarketXrpChart { MarketXrpSeries = 19, MarketXrpValue = 61},
+                    new MarketXrpChart { MarketXrpSeries = 20, MarketXrpValue = 27},
+                    new MarketXrpChart { MarketXrpSeries = 21, MarketXrpValue = 54},
+                    new MarketXrpChart { MarketXrpSeries = 22, MarketXrpValue = 43},
+                    new MarketXrpChart { MarketXrpSeries = 23, MarketXrpValue = 19},
+                    new MarketXrpChart { MarketXrpSeries = 24, MarketXrpValue = 46},
+                    new MarketXrpChart { MarketXrpSeries = 25, MarketXrpValue = 0},
+                    new MarketXrpChart { MarketXrpSeries = 26, MarketXrpValue = 45},
+                    new MarketXrpChart { MarketXrpSeries = 27, MarketXrpValue = 54},
+                    new MarketXrpChart { MarketXrpSeries = 28, MarketXrpValue = 38},
+                    new MarketXrpChart { MarketXrpSeries = 29, MarketXrpValue = 56},
+                    new MarketXrpChart { MarketXrpSeries = 30, MarketXrpValue = 24},
+                    new MarketXrpChart { MarketXrpSeries = 31, MarketXrpValue = 65},
+                    new MarketXrpChart { MarketXrpSeries = 32, MarketXrpValue = 31},
+                    new MarketXrpChart { MarketXrpSeries = 33, MarketXrpValue = 37},
+                    new MarketXrpChart { MarketXrpSeries = 34, MarketXrpValue = 39},
+                    new MarketXrpChart { MarketXrpSeries = 35, MarketXrpValue = 62},
+                    new MarketXrpChart { MarketXrpSeries = 36, MarketXrpValue = 51},
+                    new MarketXrpChart { MarketXrpSeries = 37, MarketXrpValue = 35},
+                    new MarketXrpChart { MarketXrpSeries = 38, MarketXrpValue = 41},
+                    new MarketXrpChart { MarketXrpSeries = 39, MarketXrpValue = 35},
+                    new MarketXrpChart { MarketXrpSeries = 40, MarketXrpValue = 27},
+                    new MarketXrpChart { MarketXrpSeries = 41, MarketXrpValue = 93},
+                    new MarketXrpChart { MarketXrpSeries = 42, MarketXrpValue = 53},
+                    new MarketXrpChart { MarketXrpSeries = 43, MarketXrpValue = 61},
+                    new MarketXrpChart { MarketXrpSeries = 44, MarketXrpValue = 27},
+                    new MarketXrpChart { MarketXrpSeries = 45, MarketXrpValue = 54},
+                    new MarketXrpChart { MarketXrpSeries = 46, MarketXrpValue = 43},
+                    new MarketXrpChart { MarketXrpSeries = 47, MarketXrpValue = 19},
+                    new MarketXrpChart { MarketXrpSeries = 48, MarketXrpValue = 46},
+                    new MarketXrpChart { MarketXrpSeries = 49, MarketXrpValue = 0},
+                    new MarketXrpChart { MarketXrpSeries = 50, MarketXrpValue = 45},
+                    new MarketXrpChart { MarketXrpSeries = 51, MarketXrpValue = 54},
+                    new MarketXrpChart { MarketXrpSeries = 52, MarketXrpValue = 38},
+                    new MarketXrpChart { MarketXrpSeries = 53, MarketXrpValue = 56},
+                    new MarketXrpChart { MarketXrpSeries = 54, MarketXrpValue = 24},
+                    new MarketXrpChart { MarketXrpSeries = 55, MarketXrpValue = 65},
+                    new MarketXrpChart { MarketXrpSeries = 56, MarketXrpValue = 31},
+                    new MarketXrpChart { MarketXrpSeries = 57, MarketXrpValue = 37},
+                    new MarketXrpChart { MarketXrpSeries = 58, MarketXrpValue = 39},
+                    new MarketXrpChart { MarketXrpSeries = 59, MarketXrpValue = 62},
+                    new MarketXrpChart { MarketXrpSeries = 60, MarketXrpValue = 51},
+                    new MarketXrpChart { MarketXrpSeries = 61, MarketXrpValue = 35},
+                    new MarketXrpChart { MarketXrpSeries = 62, MarketXrpValue = 41},
+                    new MarketXrpChart { MarketXrpSeries = 63, MarketXrpValue = 35},
+                    new MarketXrpChart { MarketXrpSeries = 64, MarketXrpValue = 27},
+                    new MarketXrpChart { MarketXrpSeries = 65, MarketXrpValue = 93},
+                    new MarketXrpChart { MarketXrpSeries = 66, MarketXrpValue = 53},
+                    new MarketXrpChart { MarketXrpSeries = 67, MarketXrpValue = 61},
+                    new MarketXrpChart { MarketXrpSeries = 68, MarketXrpValue = 27},
+                    new MarketXrpChart { MarketXrpSeries = 69, MarketXrpValue = 54},
+                    new MarketXrpChart { MarketXrpSeries = 70, MarketXrpValue = 43},
+                    new MarketXrpChart { MarketXrpSeries = 71, MarketXrpValue = 19},
+                    new MarketXrpChart { MarketXrpSeries = 72, MarketXrpValue = 46},
+
+                };
+
+                return Marketxrpchart;
+            }
+    }
+    // MarketXrp CHART SPARKLINE End // 
+
+    // MarketEos CHART SPARKLINE Start //
+    private List<MarketEosChart> Marketeoschart { get; set; } = MarketEoschartData.GetMarketEosCharts();
+    private ApexChartOptions<MarketEosChart> MarketEosChartChartOptions { get; set; } = new();
+    public class MarketEosChart {
+        public decimal MarketEosSeries { get; set; }
+        public decimal MarketEosValue { get; set; }
+        
+    } ;
+    public static class MarketEoschartData {
+            public static List<MarketEosChart> GetMarketEosCharts()
+            {
+                List<MarketEosChart> Marketeoschart = new List<MarketEosChart>
+                {
+                    new MarketEosChart { MarketEosSeries = 1, MarketEosValue = 0},
+                    new MarketEosChart { MarketEosSeries = 2, MarketEosValue = 45},
+                    new MarketEosChart { MarketEosSeries = 3, MarketEosValue = 54},
+                    new MarketEosChart { MarketEosSeries = 4, MarketEosValue = 38},
+                    new MarketEosChart { MarketEosSeries = 5, MarketEosValue = 56},
+                    new MarketEosChart { MarketEosSeries = 6, MarketEosValue = 24},
+                    new MarketEosChart { MarketEosSeries = 7, MarketEosValue = 65},
+                    new MarketEosChart { MarketEosSeries = 8, MarketEosValue = 31},
+                    new MarketEosChart { MarketEosSeries = 9, MarketEosValue = 37},
+                    new MarketEosChart { MarketEosSeries = 10, MarketEosValue = 39},
+                    new MarketEosChart { MarketEosSeries = 11, MarketEosValue = 62},
+                    new MarketEosChart { MarketEosSeries = 12, MarketEosValue = 51},
+                    new MarketEosChart { MarketEosSeries = 13, MarketEosValue = 35},
+                    new MarketEosChart { MarketEosSeries = 14, MarketEosValue = 41},
+                    new MarketEosChart { MarketEosSeries = 15, MarketEosValue = 35},
+                    new MarketEosChart { MarketEosSeries = 16, MarketEosValue = 27},
+                    new MarketEosChart { MarketEosSeries = 17, MarketEosValue = 93},
+                    new MarketEosChart { MarketEosSeries = 18, MarketEosValue = 53},
+                    new MarketEosChart { MarketEosSeries = 19, MarketEosValue = 61},
+                    new MarketEosChart { MarketEosSeries = 20, MarketEosValue = 27},
+                    new MarketEosChart { MarketEosSeries = 21, MarketEosValue = 54},
+                    new MarketEosChart { MarketEosSeries = 22, MarketEosValue = 43},
+                    new MarketEosChart { MarketEosSeries = 23, MarketEosValue = 19},
+                    new MarketEosChart { MarketEosSeries = 24, MarketEosValue = 46},
+                    new MarketEosChart { MarketEosSeries = 25, MarketEosValue = 0},
+                    new MarketEosChart { MarketEosSeries = 26, MarketEosValue = 45},
+                    new MarketEosChart { MarketEosSeries = 27, MarketEosValue = 54},
+                    new MarketEosChart { MarketEosSeries = 28, MarketEosValue = 38},
+                    new MarketEosChart { MarketEosSeries = 29, MarketEosValue = 56},
+                    new MarketEosChart { MarketEosSeries = 30, MarketEosValue = 24},
+                    new MarketEosChart { MarketEosSeries = 31, MarketEosValue = 65},
+                    new MarketEosChart { MarketEosSeries = 32, MarketEosValue = 31},
+                    new MarketEosChart { MarketEosSeries = 33, MarketEosValue = 37},
+                    new MarketEosChart { MarketEosSeries = 34, MarketEosValue = 39},
+                    new MarketEosChart { MarketEosSeries = 35, MarketEosValue = 62},
+                    new MarketEosChart { MarketEosSeries = 36, MarketEosValue = 51},
+                    new MarketEosChart { MarketEosSeries = 37, MarketEosValue = 35},
+                    new MarketEosChart { MarketEosSeries = 38, MarketEosValue = 41},
+                    new MarketEosChart { MarketEosSeries = 39, MarketEosValue = 35},
+                    new MarketEosChart { MarketEosSeries = 40, MarketEosValue = 27},
+                    new MarketEosChart { MarketEosSeries = 41, MarketEosValue = 93},
+                    new MarketEosChart { MarketEosSeries = 42, MarketEosValue = 53},
+                    new MarketEosChart { MarketEosSeries = 43, MarketEosValue = 61},
+                    new MarketEosChart { MarketEosSeries = 44, MarketEosValue = 27},
+                    new MarketEosChart { MarketEosSeries = 45, MarketEosValue = 54},
+                    new MarketEosChart { MarketEosSeries = 46, MarketEosValue = 43},
+                    new MarketEosChart { MarketEosSeries = 47, MarketEosValue = 19},
+                    new MarketEosChart { MarketEosSeries = 48, MarketEosValue = 46},
+                    new MarketEosChart { MarketEosSeries = 49, MarketEosValue = 0},
+                    new MarketEosChart { MarketEosSeries = 50, MarketEosValue = 45},
+                    new MarketEosChart { MarketEosSeries = 51, MarketEosValue = 54},
+                    new MarketEosChart { MarketEosSeries = 52, MarketEosValue = 38},
+                    new MarketEosChart { MarketEosSeries = 53, MarketEosValue = 56},
+                    new MarketEosChart { MarketEosSeries = 54, MarketEosValue = 24},
+                    new MarketEosChart { MarketEosSeries = 55, MarketEosValue = 65},
+                    new MarketEosChart { MarketEosSeries = 56, MarketEosValue = 31},
+                    new MarketEosChart { MarketEosSeries = 57, MarketEosValue = 37},
+                    new MarketEosChart { MarketEosSeries = 58, MarketEosValue = 39},
+                    new MarketEosChart { MarketEosSeries = 59, MarketEosValue = 62},
+                    new MarketEosChart { MarketEosSeries = 60, MarketEosValue = 51},
+                    new MarketEosChart { MarketEosSeries = 61, MarketEosValue = 35},
+                    new MarketEosChart { MarketEosSeries = 62, MarketEosValue = 41},
+                    new MarketEosChart { MarketEosSeries = 63, MarketEosValue = 35},
+                    new MarketEosChart { MarketEosSeries = 64, MarketEosValue = 27},
+                    new MarketEosChart { MarketEosSeries = 65, MarketEosValue = 93},
+                    new MarketEosChart { MarketEosSeries = 66, MarketEosValue = 53},
+                    new MarketEosChart { MarketEosSeries = 67, MarketEosValue = 61},
+                    new MarketEosChart { MarketEosSeries = 68, MarketEosValue = 27},
+                    new MarketEosChart { MarketEosSeries = 69, MarketEosValue = 54},
+                    new MarketEosChart { MarketEosSeries = 70, MarketEosValue = 43},
+                    new MarketEosChart { MarketEosSeries = 71, MarketEosValue = 19},
+                    new MarketEosChart { MarketEosSeries = 72, MarketEosValue = 46},
+
+                };
+
+                return Marketeoschart;
+            }
+    }
+    // MarketEos CHART SPARKLINE End // 
+    
+    // MarketBcn CHART SPARKLINE Start //
+    private List<MarketBcnChart> Marketbcnchart { get; set; } = MarketBcnchartData.GetMarketBcnCharts();
+    private ApexChartOptions<MarketBcnChart> MarketBcnChartChartOptions { get; set; } = new();
+    public class MarketBcnChart {
+        public decimal MarketBcnSeries { get; set; }
+        public decimal MarketBcnValue { get; set; }
+        
+    } ;
+    public static class MarketBcnchartData {
+            public static List<MarketBcnChart> GetMarketBcnCharts()
+            {
+                List<MarketBcnChart> Marketbcnchart = new List<MarketBcnChart>
+                {
+                    new MarketBcnChart { MarketBcnSeries = 1, MarketBcnValue = 0},
+                    new MarketBcnChart { MarketBcnSeries = 2, MarketBcnValue = 45},
+                    new MarketBcnChart { MarketBcnSeries = 3, MarketBcnValue = 54},
+                    new MarketBcnChart { MarketBcnSeries = 4, MarketBcnValue = 38},
+                    new MarketBcnChart { MarketBcnSeries = 5, MarketBcnValue = 56},
+                    new MarketBcnChart { MarketBcnSeries = 6, MarketBcnValue = 24},
+                    new MarketBcnChart { MarketBcnSeries = 7, MarketBcnValue = 65},
+                    new MarketBcnChart { MarketBcnSeries = 8, MarketBcnValue = 31},
+                    new MarketBcnChart { MarketBcnSeries = 9, MarketBcnValue = 37},
+                    new MarketBcnChart { MarketBcnSeries = 10, MarketBcnValue = 39},
+                    new MarketBcnChart { MarketBcnSeries = 11, MarketBcnValue = 62},
+                    new MarketBcnChart { MarketBcnSeries = 12, MarketBcnValue = 51},
+                    new MarketBcnChart { MarketBcnSeries = 13, MarketBcnValue = 35},
+                    new MarketBcnChart { MarketBcnSeries = 14, MarketBcnValue = 41},
+                    new MarketBcnChart { MarketBcnSeries = 15, MarketBcnValue = 35},
+                    new MarketBcnChart { MarketBcnSeries = 16, MarketBcnValue = 27},
+                    new MarketBcnChart { MarketBcnSeries = 17, MarketBcnValue = 93},
+                    new MarketBcnChart { MarketBcnSeries = 18, MarketBcnValue = 53},
+                    new MarketBcnChart { MarketBcnSeries = 19, MarketBcnValue = 61},
+                    new MarketBcnChart { MarketBcnSeries = 20, MarketBcnValue = 27},
+                    new MarketBcnChart { MarketBcnSeries = 21, MarketBcnValue = 54},
+                    new MarketBcnChart { MarketBcnSeries = 22, MarketBcnValue = 43},
+                    new MarketBcnChart { MarketBcnSeries = 23, MarketBcnValue = 19},
+                    new MarketBcnChart { MarketBcnSeries = 24, MarketBcnValue = 46},
+                    new MarketBcnChart { MarketBcnSeries = 25, MarketBcnValue = 0},
+                    new MarketBcnChart { MarketBcnSeries = 26, MarketBcnValue = 45},
+                    new MarketBcnChart { MarketBcnSeries = 27, MarketBcnValue = 54},
+                    new MarketBcnChart { MarketBcnSeries = 28, MarketBcnValue = 38},
+                    new MarketBcnChart { MarketBcnSeries = 29, MarketBcnValue = 56},
+                    new MarketBcnChart { MarketBcnSeries = 30, MarketBcnValue = 24},
+                    new MarketBcnChart { MarketBcnSeries = 31, MarketBcnValue = 65},
+                    new MarketBcnChart { MarketBcnSeries = 32, MarketBcnValue = 31},
+                    new MarketBcnChart { MarketBcnSeries = 33, MarketBcnValue = 37},
+                    new MarketBcnChart { MarketBcnSeries = 34, MarketBcnValue = 39},
+                    new MarketBcnChart { MarketBcnSeries = 35, MarketBcnValue = 62},
+                    new MarketBcnChart { MarketBcnSeries = 36, MarketBcnValue = 51},
+                    new MarketBcnChart { MarketBcnSeries = 37, MarketBcnValue = 35},
+                    new MarketBcnChart { MarketBcnSeries = 38, MarketBcnValue = 41},
+                    new MarketBcnChart { MarketBcnSeries = 39, MarketBcnValue = 35},
+                    new MarketBcnChart { MarketBcnSeries = 40, MarketBcnValue = 27},
+                    new MarketBcnChart { MarketBcnSeries = 41, MarketBcnValue = 93},
+                    new MarketBcnChart { MarketBcnSeries = 42, MarketBcnValue = 53},
+                    new MarketBcnChart { MarketBcnSeries = 43, MarketBcnValue = 61},
+                    new MarketBcnChart { MarketBcnSeries = 44, MarketBcnValue = 27},
+                    new MarketBcnChart { MarketBcnSeries = 45, MarketBcnValue = 54},
+                    new MarketBcnChart { MarketBcnSeries = 46, MarketBcnValue = 43},
+                    new MarketBcnChart { MarketBcnSeries = 47, MarketBcnValue = 19},
+                    new MarketBcnChart { MarketBcnSeries = 48, MarketBcnValue = 46},
+                    new MarketBcnChart { MarketBcnSeries = 49, MarketBcnValue = 0},
+                    new MarketBcnChart { MarketBcnSeries = 50, MarketBcnValue = 45},
+                    new MarketBcnChart { MarketBcnSeries = 51, MarketBcnValue = 54},
+                    new MarketBcnChart { MarketBcnSeries = 52, MarketBcnValue = 38},
+                    new MarketBcnChart { MarketBcnSeries = 53, MarketBcnValue = 56},
+                    new MarketBcnChart { MarketBcnSeries = 54, MarketBcnValue = 24},
+                    new MarketBcnChart { MarketBcnSeries = 55, MarketBcnValue = 65},
+                    new MarketBcnChart { MarketBcnSeries = 56, MarketBcnValue = 31},
+                    new MarketBcnChart { MarketBcnSeries = 57, MarketBcnValue = 37},
+                    new MarketBcnChart { MarketBcnSeries = 58, MarketBcnValue = 39},
+                    new MarketBcnChart { MarketBcnSeries = 59, MarketBcnValue = 62},
+                    new MarketBcnChart { MarketBcnSeries = 60, MarketBcnValue = 51},
+                    new MarketBcnChart { MarketBcnSeries = 61, MarketBcnValue = 35},
+                    new MarketBcnChart { MarketBcnSeries = 62, MarketBcnValue = 41},
+                    new MarketBcnChart { MarketBcnSeries = 63, MarketBcnValue = 35},
+                    new MarketBcnChart { MarketBcnSeries = 64, MarketBcnValue = 27},
+                    new MarketBcnChart { MarketBcnSeries = 65, MarketBcnValue = 93},
+                    new MarketBcnChart { MarketBcnSeries = 66, MarketBcnValue = 53},
+                    new MarketBcnChart { MarketBcnSeries = 67, MarketBcnValue = 61},
+                    new MarketBcnChart { MarketBcnSeries = 68, MarketBcnValue = 27},
+                    new MarketBcnChart { MarketBcnSeries = 69, MarketBcnValue = 54},
+                    new MarketBcnChart { MarketBcnSeries = 70, MarketBcnValue = 43},
+                    new MarketBcnChart { MarketBcnSeries = 71, MarketBcnValue = 19},
+                    new MarketBcnChart { MarketBcnSeries = 72, MarketBcnValue = 46},
+
+                };
+
+                return Marketbcnchart;
+            }
+    }
+    // MarketBcn CHART SPARKLINE End // 
+    
+    // MarketIota CHART SPARKLINE Start //
+    private List<MarketIotaChart> Marketiotachart { get; set; } = MarketIotachartData.GetMarketIotaCharts();
+    private ApexChartOptions<MarketIotaChart> MarketIotaChartChartOptions { get; set; } = new();
+    public class MarketIotaChart {
+        public decimal MarketIotaSeries { get; set; }
+        public decimal MarketIotaValue { get; set; }
+        
+    } ;
+    public static class MarketIotachartData {
+            public static List<MarketIotaChart> GetMarketIotaCharts()
+            {
+                List<MarketIotaChart> Marketiotachart = new List<MarketIotaChart>
+                {
+                    new MarketIotaChart { MarketIotaSeries = 1, MarketIotaValue = 0},
+                    new MarketIotaChart { MarketIotaSeries = 2, MarketIotaValue = 45},
+                    new MarketIotaChart { MarketIotaSeries = 3, MarketIotaValue = 54},
+                    new MarketIotaChart { MarketIotaSeries = 4, MarketIotaValue = 38},
+                    new MarketIotaChart { MarketIotaSeries = 5, MarketIotaValue = 56},
+                    new MarketIotaChart { MarketIotaSeries = 6, MarketIotaValue = 24},
+                    new MarketIotaChart { MarketIotaSeries = 7, MarketIotaValue = 65},
+                    new MarketIotaChart { MarketIotaSeries = 8, MarketIotaValue = 31},
+                    new MarketIotaChart { MarketIotaSeries = 9, MarketIotaValue = 37},
+                    new MarketIotaChart { MarketIotaSeries = 10, MarketIotaValue = 39},
+                    new MarketIotaChart { MarketIotaSeries = 11, MarketIotaValue = 62},
+                    new MarketIotaChart { MarketIotaSeries = 12, MarketIotaValue = 51},
+                    new MarketIotaChart { MarketIotaSeries = 13, MarketIotaValue = 35},
+                    new MarketIotaChart { MarketIotaSeries = 14, MarketIotaValue = 41},
+                    new MarketIotaChart { MarketIotaSeries = 15, MarketIotaValue = 35},
+                    new MarketIotaChart { MarketIotaSeries = 16, MarketIotaValue = 27},
+                    new MarketIotaChart { MarketIotaSeries = 17, MarketIotaValue = 93},
+                    new MarketIotaChart { MarketIotaSeries = 18, MarketIotaValue = 53},
+                    new MarketIotaChart { MarketIotaSeries = 19, MarketIotaValue = 61},
+                    new MarketIotaChart { MarketIotaSeries = 20, MarketIotaValue = 27},
+                    new MarketIotaChart { MarketIotaSeries = 21, MarketIotaValue = 54},
+                    new MarketIotaChart { MarketIotaSeries = 22, MarketIotaValue = 43},
+                    new MarketIotaChart { MarketIotaSeries = 23, MarketIotaValue = 19},
+                    new MarketIotaChart { MarketIotaSeries = 24, MarketIotaValue = 46},
+                    new MarketIotaChart { MarketIotaSeries = 25, MarketIotaValue = 0},
+                    new MarketIotaChart { MarketIotaSeries = 26, MarketIotaValue = 45},
+                    new MarketIotaChart { MarketIotaSeries = 27, MarketIotaValue = 54},
+                    new MarketIotaChart { MarketIotaSeries = 28, MarketIotaValue = 38},
+                    new MarketIotaChart { MarketIotaSeries = 29, MarketIotaValue = 56},
+                    new MarketIotaChart { MarketIotaSeries = 30, MarketIotaValue = 24},
+                    new MarketIotaChart { MarketIotaSeries = 31, MarketIotaValue = 65},
+                    new MarketIotaChart { MarketIotaSeries = 32, MarketIotaValue = 31},
+                    new MarketIotaChart { MarketIotaSeries = 33, MarketIotaValue = 37},
+                    new MarketIotaChart { MarketIotaSeries = 34, MarketIotaValue = 39},
+                    new MarketIotaChart { MarketIotaSeries = 35, MarketIotaValue = 62},
+                    new MarketIotaChart { MarketIotaSeries = 36, MarketIotaValue = 51},
+                    new MarketIotaChart { MarketIotaSeries = 37, MarketIotaValue = 35},
+                    new MarketIotaChart { MarketIotaSeries = 38, MarketIotaValue = 41},
+                    new MarketIotaChart { MarketIotaSeries = 39, MarketIotaValue = 35},
+                    new MarketIotaChart { MarketIotaSeries = 40, MarketIotaValue = 27},
+                    new MarketIotaChart { MarketIotaSeries = 41, MarketIotaValue = 93},
+                    new MarketIotaChart { MarketIotaSeries = 42, MarketIotaValue = 53},
+                    new MarketIotaChart { MarketIotaSeries = 43, MarketIotaValue = 61},
+                    new MarketIotaChart { MarketIotaSeries = 44, MarketIotaValue = 27},
+                    new MarketIotaChart { MarketIotaSeries = 45, MarketIotaValue = 54},
+                    new MarketIotaChart { MarketIotaSeries = 46, MarketIotaValue = 43},
+                    new MarketIotaChart { MarketIotaSeries = 47, MarketIotaValue = 19},
+                    new MarketIotaChart { MarketIotaSeries = 48, MarketIotaValue = 46},
+                    new MarketIotaChart { MarketIotaSeries = 49, MarketIotaValue = 0},
+                    new MarketIotaChart { MarketIotaSeries = 50, MarketIotaValue = 45},
+                    new MarketIotaChart { MarketIotaSeries = 51, MarketIotaValue = 54},
+                    new MarketIotaChart { MarketIotaSeries = 52, MarketIotaValue = 38},
+                    new MarketIotaChart { MarketIotaSeries = 53, MarketIotaValue = 56},
+                    new MarketIotaChart { MarketIotaSeries = 54, MarketIotaValue = 24},
+                    new MarketIotaChart { MarketIotaSeries = 55, MarketIotaValue = 65},
+                    new MarketIotaChart { MarketIotaSeries = 56, MarketIotaValue = 31},
+                    new MarketIotaChart { MarketIotaSeries = 57, MarketIotaValue = 37},
+                    new MarketIotaChart { MarketIotaSeries = 58, MarketIotaValue = 39},
+                    new MarketIotaChart { MarketIotaSeries = 59, MarketIotaValue = 62},
+                    new MarketIotaChart { MarketIotaSeries = 60, MarketIotaValue = 51},
+                    new MarketIotaChart { MarketIotaSeries = 61, MarketIotaValue = 35},
+                    new MarketIotaChart { MarketIotaSeries = 62, MarketIotaValue = 41},
+                    new MarketIotaChart { MarketIotaSeries = 63, MarketIotaValue = 35},
+                    new MarketIotaChart { MarketIotaSeries = 64, MarketIotaValue = 27},
+                    new MarketIotaChart { MarketIotaSeries = 65, MarketIotaValue = 93},
+                    new MarketIotaChart { MarketIotaSeries = 66, MarketIotaValue = 53},
+                    new MarketIotaChart { MarketIotaSeries = 67, MarketIotaValue = 61},
+                    new MarketIotaChart { MarketIotaSeries = 68, MarketIotaValue = 27},
+                    new MarketIotaChart { MarketIotaSeries = 69, MarketIotaValue = 54},
+                    new MarketIotaChart { MarketIotaSeries = 70, MarketIotaValue = 43},
+                    new MarketIotaChart { MarketIotaSeries = 71, MarketIotaValue = 19},
+                    new MarketIotaChart { MarketIotaSeries = 72, MarketIotaValue = 46},
+
+                };
+
+                return Marketiotachart;
+            }
+    }
+    // MarketIota CHART SPARKLINE End // 
+
+    // MarketMonero CHART SPARKLINE Start //
+    private List<MarketMoneroChart> Marketmonerochart { get; set; } = MarketMonerochartData.GetMarketMoneroCharts();
+    private ApexChartOptions<MarketMoneroChart> MarketMoneroChartChartOptions { get; set; } = new();
+    public class MarketMoneroChart {
+        public decimal MarketMoneroSeries { get; set; }
+        public decimal MarketMoneroValue { get; set; }
+        
+    } ;
+    public static class MarketMonerochartData {
+            public static List<MarketMoneroChart> GetMarketMoneroCharts()
+            {
+                List<MarketMoneroChart> Marketmonerochart = new List<MarketMoneroChart>
+                {
+                    new MarketMoneroChart { MarketMoneroSeries = 1, MarketMoneroValue = 0},
+                    new MarketMoneroChart { MarketMoneroSeries = 2, MarketMoneroValue = 45},
+                    new MarketMoneroChart { MarketMoneroSeries = 3, MarketMoneroValue = 54},
+                    new MarketMoneroChart { MarketMoneroSeries = 4, MarketMoneroValue = 38},
+                    new MarketMoneroChart { MarketMoneroSeries = 5, MarketMoneroValue = 56},
+                    new MarketMoneroChart { MarketMoneroSeries = 6, MarketMoneroValue = 24},
+                    new MarketMoneroChart { MarketMoneroSeries = 7, MarketMoneroValue = 65},
+                    new MarketMoneroChart { MarketMoneroSeries = 8, MarketMoneroValue = 31},
+                    new MarketMoneroChart { MarketMoneroSeries = 9, MarketMoneroValue = 37},
+                    new MarketMoneroChart { MarketMoneroSeries = 10, MarketMoneroValue = 39},
+                    new MarketMoneroChart { MarketMoneroSeries = 11, MarketMoneroValue = 62},
+                    new MarketMoneroChart { MarketMoneroSeries = 12, MarketMoneroValue = 51},
+                    new MarketMoneroChart { MarketMoneroSeries = 13, MarketMoneroValue = 35},
+                    new MarketMoneroChart { MarketMoneroSeries = 14, MarketMoneroValue = 41},
+                    new MarketMoneroChart { MarketMoneroSeries = 15, MarketMoneroValue = 35},
+                    new MarketMoneroChart { MarketMoneroSeries = 16, MarketMoneroValue = 27},
+                    new MarketMoneroChart { MarketMoneroSeries = 17, MarketMoneroValue = 93},
+                    new MarketMoneroChart { MarketMoneroSeries = 18, MarketMoneroValue = 53},
+                    new MarketMoneroChart { MarketMoneroSeries = 19, MarketMoneroValue = 61},
+                    new MarketMoneroChart { MarketMoneroSeries = 20, MarketMoneroValue = 27},
+                    new MarketMoneroChart { MarketMoneroSeries = 21, MarketMoneroValue = 54},
+                    new MarketMoneroChart { MarketMoneroSeries = 22, MarketMoneroValue = 43},
+                    new MarketMoneroChart { MarketMoneroSeries = 23, MarketMoneroValue = 19},
+                    new MarketMoneroChart { MarketMoneroSeries = 24, MarketMoneroValue = 46},
+                    new MarketMoneroChart { MarketMoneroSeries = 25, MarketMoneroValue = 0},
+                    new MarketMoneroChart { MarketMoneroSeries = 26, MarketMoneroValue = 45},
+                    new MarketMoneroChart { MarketMoneroSeries = 27, MarketMoneroValue = 54},
+                    new MarketMoneroChart { MarketMoneroSeries = 28, MarketMoneroValue = 38},
+                    new MarketMoneroChart { MarketMoneroSeries = 29, MarketMoneroValue = 56},
+                    new MarketMoneroChart { MarketMoneroSeries = 30, MarketMoneroValue = 24},
+                    new MarketMoneroChart { MarketMoneroSeries = 31, MarketMoneroValue = 65},
+                    new MarketMoneroChart { MarketMoneroSeries = 32, MarketMoneroValue = 31},
+                    new MarketMoneroChart { MarketMoneroSeries = 33, MarketMoneroValue = 37},
+                    new MarketMoneroChart { MarketMoneroSeries = 34, MarketMoneroValue = 39},
+                    new MarketMoneroChart { MarketMoneroSeries = 35, MarketMoneroValue = 62},
+                    new MarketMoneroChart { MarketMoneroSeries = 36, MarketMoneroValue = 51},
+                    new MarketMoneroChart { MarketMoneroSeries = 37, MarketMoneroValue = 35},
+                    new MarketMoneroChart { MarketMoneroSeries = 38, MarketMoneroValue = 41},
+                    new MarketMoneroChart { MarketMoneroSeries = 39, MarketMoneroValue = 35},
+                    new MarketMoneroChart { MarketMoneroSeries = 40, MarketMoneroValue = 27},
+                    new MarketMoneroChart { MarketMoneroSeries = 41, MarketMoneroValue = 93},
+                    new MarketMoneroChart { MarketMoneroSeries = 42, MarketMoneroValue = 53},
+                    new MarketMoneroChart { MarketMoneroSeries = 43, MarketMoneroValue = 61},
+                    new MarketMoneroChart { MarketMoneroSeries = 44, MarketMoneroValue = 27},
+                    new MarketMoneroChart { MarketMoneroSeries = 45, MarketMoneroValue = 54},
+                    new MarketMoneroChart { MarketMoneroSeries = 46, MarketMoneroValue = 43},
+                    new MarketMoneroChart { MarketMoneroSeries = 47, MarketMoneroValue = 19},
+                    new MarketMoneroChart { MarketMoneroSeries = 48, MarketMoneroValue = 46},
+                    new MarketMoneroChart { MarketMoneroSeries = 49, MarketMoneroValue = 0},
+                    new MarketMoneroChart { MarketMoneroSeries = 50, MarketMoneroValue = 45},
+                    new MarketMoneroChart { MarketMoneroSeries = 51, MarketMoneroValue = 54},
+                    new MarketMoneroChart { MarketMoneroSeries = 52, MarketMoneroValue = 38},
+                    new MarketMoneroChart { MarketMoneroSeries = 53, MarketMoneroValue = 56},
+                    new MarketMoneroChart { MarketMoneroSeries = 54, MarketMoneroValue = 24},
+                    new MarketMoneroChart { MarketMoneroSeries = 55, MarketMoneroValue = 65},
+                    new MarketMoneroChart { MarketMoneroSeries = 56, MarketMoneroValue = 31},
+                    new MarketMoneroChart { MarketMoneroSeries = 57, MarketMoneroValue = 37},
+                    new MarketMoneroChart { MarketMoneroSeries = 58, MarketMoneroValue = 39},
+                    new MarketMoneroChart { MarketMoneroSeries = 59, MarketMoneroValue = 62},
+                    new MarketMoneroChart { MarketMoneroSeries = 60, MarketMoneroValue = 51},
+                    new MarketMoneroChart { MarketMoneroSeries = 61, MarketMoneroValue = 35},
+                    new MarketMoneroChart { MarketMoneroSeries = 62, MarketMoneroValue = 41},
+                    new MarketMoneroChart { MarketMoneroSeries = 63, MarketMoneroValue = 35},
+                    new MarketMoneroChart { MarketMoneroSeries = 64, MarketMoneroValue = 27},
+                    new MarketMoneroChart { MarketMoneroSeries = 65, MarketMoneroValue = 93},
+                    new MarketMoneroChart { MarketMoneroSeries = 66, MarketMoneroValue = 53},
+                    new MarketMoneroChart { MarketMoneroSeries = 67, MarketMoneroValue = 61},
+                    new MarketMoneroChart { MarketMoneroSeries = 68, MarketMoneroValue = 27},
+                    new MarketMoneroChart { MarketMoneroSeries = 69, MarketMoneroValue = 54},
+                    new MarketMoneroChart { MarketMoneroSeries = 70, MarketMoneroValue = 43},
+                    new MarketMoneroChart { MarketMoneroSeries = 71, MarketMoneroValue = 19},
+                    new MarketMoneroChart { MarketMoneroSeries = 72, MarketMoneroValue = 46},
+
+                };
+
+                return Marketmonerochart;
+            }
+    }
+    // MarketMonero CHART SPARKLINE End // 
+    protected override void OnInitialized() {
+
+        BtcChartChartOptions = new ApexChartOptions<BtcChart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width ="120px",
+                Height ="40px",
+                Sparkline = new () {
+                    Enabled = true
+                },
+                DropShadow = new () {
+                    Enabled= true,
+                    Top= 0,
+                    Left= 0,
+                    Blur= 3,
+                    Color= "#000",
+                    Opacity= 0.1
+                }
+            }, 
+            Colors = new Color(new List<string> { "#26bf94" }),
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            },
+        };
+
+        EthChartChartOptions = new ApexChartOptions<EthChart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width ="120px",
+                Height ="40px",
+                Sparkline = new () {
+                    Enabled = true
+                },
+                DropShadow = new () {
+                    Enabled= true,
+                    Top= 0,
+                    Left= 0,
+                    Blur= 3,
+                    Color= "#000",
+                    Opacity= 0.1
+                }
+            }, 
+            Colors = new Color(new List<string> { "#26bf94" }),
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            },
+        };
+
+        DashChartChartOptions = new ApexChartOptions<DashChart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width ="120px",
+                Height ="40px",
+                Sparkline = new () {
+                    Enabled = true
+                },
+                DropShadow = new () {
+                    Enabled= true,
+                    Top= 0,
+                    Left= 0,
+                    Blur= 3,
+                    Color= "#000",
+                    Opacity= 0.1
+                }
+            }, 
+            Colors = new Color(new List<string> { "#e6533c" }),
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            },
+        };
+        
+        MarketBtcChartChartOptions = new ApexChartOptions<MarketBtcChart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width ="120px",
+                Height ="30px",
+                Sparkline = new () {
+                    Enabled = true
+                },
+                DropShadow = new () {
+                    Enabled= true,
+                    Top= 0,
+                    Left= 0,
+                    Blur= 3,
+                    Color= "#000",
+                    Opacity= 0.1
+                }
+            }, 
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            }, 
+            Tooltip = new ApexCharts.Tooltip {
+                Enabled = false,
+            },
+        };
+        
+        MarketEthChartChartOptions = new ApexChartOptions<MarketEthChart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width ="120px",
+                Height ="30px",
+                Sparkline = new () {
+                    Enabled = true
+                },
+                DropShadow = new () {
+                    Enabled= true,
+                    Top= 0,
+                    Left= 0,
+                    Blur= 3,
+                    Color= "#000",
+                    Opacity= 0.1
+                }
+            }, 
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            }, 
+            Tooltip = new ApexCharts.Tooltip {
+                Enabled = false,
+            },
+        };
+
+        MarketGlmChartChartOptions = new ApexChartOptions<MarketGlmChart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width ="120px",
+                Height ="30px",
+                Sparkline = new () {
+                    Enabled = true
+                },
+                DropShadow = new () {
+                    Enabled= true,
+                    Top= 0,
+                    Left= 0,
+                    Blur= 3,
+                    Color= "#000",
+                    Opacity= 0.1
+                }
+            }, 
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            }, 
+            Tooltip = new ApexCharts.Tooltip {
+                Enabled = false,
+            },
+        };
+
+        MarketDashChartChartOptions = new ApexChartOptions<MarketDashChart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width ="120px",
+                Height ="30px",
+                Sparkline = new () {
+                    Enabled = true
+                },
+                DropShadow = new () {
+                    Enabled= true,
+                    Top= 0,
+                    Left= 0,
+                    Blur= 3,
+                    Color= "#000",
+                    Opacity= 0.1
+                }
+            }, 
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            }, 
+            Tooltip = new ApexCharts.Tooltip {
+                Enabled = false,
+            },
+        };
+
+        MarketLtcChartChartOptions = new ApexChartOptions<MarketLtcChart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width ="120px",
+                Height ="30px",
+                Sparkline = new () {
+                    Enabled = true
+                },
+                DropShadow = new () {
+                    Enabled= true,
+                    Top= 0,
+                    Left= 0,
+                    Blur= 3,
+                    Color= "#000",
+                    Opacity= 0.1
+                }
+            }, 
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            }, 
+            Tooltip = new ApexCharts.Tooltip {
+                Enabled = false,
+            },
+        };
+        
+        MarketXrpChartChartOptions = new ApexChartOptions<MarketXrpChart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width ="120px",
+                Height ="30px",
+                Sparkline = new () {
+                    Enabled = true
+                },
+                DropShadow = new () {
+                    Enabled= true,
+                    Top= 0,
+                    Left= 0,
+                    Blur= 3,
+                    Color= "#000",
+                    Opacity= 0.1
+                }
+            }, 
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            }, 
+            Tooltip = new ApexCharts.Tooltip {
+                Enabled = false,
+            },
+        };
+        
+        MarketEosChartChartOptions = new ApexChartOptions<MarketEosChart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width ="120px",
+                Height ="30px",
+                Sparkline = new () {
+                    Enabled = true
+                },
+                DropShadow = new () {
+                    Enabled= true,
+                    Top= 0,
+                    Left= 0,
+                    Blur= 3,
+                    Color= "#000",
+                    Opacity= 0.1
+                }
+            }, 
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            }, 
+            Tooltip = new ApexCharts.Tooltip {
+                Enabled = false,
+            },
+        };
+        
+        MarketBcnChartChartOptions = new ApexChartOptions<MarketBcnChart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width ="120px",
+                Height ="30px",
+                Sparkline = new () {
+                    Enabled = true
+                },
+                DropShadow = new () {
+                    Enabled= true,
+                    Top= 0,
+                    Left= 0,
+                    Blur= 3,
+                    Color= "#000",
+                    Opacity= 0.1
+                }
+            }, 
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            }, 
+            Tooltip = new ApexCharts.Tooltip {
+                Enabled = false,
+            },
+        };
+        
+        MarketIotaChartChartOptions = new ApexChartOptions<MarketIotaChart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width ="120px",
+                Height ="30px",
+                Sparkline = new () {
+                    Enabled = true
+                },
+                DropShadow = new () {
+                    Enabled= true,
+                    Top= 0,
+                    Left= 0,
+                    Blur= 3,
+                    Color= "#000",
+                    Opacity= 0.1
+                }
+            }, 
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            }, 
+            Tooltip = new ApexCharts.Tooltip {
+                Enabled = false,
+            },
+        };
+        
+        
+        MarketMoneroChartChartOptions = new ApexChartOptions<MarketMoneroChart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = false, Zoomin = false, Zoomout = false,Pan = false, Reset = false,  Download = false},
+                }, 
+                Width ="120px",
+                Height ="30px",
+                Sparkline = new () {
+                    Enabled = true
+                },
+                DropShadow = new () {
+                    Enabled= true,
+                    Top= 0,
+                    Left= 0,
+                    Blur= 3,
+                    Color= "#000",
+                    Opacity= 0.1
+                }
+            }, 
+            Stroke = new Stroke { 
+                Curve = Curve.Smooth,
+                LineCap = ApexCharts.LineCap.Butt,
+                Width = 1.5,
+            }, 
+            Tooltip = new ApexCharts.Tooltip {
+                Enabled = false,
+            },
+        };
+
+    }
+}

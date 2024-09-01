@@ -1,0 +1,384 @@
+@page "/sweet_alerts"
+@inject SweetAlertService Swal
+
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <h1 class="page-title fw-semibold fs-18 mb-0">Sweet Alerts</h1>
+                    <div class="ms-md-1 ms-0">
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Apps</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Sweet Alerts</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start:: row-1 -->
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Basic Alert
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <button class="btn btn-primary" id="basic-alert" @onclick="@(async () => await ShowAlert())">Basic Alert</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Title With Text Under
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <button class="btn btn-primary" id="alert-text" @onclick="@(async () => await ShowQuestionAlert())">Title With Text</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    With Text,Error Icon & Footer
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <button class="btn btn-primary" id="alert-footer" @onclick="@(async () => await ShowErrorAlert())">Alert Footer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End:: row-1 -->
+
+                <!-- Start:: row-2 -->
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Alert With Long Window
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <button class="btn btn-primary" id="long-window" @onclick="@(async () => await ShowImageAlert())">Long Window Here</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Custom HTML Description
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <button class="btn btn-primary" id="alert-description" @onclick="@(async () => await ShowHtmlAlert())">Custom HTML Alert</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Alert With Multiple Buttons
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <button class="btn btn-primary" id="three-buttons" @onclick="@(async () => await ShowMultipleAlert())">Multiple Buttons</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End:: row-2 -->
+
+                <!-- Start:: row-3 -->
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Custom Positioned Dialog Alert
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <button class="btn btn-primary" id="alert-dialog" @onclick="@(async () => await ShowSuccessAlert())">Alert Dialog</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Confirm Alert
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <button class="btn btn-primary" id="alert-confirm" @onclick="@(async () => await ShowDeleteAlert())">Confirm Alert</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Alert With Parameters
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <button class="btn btn-primary" id="alert-parameter" @onclick="@(async () => await ShowParameters())">Alert Parameters</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End:: row-3 -->
+
+                <!-- Start:: row-4 -->
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Alert With Image
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <button class="btn btn-primary" id="alert-image" @onclick="@(async () => await ShowCustomImageAlert())">Image Alert</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Alert With Image
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <button class="btn btn-primary" id="alert-custom-bg"  @onclick="@(async () => await ShowCustomAlert())">Custom Alert</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Auto Close Alert
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <button class="btn btn-primary" id="alert-auto-close" @onclick="@(async () => await ShowAutoClose())">Auto Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End:: row-4 -->
+
+            </div>
+
+    <script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.min.js"></script>
+
+@code {
+
+    private async Task ShowAlert()
+    {
+        await Swal.FireAsync("Hello this is Basic alert message");
+    }
+
+
+    private async Task ShowQuestionAlert()
+    {
+        await Swal.FireAsync(new SweetAlertOptions
+        {
+            Title = "The Internet?",
+            Text = "That thing is still around?",
+            Icon = SweetAlertIcon.Question
+        });
+    }
+
+
+    private async Task ShowErrorAlert()
+    {
+        await Swal.FireAsync(new SweetAlertOptions
+        {
+            Icon = SweetAlertIcon.Error,
+            Title = "Oops...",
+            Text = "Something went wrong!",
+            Footer = "<a href=\"#\">Why do I have this issue?</a>"
+        });
+    }
+
+
+    private async Task ShowImageAlert()
+    {
+        await Swal.FireAsync(new SweetAlertOptions
+        {
+            ImageUrl = "https://placeholder.pics/svg/300x1500",
+            ImageHeight = 1500,
+            ImageAlt = "A tall image"
+        });
+    }
+
+
+    private async Task ShowHtmlAlert()
+    {
+        await Swal.FireAsync(new SweetAlertOptions
+        {
+            Title = "<strong>HTML <u>example</u></strong>",
+            Icon = SweetAlertIcon.Info,
+            Html = @"
+                You can use <b>bold text</b>,
+                <a href='javascript:void(0);'>links</a>,
+                and other HTML tags",
+            ShowCloseButton = true,
+            ShowCancelButton = true,
+            FocusConfirm = false,
+            ConfirmButtonText = "<i class='fe fe-thumbs-up'></i> Great!",
+            ConfirmButtonAriaLabel = "Thumbs up, great!",
+            CancelButtonText = "<i class='fe fe-thumbs-down'></i>",
+            CancelButtonAriaLabel = "Thumbs down"
+        });
+    }
+
+
+    private async Task ShowMultipleAlert()
+    {
+        var result = await Swal.FireAsync(new SweetAlertOptions
+        {
+            Title = "Do you want to save the changes?",
+            ShowCancelButton = true,
+            ShowDenyButton = true,
+            ConfirmButtonText = "Save",
+            DenyButtonText = "Don't save",
+            CancelButtonText = "Cancel"
+        });
+
+        if (result.IsConfirmed)
+        {
+            await Swal.FireAsync("Saved!", "", SweetAlertIcon.Success);
+        }
+        else if (result.IsDenied)
+        {
+            await Swal.FireAsync("Changes are not saved", "", SweetAlertIcon.Info);
+        }
+    }
+
+
+    private async Task ShowSuccessAlert()   
+    {
+        await Swal.FireAsync(new SweetAlertOptions
+        {
+            Position = SweetAlertPosition.TopEnd,
+            Icon = SweetAlertIcon.Success,
+            Title = "Your work has been saved",
+            ShowConfirmButton = false,
+            Timer = 1500
+        });
+    }
+
+
+    private async Task ShowDeleteAlert()
+    {
+        var confirmResult = await Swal.FireAsync(new SweetAlertOptions
+        {
+            Title = "Are you sure?",
+            Text = "You won't be able to revert this!",
+            Icon = SweetAlertIcon.Warning,
+            ShowCancelButton = true,
+            ConfirmButtonColor = "#3085d6",
+            CancelButtonColor = "#d33",
+            ConfirmButtonText = "Yes, delete it!"
+        });
+
+        if (confirmResult.IsConfirmed)
+        {
+            await Swal.FireAsync(new SweetAlertOptions
+            {
+                Title = "Deleted!",
+                Text = "Your file has been deleted.",
+                Icon = SweetAlertIcon.Success
+            });
+        }
+    }
+
+
+    private async Task ShowCustomImageAlert()
+    {
+        await Swal.FireAsync(new SweetAlertOptions
+        {
+            Title = "Sweet!",
+            Text = "Modal with a custom image.",
+            ImageUrl = "assets/images/media/media-59.jpg",
+            ImageWidth = 400,
+            ImageHeight = 200,
+            ImageAlt = "Custom image"
+        });
+    }
+
+
+    private async Task ShowCustomAlert()
+    {
+        await Swal.FireAsync(new SweetAlertOptions
+        {
+            Title = "Custom width, padding, color, background.",
+            Width = "600px",
+            Padding = "3em",
+            Color = "#716add",
+            Background = "url(assets/images/media/media-19.jpg)",
+            Backdrop = true
+        });
+    }
+   private async Task ShowAutoClose()
+    {
+
+        await Swal.FireAsync(new SweetAlertOptions
+        {
+            Title = "Auto close alert!",
+            Html = "I will close in <b></b> milliseconds.",
+            Timer = 2000,
+            TimerProgressBar = true,
+        });
+    }
+
+private async Task ShowParameters()
+    {
+        var confirmResult = await Swal.FireAsync(new SweetAlertOptions
+        {
+            Title = "Are you sure?",
+            Text = "You won't be able to revert this!",
+            Icon = SweetAlertIcon.Warning,
+            ShowCancelButton = true,
+            ConfirmButtonText = "Yes, delete it!",
+            CancelButtonText = "No, Cancel!",
+            ReverseButtons = true
+        });
+
+        if (confirmResult.IsConfirmed)
+        {
+            await Swal.FireAsync(new SweetAlertOptions
+            {
+                Title = "Deleted!",
+                Text = "Your file has been deleted.",
+                Icon = SweetAlertIcon.Success
+            });
+        }
+        else if (confirmResult.Dismiss == DismissReason.Cancel)
+        {
+            await Swal.FireAsync(new SweetAlertOptions
+            {
+                Title = "Cancelled",
+                Text = "Your imaginary file is safe :)",
+                Icon = SweetAlertIcon.Error
+            });
+        }
+    }
+
+
+}

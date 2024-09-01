@@ -1,0 +1,259 @@
+@page "/apex-rangearea-charts"
+@using ApexCharts
+@using System.Collections.Generic
+
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+        <h1 class="page-title fw-semibold fs-18 mb-0">Apex Range Area Charts</h1>
+        <div class="ms-md-1 ms-0">
+            <nav>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Apex Charts</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Apex Range Area Charts</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header Close -->
+
+    <!-- Start::row-1 -->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Basic Range Area Chart
+                    </div>
+                </div>
+                <div class="card-body">
+                        <ApexChart TItem="Rangeareabasic" Title="New York Temperature (all year round)" Height="350" Options="rangeareabasicoptions">
+                            <ApexRangeAreaSeries TItem="Rangeareabasic" Items="temperatures" Name="New York Temperature" XValue="@(e => e.Month)"
+                                Top="@(e => e.HighestTemperature.HasValue ? (decimal)e.HighestTemperature.Value : 0)"
+                                Bottom="@(e => e.LowestTemperature.HasValue ? (decimal)e.LowestTemperature.Value : 0)"
+                            />
+                        </ApexChart>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Combo Range Area Chart
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ApexChart TItem="Rangeareamixed" Height="350"
+                            Title="Range Area with Forecast Line (Combo)"
+                            Options="rangeareamixedoptions">
+
+                        <ApexRangeAreaSeries TItem="Rangeareamixed"
+                                            Items="temperaturesMixed"
+                                            Name="Team A Range"
+                                            Color="#23b7e5"
+                                            XValue="@(e => e.Month)"
+                                            Top="@(e => e.HighestTemperature.HasValue ? (decimal)e.HighestTemperature.Value : 0M)"
+                                            Bottom="@(e => e.LowestTemperature.HasValue ? (decimal)e.LowestTemperature.Value : 0M)"
+                                            Stroke="@(new SeriesStroke{ Width=0 })"/>
+
+                        <ApexPointSeries TItem="Rangeareamixed" 
+                                        Items="temperaturesMixed"
+                                        Name="Current"
+                                        Color="#845adf"
+                                        SeriesType="SeriesType.Line"
+                                        XValue="@(e => e.Month)"
+                                        YValue="@(e => e.CurrentTemperature.HasValue ? (decimal)e.CurrentTemperature.Value : 0M)"
+                                        Stroke="@(new SeriesStroke{ Width=2,Color="#23b7e5" })" />
+
+                        <ApexRangeAreaSeries TItem="Rangeareamixed"
+                                            Items="temperaturesMixed"
+                                            Name="Team B Range"
+                                            Color="rgba(var(--primary-rgb),0.5)"
+                                            XValue="@(e => e.Month)"
+                                            Top="@(e => e.HighestTemperature2.HasValue ? (decimal)e.HighestTemperature2.Value : 0M)"
+                                            Bottom="@(e => e.LowestTemperature2.HasValue ? (decimal)e.LowestTemperature2.Value : 0M)"
+                                            Stroke="@(new SeriesStroke{ Width=0 })"/>
+
+                        <ApexPointSeries TItem="Rangeareamixed" 
+                                        Items="temperaturesMixed"
+                                        Name="Current"
+                                            Color="#845adf"
+                                        SeriesType="SeriesType.Line"
+                                        XValue="@(e => e.Month)"
+                                        YValue="@(e => e.CurrentTemperature2.HasValue ? (decimal)e.CurrentTemperature2.Value : 0M)"
+                                        Stroke="@(new SeriesStroke{ Width=2,Color="var(--primary-color)" })" />
+                    </ApexChart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End::row-1 -->
+</div>
+
+@code {
+    // Range Area Chart Start //
+    private List<Rangeareabasic> temperatures { get; set; } = DataRangeareabasic.GetRangeareabasic();
+    private ApexChartOptions<Rangeareabasic> rangeareabasicoptions { get; set; } = new();
+    public static class DataRangeareabasic
+    {
+        public static List<Rangeareabasic> GetRangeareabasic()
+        {
+            return new List<Rangeareabasic>
+            {
+                new Rangeareabasic { Month = "Jan", HighestTemperature = -2, LowestTemperature = 4},
+                new Rangeareabasic { Month = "Feb", HighestTemperature = -1, LowestTemperature = 6},
+                new Rangeareabasic { Month = "Mar", HighestTemperature = 3, LowestTemperature = 10},
+                new Rangeareabasic { Month = "Apr", HighestTemperature = 8, LowestTemperature = 16},
+                new Rangeareabasic { Month = "May", HighestTemperature = 13, LowestTemperature = 22},
+                new Rangeareabasic { Month = "Jun", HighestTemperature = 18, LowestTemperature = 26},
+                new Rangeareabasic { Month = "Jul", HighestTemperature = 21, LowestTemperature = 29},
+                new Rangeareabasic { Month = "Aug", HighestTemperature = 21, LowestTemperature = 28},
+                new Rangeareabasic { Month = "Sep", HighestTemperature = 17, LowestTemperature = 24},
+                new Rangeareabasic { Month = "Oct", HighestTemperature = 11, LowestTemperature = 18},
+                new Rangeareabasic { Month = "Nov", HighestTemperature = 6, LowestTemperature = 12},
+                new Rangeareabasic { Month = "Dec", HighestTemperature = 1, LowestTemperature = 7},
+            };
+        }
+    }
+    public class Rangeareabasic
+    {
+        public string? Month { get; set; }
+        public long? HighestTemperature { get; set; }
+        public long? LowestTemperature { get; set; }
+
+    }
+    // Range Area Chart End //
+
+    // Combo Range Area Chart Start //
+
+    private List<Rangeareamixed> temperaturesMixed { get; set; } = DataRangeareamixed.GetRangeareamixed();
+    private ApexChartOptions<Rangeareamixed>? rangeareamixedoptions;
+        
+    public static class DataRangeareamixed
+    {
+        public static List<Rangeareamixed> GetRangeareamixed()
+        {
+            return new List<Rangeareamixed>
+            {
+                new Rangeareamixed { Month = "Jan" , HighestTemperature = 3100 , LowestTemperature = 3400 , CurrentTemperature = 3300 , HighestTemperature2 = 1100 , LowestTemperature2 = 1900 , CurrentTemperature2 = 1500 },
+                new Rangeareamixed { Month = "Feb" , HighestTemperature = 4200 , LowestTemperature = 5200 , CurrentTemperature = 4900 , HighestTemperature2 = 1200 , LowestTemperature2 = 1800 , CurrentTemperature2 = 1700 },
+                new Rangeareamixed { Month = "Mar" , HighestTemperature = 3900 , LowestTemperature = 4900 , CurrentTemperature = 4300 , HighestTemperature2 = 900  , LowestTemperature2 = 2900 , CurrentTemperature2 = 1900 },
+                new Rangeareamixed { Month = "Apr" , HighestTemperature = 3400 , LowestTemperature = 3900 , CurrentTemperature = 3700 , HighestTemperature2 = 1400 , LowestTemperature2 = 2700 , CurrentTemperature2 = 2200 },
+                new Rangeareamixed { Month = "May" , HighestTemperature = 5100 , LowestTemperature = 5900 , CurrentTemperature = 5500 , HighestTemperature2 = 2600 , LowestTemperature2 = 3900 , CurrentTemperature2 = 3000 },
+                new Rangeareamixed { Month = "Jun" , HighestTemperature = 5400 , LowestTemperature = 6700 , CurrentTemperature = 5900 , HighestTemperature2 = 500  , LowestTemperature2 = 1700 , CurrentTemperature2 = 1000 },
+                new Rangeareamixed { Month = "Jul" , HighestTemperature = 4300 , LowestTemperature = 4600 , CurrentTemperature = 4500 , HighestTemperature2 = 1900 , LowestTemperature2 = 2300 , CurrentTemperature2 = 2100 },
+                new Rangeareamixed { Month = "Aug" , HighestTemperature = 2100 , LowestTemperature = 2900 , CurrentTemperature = 2400 , HighestTemperature2 = 1000 , LowestTemperature2 = 1500 , CurrentTemperature2 = 1200 },
+                new Rangeareamixed { Month = "Sep" , CurrentTemperature = 2100 , CurrentTemperature2 = 1800 },
+                new Rangeareamixed { Month = "Oct" , CurrentTemperature = 1500 , CurrentTemperature2 = 2000 },
+                // Add more data points as needed
+            };
+        }
+    }
+
+    public class Rangeareamixed
+    {
+        public string? Month { get; set; }
+        public int? HighestTemperature { get; set; }
+        public int? LowestTemperature { get; set; }
+        public int? CurrentTemperature { get; set; }
+        public int? HighestTemperature2 { get; set; }
+        public int? LowestTemperature2 { get; set; }
+        public int? CurrentTemperature2 { get; set; }
+    }
+    
+    // Combo Range Area Chart End //
+    
+    protected override void OnInitialized()
+    {
+         rangeareabasicoptions = new ApexChartOptions<Rangeareabasic>
+        {
+            Stroke = new Stroke { 
+                Curve = Curve.Straight,
+            },
+            Title = new Title{
+                Text = "Product Trends by Month",
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            Markers = new Markers {
+                Hover = new () {
+                    SizeOffset = 5
+                }
+            },
+            Colors = new Color(new List<string> { "rgba(var(--primary-rgb),0.5)" }),
+            Yaxis = new List<YAxis>
+            {
+                new YAxis
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Formatter = @"function(val) {
+                            return val + '°C';
+                        }"
+                    },
+                    Min = -8,
+                    Max = 32,
+                    StepSize = 8,
+                }
+            }
+        };
+
+        rangeareamixedoptions = new ApexChartOptions<Rangeareamixed>
+        {
+            Chart = new ApexCharts.Chart
+            {
+                Type = ApexCharts.ChartType.RangeArea
+            },
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            ForecastDataPoints = new ForecastDataPoints
+            {
+                Count = 2,
+            },
+            DataLabels = new DataLabels
+            {
+                Enabled = false
+            },
+            Fill = new Fill
+            {
+                Opacity = [0.24,1,0.24,1,]
+            },
+            Legend = new Legend
+            {
+                Show = true,
+                CustomLegendItems = new List<string> { "Team A Range","Team B Range" }
+            },
+            Markers = new Markers
+            {
+                Hover = new MarkersHover
+                {
+                    SizeOffset = 5
+                }
+            },
+            Yaxis = new List<YAxis>
+            {
+                new YAxis
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Formatter = @"function(val) {
+                              return val + '°C'
+                            }"
+                    },
+                    Min = 0,
+                    Max = 8000,
+                    StepSize = 2000,
+                }
+            }
+        };
+    }
+}

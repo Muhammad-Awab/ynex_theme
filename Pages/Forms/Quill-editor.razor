@@ -1,0 +1,175 @@
+@page "/quill_editor"
+@using Blazored.TextEditor
+@inject IJSRuntime JSRuntime
+
+
+<link rel="stylesheet" href="../assets/libs/quill/quill.snow.css">
+<link rel="stylesheet" href="../assets/libs/quill/quill.bubble.css">
+
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <h1 class="page-title fw-semibold fs-18 mb-0">Quill Editor</h1>
+                    <div class="ms-md-1 ms-0">
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Form Editors</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Quill Editor</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start:: row-1 -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Quill Snow Editor
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <BlazoredTextEditor  @ref="@QuillHtml">
+                                    <ToolbarContent>
+                                        <span class="ql-formats">
+                                            <select class="ql-header">
+                                                <option value="1"></option>
+                                                <option value="2"></option>
+                                                <option value="3"></option>
+                                                <option value="4"></option>
+                                                <option value="5"></option>
+                                                <option value="6"></option>
+                                                <option selected=""></option>
+                                            </select> 
+                                        </span>
+                                        <span class="ql-formats">
+                                            <select class="ql-font">
+                                                <option selected=""></option>
+                                                <option value="serif"></option>
+                                                <option value="monospace"></option>
+                                            </select>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-bold"></button>
+                                            <button class="ql-italic"></button>
+                                            <button class="ql-underline"></button>
+                                            <button class="ql-strike"></button>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-blockquote" value="blockquote"></button>
+                                            <button class="ql-code-block" value="code-block"></button>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-header" value="1"></button>
+                                            <button class="ql-header" value="2"></button>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-list" value="ordered"></button>
+                                            <button class="ql-list" value="bullet"></button>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-script" value="sub"></button>
+                                            <button class="ql-script" value="super"></button>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-indent" value="-1"></button>
+                                            <button class="ql-indent" value="+1"></button>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-direction" value="rtl"></button>
+                                        </span>
+                                        <span class="ql-formats">
+                                        <select class="ql-size">
+                                                <option value="small"></option>
+                                                <option selected=""></option>
+                                                <option value="large"></option>
+                                                <option value="huge"></option>
+                                            </select>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <select class="ql-color"></select>
+                                            <select class="ql-background"></select>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <select class="ql-align">
+                                                <option selected=""></option>
+                                                <option value="center"></option>
+                                                <option value="right"></option>
+                                                <option value="justify"></option>
+                                            </select>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-image"></button>
+                                            <button class="ql-video"></button>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-link"></button>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-clean"></button>
+                                        </span>
+                                    </ToolbarContent>
+                                    <EditorContent>
+                                        <h4><b class="ql-size-large">Quill Snow</b> is a free, open source <a href="https://github.com/quilljs/quill/" target="_blank">Quill Editor</a> built for the modern web. With its <a href="https://quilljs.com/docs/modules/" target="_blank">modular architecture</a> and expressive API, it is completely customizable to fit any need.</h4>
+                                        <p><br></p>
+                                        <ol>
+                                            <li class="ql-size-normal">Write text select and edit with multiple options.</li>
+                                            <li class="">This is quill snow editor.</li>
+                                            <li class="">Easy to customize and flexible.</li>
+                                        </ol>
+                                        <p><br></p>
+                                        <h4>Quill officially supports a standard toolbar theme <a href="https://github.com/quilljs/quill/" target="_blank">"Snow"</a> and a floating tooltip theme <a href="https://github.com/quilljs/quill/" target="_blank">"Bubble"</a></h4>
+                                    </EditorContent>
+                                </BlazoredTextEditor >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Quill Bubble Editor
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <BlazoredTextEditor  @ref="@QuillbubbleHtml" Theme="bubble">
+                                    <ToolbarContent>
+                                        <span class="ql-formats">
+                                            <button class="ql-bold"></button>
+                                            <button class="ql-italic"></button>
+                                            <button class="ql-link"></button>
+                                            <button class="ql-header" value="1"></button>
+                                            <button class="ql-header" value="2"></button>
+                                            <button class="ql-blockquote" value="blockquote"></button>
+                                        </span>
+                                    </ToolbarContent>
+                                    <EditorContent>
+                                        <h4><b class="ql-size-large">Quill Bubble</b> is a free, open source <a href="https://github.com/quilljs/quill/" target="_blank">Quill Editor</a> built for the modern web. With its <a href="https://quilljs.com/docs/modules/" target="_blank">modular architecture</a> and expressive API, it is completely customizable to fit any need.</h4>
+                                        <p><br></p>
+                                        <ol>
+                                            <li class="ql-size-normal">Write text select and edit with multiple options.</li>
+                                            <li class="">This is quill bubble editor.</li>
+                                            <li class="">Easy to customize and flexible.</li>
+                                        </ol>
+                                        <p><br></p>
+                                        <h4>Quill officially supports a standard toolbar theme <a href="https://github.com/quilljs/quill/" target="_blank">"Snow"</a> and a floating tooltip theme <a href="https://github.com/quilljs/quill/" target="_blank">"Bubble"</a></h4>
+                                    </EditorContent>
+                                </BlazoredTextEditor >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End:: row-1 -->
+
+            </div>
+@code {
+    BlazoredTextEditor? QuillHtml;
+    BlazoredTextEditor? QuillbubbleHtml;
+}
+            
+
+<!-- Quill Editor JS -->
+<script src="../assets/libs/quill/quill.min.js"></script>

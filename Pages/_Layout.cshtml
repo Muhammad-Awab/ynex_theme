@@ -1,0 +1,216 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@namespace ynex.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Microsoft.AspNetCore.Components.NavigationManager NavigationManager // This line is used to generate URLs dynamically //
+@inject StateService stateService
+@using System.Text.Json;
+@inject IHttpContextAccessor HttpContextAccessor
+@{ 
+    var appState = stateService.GetAppState();
+
+}
+<!DOCTYPE html>
+<html lang="en"  data-toggled="close"
+
+    @if (!string.IsNullOrEmpty(appState?.Direction))
+    {
+        <text>dir="@appState.Direction"</text>
+    }
+    @if (!string.IsNullOrEmpty(appState?.NavigationStyles))
+    {
+        <text>data-nav-layout="@appState.NavigationStyles"</text>
+    }
+    @if (!string.IsNullOrEmpty(appState?.ColorTheme))
+    {
+        <text>data-theme-mode="@appState.ColorTheme"</text>
+    }
+    @if (!string.IsNullOrEmpty(appState?.HeaderColor))
+    {
+        <text>data-header-styles="@appState.HeaderColor"</text>
+    }
+    @if (!string.IsNullOrEmpty(appState?.MenuColor))
+    {
+        <text>data-menu-styles="@appState.MenuColor"</text>
+    }
+    @if (!string.IsNullOrEmpty(appState?.MenuStyles))
+    {
+        <text>data-nav-style="@appState.MenuStyles"</text>
+    }
+    @if (!string.IsNullOrEmpty(appState?.PageStyles))
+    {
+        <text>data-page-style="@appState.PageStyles"</text>
+    }
+    @if (!string.IsNullOrEmpty(appState?.WidthStyles))
+    {
+        <text>data-width="@appState.WidthStyles"</text>
+    }
+    @if (!string.IsNullOrEmpty(appState?.MenuPosition))
+    {
+        <text>data-menu-position="@appState.MenuPosition"</text>
+    }
+    @if (!string.IsNullOrEmpty(appState?.HeaderPosition))
+    {
+        <text>data-header-position="@appState.HeaderPosition"</text>
+    }
+    @if (!string.IsNullOrEmpty(appState?.BackgroundImage))
+    {
+        <text>data-bg-img="@appState.BackgroundImage"</text>
+    }
+     @{
+        string style = "";
+
+        if (!string.IsNullOrEmpty(appState?.ThemePrimary))
+        {
+            style += $"--primary-rgb: {appState.ThemePrimary}; ";
+        }
+        if (!string.IsNullOrEmpty(appState?.ThemeBackground))
+        {
+            style += $"--body-bg-rgb: {appState.ThemeBackground}; ";
+            style += $"--body-bg-rgb2: {appState.ThemeBackground1}; ";
+            style += $"--light-rgb: {appState.ThemeBackground1}; ";
+            style += $"--form-control-bg: rgb({appState.ThemeBackground1}); ";
+            style += $"--input-border: rgba(255,255,255,0.1); ";
+        }
+    }
+    style="@style"
+>
+
+    <head>
+        <!-- META DATA -->
+        <meta charset="UTF-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
+        <meta name="Author" content="Spruko Technologies Private Limited">
+        <meta name="keywords" content="blazor, blazor c#, blazor template, dashboard, blazor ui, dashboard template, blazor bootstrap, blazor framework, admin, blazor net, bootstrap, bootstrap css, admindashboard, bootstrap blazor, bootstrap admin">
+        <base href="~/" />
+
+        <!-- TITLE -->
+        <title> Ynex - Blazor Server Bootstrap5 Premium Admin & Dashboard Template </title>
+
+        <!-- Favicon -->
+        <link rel="icon" href="@($"{NavigationManager.BaseUri}assets/images/brand-logos/favicon.ico")" type="image/x-icon">
+
+        <!-- Style Css -->
+        <link href="@($"{NavigationManager.BaseUri}assets/css/styles.css")" rel="stylesheet" >
+
+        <!-- Icons Css -->
+        <link href="@($"{NavigationManager.BaseUri}assets/css/icons.css")" rel="stylesheet" >
+
+        <!-- Tom Select CSS -->
+        <link rel="stylesheet" href="@($"{NavigationManager.BaseUri}assets/libs/tom-select/css/tom-select.bootstrap5.min.css")">
+
+        <!-- ColorPicker CSS -->
+        <link href="_content/BlazorColorPicker/colorpicker.css" rel="stylesheet" />
+        <link href="_content/BlazorColorPicker/BlazorColorPicker.bundle.scp.css" rel="stylesheet" />
+
+        <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+        
+    </head>
+
+    <body>
+        @RenderBody()
+
+        <!-- Popper JS -->
+        <script src="@($"{NavigationManager.BaseUri}assets/libs/@popperjs/core/umd/popper.min.js")"></script>
+
+        <!-- Bootstrap JS -->
+        <script src="@($"{NavigationManager.BaseUri}assets/libs/bootstrap/js/bootstrap.bundle.min.js")"></script>
+
+        <script async defer>
+            window.onload = function () {
+                setTimeout(() => {
+                    let javascriptLinks = [
+                        "/assets/js/custom.js"
+                    ]
+                    
+                    javascriptLinks.map((link)=>{
+                        var scriptElement = document.createElement('script');
+                        scriptElement.src = link;
+                        document.head.appendChild(scriptElement);
+                    })
+
+                }, 100);
+            };
+        </script>
+
+         <script>
+            // Load scripts after DOM content is loaded
+            document.addEventListener("DOMContentLoaded", function () {
+                var scriptUrls = [
+                    "_content/FlatpickrBlazor/flatpickr.min.js",
+                    "_content/FlatpickrBlazor/flatpickr.blazor.js",
+                    "_content/FlatpickrBlazor/l10n/de.js",
+                    "_content/FlatpickrBlazor/plugins/monthSelect/index.js",
+                    "_content/FlatpickrBlazor/plugins/minMaxTimePlugin.js",
+
+                    "_content/Soenneker.Blazor.FilePond/filepondinterop.js",
+
+                    "_content/Soenneker.Blazor.TomSelect/tomselectinterop.js",
+                    
+                    "_content/NoUiSlider.Blazor/dist/bundle.js",
+
+                    "_content/Blazored.TextEditor/quill-blot-formatter.min.js",
+                    "_content/Blazored.TextEditor/Blazored-BlazorQuill.js",
+
+                    "_content/BlazorCleave/BlazorCleave.js",
+                    "_content/BlazorCleave/cleave-phone.i18n.js",
+
+                    "../assets/libs/filepond/filepond.min.js",
+                    "../assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js",
+                    "../assets/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js",
+                    "../assets/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js",
+                    "../assets/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js",
+                    "../assets/libs/filepond-plugin-image-edit/filepond-plugin-image-edit.min.js",
+                    "../assets/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js",
+                    "../assets/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js",
+                    "../assets/libs/filepond-plugin-image-crop/filepond-plugin-image-crop.min.js",
+                    "../assets/libs/filepond-plugin-image-resize/filepond-plugin-image-resize.min.js",
+                    "../assets/libs/filepond-plugin-image-transform/filepond-plugin-image-transform.min.js",
+
+                    "../assets/libs/tom-select/js/tom-select.complete.min.js",
+                    
+                   "../assets/libs/quill/quill.min.js",
+                   
+                    "../assets/libs/chart.js/chart.min.js",
+                    "../assets/libs/gmaps/gmaps.min.js",
+
+                    "../assets/libs/gridjs/gridjs.umd.js",
+                    
+                    "../assets/libs/dropzone/dropzone-min.js",
+
+                    "../assets/libs/dragula/dragula.min.js",
+
+                    "../assets/libs/jsvectormap/js/jsvectormap.min.js",
+                    "../assets/js/form-wizard.js",
+                    "../assets/libs/moment/moment.js",
+                    "../assets/libs/fullcalendar/main.min.js"
+                    
+                ];
+                scriptUrls.forEach(function (url) {
+                    var script = document.createElement("script");
+                    script.src = url;
+                    document.body.appendChild(script);
+                });
+            });
+        </script>
+
+        
+        <!-- Interop JS -->
+        <script src="_framework/blazor.server.js"></script>
+        <script src="js/javaScriptInterop.js"></script>
+        <script src="js/resizeInterop.js"></script>
+        
+        <script>
+
+            function CaptureElementAndCallBlazorFunction(event, menuData) {
+                var element = event.currentTarget;
+                var menuId = element.dataset.menuId;
+                window.DotNet.invokeMethodAsync("ynex.SubNavMenu", "TriggerFunction", element, menuData, null);
+            }
+
+        </script>
+
+    </body>
+
+</html>

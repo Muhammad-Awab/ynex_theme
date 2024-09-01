@@ -1,0 +1,187 @@
+    @using Microsoft.JSInterop
+    @inject IJSRuntime JSRuntime
+    @inject StateService stateService
+    @using BlazorColorPicker
+    
+    <!-- Start Switcher -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="switcher-canvas" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Switcher</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="">
+                <p class="switcher-style-head">Theme Color Mode: @currentState.ColorTheme</p>
+                <div class="row switcher-style">
+                    <div class="col-4">
+                        <div class="form-check switch-select">
+                            <label class="form-check-label" for="switcher-light-theme">
+                                Light
+                            </label>
+                                <input class="form-check-input" type="radio" name="theme-style"
+                                    id="switcher-light-theme" @onclick='() => colorthemeFn("light")' checked="@(currentState.ColorTheme == "light")">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-check switch-select">
+                            <label class="form-check-label" for="switcher-dark-theme">
+                                Dark
+                            </label>
+                                <input class="form-check-input" type="radio" name="theme-style" id="switcher-dark-theme"
+                                    @onclick='() => colorthemeFn("dark")' checked="@(currentState.ColorTheme == "dark")">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <p class="switcher-style-head">Directions: @currentState.Direction</p>
+                <div class="row switcher-style">
+                    <div class="col-4">
+                        <div class="form-check switch-select">
+                            <label class="form-check-label" for="switcher-ltr">
+                                LTR
+                            </label>
+                                <input class="form-check-input" type="radio" name="direction" id="switcher-ltr"
+                                    @onclick='() => directionFn("ltr")'  checked="@(currentState.Direction == "ltr")">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-check switch-select">
+                            <label class="form-check-label" for="switcher-rtl">
+                                RTL
+                            </label>
+                                <input class="form-check-input" type="radio" name="direction" id="switcher-rtl"
+                                    @onclick='() => directionFn("rtl")'  checked="@(currentState.Direction == "rtl")">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="theme-colors">
+                <p class="switcher-style-head">Theme Primary:</p>
+                <div class="d-flex flex-wrap align-items-center switcher-style">
+                    <div class="form-check switch-select me-3">
+                        <input class="form-check-input color-input color-primary-1" type="radio"
+                            name="theme-primary" id="switcher-primary"
+                            @onclick='() => themePrimaryFn("58, 88, 146")' checked="@(currentState.ThemePrimary == "58, 88, 146")">
+                    </div>
+                    <div class="form-check switch-select me-3">
+                        <input class="form-check-input color-input color-primary-2" type="radio"
+                            name="theme-primary" id="switcher-primary1"
+                            @onclick='() => themePrimaryFn("92, 144, 163")' checked="@(currentState.ThemePrimary == "92, 144, 163")">
+                    </div>
+                    <div class="form-check switch-select me-3">
+                        <input class="form-check-input color-input color-primary-3" type="radio"
+                            name="theme-primary" id="switcher-primary2"
+                            @onclick='() => themePrimaryFn("161, 90, 223")' checked="@(currentState.ThemePrimary == "161, 90, 223")">
+                    </div>
+                    <div class="form-check switch-select me-3">
+                        <input class="form-check-input color-input color-primary-4" type="radio"
+                            name="theme-primary" id="switcher-primary3"
+                            @onclick='() => themePrimaryFn("78, 172, 76")' checked="@(currentState.ThemePrimary == "78, 172, 76")">
+                    </div>
+                    <div class="form-check switch-select me-3">
+                        <input class="form-check-input color-input color-primary-5" type="radio"
+                            name="theme-primary" id="switcher-primary4"
+                            @onclick='() => themePrimaryFn("223, 90, 90")' checked="@(currentState.ThemePrimary == "223, 90, 90")">
+                    </div>
+                    <div class="form-check switch-select ps-0 color-primary-light">
+                        <a href="javascript:void(0);" @onclick="PrimaryModal">
+                            <div style="background-color:rgb(@primarycolor)" class="buttonColor m-0"></div>
+                        </a>
+                        <ColorPicker IsOpened="isPrimaryOpened" Closed="PrimaryClosedEvent" MyColor="@primarycolor" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p class="switcher-style-head">reset:</p>
+                <div class="text-center">
+                    <a href="javascript:void(0);" id="reset-all" class="btn btn-danger mt-3" @onclick='() => Landingreset()'>Reset</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Switcher -->
+
+    
+@code {
+    bool isPrimaryOpened = false;
+    string primarycolor = "132,90,223";
+
+
+    void PrimaryModal() => isPrimaryOpened = true;
+    
+    public static (int R, int G, int B) HexToRgb(string hex)
+    {
+        // Remove the leading '#' if it exists
+        hex = hex.TrimStart('#');
+
+        // Ensure the hex string is 6 characters long
+        if (hex.Length != 6)
+        {
+            throw new ArgumentException("Invalid hex color code.");
+        }
+
+        // Parse the hex string into RGB values   
+        int r = int.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+        int g = int.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+        int b = int.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+        return (r, g, b);
+    }
+    async void PrimaryClosedEvent(string value)
+    {
+        var rgbValue = HexToRgb(value);
+        var val = $"{rgbValue.R}, {rgbValue.G}, {rgbValue.B}";
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexprimaryRGB", val);
+        await stateService.themePrimaryFn(val);
+        primarycolor = val;
+        isPrimaryOpened = false;
+        StateHasChanged(); // Force re-render
+    }
+    
+
+}
+
+
+@code {
+    private AppState currentState => stateService.GetAppState();
+    private async void colorthemeFn(string val)
+    {
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexcolortheme", val);
+        await stateService.colorthemeFn(val, false);
+        StateHasChanged(); // Force re-render
+    }
+
+    private async void directionFn(string val)
+    {
+        //Localstorage
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexdirection", val);
+        await stateService.directionFn(val);
+        StateHasChanged(); // Force re-render
+    }
+    private async void themePrimaryFn(string val)
+    {
+        //Localstorage
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexprimaryRGB", val);
+        await stateService.themePrimaryFn(val);
+        StateHasChanged(); // Force re-render
+    }
+    private async void Landingreset(){
+        await stateService.Landingreset();
+        StateHasChanged(); // Force re-render
+    }
+    protected override void OnInitialized()
+    {
+        StateHasChanged(); // Force re-render
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        stateService.OnStateChanged += RefreshState;
+        await base.OnInitializedAsync();
+    }
+
+    private async void RefreshState()
+    {
+        // Trigger a re-render when the state changes
+        await InvokeAsync(StateHasChanged);
+    }
+}

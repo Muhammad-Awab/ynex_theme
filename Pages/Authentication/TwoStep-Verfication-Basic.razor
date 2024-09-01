@@ -1,0 +1,75 @@
+@page "/two-step-verification-basic"
+@layout CustomLayout
+
+<div class="container-lg">
+        <div class="row justify-content-center align-items-center authentication authentication-basic h-100">
+            <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 col-12">
+                <div class="my-5 d-flex justify-content-center">
+                    <a href="/home">
+                        <img src="../assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
+                        <img src="../assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
+                    </a>
+                </div>
+                <div class="card custom-card">
+                    <div class="card-body p-5">
+                        <p class="h5 fw-semibold mb-2 text-center">Verify Your Account</p>
+                        <p class="mb-4 text-muted op-7 fw-normal text-center">Enter the 4 digit code sent to the registered email Id.</p>
+                        <div class="row gy-3">
+                            <div class="col-xl-12 mb-2">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <input type="text" class="form-control form-control-lg text-center" id="one" maxlength="1" @ref="nextInputRef" @oninput='() => ValueChange("nextInput2")'>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control form-control-lg text-center" id="two" maxlength="1" @ref="nextInput2Ref" @oninput='() => ValueChange("nextInput3")'>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control form-control-lg text-center" id="three" maxlength="1" @ref="nextInput3Ref" @oninput='() => ValueChange("nextInput4")'>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control form-control-lg text-center" id="four" maxlength="1" @ref="nextInput4Ref">
+                                    </div>
+                                </div>
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Did not recieve a code ?<a href="/mail" class="text-primary ms-2 d-inline-block">Resend</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 d-grid mt-2">
+                                <a href="/home" class="btn btn-lg btn-primary">Verify</a>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <p class="fs-12 text-danger mt-3 mb-0"><sup><i class="ri-asterisk"></i></sup>Don't share the verification code with anyone !</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @code {
+    private ElementReference nextInputRef;
+    private ElementReference nextInput2Ref;
+    private ElementReference nextInput3Ref;
+    private ElementReference nextInput4Ref;
+
+    private void ValueChange(string nextInputId)
+    {
+        // Set focus on the next input
+        if (nextInputId == "nextInput2")
+        {
+            nextInput2Ref.FocusAsync();
+        }
+        if (nextInputId == "nextInput3")
+        {
+            nextInput3Ref.FocusAsync();
+        }
+        if (nextInputId == "nextInput4")
+        {
+            nextInput4Ref.FocusAsync();
+        }
+    }
+}

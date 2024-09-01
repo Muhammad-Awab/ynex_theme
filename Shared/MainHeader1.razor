@@ -1,0 +1,565 @@
+
+
+@inject StateService stateService
+@inject IJSRuntime JSRuntime
+
+        <header class="app-header">
+
+           <!-- Start::main-header-container -->
+           <div class="main-header-container container-fluid">
+
+               <!-- Start::header-content-left -->
+               <div class="header-content-left">
+
+                   <!-- Start::header-element -->
+                   <div class="header-element">
+                       <div class="horizontal-logo">
+                           <a href="home" class="header-logo">
+                               <img src="../assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
+                               <img src="../assets/images/brand-logos/toggle-logo.png" alt="logo" class="toggle-logo">
+                               <img src="../assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
+                               <img src="../assets/images/brand-logos/toggle-dark.png" alt="logo" class="toggle-dark">
+                               <img src="../assets/images/brand-logos/desktop-white.png" alt="logo" class="desktop-white">
+                               <img src="../assets/images/brand-logos/toggle-white.png" alt="logo" class="toggle-white">
+                           </a>
+                       </div>
+                   </div>
+                   <!-- End::header-element -->
+
+                   <!-- Start::header-element -->
+                   <div class="header-element">
+                       <!-- Start::header-link -->
+                       <a aria-label="Hide Sidebar" @onclick="ToggleMenu" class="sidemenu-toggle header-link animated-arrow hor-toggle horizontal-navtoggle" data-bs-toggle="sidebar" href="javascript:void(0);"><span></span></a>
+                       <!-- End::header-link -->
+                   </div>
+                   <!-- End::header-element -->
+
+               </div>
+               <!-- End::header-content-left -->
+
+               <!-- Start::header-content-right -->
+               <div class="header-content-right">
+
+                   <!-- Start::header-element -->
+                   <div class="header-element header-search">
+                       <!-- Start::header-link -->
+                       <a href="javascript:void(0);" class="header-link" data-bs-toggle="modal" data-bs-target="#searchModal">
+                           <i class="bx bx-search-alt-2 header-link-icon"></i>
+                       </a>
+                       <!-- End::header-link -->
+                   </div>
+                   <!-- End::header-element -->
+
+                   <!-- Start::header-element -->
+                   <div class="header-element country-selector">
+                       <!-- Start::header-link -->
+                       <a href="javascript:void(0);" class="header-link" data-bs-toggle="modal" data-bs-target="#countryModal">
+                           <img src="../assets/images/flags/us_flag.jpg" alt="img" class="rounded-circle header-link-icon">
+                          <span class="fw-semibold mb-0 lh-1">EN</span>
+                       </a>
+                   </div>
+                   <!-- End::header-element -->
+
+                   <!-- Start::header-element -->
+                   <div class="header-element header-theme-mode" @onclick='() => colorthemeFn()'>
+                       <!-- Start::header-link|layout-setting -->
+                       <a href="javascript:void(0);" class="header-link layout-setting">
+                           <span class="light-layout">
+                               <!-- Start::header-link-icon -->
+                           <i class="bx bx-moon header-link-icon"></i>
+                               <!-- End::header-link-icon -->
+                           </span>
+                           <span class="dark-layout">
+                               <!-- Start::header-link-icon -->
+                           <i class="bx bx-sun header-link-icon"></i>
+                               <!-- End::header-link-icon -->
+                           </span>
+                       </a>
+                       <!-- End::header-link|layout-setting -->
+                   </div>
+                   <!-- End::header-element -->
+
+                   <!-- Start::header-element -->
+                   <div class="header-element cart-dropdown">
+                       <!-- Start::header-link|dropdown-toggle -->
+                       <a href="javascript:void(0);" class="header-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown">
+                           <i class="bx bx-cart header-link-icon"></i>
+                           <span class="badge bg-primary rounded-pill header-icon-badge" id="cart-icon-badge">@(CartListData.Count)</span>
+                       </a>
+                       <!-- End::header-link|dropdown-toggle -->
+                       <!-- Start::main-header-dropdown -->
+                       <div class="main-header-dropdown dropdown-menu dropdown-menu-end" data-popper-placement="none">
+                           <div class="p-3">
+                               <div class="d-flex align-items-center justify-content-between">
+                                   <p class="mb-0 fs-17 fw-semibold">Cart Items</p>
+                                   <span class="badge bg-success-transparent">@(CartListData.Count) Items</span>
+                               </div>
+                           </div>
+                           <div><hr class="dropdown-divider"></div>
+                            <BlazorOverlayScrollbars>
+                                <BlazorOverlayScrollbarsContent>
+                                <ul class="list-unstyled mb-0" id="header-cart-items-scroll">
+                                    @foreach (var CartList in CartListData)
+                                    {
+                                        <li class="dropdown-item">
+                                            <div class="d-flex align-items-start cart-dropdown-item">
+                                                <img src="@CartList.img" alt="img" class="avatar avatar-sm avatar-rounded br-5 me-3">
+                                                <div class="flex-grow-1">
+                                                    <div class="d-flex align-items-start justify-content-between mb-0">
+                                                        <div class="mb-0 fs-13 text-dark fw-semibold">
+                                                            <a href="cart">@CartList.title</a>
+                                                        </div>
+                                                        <div>
+                                                            <span class="text-black mb-1">@CartList.price</span>
+                                                            <a href="javascript:void(0);" @onclick="@(() => DeleteCartlist(CartList))" class="header-cart-remove float-end"><i class="ti ti-trash"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="min-w-fit-content d-flex align-items-start justify-content-between">
+                                                        <ul class="header-product-item d-flex">
+                                                              @foreach (var category in CartList?.categoryList ?? Enumerable.Empty<Category>())
+                                                                {
+                                                                    <li class="@(!string.IsNullOrEmpty(category.valueBgColor) ? $"badge {category.valueBgColor}" : "")">@category.value</li>
+
+                                                                }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                                </BlazorOverlayScrollbarsContent>
+                            </BlazorOverlayScrollbars>
+                            @if (CartListData.Count < 1)
+                            {
+                                <div class="p-5 empty-item">
+                                    <div class="text-center">
+                                        <span class="avatar avatar-xl avatar-rounded bg-warning-transparent">
+                                            <i class="ri-shopping-cart-2-line fs-2"></i>
+                                        </span>
+                                        <h6 class="fw-bold mb-1 mt-3">Your Cart is Empty</h6>
+                                        <span class="mb-3 fw-normal fs-13 d-block">Add some items to make me happy :)</span>
+                                        <a href="products" class="btn btn-primary btn-wave btn-sm m-1" data-abc="true">continue shopping <i class="bi bi-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            }
+                            else {
+                                <div class="p-3 empty-header-item border-top">
+                                    <div class="d-grid">
+                                        <a href="checkout" class="btn btn-primary">Proceed to checkout</a>
+                                    </div>
+                                </div>
+                            }
+                       </div>
+                       <!-- End::main-header-dropdown -->
+                   </div>
+                   <!-- End::header-element -->
+
+                   <!-- Start::header-element -->
+                   <div class="header-element notifications-dropdown">
+                       <!-- Start::header-link|dropdown-toggle -->
+                       <a href="javascript:void(0);" class="header-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="messageDropdown" aria-expanded="false">
+                           <i class="bx bx-bell header-link-icon"></i>
+                           <span class="badge bg-secondary rounded-pill header-icon-badge pulse pulse-secondary" id="notification-icon-badge">@(NotifyListData.Count)</span>
+                       </a>
+                       <!-- End::header-link|dropdown-toggle -->
+                       <!-- Start::main-header-dropdown -->
+                       <div class="main-header-dropdown dropdown-menu dropdown-menu-end" data-popper-placement="none">
+                           <div class="p-3">
+                               <div class="d-flex align-items-center justify-content-between">
+                                   <p class="mb-0 fs-17 fw-semibold">Notifications</p>
+                                   <span class="badge bg-secondary-transparent" >@(NotifyListData.Count) Unread</span>
+                               </div>
+                           </div>
+                           <div class="dropdown-divider"></div>
+                            <BlazorOverlayScrollbars>
+                                <BlazorOverlayScrollbarsContent>
+                                    <ul class="list-unstyled mb-0" id="header-notification-scroll">
+                                    @foreach (var NotifyList in NotifyListData)
+                                    {
+                                        <li class="dropdown-item">
+                                            <div class="d-flex align-items-start">
+                                                    <div class="pe-2">
+                                                        <span class="avatar avatar-md @NotifyList.iconBg avatar-rounded"><i class="@NotifyList.icon fs-18"></i></span>
+                                                    </div>
+                                                    <div class="flex-grow-1 d-flex align-items-center justify-content-between">
+                                                    <div>
+                                                        <p class="mb-0 fw-semibold"><a href="notifications">@NotifyList.title</a></p>
+                                                        <span class="text-muted fw-normal fs-12 header-notification-text">@NotifyList.description</span>
+                                                    </div>
+                                                    <div>
+                                                        <a href="javascript:void(0);" @onclick="@(() => DeleteNotifyList(NotifyList))"  class="min-w-fit-content text-muted me-1"><i class="ti ti-x fs-16"></i></a>
+                                                    </div>
+                                                    </div>
+                                            </div>
+                                        </li>
+                                    }
+                                    </ul>
+                                </BlazorOverlayScrollbarsContent>
+                            </BlazorOverlayScrollbars>
+                            
+                            @if (NotifyListData.Count < 1)
+                            {
+                                <div class="p-5 empty-item1">
+                                    <div class="text-center">
+                                        <span class="avatar avatar-xl avatar-rounded bg-secondary-transparent">
+                                            <i class="ri-notification-off-line fs-2"></i>
+                                        </span>
+                                        <h6 class="fw-semibold mt-3">No New Notifications</h6>
+                                    </div>
+                                </div>
+                            } 
+                            else {
+                                <div class="p-3 empty-header-item1 border-top">
+                                    <div class="d-grid">
+                                        <a href="notifications" class="btn btn-primary">View All</a>
+                                    </div>
+                                </div>
+                            }
+                       </div>
+                       <!-- End::main-header-dropdown -->
+                   </div>
+                   <!-- End::header-element -->
+
+                   <!-- Start::header-element -->
+                   <div class="header-element header-shortcuts-dropdown">
+                       <!-- Start::header-link|dropdown-toggle -->
+                       <a href="javascript:void(0);" class="header-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="notificationDropdown" aria-expanded="false">
+                           <i class="bx bx-grid-alt header-link-icon"></i>
+                       </a>
+                       <!-- End::header-link|dropdown-toggle -->
+                       <!-- Start::main-header-dropdown -->
+                       <div class="main-header-dropdown header-shortcuts-dropdown dropdown-menu pb-0 dropdown-menu-end" aria-labelledby="notificationDropdown">
+                           <div class="p-3">
+                               <div class="d-flex align-items-center justify-content-between">
+                                   <p class="mb-0 fs-17 fw-semibold">Related Apps</p>
+                               </div>
+                           </div>
+                           <div class="dropdown-divider mb-0"></div>
+                            <BlazorOverlayScrollbars>
+                                <BlazorOverlayScrollbarsContent>
+                                    <div class="main-header-shortcuts p-2" id="header-shortcut-scroll">
+                                        <div class="row g-2">
+                                            <div class="col-4">
+                                                <a href="javascript:void(0);">
+                                                    <div class="text-center p-3 related-app">
+                                                        <span class="avatar avatar-sm avatar-rounded">
+                                                            <img src="../assets/images/apps/figma.png" alt="">
+                                                        </span>
+                                                        <span class="d-block fs-12">Figma</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="javascript:void(0);">
+                                                    <div class="text-center p-3 related-app">
+                                                        <span class="avatar avatar-sm avatar-rounded">
+                                                            <img src="../assets/images/apps/microsoft-powerpoint.png" alt="">
+                                                        </span>
+                                                        <span class="d-block fs-12">Power Point</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="javascript:void(0);">
+                                                    <div class="text-center p-3 related-app">
+                                                        <span class="avatar avatar-sm avatar-rounded">
+                                                            <img src="../assets/images/apps/microsoft-word.png" alt="">
+                                                        </span>
+                                                        <span class="d-block fs-12">MS Word</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="javascript:void(0);">
+                                                    <div class="text-center p-3 related-app">
+                                                        <span class="avatar avatar-sm avatar-rounded">
+                                                            <img src="../assets/images/apps/calender.png" alt="">
+                                                        </span>
+                                                        <span class="d-block fs-12">Calendar</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="javascript:void(0);">
+                                                    <div class="text-center p-3 related-app">
+                                                        <span class="avatar avatar-sm avatar-rounded">
+                                                            <img src="../assets/images/apps/sketch.png" alt="">
+                                                        </span>
+                                                        <span class="d-block fs-12">Sketch</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="javascript:void(0);">
+                                                    <div class="text-center p-3 related-app">
+                                                        <span class="avatar avatar-sm avatar-rounded">
+                                                            <img src="../assets/images/apps/google-docs.png" alt="">
+                                                        </span>
+                                                        <span class="d-block fs-12">Docs</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="javascript:void(0);">
+                                                    <div class="text-center p-3 related-app">
+                                                        <span class="avatar avatar-sm avatar-rounded">
+                                                            <img src="../assets/images/apps/google.png" alt="">
+                                                        </span>
+                                                        <span class="d-block fs-12">Google</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="javascript:void(0);">
+                                                    <div class="text-center p-3 related-app">
+                                                        <span class="avatar avatar-sm avatar-rounded">
+                                                            <img src="../assets/images/apps/translate.png" alt="">
+                                                        </span>
+                                                        <span class="d-block fs-12">Translate</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="javascript:void(0);">
+                                                    <div class="text-center p-3 related-app">
+                                                        <span class="avatar avatar-sm avatar-rounded">
+                                                            <img src="../assets/images/apps/google-sheets.png" alt="">
+                                                        </span>
+                                                        <span class="d-block fs-12">Sheets</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </BlazorOverlayScrollbarsContent>
+                            </BlazorOverlayScrollbars>
+                           <div class="p-3 border-top">
+                               <div class="d-grid">
+                                   <a href="javascript:void(0);" class="btn btn-primary">View All</a>
+                               </div>
+                           </div>
+                       </div>
+                       <!-- End::main-header-dropdown -->
+                   </div>
+                   <!-- End::header-element -->
+
+                   <!-- Start::header-element -->
+                   <div class="header-element header-fullscreen">
+                       <!-- Start::header-link -->
+                       <a onclick="openFullscreen();" href="javascript:void(0);" class="header-link">
+                           <i class="bx bx-fullscreen full-screen-open header-link-icon"></i>
+                           <i class="bx bx-exit-fullscreen full-screen-close header-link-icon d-none"></i>
+                       </a>
+                       <!-- End::header-link -->
+                   </div>
+                   <!-- End::header-element -->
+
+                   <!-- Start::header-element -->
+                   <div class="header-element">
+                       <!-- Start::header-link|dropdown-toggle -->
+                       <a href="javascript:void(0);" class="header-link dropdown-toggle" id="mainHeaderProfile" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                           <div class="d-flex align-items-center">
+                               <div class="me-sm-2 me-0">
+                                   <img src="../assets/images/faces/9.jpg" alt="img" width="32" height="32" class="rounded-circle">
+                               </div>
+                               <div class="d-sm-block d-none">
+                                   <p class="fw-semibold mb-0 lh-1">Json Taylor</p>
+                                   <span class="op-7 fw-normal d-block fs-11">Web Designer</span>
+                               </div>
+                           </div>
+                       </a>
+                       <!-- End::header-link|dropdown-toggle -->
+                       <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end" aria-labelledby="mainHeaderProfile">
+                           <li><a class="dropdown-item d-flex" href="profile"><i class="ti ti-user-circle fs-18 me-2 op-7"></i>Profile</a></li>
+                           <li><a class="dropdown-item d-flex" href="mail"><i class="ti ti-inbox fs-18 me-2 op-7"></i>Inbox <span class="badge bg-success-transparent ms-auto">25</span></a></li>
+                           <li><a class="dropdown-item d-flex border-block-end" href="to-do-list"><i class="ti ti-clipboard-check fs-18 me-2 op-7"></i>Task Manager</a></li>
+                           <li><a class="dropdown-item d-flex" href="mail-settings"><i class="ti ti-adjustments-horizontal fs-18 me-2 op-7"></i>Settings</a></li>
+                           <li><a class="dropdown-item d-flex border-block-end" href="javascript:void(0);"><i class="ti ti-wallet fs-18 me-2 op-7"></i>Bal: $7,12,950</a></li>
+                           <li><a class="dropdown-item d-flex" href="chat"><i class="ti ti-headset fs-18 me-2 op-7"></i>Support</a></li>
+                           <li><a class="dropdown-item d-flex" href="sign-in-cover"><i class="ti ti-logout fs-18 me-2 op-7"></i>Log Out</a></li>
+                       </ul>
+                   </div>  
+                   <!-- End::header-element -->
+
+               </div>
+               <!-- End::header-content-right -->
+
+           </div>
+           <!-- End::main-header-container -->
+
+        </header>
+
+
+<!-- cart Data Start-->
+@code {                     
+    public class CartList
+    {
+        public int id { get; set; }
+        public string? img { get; set; }
+        public string? title { get; set; }
+        public List<Category>? categoryList { get; set; }
+        public string? price { get; set; }
+    }
+    public class Category
+    {
+        public string? value { get; set; }
+        public string? valueBgColor { get; set; }    
+    }
+
+     List<CartList> CartListData = new List<CartList>()
+    {
+        new CartList { 
+            id = 1,
+            img = "assets/images/ecommerce/jpg/1.jpg",
+            title = "SomeThing Phone", 
+            categoryList = new List<Category> {
+                new Category { value = "Metallic Blue", valueBgColor = ""},
+                new Category { value = "6gb Ram", valueBgColor = ""},
+            },
+            price = "1,299.00"
+        },
+        new CartList {
+            id= 2, 
+            img= "assets/images/ecommerce/jpg/3.jpg", 
+            title= "Stop Watch", 
+            categoryList = new List<Category> {
+                new Category { value= "6gb Ram", valueBgColor= "" },
+                new Category { value= "Free shipping", valueBgColor= "bg-pink-transparent" },
+            }, 
+            price= "179.29"
+        },
+        new CartList {
+            id= 3, 
+            img= "assets/images/ecommerce/jpg/5.jpg", 
+            title= "Photo Frame", 
+            categoryList = new List<Category> {
+                 new Category { value= "Decorative", valueBgColor= "" }
+            }, 
+            price= "29.00"
+        },
+        new CartList {
+            id= 4, 
+            img= "assets/images/ecommerce/jpg/4.jpg", 
+            title= "Kikon Camera", 
+            categoryList = new List<Category> {
+                 new Category { value= "Black", valueBgColor= "" },
+                 new Category { value= "50MM", valueBgColor= "" },
+            }, 
+            price= "4,999.00"
+        },
+        new CartList {
+            id= 5, 
+            img= "assets/images/ecommerce/jpg/6.jpg", 
+            title= "Canvas Shoes", 
+            categoryList = new List<Category> {
+                new Category { value= "Gray", valueBgColor= "" },
+                 new Category { value= "Sports", valueBgColor= "" },
+            }, 
+            price= "129.00"
+        },
+    };
+
+    void DeleteCartlist(CartList CartList)
+    {
+        CartListData.Remove(CartList);
+    }
+}
+
+<!-- cart Data End-->
+
+
+<!-- Notifications Data Start-->
+@code {                     
+    public class NotifyList
+    {
+        public int id { get; set; }
+        public string? icon { get; set; }
+        public string? iconBg { get; set; }
+        public string? title { get; set; }
+        public string? description { get; set; }
+    }
+
+     List<NotifyList> NotifyListData = new List<NotifyList>()
+    {
+        new NotifyList { id= 1, icon= "ti ti-gift", iconBg= "bg-primary-transparent", title= "Your Order Has Been Shipped", description= "Order No= 123456 Has Shipped To Your Delivery Address" },
+        new NotifyList { id= 2, icon= "ti ti-discount-2", iconBg= "bg-secondary-transparent", title= "Discount Available", description= "Discount Available On Selected Products" },
+        new NotifyList { id= 3, icon= "ti ti-user-check", iconBg= "bg-pink-transparent", title= "Account Has Been Verified", description= "Your Account Has Been Verified Sucessfully" },
+        new NotifyList { id= 4, icon= "ti ti-circle-check", iconBg= "bg-warning-transparent", title= "Order Placed ID= #1116773", description= "Order Placed Successfully" },
+        new NotifyList { id= 5, icon= "ti ti-clock", iconBg= "bg-success-transparent", title= "Order Delayed ID= 7731116", description= "Order Delayed Unfortunately" },
+    };
+
+    void DeleteNotifyList(NotifyList NotifyList)
+    {
+        NotifyListData.Remove(NotifyList);
+    }
+}
+
+<!-- Notifications Data End-->
+
+@code {        
+    private async void ToggleMenu() {
+        var toggled = await JSRuntime.InvokeAsync<string>("interop.getAttributeToHtml", "data-toggled");
+        var verticalStyle = await JSRuntime.InvokeAsync<string>("interop.getAttributeToHtml", "data-vertical-style");
+        var navStyle = await JSRuntime.InvokeAsync<string>("interop.getAttributeToHtml", "data-nav-style");
+        var isdoubleMenuActive = await JSRuntime.InvokeAsync<bool>("interop.isEleExist", ".double-menu-active");
+        var inner = await JSRuntime.InvokeAsync<int>("interop.inner", "innerWidth");
+          
+        if (inner <= 992) {
+                if (toggled == "open") {
+                    await JSRuntime.InvokeAsync<string>("interop.addAttributeToHtml", "data-toggled", "close");
+                } else {
+                    await JSRuntime.InvokeAsync<string>("interop.addAttributeToHtml", "data-toggled", "open");
+                }
+        } 
+        else {
+            if (navStyle != null) {
+                if (toggled != null) {
+                    await JSRuntime.InvokeAsync<string>("interop.removeAttributeFromHtml", "data-toggled");
+                } 
+                else {
+                    await JSRuntime.InvokeAsync<string>("interop.addAttributeToHtml", "data-toggled", navStyle + "-closed");
+                }
+            } 
+            else if (verticalStyle != null) {
+                if (verticalStyle == "doublemenu") {
+                    if (toggled == "double-menu-open" && isdoubleMenuActive) {
+                        await JSRuntime.InvokeAsync<string>("interop.addAttributeToHtml", "data-toggled", "double-menu-close");
+                    } 
+                    else {
+                        if (isdoubleMenuActive) {
+                            await JSRuntime.InvokeAsync<string>("interop.addAttributeToHtml", "data-toggled", "double-menu-open");
+                        }
+                    }
+                } 
+                else if (toggled != null) {
+                        await JSRuntime.InvokeAsync<string>("interop.removeAttributeFromHtml", "data-toggled");
+                } 
+                else {
+                    switch (verticalStyle) {
+                        case "closed":
+                            await JSRuntime.InvokeAsync<string>("interop.addAttributeToHtml", "data-toggled", "close-menu-close");
+                            break;
+                        case "icontext":
+                            await JSRuntime.InvokeAsync<string>("interop.addAttributeToHtml", "data-toggled", "icon-text-close");
+                            break;
+                        case "overlay":
+                            await JSRuntime.InvokeAsync<string>("interop.addAttributeToHtml", "data-toggled", "icon-overlay-close");
+                            break;
+                        case "detached":
+                            await JSRuntime.InvokeAsync<string>("interop.addAttributeToHtml", "data-toggled", "detached-close");
+                            break;
+                    }
+                }
+            }
+        }
+    }
+    
+    private AppState currentState => stateService.GetAppState();
+    private async void colorthemeFn()
+    {
+        var val = currentState.ColorTheme == "light" ? "dark" : "light";
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexcolortheme", val);
+        await stateService.colorthemeFn(val, true);
+    }
+}

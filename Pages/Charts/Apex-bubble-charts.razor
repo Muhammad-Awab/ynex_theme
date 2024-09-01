@@ -1,0 +1,360 @@
+@page "/apex-bubble-charts"
+@using ApexCharts
+@using System.Collections.Generic
+@inject IJSRuntime JSRuntime
+
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+        <h1 class="page-title fw-semibold fs-18 mb-0">Apex Bubble Charts</h1>
+        <div class="ms-md-1 ms-0">
+            <nav>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Apex Charts</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Apex Bubble Charts</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header Close -->
+
+    <!-- Start::row-1 -->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Simple Bubble Chart</div>
+                </div>
+                <div class="card-body">
+                        <ApexChart TItem="Bubblebasicchart" Title="Simple Bubble Chart" Height="320" Options=BubblebasicchartOptions>
+                            @foreach (var data in incidentsBasic.GroupBy(e => e.Source))
+                            {
+                                <ApexBubbleSeries TItem="Bubblebasicchart"
+                                                Items="data.ToList()"
+                                                Name="@data.Key!.ToString()"
+                                                XValue="@(e => e.x)"
+                                                YAggregate="@(e => (decimal)e.Sum(e => e.y))"
+                                                ZAggregate="@(e => (int)e.Average(e => e.z))" />
+                            }
+                        </ApexChart>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">3D Bubble Chart</div>
+                </div>
+                <div class="card-body">
+                        <ApexChart TItem="BubbleGradientchart" Title="3D Bubble Chart" Height="320" Options=BubbleGradientchartOptions>
+                            @foreach (var data in incidentsGradient.GroupBy(e => e.Source))
+                            {
+                                <ApexBubbleSeries TItem="BubbleGradientchart"
+                                                Items="data.ToList()"
+                                                Name="@data.Key!.ToString()"
+                                                XValue="@(e => e.x)"
+                                                YAggregate="@(e => (decimal)e.Sum(e => e.y))"
+                                                ZAggregate="@(e => (int)e.Average(e => e.z))" />
+                            }
+                        </ApexChart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End::row-1 -->
+</div>
+
+@code { 
+    // Basic Bubble Chart Start //
+    private ApexChartOptions<Bubblebasicchart> BubblebasicchartOptions { get; set; } = new();
+    public class Bubblebasicchart
+    {
+        public int x { get; set; }
+        public int y { get; set; }
+        public int z { get; set; }
+        public string? Source { get; set; }
+    }
+    List<Bubblebasicchart> incidentsBasic = new List<Bubblebasicchart>
+    {   
+        new Bubblebasicchart { x = 201, y = 45, z = 39, Source = "Bubble1" },
+        new Bubblebasicchart { x = 636, y = 57, z = 24, Source = "Bubble1" },
+        new Bubblebasicchart { x =  23, y = 33, z = 49, Source = "Bubble1" },
+        new Bubblebasicchart { x = 573, y = 31, z = 28, Source = "Bubble1" },
+        new Bubblebasicchart { x = 318, y =  22, z = 64, Source = "Bubble1" },
+        new Bubblebasicchart { x = 732, y = 14, z = 64, Source = "Bubble1" }, 
+        new Bubblebasicchart { x =  91, y = 11, z = 54, Source = "Bubble1" }, 
+        new Bubblebasicchart { x =  85, y = 18, z = 53, Source = "Bubble1" }, 
+        new Bubblebasicchart { x = 205, y = 14, z = 52, Source = "Bubble1" }, 
+        new Bubblebasicchart { x = 281, y = 37, z = 26, Source = "Bubble1" },
+        new Bubblebasicchart { x = 643, y = 19, z = 71, Source = "Bubble1" },
+        new Bubblebasicchart { x = 253, y = 57, z = 52, Source = "Bubble1" },
+        new Bubblebasicchart { x =  39, y = 31, z = 54, Source = "Bubble1" },
+        new Bubblebasicchart { x = 519, y = 59, z = 19, Source = "Bubble1" },
+        new Bubblebasicchart { x = 303, y = 46, z = 50, Source = "Bubble1" },
+        new Bubblebasicchart { x = 567, y =  18, z = 53, Source = "Bubble1" },
+        new Bubblebasicchart { x = 378, y =  31, z = 42, Source = "Bubble1" },
+        new Bubblebasicchart { x =  45, y = 28, z = 62, Source = "Bubble1" },
+        new Bubblebasicchart { x = 746, y = 32, z = 41, Source = "Bubble1" },
+        new Bubblebasicchart { x = 648, y = 10, z = 60, Source = "Bubble1" },
+        new Bubblebasicchart { x = 640, y =  28, z = 64, Source = "Bubble2" },
+        new Bubblebasicchart { x = 101, y =  43, z = 63, Source = "Bubble2" },
+        new Bubblebasicchart { x = 297, y =  36, z = 21, Source = "Bubble2" },
+        new Bubblebasicchart { x = 390, y =  47, z = 20, Source = "Bubble2" },
+        new Bubblebasicchart { x = 199, y =  31, z = 51, Source = "Bubble2" },
+        new Bubblebasicchart { x = 267, y =  59, z = 48, Source = "Bubble2" },
+        new Bubblebasicchart { x = 204, y =  40, z = 29, Source = "Bubble2" },
+        new Bubblebasicchart { x = 235, y =  39, z = 31, Source = "Bubble2" },
+        new Bubblebasicchart { x = 503, y =  17, z = 67, Source = "Bubble2" },
+        new Bubblebasicchart { x = 457, y =  26, z = 28, Source = "Bubble2" },
+        new Bubblebasicchart { x = 566, y =  19, z = 67, Source = "Bubble2" },
+        new Bubblebasicchart { x = 623, y =  37, z = 21, Source = "Bubble2" },
+        new Bubblebasicchart { x = 54,  y =  38, z = 43, Source = "Bubble2" },
+        new Bubblebasicchart { x = 618, y =  33, z = 59, Source = "Bubble2" },
+        new Bubblebasicchart { x = 478, y =  26, z = 49, Source = "Bubble2" },
+        new Bubblebasicchart { x = 321, y =  17, z = 71, Source = "Bubble2" },
+        new Bubblebasicchart { x = 491, y =  38, z = 47, Source = "Bubble2" },
+        new Bubblebasicchart { x = 321, y =  17, z = 34, Source = "Bubble2" },
+        new Bubblebasicchart { x = 298, y =  20, z = 67, Source = "Bubble2" },
+        new Bubblebasicchart { x = 381, y =  51, z = 31, Source = "Bubble2" },
+        new Bubblebasicchart { x =  27, y =  32, z = 47, Source = "Bubble3" },
+        new Bubblebasicchart { x = 265, y =  25, z = 75, Source = "Bubble3" },
+        new Bubblebasicchart { x = 618, y =  22, z = 48, Source = "Bubble3" },
+        new Bubblebasicchart { x =  21, y =  56, z = 18, Source = "Bubble3" },
+        new Bubblebasicchart { x =  63, y =  52, z = 61, Source = "Bubble3" },
+        new Bubblebasicchart { x = 136, y =  18, z = 26, Source = "Bubble3" },
+        new Bubblebasicchart { x =   9, y =  37, z = 71, Source = "Bubble3" },
+        new Bubblebasicchart { x = 305, y =  19, z = 70, Source = "Bubble3" },
+        new Bubblebasicchart { x = 621, y =  59, z = 70, Source = "Bubble3" },
+        new Bubblebasicchart { x = 565, y =  14, z = 47, Source = "Bubble3" },
+        new Bubblebasicchart { x =  33, y =  14, z = 50, Source = "Bubble3" },
+        new Bubblebasicchart { x = 565, y =  43, z = 65, Source = "Bubble3" },
+        new Bubblebasicchart { x = 432, y =  48, z = 31, Source = "Bubble3" },
+        new Bubblebasicchart { x = 168, y =  30, z = 55, Source = "Bubble3" },
+        new Bubblebasicchart { x =  78, y =  31, z = 49, Source = "Bubble3" },
+        new Bubblebasicchart { x =   8, y =  40, z = 71, Source = "Bubble3" },
+        new Bubblebasicchart { x = 494, y =  14, z = 44, Source = "Bubble3" },
+        new Bubblebasicchart { x = 470, y =  27, z = 56, Source = "Bubble3" },
+        new Bubblebasicchart { x =  55, y =  47, z = 69, Source = "Bubble3" },
+        new Bubblebasicchart { x = 220, y =  12, z = 30, Source = "Bubble3" },        
+        new Bubblebasicchart { x =  81, y =  37, z = 26, Source = "Bubble4" },
+        new Bubblebasicchart { x =  70, y =  43, z = 63, Source = "Bubble4" },
+        new Bubblebasicchart { x = 624, y =  25, z = 69, Source = "Bubble4" },
+        new Bubblebasicchart { x = 549, y =  17, z = 63, Source = "Bubble4" },
+        new Bubblebasicchart { x = 239, y =  44, z = 23, Source = "Bubble4" },
+        new Bubblebasicchart { x = 599, y =  53, z = 60, Source = "Bubble4" },
+        new Bubblebasicchart { x = 407, y =  52, z = 75, Source = "Bubble4" },
+        new Bubblebasicchart { x = 397, y =  30, z = 61, Source = "Bubble4" },
+        new Bubblebasicchart { x = 741, y =  17, z = 29, Source = "Bubble4" },
+        new Bubblebasicchart { x = 308, y =  48, z = 60, Source = "Bubble4" },
+        new Bubblebasicchart { x = 476, y =  53, z = 65, Source = "Bubble4" },
+        new Bubblebasicchart { x = 391, y =  51, z = 20, Source = "Bubble4" },
+        new Bubblebasicchart { x = 295, y =  22, z = 41, Source = "Bubble4" },
+        new Bubblebasicchart { x = 308, y =  24, z = 51, Source = "Bubble4" },
+        new Bubblebasicchart { x = 313, y =  60, z = 67, Source = "Bubble4" },
+        new Bubblebasicchart { x = 651, y =  11, z = 48, Source = "Bubble4" },
+        new Bubblebasicchart { x = 227, y =  59, z = 34, Source = "Bubble4" },
+        new Bubblebasicchart { x = 481, y =  46, z = 38, Source = "Bubble4" },
+        new Bubblebasicchart { x = 149, y =  17, z = 30, Source = "Bubble4" },
+        new Bubblebasicchart { x = 563, y =  55, z = 39, Source = "Bubble4" },
+    };
+    // Basic Bubble Chart End //
+    
+    // Gradient  Bubble Chart Start //          
+    private ApexChartOptions<BubbleGradientchart> BubbleGradientchartOptions { get; set; } = new();
+    public class BubbleGradientchart
+    {
+        public int x { get; set; }
+        public int y { get; set; }
+        public int z { get; set; }
+        public string? Source { get; set; }
+    }
+    List<BubbleGradientchart> incidentsGradient = new List<BubbleGradientchart>
+    {   
+        new BubbleGradientchart { x = 547, y = 26, z = 61, Source = "product1" },
+        new BubbleGradientchart { x = 406, y = 23, z = 61, Source = "product1" },
+        new BubbleGradientchart { x = 748, y = 43, z = 15, Source = "product1" },
+        new BubbleGradientchart { x =  19, y = 19, z = 16, Source = "product1" },
+        new BubbleGradientchart { x = 268, y = 21, z = 47, Source = "product1" },
+        new BubbleGradientchart { x = 596, y = 51, z = 74, Source = "product1" },
+        new BubbleGradientchart { x = 158, y = 35, z = 25, Source = "product1" },
+        new BubbleGradientchart { x = 221, y = 19, z = 58, Source = "product1" },
+        new BubbleGradientchart { x = 178, y = 52, z = 38, Source = "product1" },
+        new BubbleGradientchart { x = 339, y = 29, z = 27, Source = "product1" },
+        new BubbleGradientchart { x = 698, y = 55, z = 73, Source = "product1" },
+        new BubbleGradientchart { x = 260, y = 25, z = 67, Source = "product1" },
+        new BubbleGradientchart { x = 530, y = 57, z = 26, Source = "product1" },
+        new BubbleGradientchart { x = 549, y = 16, z = 65, Source = "product1" },
+        new BubbleGradientchart { x = 531, y = 45, z = 70, Source = "product1" },
+        new BubbleGradientchart { x = 654, y = 56, z = 18, Source = "product1" },
+        new BubbleGradientchart { x = 300, y = 23, z = 51, Source = "product1" },
+        new BubbleGradientchart { x = 290, y = 39, z = 25, Source = "product1" },
+        new BubbleGradientchart { x = 608, y = 13, z = 57, Source = "product1" },
+        new BubbleGradientchart { x = 451, y = 30, z = 68, Source = "product1" },
+        new BubbleGradientchart { x = 502, y = 38, z = 36, Source = "product2" },
+        new BubbleGradientchart { x = 427, y = 18, z = 71, Source = "product2" },
+        new BubbleGradientchart { x = 689, y = 19, z = 61, Source = "product2" },
+        new BubbleGradientchart { x = 742, y = 18, z = 29, Source = "product2" },
+        new BubbleGradientchart { x = 493, y = 12, z = 73, Source = "product2" },
+        new BubbleGradientchart { x = 445, y = 19, z = 39, Source = "product2" },
+        new BubbleGradientchart { x = 596, y = 29, z = 62, Source = "product2" },
+        new BubbleGradientchart { x = 115, y = 52, z = 71, Source = "product2" },
+        new BubbleGradientchart { x = 536, y = 52, z = 34, Source = "product2" },
+        new BubbleGradientchart { x = 256, y = 26, z = 70, Source = "product2" },
+        new BubbleGradientchart { x = 564, y = 18, z = 46, Source = "product2" },
+        new BubbleGradientchart { x = 461, y = 52, z = 47, Source = "product2" },
+        new BubbleGradientchart { x =  82, y = 31, z = 37, Source = "product2" },
+        new BubbleGradientchart { x = 176, y = 10, z = 69, Source = "product2" },
+        new BubbleGradientchart { x = 634, y = 39, z = 49, Source = "product2" },
+        new BubbleGradientchart { x = 448, y = 49, z = 61, Source = "product2" },
+        new BubbleGradientchart { x = 584, y = 53, z = 26, Source = "product2" },
+        new BubbleGradientchart { x = 467, y = 49, z = 21, Source = "product2" },
+        new BubbleGradientchart { x = 521, y = 60, z = 17, Source = "product2" },
+        new BubbleGradientchart { x = 326, y = 47, z = 52, Source = "product2" },
+        new BubbleGradientchart { x = 384, y = 29, z = 20, Source = "product3" },
+        new BubbleGradientchart { x = 160, y = 10, z = 64, Source = "product3" },
+        new BubbleGradientchart { x = 695, y = 14, z = 62, Source = "product3" },
+        new BubbleGradientchart { x = 413, y = 48, z = 42, Source = "product3" },
+        new BubbleGradientchart { x = 158, y = 27, z = 48, Source = "product3" },
+        new BubbleGradientchart { x = 715, y = 21, z = 17, Source = "product3" },
+        new BubbleGradientchart { x = 357, y = 10, z = 31, Source = "product3" },
+        new BubbleGradientchart { x = 563, y = 26, z = 44, Source = "product3" },
+        new BubbleGradientchart { x = 595, y = 32, z = 26, Source = "product3" },
+        new BubbleGradientchart { x = 132, y = 17, z = 30, Source = "product3" },
+        new BubbleGradientchart { x =  95, y = 58, z = 25, Source = "product3" },
+        new BubbleGradientchart { x = 303, y = 59, z = 29, Source = "product3" },
+        new BubbleGradientchart { x = 122, y = 49, z = 21, Source = "product3" },
+        new BubbleGradientchart { x =  94, y = 14, z = 29, Source = "product3" },
+        new BubbleGradientchart { x = 660, y = 41, z = 18, Source = "product3" },
+        new BubbleGradientchart { x = 463, y = 35, z = 70, Source = "product3" },
+        new BubbleGradientchart { x = 396, y = 27, z = 61, Source = "product3" },
+        new BubbleGradientchart { x = 696, y = 48, z = 63, Source = "product3" },
+        new BubbleGradientchart { x =  89, y = 19, z = 16, Source = "product3" },
+        new BubbleGradientchart { x = 512, y = 15, z = 65, Source = "product3" },
+        new BubbleGradientchart { x = 113, y = 23, z = 67, Source = "product4" },
+        new BubbleGradientchart { x = 353, y = 20, z = 40, Source = "product4" },
+        new BubbleGradientchart { x = 506, y = 13, z = 51, Source = "product4" },
+        new BubbleGradientchart { x =  77, y = 41, z = 18, Source = "product4" },
+        new BubbleGradientchart { x = 301, y = 48, z = 70, Source = "product4" },
+        new BubbleGradientchart { x = 542, y = 30, z = 69, Source = "product4" },
+        new BubbleGradientchart { x = 250, y = 34, z = 16, Source = "product4" },
+        new BubbleGradientchart { x = 524, y = 39, z = 38, Source = "product4" },
+        new BubbleGradientchart { x = 317, y = 41, z = 20, Source = "product4" },
+        new BubbleGradientchart { x = 227, y = 43, z = 27, Source = "product4" },
+        new BubbleGradientchart { x = 534, y = 12, z = 47, Source = "product4" },
+        new BubbleGradientchart { x = 271, y = 20, z = 66, Source = "product4" },
+        new BubbleGradientchart { x = 137, y = 50, z = 54, Source = "product4" },
+        new BubbleGradientchart { x = 193, y = 24, z = 66, Source = "product4" },
+        new BubbleGradientchart { x = 325, y = 12, z = 64, Source = "product4" },
+        new BubbleGradientchart { x = 326, y = 34, z = 27, Source = "product4" },
+        new BubbleGradientchart { x = 648, y = 19, z = 33, Source = "product4" },
+        new BubbleGradientchart { x = 444, y = 31, z = 47, Source = "product4" },
+        new BubbleGradientchart { x = 728, y = 22, z = 15, Source = "product4" },
+        new BubbleGradientchart { x = 292, y = 21, z = 27, Source = "product4" },
+    };
+    // Gradient Bubble Chart End //  
+    protected override void OnInitialized() {
+        
+        BubblebasicchartOptions = new ApexChartOptions<Bubblebasicchart> {
+            DataLabels = new DataLabels {
+                Enabled=false,
+            }, 
+            Fill = new Fill {
+                Opacity = 0.8,
+            },
+            Colors = new Color(new List<string> { "var(--primary-color)" , "#23b7e5", "#f5b849"}),
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= 600,
+                    Color= "#8c9097"
+                },
+            },
+            Xaxis =  new XAxis {  
+                TickAmount= 12,
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                },
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Max = 70,
+                }
+            },
+        };
+
+        BubbleGradientchartOptions = new ApexChartOptions<BubbleGradientchart> {
+            DataLabels = new DataLabels {
+                Enabled=false,
+            }, 
+            Fill = new Fill {
+                Type = new List<FillType> { FillType.Gradient},
+                Gradient = new ApexCharts.FillGradient {
+                    Shade = ApexCharts.GradientShade.Light,
+                    Type = ApexCharts.GradientType.Horizontal,
+                    GradientToColors = new Color(new List<string> {"#fff"}),
+                }
+            },
+            Colors = new Color(new List<string> { "var(--primary-color)" , "#23b7e5", "#f5b849"}),
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= 600,
+                    Color= "#8c9097"
+                },
+            },
+            Xaxis =  new XAxis {  
+                TickAmount= 12,
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                },
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis // Define the first YAxis object
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    },
+                    Max = 70,
+                }
+            },
+        };
+
+
+    }
+}

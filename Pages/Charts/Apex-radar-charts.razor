@@ -1,0 +1,273 @@
+@page "/apex-radar-charts"
+@using ApexCharts
+@using System.Collections.Generic
+
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <h1 class="page-title fw-semibold fs-18 mb-0">Apex Radar Charts</h1>
+                    <div class="ms-md-1 ms-0">
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Apex Charts</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Apex Radar Charts</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start::row-1 -->
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Basic Radar Chart</div>
+                            </div>
+                            <div class="card-body">
+                                <ApexChart TItem="Radarbasic"  Height="320" Title="Basic Radar Chart" Options=RadarbasicChartOptions>
+                                    <ApexPointSeries TItem="Radarbasic" Items="Radarbasics" Name="Series 1"
+                                        SeriesType="SeriesType.Radar"
+                                        XValue="@(e => e.Month)"
+                                        YAggregate="@(e => e.Sum(e => e.Value))"
+                                        OrderByDescending="e => e.Y" />
+                                </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Radar Chart-Multiple Series</div>
+                            </div>
+                            <div class="card-body">
+                                <ApexChart TItem="RadarMulti"  Height="320" Title="Radar Chart - Multi Series" Options=RadarMultiChartOptions>
+                                        <ApexPointSeries TItem="RadarMulti" Items="RadarMultis" Name="Series 1"
+                                                SeriesType="SeriesType.Radar"
+                                                XValue="@(e => e.Country)"
+                                                YAggregate="@(e => e.Sum(e => e.Value))" />
+                                        <ApexPointSeries TItem="RadarMulti" Items="RadarMultis" Name="Series 2"
+                                                SeriesType="SeriesType.Radar"
+                                                XValue="@(e => e.Country)"
+                                                YAggregate="@(e => e.Sum(e => e.Value1))" />
+                                        <ApexPointSeries TItem="RadarMulti" Items="RadarMultis" Name="Series 3"
+                                                SeriesType="SeriesType.Radar"
+                                                XValue="@(e => e.Country)"
+                                                YAggregate="@(e => e.Sum(e => e.Value2))" />
+                                </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Radar Chart Poygon Fill</div>
+                            </div>
+                            <div class="card-body">
+                                <ApexChart TItem="RadarPoygon"  Height="320" Title="Radar with Polygon Fill" Options=RadarPoygonChartOptions>
+                                        <ApexPointSeries TItem="RadarPoygon" Items="RadarPoygons" Name="Series 1"
+                                            SeriesType="SeriesType.Radar"
+                                            XValue="@(e => e.Week)"
+                                            YAggregate="@(e => e.Sum(e => e.PoygonValue))" ShowDataLabels  />
+                                </ApexChart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End::row-1 -->
+
+            </div>
+
+@code {
+
+    // Basic Radar Chart Start //
+    private List<Radarbasic> Radarbasics { get; set; } = DataRadarbasic.Radarbasic();
+    private ApexChartOptions<Radarbasic> RadarbasicChartOptions { get; set; } = new();
+
+    public static class DataRadarbasic
+    {
+        public static List<Radarbasic> Radarbasic()
+        {
+            return new List<Radarbasic>
+            {
+                new Radarbasic { Month = "January", Value = 80},
+                new Radarbasic { Month = "February", Value = 50},
+                new Radarbasic { Month = "March", Value = 30},
+                new Radarbasic { Month = "April", Value = 40},
+                new Radarbasic { Month = "May", Value = 100},
+                new Radarbasic { Month = "June", Value = 20},
+            };
+        }
+    }
+    public class Radarbasic
+    {
+        public string? Month { get; set; }
+        public int Value { get; set; }
+    }
+    // Basic Radar Chart End //
+    
+    // Multi Radar Chart Start //
+    private List<RadarMulti> RadarMultis { get; set; } = DataRadarMulti.RadarMulti();
+    private ApexChartOptions<RadarMulti> RadarMultiChartOptions { get; set; } = new();
+    public static class DataRadarMulti
+    {
+        public static List<RadarMulti> RadarMulti()
+        {
+            return new List<RadarMulti>
+            {
+                new RadarMulti { Country = "France", Value = 80, Value1=20, Value2=44},
+                new RadarMulti { Country = "Brazil", Value = 50, Value1=30, Value2=76},
+                new RadarMulti { Country = "Sweden", Value = 30, Value1=40, Value2=78},
+                new RadarMulti { Country = "Spain", Value = 40, Value1=80, Value2=13},
+                new RadarMulti { Country = "Usa", Value = 100, Value1=20, Value2=43},
+                new RadarMulti { Country = "Italy", Value = 20, Value1=80, Value2=10},
+            };
+        }
+    }
+    public class RadarMulti
+    {
+        public string? Country { get; set; }
+        public int Value { get; set; }
+        public int Value1 { get; set; }
+        public int Value2 { get; set; }
+    }
+    // Multi Radar Chart End //
+
+    // Poygon Radar Chart Start //
+    private List<RadarPoygon> RadarPoygons { get; set; } = DataRadarPoygon.RadarPoygon();
+    private ApexChartOptions<RadarPoygon> RadarPoygonChartOptions { get; set; } = new();
+
+    public static class DataRadarPoygon
+    {
+        public static List<RadarPoygon> RadarPoygon()
+        {
+            return new List<RadarPoygon>
+            {
+                new RadarPoygon { Week = "Sunday", PoygonValue = 20},
+                new RadarPoygon { Week = "Monday", PoygonValue = 100},
+                new RadarPoygon { Week = "Tuesday", PoygonValue = 40},
+                new RadarPoygon { Week = "Wednesday", PoygonValue = 30},
+                new RadarPoygon { Week = "Thursday", PoygonValue = 50},
+                new RadarPoygon { Week = "Friday", PoygonValue = 80},
+                new RadarPoygon { Week = "Saturday", PoygonValue = 33},
+            };
+        }
+    }
+    public class RadarPoygon
+    {
+        public string? Week { get; set; }
+        public int PoygonValue { get; set; }
+    }
+    // Poygon Radar Chart End //
+    protected override void OnInitialized() {
+        
+        RadarbasicChartOptions = new ApexChartOptions<Radarbasic>
+        {
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            Colors = new Color(new List<string> { "#845adf" }),
+            Yaxis = new List<YAxis>() {
+                new YAxis
+                {
+                    AxisBorder = new AxisBorder {
+                        Show = false,
+                    },
+                    Min = 0,
+                    Max = 120,
+                    StepSize = 30,
+                },
+            },
+            Legend = new Legend
+            {
+                Position = LegendPosition.Bottom
+            }
+        };
+
+         RadarMultiChartOptions = new ApexChartOptions<RadarMulti>
+        {
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            Colors = new Color(new List<string> { "#845adf", "#23b7e5", "#f5b849"}),
+            Yaxis = new List<YAxis>() {
+                new YAxis
+                {
+                    Min = 0,
+                    Max = 120,
+                    StepSize = 30,
+                },
+            },
+            Markers = new Markers {
+                 Size= 0
+            },
+            Stroke = new Stroke { 
+                Width = 2,
+            },
+           Fill = new Fill {
+                Opacity = 0.1
+            },
+            Legend = new Legend
+            {
+                Position = LegendPosition.Bottom
+            }
+        };
+
+        RadarPoygonChartOptions = new ApexChartOptions<RadarPoygon>
+        {
+            Title = new Title{
+                Style = new TitleStyle {
+                    FontSize= "13px",
+                    FontWeight= "bold",
+                    Color= "#8c9097"
+                },
+            },
+            Colors = new Color(new List<string> {  "#23b7e5"}),
+            Yaxis = new List<YAxis>() {
+                new YAxis
+                {
+                    Min = 0,
+                    Max = 120,
+                    StepSize = 30,
+                },
+            },
+             PlotOptions = new PlotOptions 
+            {
+                Radar = new PlotOptionsRadar
+                {    
+                    Size= 80,
+                    Polygons= new () {
+                        StrokeColors= "#e9e9e9",
+                    }
+                }
+            },
+            Markers = new Markers {
+                Size= 4,
+                StrokeWidth=2,
+            },
+            DataLabels = new DataLabels {
+                Enabled = true,
+            }, 
+            Stroke = new Stroke { 
+                Width = 2,
+            },
+           Fill = new Fill {
+                Opacity = 0.1
+            },
+            Legend = new Legend
+            {
+                Position = LegendPosition.Bottom
+            }
+        };
+     }
+
+}

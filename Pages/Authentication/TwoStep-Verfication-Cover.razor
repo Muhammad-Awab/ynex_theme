@@ -1,0 +1,138 @@
+@page "/two-step-verification-cover"
+@layout CustomLayout
+<link href="_content/WMBlazorSlickCarousel/WMBlazorSlickCarousel.bundle.scp.css" rel="stylesheet">
+
+<div class="bg-white">
+    <div class="row authentication mx-0">
+        <div class="col-xxl-7 col-xl-7 col-lg-12">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-xxl-6 col-xl-7 col-lg-7 col-md-7 col-sm-8 col-12">
+                    <div class="p-5">
+                        <div class="mb-3">
+                            <a href="/home">
+                                <img src="../assets/images/brand-logos/desktop-logo.png" alt="" class="authentication-brand desktop-logo">
+                                <img src="../assets/images/brand-logos/desktop-dark.png" alt="" class="authentication-brand desktop-dark">
+                            </a>
+                        </div>
+                        <p class="h5 fw-semibold mb-1">Verify Your Account</p>
+                        <p class="mb-4 text-muted op-7 fw-normal">Enter the 4 digit code sent to the registered email Id.</p>
+                        <div class="row">
+                            <div class="col-xl-12 mb-4">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <input type="text" class="form-control form-control-lg text-center" id="one" maxlength="1" @ref="nextInputRef" @oninput='() => ValueChange("nextInput2")'>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control form-control-lg text-center" id="two" maxlength="1" @ref="nextInput2Ref" @oninput='() => ValueChange("nextInput3")'>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control form-control-lg text-center" id="three" maxlength="1" @ref="nextInput3Ref" @oninput='() => ValueChange("nextInput4")'>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control form-control-lg text-center" id="four" maxlength="1" @ref="nextInput4Ref">
+                                    </div>
+                                </div>
+                                <div class="form-check mt-2 mb-0">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Did not recieve a code ?<a href="/mail" class="text-primary ms-2 d-inline-block">Resend</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 d-grid">
+                                <a href="/home" class="btn btn-lg btn-primary">Verify</a>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <p class="fs-12 text-danger mt-3"><sup><i class="ri-asterisk"></i></sup>Don't share the verification code with anyone !</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-5 col-xl-5 col-lg-5 d-xl-block d-none px-0">
+            <div class="authentication-cover">
+                <div class="aunthentication-cover-content rounded">
+                    <BlazorSlickCarousel Configurations="BasicConfigurations">
+                        <BlazorSlickCarouselContent>
+                            <div class="Carousel-slide">
+                                <div class="text-fixed-white text-center p-5 d-flex align-items-center justify-content-center">
+                                    <div>
+                                        <div class="mb-5">
+                                            <img src="../assets/images/authentication/2.png" class="authentication-image" alt="">
+                                        </div>
+                                        <h6 class="fw-semibold text-fixed-white">Verify Your Account</h6>
+                                        <p class="fw-normal fs-14 op-7"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa eligendi expedita aliquam quaerat nulla voluptas facilis. Porro rem voluptates possimus, ad, autem quae culpa architecto, quam labore blanditiis at ratione.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Carousel-slide">
+                                <div class="text-fixed-white text-center p-5 d-flex align-items-center justify-content-center">
+                                    <div>
+                                        <div class="mb-5">
+                                            <img src="../assets/images/authentication/3.png" class="authentication-image" alt="">
+                                        </div>
+                                        <h6 class="fw-semibold text-fixed-white">Verify Your Account</h6>
+                                        <p class="fw-normal fs-14 op-7"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa eligendi expedita aliquam quaerat nulla voluptas facilis. Porro rem voluptates possimus, ad, autem quae culpa architecto, quam labore blanditiis at ratione.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Carousel-slide">
+                                <div class="text-fixed-white text-center p-5 d-flex align-items-center justify-content-center">
+                                    <div>
+                                        <div class="mb-5">
+                                            <img src="../assets/images/authentication/2.png" class="authentication-image" alt="">
+                                        </div>
+                                        <h6 class="fw-semibold text-fixed-white">Verify Your Account</h6>
+                                        <p class="fw-normal fs-14 op-7"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa eligendi expedita aliquam quaerat nulla voluptas facilis. Porro rem voluptates possimus, ad, autem quae culpa architecto, quam labore blanditiis at ratione.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </BlazorSlickCarouselContent>
+                    </BlazorSlickCarousel>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    
+    private ElementReference nextInputRef;
+    private ElementReference nextInput2Ref;
+    private ElementReference nextInput3Ref;
+    private ElementReference nextInput4Ref;
+
+    private void ValueChange(string nextInputId)
+    {
+        // Set focus on the next input
+        if (nextInputId == "nextInput2")
+        {
+            nextInput2Ref.FocusAsync();
+        }
+        if (nextInputId == "nextInput3")
+        {
+            nextInput3Ref.FocusAsync();
+        }
+        if (nextInputId == "nextInput4")
+        {
+            nextInput4Ref.FocusAsync();
+        }
+    }
+    public WMBSCInitialSettings? BasicConfigurations;
+    protected override void OnInitialized()
+    {
+        BasicConfigurations = new WMBSCInitialSettings
+        {
+            arrows = true,
+            dots = true,
+            slidesToShow = 1,
+            slidesToScroll = 1,
+            infinite = true,
+            autoplay = true,
+            dotsClass = "slick-dots Dynamic-slick-dots",
+            autoplaySpeed = 1500,
+        };
+    }
+}

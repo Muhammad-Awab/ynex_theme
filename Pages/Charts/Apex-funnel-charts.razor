@@ -1,0 +1,167 @@
+@page "/Apex-funnel-charts"
+@using ApexCharts
+@using System.Collections.Generic
+@using System.Threading.Tasks
+@using ynex
+
+<div class="container-fluid">
+
+    <!-- Page Header -->
+    <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+        <h1 class="page-title fw-semibold fs-18 mb-0">Apex Funnel Charts</h1>
+        <div class="ms-md-1 ms-0">
+            <nav>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Apex Charts</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Apex Funnel Charts</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header Close -->
+
+    <!-- Start::row-1 -->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Basic Funnel Chart</div>
+                </div>
+                <div class="card-body">
+                    <ApexChart TItem="Funnelbasic" Height="400"
+                                Title="Funnel"
+                                Options=options>
+
+                            <ApexPointSeries TItem="Funnelbasic"
+                                            Items="Funnelbasics"
+                                            Name="Gross Value"
+                                            Color="#845adf"
+                                            XValue="@(e => e.Country)"
+                                            SeriesType="SeriesType.Bar"
+                                            YAggregate="@(e => e.Sum(e => e.GrossValue))"
+                                            OrderByDescending="e=>e.Y"
+                                            ShowDataLabels
+                                            />
+                        </ApexChart>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">Gradient Funnel Chart</div>
+                </div>
+                <div class="card-body">
+                    <ApexChart TItem="FunnelGradient" Height="400"
+                                Title="Funnel"
+                                Options=options2>
+
+                            <ApexPointSeries TItem="FunnelGradient"
+                                            Items="FunnelGradients"
+                                            Name="Gross Value"
+                                            XValue="@(e => e.Country)"
+                                            SeriesType="SeriesType.Bar"
+                                            YAggregate="@(e => e.Sum(e => e.GrossValue))"
+                                            OrderByDescending="e=>e.Y"
+                                            ShowDataLabels
+                                            />
+                        </ApexChart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End::row-1 -->
+</div>
+
+@code {
+    private List<Funnelbasic> Funnelbasics { get; set; } = SampleDataFunnelbasic.GetFunnelbasics();
+    private ApexChartOptions<Funnelbasic>? options;
+
+    public static class SampleDataFunnelbasic
+    {
+        public static List<Funnelbasic> GetFunnelbasics()
+        {
+            return new List<Funnelbasic>
+            {
+                new Funnelbasic { Country = "Sweets", GrossValue = 200 },
+                new Funnelbasic { Country = "Processed Foods", GrossValue = 330 },
+                new Funnelbasic { Country = "Healthy Fats", GrossValue = 548 },
+                new Funnelbasic { Country = "Meat", GrossValue = 740 },
+                new Funnelbasic { Country = "Beans & Legumes", GrossValue = 880 },
+                new Funnelbasic { Country = "Dairy", GrossValue = 990 },
+                new Funnelbasic { Country = "Fruits & Vegetables", GrossValue = 1100 },
+                new Funnelbasic { Country = "Grains", GrossValue = 1380 },
+            };
+        }
+    }
+
+    public class Funnelbasic
+    {
+        public string? Country { get; set; }
+        public int GrossValue { get; set; }
+    }
+
+    
+    private List<FunnelGradient> FunnelGradients { get; set; } = SampleDataFunnelGradient.GetFunnelGradients();
+    private ApexChartOptions<FunnelGradient>? options2;
+
+    public static class SampleDataFunnelGradient
+    {
+        public static List<FunnelGradient> GetFunnelGradients()
+        {
+            // Sample data for FunnelGradients
+            return new List<FunnelGradient>
+            {
+                new FunnelGradient { Country = "Sweets", GrossValue = 200 },
+                new FunnelGradient { Country = "Processed Foods", GrossValue = 330 },
+                new FunnelGradient { Country = "Healthy Fats", GrossValue = 548 },
+                new FunnelGradient { Country = "Meat", GrossValue = 740 },
+                new FunnelGradient { Country = "Beans & Legumes", GrossValue = 880 },
+                new FunnelGradient { Country = "Dairy", GrossValue = 990 },
+                new FunnelGradient { Country = "Fruits & Vegetables", GrossValue = 1100 },
+                new FunnelGradient { Country = "Grains", GrossValue = 1380 },
+            };
+        }
+    }
+
+    public class FunnelGradient
+    {
+        public string? Country { get; set; }
+        public int GrossValue { get; set; }
+    }
+    protected override void OnInitialized()
+    {
+        options = new ApexChartOptions<Funnelbasic>
+            {
+                PlotOptions = new PlotOptions
+                {
+                    Bar = new PlotOptionsBar
+                    {
+                        Horizontal = true,
+                        IsFunnel = true
+                    }
+                }
+            };
+        options2 = new ApexChartOptions<FunnelGradient>
+            {
+            DataLabels = new ApexCharts.DataLabels {
+                Enabled = true,
+                Formatter= @"function (val, opt) {
+                return opt.w.globals.labels[opt.dataPointIndex] 
+                }",
+            }, 
+            Colors = new Color(new List<string> { "#F44F5E","#E55A89","#D863B1","#CA6CD8","#B57BED","#8D95EB","#62ACEA","#4BC3E6", }),
+                PlotOptions = new PlotOptions
+                {
+                    Bar = new PlotOptionsBar
+                    {
+                        Horizontal = true,
+                        IsFunnel = true,
+                        Distributed= true,
+                        BarHeight= "80%",
+                    }
+                }
+            };
+    }
+
+}

@@ -1,0 +1,687 @@
+
+@inject StateService stateService
+@using BlazorColorPicker
+@inject IActionService ActionService
+@using Microsoft.JSInterop;
+@inject IJSRuntime JSRuntime
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="switcher-canvas" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title text-default" id="offcanvasRightLabel">Switcher</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        
+        <nav class="border-bottom border-block-end-dashed">
+            <div class="nav nav-tabs nav-justified" id="switcher-main-tab" role="tablist">
+                <button class="nav-link active" id="switcher-home-tab" data-bs-toggle="tab"
+                    data-bs-target="#switcher-home" type="button" role="tab" aria-controls="switcher-home"
+                    aria-selected="true">Theme Styles</button>
+                <button class="nav-link" id="switcher-profile-tab" data-bs-toggle="tab"
+                    data-bs-target="#switcher-profile" type="button" role="tab" aria-controls="switcher-profile"
+                    aria-selected="false">Theme Colors</button>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active border-0" id="switcher-home" role="tabpanel"
+                aria-labelledby="switcher-home-tab" tabindex="0">
+                <div class="">
+                    <p class="switcher-style-head">Theme Color Mode: @currentState?.ColorTheme</p>
+                    <div class="row switcher-style gx-0">
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-light-theme">
+                                    Light
+                                </label>
+                                <input class="form-check-input" type="radio" name="theme-style"
+                                    id="switcher-light-theme" @onclick='() => colorthemeFn("light")' checked="@(currentState?.ColorTheme == "light")">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-dark-theme">
+                                    Dark
+                                </label>
+                                <input class="form-check-input" type="radio" name="theme-style" id="switcher-dark-theme"
+                                    @onclick='() => colorthemeFn("dark")' checked="@(currentState?.ColorTheme == "dark")">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <p class="switcher-style-head">Directions:@currentState?.Direction</p>
+                    <div class="row switcher-style gx-0">
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-ltr">
+                                    LTR
+                                </label>
+                                <input class="form-check-input" type="radio" name="direction" id="switcher-ltr"
+                                    @onclick='() => directionFn("ltr")'  checked="@(currentState?.Direction == "ltr")">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-rtl">
+                                    RTL
+                                </label>
+                                <input class="form-check-input" type="radio" name="direction" id="switcher-rtl"
+                                    @onclick='() => directionFn("rtl")'  checked="@(currentState?.Direction == "rtl")">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <p class="switcher-style-head">Navigation Styles:@currentState?.NavigationStyles</p>
+                    <div class="row switcher-style gx-0">
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-vertical">
+                                    Vertical
+                                </label>
+                                <input class="form-check-input" type="radio" name="navigation-style"
+                                    id="switcher-vertical" @onclick='() => navigationStylesFn("vertical")'  checked="@(currentState?.NavigationStyles == "vertical")">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-horizontal">
+                                    Horizontal
+                                </label>
+                                <input class="form-check-input" type="radio" name="navigation-style"
+                                    @onclick='() => navigationStylesFn("horizontal")' id="switcher-horizontal"  checked="@(currentState?.NavigationStyles == "horizontal")">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation-menu-styles">
+                    <p class="switcher-style-head">Vertical & Horizontal Menu Styles: @currentState?.MenuStyles</p>
+                    <div class="row switcher-style gx-0 pb-2 gy-2">
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-menu-click">
+                                    Menu Click
+                                </label>
+                                <input class="form-check-input" type="radio" name="navigation-menu-styles"
+                                    id="switcher-menu-click" @onclick='() => menuStylesFn("menu-click")'  checked="@(currentState?.MenuStyles == "menu-click")">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-menu-hover">
+                                    Menu Hover
+                                </label>
+                                <input class="form-check-input" type="radio" name="navigation-menu-styles"
+                                    id="switcher-menu-hover" @onclick='() => menuStylesFn("menu-hover")'  checked="@(currentState?.MenuStyles == "menu-hover")">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-icon-click">
+                                    Icon Click
+                                </label>
+                                <input class="form-check-input" type="radio" name="navigation-menu-styles"
+                                    id="switcher-icon-click" @onclick='() => menuStylesFn("icon-click")'  checked="@(currentState?.MenuStyles == "icon-click")">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-icon-hover">
+                                    Icon Hover
+                                </label>
+                                <input class="form-check-input" type="radio" name="navigation-menu-styles"
+                                    id="switcher-icon-hover" @onclick='() => menuStylesFn("icon-hover")'  checked="@(currentState?.MenuStyles == "icon-hover")">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidemenu-layout-styles">
+                    <p class="switcher-style-head">Sidemenu Layout Styles:</p>
+                    <div class="row switcher-style gx-0 pb-2 gy-2">
+                        <div class="col-sm-6">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-default-menu">
+                                    Default Menu
+                                </label>
+                                <input class="form-check-input" type="radio" name="sidemenu-layout-styles"
+                                    id="switcher-default-menu" @onclick='() => layoutStylesFn("default-menu")'  checked="@(currentState?.LayoutStyles == "default-menu")">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-closed-menu">
+                                    Closed Menu
+                                </label>
+                                <input class="form-check-input" type="radio" name="sidemenu-layout-styles"
+                                    id="switcher-closed-menu" @onclick='() => layoutStylesFn("closed-menu")'  checked="@(currentState?.LayoutStyles == "closed-menu")">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-icontext-menu">
+                                    Icon Text
+                                </label>
+                                <input class="form-check-input" type="radio" name="sidemenu-layout-styles"
+                                    id="switcher-icontext-menu" @onclick='() => layoutStylesFn("icontext-menu")'  checked="@(currentState?.LayoutStyles == "icontext-menu")">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-icon-overlay">
+                                    Icon Overlay
+                                </label>
+                                <input class="form-check-input" type="radio" name="sidemenu-layout-styles"
+                                    id="switcher-icon-overlay" @onclick='() => layoutStylesFn("icon-overlay")'  checked="@(currentState?.LayoutStyles == "icon-overlay")">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-detached">
+                                    Detached
+                                </label>
+                                <input class="form-check-input" type="radio" name="sidemenu-layout-styles"
+                                    id="switcher-detached" @onclick='() => layoutStylesFn("detached")'  checked="@(currentState?.LayoutStyles == "detached")">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-double-menu">
+                                    Double Menu
+                                </label>
+                                <input class="form-check-input" type="radio" name="sidemenu-layout-styles"
+                                    id="switcher-double-menu" @onclick='() => layoutStylesFn("double-menu")'  checked="@(currentState?.LayoutStyles == "double-menu")">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <p class="switcher-style-head">Page Styles:</p>
+                    <div class="row switcher-style gx-0">
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-regular">
+                                    Regular
+                                </label>
+                                <input class="form-check-input" type="radio" name="page-styles" id="switcher-regular"
+                                    @onclick='() => pageStyleFn("regular")'  checked="@(currentState?.PageStyles == "regular")">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-classic">
+                                    Classic
+                                </label>
+                                <input class="form-check-input" type="radio" name="page-styles" id="switcher-classic"
+                                    @onclick='() => pageStyleFn("classic")' checked="@(currentState?.PageStyles == "classic")">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-modern">
+                                    Modern
+                                </label>
+                                <input class="form-check-input" type="radio" name="page-styles" id="switcher-modern"
+                                    @onclick='() => pageStyleFn("modern")' checked="@(currentState?.PageStyles == "modern")">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <p class="switcher-style-head">Layout Width Styles:</p>
+                    <div class="row switcher-style gx-0">
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-full-width">
+                                    Full Width
+                                </label>
+                                <input class="form-check-input" type="radio" name="layout-width"
+                                    id="switcher-full-width" @onclick='() => widthStylessFn("full-width")'  checked="@(currentState?.WidthStyles == "ull-width")">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-boxed">
+                                    Boxed
+                                </label>
+                                <input class="form-check-input" type="radio" name="layout-width" id="switcher-boxed"
+                                    @onclick='() => widthStylessFn("boxed")'  checked="@(currentState?.WidthStyles == "boxed")">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <p class="switcher-style-head">Menu Positions:</p>
+                    <div class="row switcher-style gx-0">
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-menu-fixed">
+                                    Fixed
+                                </label>
+                                <input class="form-check-input" type="radio" name="menu-positions"
+                                    id="switcher-menu-fixed" @onclick='() => menuPositionFn("fixed")'  checked="@(currentState?.MenuPosition == "fixed")">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-menu-scroll">
+                                    Scrollable
+                                </label>
+                                <input class="form-check-input" type="radio" name="menu-positions"
+                                    id="switcher-menu-scroll" @onclick='() => menuPositionFn("scrollable")' checked="@(currentState?.MenuPosition == "scrollable")">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <p class="switcher-style-head">Header Positions:</p>
+                    <div class="row switcher-style gx-0">
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-header-fixed">
+                                    Fixed
+                                </label>
+                                <input class="form-check-input" type="radio" name="header-positions"
+                                    id="switcher-header-fixed" @onclick='() => headerPositionFn("fixed")'  checked="@(currentState?.HeaderPosition == "fixed")">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check switch-select">
+                                <label class="form-check-label" for="switcher-header-scroll">
+                                    Scrollable
+                                </label>
+                                <input class="form-check-input" type="radio" name="header-positions"
+                                    id="switcher-header-scroll" @onclick='() => headerPositionFn("scrollable")' checked="@(currentState?.HeaderPosition == "scrollable")">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade border-0" id="switcher-profile" role="tabpanel"
+                aria-labelledby="switcher-profile-tab" tabindex="0">
+                <div>
+                    <div class="theme-colors">
+                        <p class="switcher-style-head">Menu Colors:</p>
+                        <div class="d-flex switcher-style pb-2">
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-white" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="Light Menu" type="radio" name="menu-colors"
+                                    id="switcher-menu-light" @onclick='() => menuColorFn("light")' checked="@(currentState?.MenuColor == "light")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-dark" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="Dark Menu" type="radio" name="menu-colors"
+                                    id="switcher-menu-dark" @onclick='() => menuColorFn("dark")'  checked="@(currentState?.MenuColor == "dark")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-primary" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="Color Menu" type="radio" name="menu-colors"
+                                    id="switcher-menu-primary" @onclick='() => menuColorFn("color")' checked="@(currentState?.MenuColor == "color")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-gradient" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="Gradient Menu" type="radio" name="menu-colors"
+                                    id="switcher-menu-gradient" @onclick='() => menuColorFn("gradient")' checked="@(currentState?.MenuColor == "gradient")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-transparent" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="Transparent Menu" type="radio" name="menu-colors"
+                                    id="switcher-menu-transparent" @onclick='() => menuColorFn("transparent")' checked="@(currentState?.MenuColor == "transparent")">
+                            </div>
+                        </div>
+                        <div class="px-4 pb-3 text-muted fs-11">Note:If you want to change color Menu dynamically change
+                            from below Theme Primary color picker</div>
+                    </div>
+                    <div class="theme-colors">
+                        <p class="switcher-style-head">Header Colors:</p>
+                        <div class="d-flex switcher-style pb-2">
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-white" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="Light Header" type="radio" name="header-colors"
+                                    id="switcher-header-light" @onclick='() => headerColorFn("light")'  checked="@(currentState?.HeaderColor == "light")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-dark" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="Dark Header" type="radio" name="header-colors"
+                                    id="switcher-header-dark" @onclick='() => headerColorFn("dark")' checked="@(currentState?.HeaderColor == "dark")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-primary" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="Color Header" type="radio" name="header-colors"
+                                    id="switcher-header-primary" @onclick='() => headerColorFn("color")' checked="@(currentState?.HeaderColor == "color")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-gradient" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="Gradient Header" type="radio" name="header-colors"
+                                    id="switcher-header-gradient" @onclick='() => headerColorFn("gradient")' checked="@(currentState?.HeaderColor == "gradient")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-transparent" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="Transparent Header" type="radio" name="header-colors"
+                                    id="switcher-header-transparent" @onclick='() => headerColorFn("transparent")' checked="@(currentState?.HeaderColor == "transparent")">
+                            </div>
+                        </div>
+                        <div class="px-4 pb-3 text-muted fs-11">Note:If you want to change color Header dynamically
+                            change from below Theme Primary color picker</div>
+                    </div>
+                    <div class="theme-colors">
+                        <p class="switcher-style-head">Theme Primary:</p>
+                        <div class="d-flex flex-wrap align-items-center switcher-style">
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-primary-1" type="radio"
+                                    name="theme-primary" id="switcher-primary"
+                                    @onclick='() => themePrimaryFn("58, 88, 146")' checked="@(currentState?.ThemePrimary == "58, 88, 146")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-primary-2" type="radio"
+                                    name="theme-primary" id="switcher-primary1"
+                                    @onclick='() => themePrimaryFn("92, 144, 163")' checked="@(currentState?.ThemePrimary == "92, 144, 163")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-primary-3" type="radio"
+                                    name="theme-primary" id="switcher-primary2"
+                                    @onclick='() => themePrimaryFn("161, 90, 223")' checked="@(currentState?.ThemePrimary == "161, 90, 223")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-primary-4" type="radio"
+                                    name="theme-primary" id="switcher-primary3"
+                                    @onclick='() => themePrimaryFn("78, 172, 76")' checked="@(currentState?.ThemePrimary == "78, 172, 76")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-primary-5" type="radio"
+                                    name="theme-primary" id="switcher-primary4"
+                                    @onclick='() => themePrimaryFn("223, 90, 90")' checked="@(currentState?.ThemePrimary == "223, 90, 90")">
+                            </div>
+                            <div class="form-check switch-select ps-0 color-primary-light">
+                                <a href="javascript:void(0);" @onclick="PrimaryModal">
+                                    <div style="background-color:rgb(@primarycolor)" class="buttonColor m-0"></div>
+                                </a>
+                                <ColorPicker IsOpened="isPrimaryOpened" Closed="PrimaryClosedEvent" MyColor="@primarycolor" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="theme-colors">
+                        <p class="switcher-style-head">Theme Background:</p>
+                        <div class="d-flex flex-wrap align-items-center switcher-style">
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-bg-1" type="radio"
+                                    name="theme-background" id="switcher-background"
+                                    @onclick='() => themeBackgroundFn("20, 30, 96", "25, 38, 101")' checked="@(currentState?.ThemeBackground == "20, 30, 96")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-bg-2" type="radio"
+                                    name="theme-background" id="switcher-background1"
+                                    @onclick='() => themeBackgroundFn("8, 78, 115", "13, 86, 120")' checked="@(currentState?.ThemeBackground == "8, 78, 115")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-bg-3" type="radio"
+                                    name="theme-background" id="switcher-background2"
+                                    @onclick='() => themeBackgroundFn("90, 37, 135", "95, 45, 140")' checked="@(currentState?.ThemeBackground == "90, 37, 135")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-bg-4" type="radio"
+                                    name="theme-background" id="switcher-background3"
+                                    @onclick='() => themeBackgroundFn("24, 101, 51", "29, 109, 56")' checked="@(currentState?.ThemeBackground == "24, 101, 51")">
+                            </div>
+                            <div class="form-check switch-select me-3">
+                                <input class="form-check-input color-input color-bg-5" type="radio"
+                                    name="theme-background" id="switcher-background4"
+                                    @onclick='() => themeBackgroundFn("120, 66, 20", "125, 74, 25")' checked="@(currentState?.ThemeBackground == "120, 66, 20")">
+                            </div>
+                            <div class="form-check switch-select ps-0 tooltip-static-demo color-bg-transparent">
+                                <a href="javascript:void(0);" @onclick="BackgroundModal">
+                                    <div style="background-color:rgb(@Backgroundcolor)" class="buttonColor m-0"></div>
+                                </a>
+                                <ColorPicker IsOpened="isBackgroundOpened" Closed="BackgroundClosedEvent" MyColor="@Backgroundcolor" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-image mb-3">
+                        <p class="switcher-style-head">Menu With Background Image:</p>
+                        <div class="d-flex flex-wrap align-items-center switcher-style">
+                            <div class="form-check switch-select m-2">
+                                <input class="form-check-input bgimage-input bg-img1" type="radio" name="theme-bg"
+                                    id="switcher-bg-img" @onclick='() => backgroundImageFn("bgimg1")' checked="@(currentState?.BackgroundImage == "bgimg1")">
+                            </div>
+                            <div class="form-check switch-select m-2">
+                                <input class="form-check-input bgimage-input bg-img2" type="radio" name="theme-bg"
+                                    id="switcher-bg-img1" @onclick='() => backgroundImageFn("bgimg2")' checked="@(currentState?.BackgroundImage == "bgimg2")">
+                            </div>
+                            <div class="form-check switch-select m-2">
+                                <input class="form-check-input bgimage-input bg-img3" type="radio" name="theme-bg"
+                                    id="switcher-bg-img2" @onclick='() => backgroundImageFn("bgimg3")' checked="@(currentState?.BackgroundImage == "bgimg3")">
+                            </div>
+                            <div class="form-check switch-select m-2">
+                                <input class="form-check-input bgimage-input bg-img4" type="radio" name="theme-bg"
+                                    id="switcher-bg-img3" @onclick='() => backgroundImageFn("bgimg4")' checked="@(currentState?.BackgroundImage == "bgimg4")">
+                            </div>
+                            <div class="form-check switch-select m-2">
+                                <input class="form-check-input bgimage-input bg-img5" type="radio" name="theme-bg"
+                                    id="switcher-bg-img4" @onclick='() => backgroundImageFn("bgimg5")' checked="@(currentState?.BackgroundImage == "bgimg5")">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between canvas-footer">
+                <a href="javascript:void(0);" id="reset-all" class="btn btn-danger w-100" @onclick='() => reset()'>Reset</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    string[] colors = new string[] { "#FFFFFF", "#000000", "#999999","#845adf" };
+    bool isPrimaryOpened = false;
+    string primarycolor = "132,90,223";
+
+
+    void PrimaryModal() => isPrimaryOpened = true;
+    
+    public static (int R, int G, int B) HexToRgb(string hex)
+    {
+        // Remove the leading '#' if it exists
+        hex = hex.TrimStart('#');
+
+        // Ensure the hex string is 6 characters long
+        if (hex.Length != 6)
+        {
+            throw new ArgumentException("Invalid hex color code.");
+        }
+
+        // Parse the hex string into RGB values   
+        int r = int.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+        int g = int.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+        int b = int.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+        return (r, g, b);
+    }
+    async void PrimaryClosedEvent(string value)
+    {
+        var rgbValue = HexToRgb(value);
+        var val = $"{rgbValue.R}, {rgbValue.G}, {rgbValue.B}";
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexprimaryRGB", val);
+        await stateService.themePrimaryFn(val);
+        primarycolor = val;
+        isPrimaryOpened = false;
+        StateHasChanged(); // Force re-render
+    }
+    
+    bool isBackgroundOpened = false;
+    string Backgroundcolor = "132,90,223";
+
+
+    void BackgroundModal() => isBackgroundOpened = true;
+    
+    async void BackgroundClosedEvent(string value)
+    {
+        
+        var rgbValue = HexToRgb(value);
+        var val = $"{rgbValue.R}, {rgbValue.G}, {rgbValue.B}";
+        var val2 = $"{rgbValue.R + 14}, {rgbValue.G + 14}, {rgbValue.B + 14}";        
+        await stateService.themeBackgroundFn(val, val2,true);
+        Backgroundcolor = val;
+        isBackgroundOpened = false;
+    }
+}
+
+
+@code {
+    private AppState currentState => stateService.GetAppState();
+
+    void TriggerAction(string actionValue)
+    {
+        // Invoke the event with the action value
+        ActionService?.TriggerAction(actionValue);
+    }
+
+    private async void colorthemeFn(string val)
+    {
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexcolortheme", val);
+        await JSRuntime.InvokeAsync<string>("interop.removeLocalStorageItem", "ynexbgColor");
+        await JSRuntime.InvokeAsync<string>("interop.removeLocalStorageItem", "ynexbgColor1");
+        await JSRuntime.InvokeAsync<string>("interop.removeLocalStorageItem", "ynexMenu");
+        await JSRuntime.InvokeAsync<string>("interop.removeLocalStorageItem", "ynexHeader");
+        await JSRuntime.InvokeAsync<string>("interop.removeLocalStorageItem", "ynexbgimg");
+        await JSRuntime.InvokeAsync<string>("interop.removeLocalStorageItem", "ynexprimaryRGB");
+        await stateService.colorthemeFn(val, true);
+        StateHasChanged(); // Force re-render
+    }
+
+    private async Task directionFn(string val)
+    {
+        //Localstorage
+        await stateService.directionFn(val);
+        StateHasChanged(); // Force re-render
+    }
+    
+    [Inject] private NavScrollService? scrollService { get; set; }
+    private async void navigationStylesFn(string val)
+    {   
+        if(scrollService != null){
+            if(val== "vertical"){
+                scrollService.IsVertical = true;
+            }
+            else {
+                scrollService.IsVertical  = false;
+                await JSRuntime.InvokeAsync<string>("interop.removeLocalStorageItem", "ynexverticalstyles");
+            }
+        }
+        //Localstorage
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexnavstyles", val);
+        await stateService.navigationStylesFn(val, true);
+        TriggerAction(val);
+        StateHasChanged(); // Force re-render
+    }
+    private async void layoutStylesFn(string val)
+    {
+        //Localstorage
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexverticalstyles", val);
+        await JSRuntime.InvokeAsync<string>("interop.removeLocalStorageItem", "ynexmenuStyles");
+        await stateService.layoutStylesFn(val);
+        StateHasChanged(); // Force re-render
+    }
+    private async void menuStylesFn(string val)
+    {
+
+         if(scrollService != null){
+            scrollService.IsMenuType  = val;
+        }
+        //Localstorage
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexmenuStyles", val);
+        await JSRuntime.InvokeAsync<string>("interop.removeLocalStorageItem", "ynexverticalstyles");
+        await stateService.menuStylesFn(val);
+        StateHasChanged(); // Force re-render
+    }
+    private async void pageStyleFn(string val)
+    {
+        //Localstorage
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexpageStyle", val);
+        await stateService.pageStyleFn(val);
+        StateHasChanged(); // Force re-render
+    }
+    private async void widthStylessFn(string val)
+    {
+        //Localstorage
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexwidthStyles", val);
+        await stateService.widthStylessFn(val);
+        StateHasChanged(); // Force re-render
+    }
+    private async void menuPositionFn(string val)
+    {
+        //Localstorage
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexmenuposition", val);
+        await stateService.menuPositionFn(val);
+        StateHasChanged(); // Force re-render
+    }
+    private async void headerPositionFn(string val)
+    {
+        //Localstorage
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexheaderposition", val);
+        await stateService.headerPositionFn(val);
+        StateHasChanged(); // Force re-render
+    }
+    private async void menuColorFn(string val)
+    {
+        //Localstorage
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexMenu", val);
+        await stateService.menuColorFn(val);
+        StateHasChanged(); // Force re-render
+    }
+    private async void headerColorFn(string val)
+    {
+        //Localstorage
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexHeader", val);
+        await stateService.headerColorFn(val);
+        StateHasChanged(); // Force re-render
+    }
+    private async void themePrimaryFn(string val)
+    {
+        //Localstorage
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexprimaryRGB", val);
+        await stateService.themePrimaryFn(val);
+        StateHasChanged(); // Force re-render
+    }
+    private async void themeBackgroundFn(string val, string val2)
+    {
+        //Localstorage
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexbgColor", val);
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexbgColor1", val2);
+        await stateService.themeBackgroundFn(val, val2,true);
+        StateHasChanged(); // Force re-render
+    }
+    private async void backgroundImageFn(string val)
+    {
+        //Localstorage
+        await JSRuntime.InvokeAsync<string>("interop.setLocalStorageItem", "ynexbgimg", val);
+        await stateService.backgroundImageFn(val);
+        StateHasChanged(); // Force re-render
+    }
+    private async void reset(){
+        await stateService.reset();
+        StateHasChanged(); // Force re-render
+    }
+
+    protected override void OnInitialized()
+    {
+        StateHasChanged(); // Force re-render
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        stateService.OnStateChanged += RefreshState;
+        await base.OnInitializedAsync();
+    }
+
+
+    private async void RefreshState()
+    {
+        // Trigger a re-render when the state changes
+        await InvokeAsync(StateHasChanged);
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("window.interop.initializeTooltips");
+        }
+    }
+}

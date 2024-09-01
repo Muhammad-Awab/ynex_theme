@@ -1,0 +1,471 @@
+@page "/apex-scatter-charts"
+@using ApexCharts
+@using System.Collections.Generic
+@inject IJSRuntime JSRuntime
+
+    <div class="container-fluid">
+
+        <!-- Page Header -->
+        <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+            <h1 class="page-title fw-semibold fs-18 mb-0">Apex Scatter Charts</h1>
+            <div class="ms-md-1 ms-0">
+                <nav>
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Apex Charts</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Apex Scatter Charts</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- Page Header Close -->
+
+        <!-- Start::row-1 -->
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">Basic Scatter Chart</div>
+                    </div>
+                    <div class="card-body">
+                        <ApexChart TItem="Scatterbasicchart" Options="Scatterbasicoptions" Height="320">
+                            <ApexPointSeries TItem="Scatterbasicchart"
+                                            Items="Scatterbasiccharts"
+                                            Name="SAMPLE A"
+                                            SeriesType="SeriesType.Scatter"
+                                            XValue="@(e => e.SAMPLEDATA)"
+                                            YValue="@(e => e.SAMPLEA)" />
+
+                            <ApexPointSeries TItem="Scatterbasicchart"
+                                            Items="Scatterbasiccharts"
+                                            SeriesType="SeriesType.Scatter"
+                                            Name="SAMPLE B"
+                                            XValue="@(e => e.SAMPLEDATA)"
+                                            YValue="@(e => e.SAMPLEB)" />
+
+                            <ApexPointSeries TItem="Scatterbasicchart"
+                                            Items="Scatterbasiccharts"
+                                            SeriesType="SeriesType.Scatter"
+                                            Name="SAMPLE C"
+                                            XValue="@(e => e.SAMPLEDATA)"
+                                            YValue="@(e => e.SAMPLEC)" />
+                        </ApexChart>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">Datetime Scatter Chart</div>
+                    </div>
+                    <div class="card-body">
+                        <ApexChart TItem="TimeSeries" XAxisType="XAxisType.Datetime" Options="ScatterDatetimeoptions" Height="320">
+                            <ApexPointSeries TItem="TimeSeries"
+                                            Items="generator.TimeSeries"
+                                            Name="TEAM 1"
+                                            SeriesType="SeriesType.Scatter"
+                                            XValue="@(e => e.Date)" YValue="@(e => e.Value)" />
+
+                            <ApexPointSeries TItem="TimeSeries"
+                                            Items="generator.TimeSeries"
+                                            SeriesType="SeriesType.Scatter"
+                                            Name="TEAM 2"
+                                            XValue="@(e => e.Date)" YValue="@(e => e.Value2)" />
+
+                            <ApexPointSeries TItem="TimeSeries"
+                                            Items="generator.TimeSeries"
+                                            SeriesType="SeriesType.Scatter"
+                                            Name="TEAM 3"
+                                            XValue="@(e => e.Date)" YValue="@(e => e.Value3)" />
+
+                            <ApexPointSeries TItem="TimeSeries"
+                                            Items="generator.TimeSeries"
+                                            SeriesType="SeriesType.Scatter"
+                                            Name="TEAM 4"
+                                            XValue="@(e => e.Date)" YValue="@(e => e.Value4)" />
+
+                            <ApexPointSeries TItem="TimeSeries"
+                                            Items="generator.TimeSeries"
+                                            SeriesType="SeriesType.Scatter"
+                                            Name="TEAM 5"
+                                            XValue="@(e => e.Date)" YValue="@(e => e.Value5)" />
+                        </ApexChart>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">Image Fill Scatter Chart</div>
+                    </div>
+                    <div class="card-body">
+                        <ApexChart TItem="ScatterImagechart" Options="ScatterImageoptions" Height="320">
+                            <ApexPointSeries TItem="ScatterImagechart"
+                                            Items="ScatterImagecharts"
+                                            Name="Messenger"
+                                            SeriesType="SeriesType.Scatter"
+                                            XValue="@(e => e.SocailData)"
+                                            YValue="@(e => e.Messenger)" />
+
+                            <ApexPointSeries TItem="ScatterImagechart"
+                                            Items="ScatterImagecharts"
+                                            SeriesType="SeriesType.Scatter"
+                                            Name="Instagram"
+                                            XValue="@(e => e.SocailData)"
+                                            YValue="@(e => e.Instagram)" />
+                        </ApexChart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End::row-1 -->
+
+    </div>
+
+
+@code {
+
+    //  Scatter Basic Chart Start //
+    private List<Scatterbasicchart> Scatterbasiccharts { get; set; } = ScatterbasicchartData.GetScatterbasiccharts();
+    private ApexChartOptions<Scatterbasicchart> Scatterbasicoptions = new();
+    public static class ScatterbasicchartData
+    {
+        public static List<Scatterbasicchart> GetScatterbasiccharts()
+        {
+            return new List<Scatterbasicchart>
+            {
+                new Scatterbasicchart { SAMPLEDATA = 16.4M, SAMPLEA =  5.4M},
+                new Scatterbasicchart { SAMPLEDATA = 21.7M, SAMPLEA =  2.0M},
+                new Scatterbasicchart { SAMPLEDATA = 25.4M, SAMPLEA =  3.0M},
+                new Scatterbasicchart { SAMPLEDATA = 19.0M, SAMPLEA =  2.0M},
+                new Scatterbasicchart { SAMPLEDATA = 10.9M, SAMPLEA =  1.0M},
+                new Scatterbasicchart { SAMPLEDATA = 13.6M, SAMPLEA =  3.2M},
+                new Scatterbasicchart { SAMPLEDATA = 10.9M, SAMPLEA =  7.4M},
+                new Scatterbasicchart { SAMPLEDATA = 10.9M, SAMPLEA =  0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 10.9M, SAMPLEA =  8.2M},
+                new Scatterbasicchart { SAMPLEDATA = 16.4M, SAMPLEA =  0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 16.4M, SAMPLEA =  1.8M},
+                new Scatterbasicchart { SAMPLEDATA = 13.6M, SAMPLEA =  0.3M},
+                new Scatterbasicchart { SAMPLEDATA = 13.6M, SAMPLEA =  0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 29.9M, SAMPLEA =  0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 27.1M, SAMPLEA =  2.3M},
+                new Scatterbasicchart { SAMPLEDATA = 16.4M, SAMPLEA =  0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 13.6M, SAMPLEA =  3.7M},
+                new Scatterbasicchart { SAMPLEDATA = 10.9M, SAMPLEA =  5.2M},
+                new Scatterbasicchart { SAMPLEDATA = 16.4M, SAMPLEA =  6.5M},
+                new Scatterbasicchart { SAMPLEDATA = 10.9M, SAMPLEA =  0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 24.5M, SAMPLEA =  7.1M},
+                new Scatterbasicchart { SAMPLEDATA = 10.9M, SAMPLEA =  0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 8.1M, SAMPLEA =  4.7M},
+                new Scatterbasicchart { SAMPLEDATA = 19.0M, SAMPLEA =  0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 21.7M, SAMPLEA =  1.8M},
+                new Scatterbasicchart { SAMPLEDATA = 27.1M, SAMPLEA =  0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 24.5M, SAMPLEA =  0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 27.1M, SAMPLEA =  0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 29.9M, SAMPLEA =  1.5M},
+                new Scatterbasicchart { SAMPLEDATA = 27.1M, SAMPLEA =  0.8M},
+                new Scatterbasicchart { SAMPLEDATA = 22.1M, SAMPLEA =  2.0M},         
+                new Scatterbasicchart { SAMPLEDATA = 36.4M, SAMPLEB =  13.4M},
+                new Scatterbasicchart { SAMPLEDATA = 1.7M, SAMPLEB =  11.0M},
+                new Scatterbasicchart { SAMPLEDATA = 5.4M, SAMPLEB =  8.0M},
+                new Scatterbasicchart { SAMPLEDATA = 9.0M, SAMPLEB =  17.0M},
+                new Scatterbasicchart { SAMPLEDATA = 1.9M, SAMPLEB =  4.0M},
+                new Scatterbasicchart { SAMPLEDATA = 3.6M, SAMPLEB =  12.2M},
+                new Scatterbasicchart { SAMPLEDATA = 1.9M, SAMPLEB =  14.4M},
+                new Scatterbasicchart { SAMPLEDATA = 1.9M, SAMPLEB =  9.0M},
+                new Scatterbasicchart { SAMPLEDATA = 1.9M, SAMPLEB =  13.2M},
+                new Scatterbasicchart { SAMPLEDATA = 1.4M, SAMPLEB =  7.0M},
+                new Scatterbasicchart { SAMPLEDATA = 6.4M, SAMPLEB =  8.8M},
+                new Scatterbasicchart { SAMPLEDATA = 3.6M, SAMPLEB =  4.3M},
+                new Scatterbasicchart { SAMPLEDATA = 1.6M, SAMPLEB =  10.0M},
+                new Scatterbasicchart { SAMPLEDATA = 9.9M, SAMPLEB =  2.0M},
+                new Scatterbasicchart { SAMPLEDATA = 7.1M, SAMPLEB =  15.0M},
+                new Scatterbasicchart { SAMPLEDATA = 1.4M, SAMPLEB =  0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 3.6M, SAMPLEB =  13.7M},
+                new Scatterbasicchart { SAMPLEDATA = 1.9M, SAMPLEB =  15.2M},
+                new Scatterbasicchart { SAMPLEDATA = 6.4M, SAMPLEB =  16.5M},
+                new Scatterbasicchart { SAMPLEDATA = 0.9M, SAMPLEB =  10.0M},
+                new Scatterbasicchart { SAMPLEDATA = 4.5M, SAMPLEB =  17.1M},
+                new Scatterbasicchart { SAMPLEDATA = 10.9M, SAMPLEB =  10.0M},
+                new Scatterbasicchart { SAMPLEDATA = 0.1M, SAMPLEB =  14.7M},
+                new Scatterbasicchart { SAMPLEDATA = 9.0M, SAMPLEB =  10.0M},
+                new Scatterbasicchart { SAMPLEDATA = 12.7M, SAMPLEB =  11.8M},
+                new Scatterbasicchart { SAMPLEDATA = 2.1M, SAMPLEB =  10.0M},
+                new Scatterbasicchart { SAMPLEDATA = 2.5M, SAMPLEB =  10.0M},
+                new Scatterbasicchart { SAMPLEDATA = 27.1M, SAMPLEB =  10.0M},
+                new Scatterbasicchart { SAMPLEDATA = 2.9M, SAMPLEB =  11.5M},
+                new Scatterbasicchart { SAMPLEDATA = 7.1M, SAMPLEB =  10.8M},
+                new Scatterbasicchart { SAMPLEDATA = 2.1M, SAMPLEB =  12.0M},
+                new Scatterbasicchart { SAMPLEDATA = 21.7M, SAMPLEC = 3.0M},
+                new Scatterbasicchart { SAMPLEDATA = 23.6M, SAMPLEC = 3.5M},
+                new Scatterbasicchart { SAMPLEDATA = 24.6M, SAMPLEC = 3.0M},
+                new Scatterbasicchart { SAMPLEDATA = 29.9M, SAMPLEC = 3.0M},
+                new Scatterbasicchart { SAMPLEDATA = 21.7M, SAMPLEC = 20.0M},
+                new Scatterbasicchart { SAMPLEDATA = 23.0M, SAMPLEC = 2.0M},
+                new Scatterbasicchart { SAMPLEDATA = 10.9M, SAMPLEC = 3.0M},
+                new Scatterbasicchart { SAMPLEDATA = 28.0M, SAMPLEC = 4.0M},
+                new Scatterbasicchart { SAMPLEDATA = 27.1M, SAMPLEC = 0.3M},
+                new Scatterbasicchart { SAMPLEDATA = 16.4M, SAMPLEC = 4.0M},
+                new Scatterbasicchart { SAMPLEDATA = 13.6M, SAMPLEC = 0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 19.0M, SAMPLEC = 5.0M},
+                new Scatterbasicchart { SAMPLEDATA = 22.4M, SAMPLEC = 3.0M},
+                new Scatterbasicchart { SAMPLEDATA = 24.5M, SAMPLEC = 3.0M},
+                new Scatterbasicchart { SAMPLEDATA = 32.6M, SAMPLEC = 3.0M},
+                new Scatterbasicchart { SAMPLEDATA = 27.1M, SAMPLEC = 4.0M},
+                new Scatterbasicchart { SAMPLEDATA = 29.6M, SAMPLEC = 6.0M},
+                new Scatterbasicchart { SAMPLEDATA = 31.6M, SAMPLEC = 8.0M},
+                new Scatterbasicchart { SAMPLEDATA = 21.6M, SAMPLEC = 5.0M},
+                new Scatterbasicchart { SAMPLEDATA = 20.9M, SAMPLEC = 4.0M},
+                new Scatterbasicchart { SAMPLEDATA = 22.4M, SAMPLEC = 0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 32.6M, SAMPLEC = 10.3M},
+                new Scatterbasicchart { SAMPLEDATA = 29.7M, SAMPLEC = 20.8M},
+                new Scatterbasicchart { SAMPLEDATA = 24.5M, SAMPLEC = 0.8M},
+                new Scatterbasicchart { SAMPLEDATA = 21.4M, SAMPLEC = 0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 21.7M, SAMPLEC = 6.9M},
+                new Scatterbasicchart { SAMPLEDATA = 28.6M, SAMPLEC = 7.7M},
+                new Scatterbasicchart { SAMPLEDATA = 15.4M, SAMPLEC = 0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 18.1M, SAMPLEC = 0.0M},
+                new Scatterbasicchart { SAMPLEDATA = 33.4M, SAMPLEC = 0.0M},
+            };
+        }
+    }
+    public class Scatterbasicchart
+    {
+        public decimal SAMPLEDATA { get; set; }
+        public decimal SAMPLEA { get; set; }
+        public decimal SAMPLEB { get; set; }
+        public decimal SAMPLEC { get; set; }
+    }
+    //  Scatter Basic Chart End //
+
+    // Scatter Datetime Chart Start //
+    public class TimeSeriesGenerator
+    {
+        public List<TimeSeries> TimeSeries { get; set; } = new();
+        public long Range { get; private set; }
+        public TimeSeriesGenerator(int points)
+        {
+            SetRange(points);
+            var date = DateTimeOffset.Now.AddDays(-100);
+            for (int i = 0; i < points; i++)
+            {
+                TimeSeries.Add(GenerateNewPoint(date));
+                date = date.AddDays(1);
+            }
+        }
+        private void SetRange(int points)
+        {
+            Range = DateTimeOffset.Now.ToUnixTimeMilliseconds() - DateTimeOffset.Now.AddDays(-points).ToUnixTimeMilliseconds();
+        }
+        public TimeSeries GenerateNewPoint(DateTimeOffset newDate)
+        {
+            var rnd = new Random();
+            var value = rnd.Next(100, 300);
+            var value2 = rnd.Next(100, 300);
+            var value3 = rnd.Next(100, 300);
+            var value4 = rnd.Next(100, 300);
+            var value5 = rnd.Next(100, 300);
+            return new TimeSeries { Date = newDate,Value = rnd.Next(100, 200),Value2 = rnd.Next(100, 200),Value3 = rnd.Next(100, 200),Value4 = rnd.Next(100, 200),Value5 = rnd.Next(100, 200)};
+        }
+    }
+    public class TimeSeries
+    {
+        public long DateMilliseconds => Date.ToUnixTimeMilliseconds();
+        public DateTimeOffset Date { get; set; }
+        public decimal Value { get; set; }
+        public decimal Value2 { get; set; }
+        public int Value3 { get; set; }
+        public int Value4 { get; set; }
+        public int Value5 { get; set; }
+    }
+    private ApexChartOptions<TimeSeries>? ScatterDatetimeoptions;
+    private TimeSeriesGenerator generator = new TimeSeriesGenerator(20);
+
+    //  Scatter Datetime Chart End //
+
+    //  Scatter Image Chart Start //
+    private List<ScatterImagechart> ScatterImagecharts { get; set; } = ScatterImagechartData.GetScatterImagecharts();
+    private ApexChartOptions<ScatterImagechart> ScatterImageoptions = new();
+    public static class ScatterImagechartData
+    {
+        public static List<ScatterImagechart> GetScatterImagecharts()
+        {
+            return new List<ScatterImagechart>
+            {
+                new ScatterImagechart { SocailData = 16.4M, Messenger = 5.4M},
+                new ScatterImagechart { SocailData = 21.7M, Messenger = 4M},
+                new ScatterImagechart { SocailData = 25.4M, Messenger = 3M},
+                new ScatterImagechart { SocailData = 19M, Messenger = 2M},
+                new ScatterImagechart { SocailData = 10.9M, Messenger = 1M},
+                new ScatterImagechart { SocailData = 13.6M, Messenger = 3.2M},
+                new ScatterImagechart { SocailData = 10.9M, Messenger = 7M},
+                new ScatterImagechart { SocailData = 10.9M, Messenger = 8.2M},
+                new ScatterImagechart { SocailData = 16.4M, Messenger = 4M},
+                new ScatterImagechart { SocailData = 13.6M, Messenger = 4.3M},
+                new ScatterImagechart { SocailData = 13.6M, Messenger = 12M},
+                new ScatterImagechart { SocailData = 29.9M, Messenger = 3M},
+                new ScatterImagechart { SocailData = 10.9M, Messenger = 5.2M},
+                new ScatterImagechart { SocailData = 16.4M, Messenger = 6.5M},
+                new ScatterImagechart { SocailData = 10.9M, Messenger = 8M},
+                new ScatterImagechart { SocailData = 24.5M, Messenger = 7.1M},
+                new ScatterImagechart { SocailData = 10.9M, Messenger = 7M},
+                new ScatterImagechart { SocailData = 8.1M, Messenger = 4.7M},
+                new ScatterImagechart { SocailData = 19M, Messenger = 10M},
+                new ScatterImagechart { SocailData = 27.1M, Messenger = 10M},
+                new ScatterImagechart { SocailData = 24.5M, Messenger = 8M},
+                new ScatterImagechart { SocailData = 27.1M, Messenger = 3M},
+                new ScatterImagechart { SocailData = 29.9M, Messenger = 11.5M},
+                new ScatterImagechart { SocailData = 27.1M, Messenger = 0.8M},
+                new ScatterImagechart { SocailData = 22.1M, Messenger = 2M},
+                new ScatterImagechart { SocailData = 6.4M, Instagram = 5.4M},
+                new ScatterImagechart { SocailData = 11.7M, Instagram = 4M},
+                new ScatterImagechart { SocailData = 15.4M, Instagram = 3M},
+                new ScatterImagechart { SocailData = 9M, Instagram = 2M},
+                new ScatterImagechart { SocailData = 10.9M, Instagram = 11M},
+                new ScatterImagechart { SocailData = 20.9M, Instagram = 7M},
+                new ScatterImagechart { SocailData = 12.9M, Instagram = 8.2M},
+                new ScatterImagechart { SocailData = 6.4M, Instagram = 14M},
+                new ScatterImagechart { SocailData = 11.6M, Instagram = 12M},
+            };
+        }
+    }
+    public class ScatterImagechart
+    {
+        public decimal SocailData { get; set; }
+        public decimal Messenger { get; set; }
+        public decimal Instagram { get; set; }
+    }
+    //  Scatter Image Chart End //
+
+    protected override void OnInitialized() {
+
+        Scatterbasicoptions = new ApexChartOptions<Scatterbasicchart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = true, Zoomin = true, Zoomout = true,Pan = true, Reset = true,  Download = true},
+                }, 
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            Colors = new Color(new List<string> { "var(--primary-color)", "#23b7e5", "#f5b849" }),
+            Xaxis =  new XAxis {  
+                TickAmount = 10,
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Formatter = @"function (val) {
+                        return parseFloat(val).toFixed(1)
+                    }",
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                },
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    }, 
+                    Min = 0,
+                    Max = 21,
+                    StepSize = 3,
+                }
+            },
+        };
+        
+        ScatterDatetimeoptions = new ApexChartOptions<TimeSeries> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = true, Zoomin = true, Zoomout = true,Pan = true, Reset = true,  Download = true},
+                }, 
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            Colors = new Color(new List<string> { "var(--primary-color)", "#23b7e5", "#f5b849","#e6533c", "#49b6f5" }),
+            Yaxis = new List<YAxis>() {
+                new YAxis
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    }, 
+                }
+            },
+        };
+
+        ScatterImageoptions = new ApexChartOptions<ScatterImagechart> {
+            Chart = new () {
+                Toolbar = new ApexCharts.Toolbar {
+                    Tools = new Tools { Zoom = true, Zoomin = true, Zoomout = true,Pan = true, Reset = true,  Download = true},
+                }, 
+            },
+            Grid = new Grid {
+                BorderColor = "#f2f5f7",
+            },
+            
+            Fill = new Fill {
+                Type = new List<FillType> { FillType.Image},
+                Opacity = 1,
+                Image = new ApexCharts.FillImage {
+                    Src= ["../assets/images/faces/10.jpg","../assets/images/faces/2.jpg"],
+                    Height = 40,
+                    Width = 40,
+                }
+            },
+            Colors = new Color(new List<string> { "var(--primary-color)", "#23b7e5", "#f5b849" }),
+            Markers = new Markers { Size = 20 },
+            Xaxis =  new XAxis {  
+                TickAmount = 10,
+                Min = 0,
+                Max = 40,
+                Labels = new XAxisLabels {
+                    Show = true,
+                    Formatter = @"function (val) {
+                        return parseFloat(val).toFixed(1)
+                    }",
+                    Style = new() {
+                        Colors = "#8c9097",
+                        FontSize = "11px",
+                        FontWeight = 600,
+                        CssClass = "apexcharts-xaxis-label",
+                    },
+                },
+            },
+            Yaxis = new List<YAxis>() {
+                new YAxis
+                {
+                    TickAmount = 7,
+                    Labels = new YAxisLabels
+                    {
+                        Show = true,
+                        Style = new() {
+                            Colors = "#8c9097",
+                            FontSize = "11px",
+                            FontWeight = 600,
+                            CssClass = "apexcharts-yaxis-label",
+                        },
+                    }, 
+                }
+            },
+        };
+
+
+    }
+}

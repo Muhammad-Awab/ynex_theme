@@ -1,0 +1,597 @@
+@page "/slickcarousel"
+<link href="_content/WMBlazorSlickCarousel/WMBlazorSlickCarousel.bundle.scp.css" rel="stylesheet">
+
+<div class="container-fluid">
+
+    <!-- Page Header -->
+    <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+        <h1 class="page-title fw-semibold fs-18 mb-0">Blazor Slick Carousel</h1>
+        <div class="ms-md-1 ms-0">
+            <nav>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Advanced Ui</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Blazor Slick Carousel</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header Close -->
+
+    <!-- Start::row-1 -->
+    <div class="row">
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Basic Blazor Slick Carousel
+                    </div>
+                </div>
+                <div class="card-body">
+                    <BlazorSlickCarousel Configurations="BasicConfigurations">
+                        <BlazorSlickCarouselContent>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-27.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-26.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-25.jpg" alt=""></div>
+                        </BlazorSlickCarouselContent>
+                    </BlazorSlickCarousel>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Blazor Slick Carousel With Navigation
+                    </div>
+                </div>
+                <div class="card-body">
+                    <BlazorSlickCarousel Configurations="NavigationConfigurations">
+                        <BlazorSlickCarouselContent>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-29.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-28.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-30.jpg" alt=""></div>
+                        </BlazorSlickCarouselContent>
+                    </BlazorSlickCarousel>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Blazor Slick Carousel with Pagination
+                    </div>
+                </div>
+                <div class="card-body">
+                    <BlazorSlickCarousel Configurations="PaginationConfigurations">
+                        <BlazorSlickCarouselContent>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-32.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-31.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-33.jpg" alt=""></div>
+                        </BlazorSlickCarouselContent>
+                    </BlazorSlickCarousel>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Dynamic Pagination
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <BlazorSlickCarousel Configurations="DynamicPaginationConfigurations">
+                        <BlazorSlickCarouselContent>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-21.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-17.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-16.jpg" alt=""></div>
+                        </BlazorSlickCarouselContent>
+                    </BlazorSlickCarousel>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Blazor Slick Carousel With Pause On Focus
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <BlazorSlickCarousel Configurations="ProgressConfigurations">
+                        <BlazorSlickCarouselContent>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-12.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-8.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-5.jpg" alt=""></div>
+                        </BlazorSlickCarouselContent>
+                    </BlazorSlickCarousel>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Pagination Fraction
+                    </div>
+                </div>
+                <div class="card-body">
+                    <BlazorSlickCarousel Configurations="PaginationFractionConfigurations">
+                        <BlazorSlickCarouselContent>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-16.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-30.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-31.jpg" alt=""></div>
+                        </BlazorSlickCarouselContent>
+                    </BlazorSlickCarousel>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Custom Paginatioin
+                    </div>
+                </div>
+                <div class="card-body">
+                    <BlazorSlickCarousel Configurations="CustomPaginationConfigurations">
+                        <BlazorSlickCarouselContent>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-25.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-5.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-33.jpg" alt=""></div>
+                        </BlazorSlickCarouselContent>
+                    </BlazorSlickCarousel>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Lazy Load Blazor Slick Carousel
+                    </div>
+                </div>
+                <div class="card-body">
+                    <BlazorSlickCarousel Configurations="LazyLoadConfigurations">
+                        <BlazorSlickCarouselContent>
+                            <div class="Carousel-slide"><img data-lazy="../assets/images/media/media-30.jpg" alt="">
+                            </div>
+                            <div class="Carousel-slide"><img data-lazy="../assets/images/media/media-28.jpg" alt="">
+                            </div>
+                            <div class="Carousel-slide"><img data-lazy="../assets/images/media/media-29.jpg" alt="">
+                            </div>
+                        </BlazorSlickCarouselContent>
+                    </BlazorSlickCarousel>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Vertical Blazor Slick Carousel
+                    </div>
+                </div>
+                <div class="card-body">
+                    <BlazorSlickCarousel Configurations="VerticalConfigurations">
+                        <BlazorSlickCarouselContent>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-8.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-32.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-17.jpg" alt=""></div>
+                        </BlazorSlickCarouselContent>
+                    </BlazorSlickCarousel>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Keyboard Control
+                    </div>
+                </div>
+                <div class="card-body">
+                    <BlazorSlickCarousel Configurations="KeyboardConfigurations">
+                        <BlazorSlickCarouselContent>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-31.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-12.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-8.jpg" alt=""></div>
+                        </BlazorSlickCarouselContent>
+                    </BlazorSlickCarousel>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Effect Fade
+                    </div>
+                </div>
+                <div class="card-body">
+                    <BlazorSlickCarousel Configurations="FadeEffectConfigurations">
+                        <BlazorSlickCarouselContent>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-28.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-30.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-32.jpg" alt=""></div>
+                        </BlazorSlickCarouselContent>
+                    </BlazorSlickCarousel>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Linear Ease Blazor Slick Carousel
+                    </div>
+                </div>
+                <div class="card-body">
+                    <BlazorSlickCarousel Configurations="LinearConfigurations">
+                        <BlazorSlickCarouselContent>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-27.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-26.jpg" alt=""></div>
+                            <div class="Carousel-slide"><img src="../assets/images/media/media-25.jpg" alt=""></div>
+                        </BlazorSlickCarouselContent>
+                    </BlazorSlickCarousel>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End::row-1 -->
+
+    <!-- Start:: row-2 -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Responsive Blazor Slick Carousel
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="callback-carousel">
+                        <BlazorSlickCarousel Configurations="ResponsiveConfigurations">
+                            <BlazorSlickCarouselContent>
+                                <div class="Carousel-slide"><img src="../assets/images/media/media-40.jpg" alt=""></div>
+                                <div class="Carousel-slide"><img src="../assets/images/media/media-41.jpg" alt=""></div>
+                                <div class="Carousel-slide"><img src="../assets/images/media/media-42.jpg" alt=""></div>
+                                <div class="Carousel-slide"><img src="../assets/images/media/media-43.jpg" alt=""></div>
+                                <div class="Carousel-slide"><img src="../assets/images/media/media-44.jpg" alt=""></div>
+                                <div class="Carousel-slide"><img src="../assets/images/media/media-59.jpg" alt=""></div>
+                                <div class="Carousel-slide"><img src="../assets/images/media/media-46.jpg" alt=""></div>
+                                <div class="Carousel-slide"><img src="../assets/images/media/media-61.jpg" alt=""></div>
+                            </BlazorSlickCarouselContent>
+                        </BlazorSlickCarousel>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End:: row-2 -->
+
+    <!-- Start:: row-3 -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        Call Back Blazor Slick Carousel
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="callback-carousel">
+                    <BlazorSlickCarousel   @ref="theCarousel" Configurations="CallBackConfigurations" ContainerCustomClass="CallBack-container">
+                        <BlazorSlickCarouselContent>
+                            <div class="Carousel-slide"><img class="w-100" data-lazy="../assets/images/media/media-40.jpg" alt="">
+                            </div>
+                            <div class="Carousel-slide"><img class="w-100" data-lazy="../assets/images/media/media-41.jpg" alt="">
+                            </div>
+                            <div class="Carousel-slide"><img class="w-100" data-lazy="../assets/images/media/media-42.jpg" alt="">
+                            </div>
+                            <div class="Carousel-slide"><img class="w-100" data-lazy="../assets/images/media/media-43.jpg" alt="">
+                            </div>
+                            <div class="Carousel-slide"><img class="w-100" data-lazy="../assets/images/media/media-44.jpg" alt="">
+                            </div>
+                            <div class="Carousel-slide"><img class="w-100" data-lazy="../assets/images/media/media-59.jpg" alt="">
+                            </div>
+                            <div class="Carousel-slide"><img class="w-100" data-lazy="../assets/images/media/media-46.jpg" alt="">
+                            </div>
+                            <div class="Carousel-slide"><img class="w-100" data-lazy="../assets/images/media/media-61.jpg" alt="">
+                            </div>
+                        </BlazorSlickCarouselContent>
+                    </BlazorSlickCarousel>
+                    <div class="d-lg-flex gap-2 justify-content-center">
+                        <button class="btn btn-primary m-1 btn-sm" @onclick="@(e => ShowCurrentSlideIndex())">Log the
+                            Current Slide</button>
+                        <button class="btn btn-primary m-1 btn-sm" @onclick="@(e => GoTo(2))">Go To 3</button>
+                        <button class="btn btn-primary m-1 btn-sm" @onclick="@(e => Next())">Next Slide</button>
+                        <button class="btn btn-primary m-1 btn-sm" @onclick="@(e => Prev())">Prev Slide</button>
+                        <button class="btn btn-primary m-1 btn-sm" @onclick="@(e => Add())">Add New Item</button>
+                        <button class="btn btn-primary m-1 btn-sm" @onclick="@(e => Remove(1, false))">Remove</button>
+                        <button class="btn btn-primary m-1 btn-sm" @onclick="@(e => Destroy())">Destroy</button>
+                        <button class="btn btn-primary m-1 btn-sm" @onclick="@(e => Constroy())">Constroy</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End:: row-3 -->
+
+</div>
+
+@code {
+    public WMBSCInitialSettings? BasicConfigurations;
+    public WMBSCInitialSettings? NavigationConfigurations;
+    public WMBSCInitialSettings? PaginationConfigurations;
+    public WMBSCInitialSettings? DynamicPaginationConfigurations;
+    public WMBSCInitialSettings? ProgressConfigurations;
+    public WMBSCInitialSettings? PaginationFractionConfigurations;
+    public WMBSCInitialSettings? CustomPaginationConfigurations;
+    public WMBSCInitialSettings? LazyLoadConfigurations;
+    public WMBSCInitialSettings? VerticalConfigurations;
+    public WMBSCInitialSettings? KeyboardConfigurations;
+    public WMBSCInitialSettings? FadeEffectConfigurations;
+    public WMBSCInitialSettings? LinearConfigurations;
+    public WMBSCInitialSettings? ResponsiveConfigurations;
+    public BlazorSlickCarousel? theCarousel;
+    public WMBSCInitialSettings? CallBackConfigurations;
+    protected override void OnInitialized()
+    {
+        BasicConfigurations = new WMBSCInitialSettings
+            {
+                arrows = false,
+                dots = false,
+                slidesToShow = 1,
+                slidesToScroll = 1,
+                infinite = true,
+                autoplay = true,
+                autoplaySpeed = 1500,
+            };
+
+        NavigationConfigurations = new WMBSCInitialSettings
+            {
+                arrows = true,
+                dots = false,
+                slidesToShow = 1,
+                slidesToScroll = 1,
+                infinite = true,
+                autoplay = true,
+                autoplaySpeed = 1500,
+                prevArrow = "<button type='button' class='slick-prev'></button>",
+                nextArrow = "<button type='button' class='slick-next'></button>",
+            };
+
+        PaginationConfigurations = new WMBSCInitialSettings
+            {
+                arrows = false,
+                dots = true,
+                slidesToShow = 1,
+                slidesToScroll = 1,
+                infinite = true,
+                autoplay = true,
+                autoplaySpeed = 1500,
+            };
+
+        DynamicPaginationConfigurations = new WMBSCInitialSettings
+            {
+                arrows = false,
+                dots = true,
+                slidesToShow = 1,
+                slidesToScroll = 1,
+                infinite = true,
+                autoplay = true,
+                dotsClass = "slick-dots Dynamic-slick-dots",
+                autoplaySpeed = 1500,
+            };
+
+        ProgressConfigurations = new WMBSCInitialSettings
+            {
+                arrows = false,
+                dots = false,
+                slidesToShow = 1,
+                slidesToScroll = 1,
+                infinite = true,
+                autoplay = true,
+                autoplaySpeed = 1500,
+                pauseOnFocus = true,
+            };
+
+        PaginationFractionConfigurations = new WMBSCInitialSettings
+            {
+                arrows = true,
+                dots = true,
+                slidesToShow = 1,
+                slidesToScroll = 1,
+                infinite = true,
+                autoplay = true,
+                dotsClass = "slick-dots Fraction-slick-dots",
+                autoplaySpeed = 1500,
+                variableWidth = true,
+            };
+
+        CustomPaginationConfigurations = new WMBSCInitialSettings
+            {
+                arrows = false,
+                dots = true,
+                slidesToShow = 1,
+                slidesToScroll = 1,
+                infinite = true,
+                autoplay = true,
+                dotsClass = "slick-dots Custom-slick-dots",
+                autoplaySpeed = 1500,
+            };
+
+        LazyLoadConfigurations = new WMBSCInitialSettings
+            {
+                arrows = false,
+                dots = false,
+                slidesToShow = 1,
+                slidesToScroll = 1,
+                infinite = true,
+                autoplay = true,
+                autoplaySpeed = 1500,
+                lazyLoad = "ondemand"
+            };
+
+        VerticalConfigurations = new WMBSCInitialSettings
+            {
+                vertical = true,
+                verticalSwiping = true,
+                arrows = false,
+                dots = true,
+                slidesToShow = 1,
+                slidesToScroll = 1,
+                infinite = true,
+                autoplay = true,
+                autoplaySpeed = 1500,
+                dotsClass = "slick-dots Vertical-slick-dots",
+            };
+
+        KeyboardConfigurations = new WMBSCInitialSettings
+            {
+                arrows = true,
+                dots = true,
+                slidesToShow = 1,
+                slidesToScroll = 1,
+                infinite = true,
+                autoplay = true,
+                autoplaySpeed = 1500,
+            };
+
+        FadeEffectConfigurations = new WMBSCInitialSettings
+            {
+                arrows = false,
+                dots = true,
+                slidesToShow = 1,
+                slidesToScroll = 1,
+                infinite = true,
+                autoplay = true,
+                autoplaySpeed = 1500,
+                fade = true,
+            };
+
+        LinearConfigurations = new WMBSCInitialSettings
+            {
+                arrows = false,
+                dots = false,
+                slidesToShow = 1,
+                slidesToScroll = 1,
+                infinite = true,
+                autoplay = true,
+                autoplaySpeed = 1500,
+                cssEase = "ease",
+                easing = "linear",
+            };
+
+        // to <= 800px screen
+        WMBSCSettings breakpoint800Settings = new WMBSCSettings
+            {
+                slidesToShow = 2,
+                arrows = true,
+            };
+        WMBSCResponsiveSettings breakpoint800Responsive = new WMBSCResponsiveSettings
+            {
+                breakpoint = 800,
+                settings = breakpoint800Settings
+            };
+        // to <= 400px screen
+        WMBSCSettings breakpoint400Settings = new WMBSCSettings
+            {
+                slidesToShow = 1,
+                arrows = true
+            };
+        WMBSCResponsiveSettings breakpoint400Responsive = new WMBSCResponsiveSettings
+            {
+                breakpoint = 400,
+                settings = breakpoint400Settings
+            };
+        // add responsivity
+        List<WMBSCResponsiveSettings> responsiveSettingsList = new List<WMBSCResponsiveSettings>();
+        responsiveSettingsList.Add(breakpoint800Responsive);
+        responsiveSettingsList.Add(breakpoint400Responsive);
+        ResponsiveConfigurations = new WMBSCInitialSettings
+            {
+                arrows = true,
+                dots = false,
+                slidesToShow = 4,
+                slidesToScroll = 1,
+                infinite = true,
+                autoplay = true,
+                autoplaySpeed = 1500,
+                responsive = responsiveSettingsList,
+            };
+
+        CallBackConfigurations = new WMBSCInitialSettings
+            {
+                arrows = true,
+                dots = false,
+                slidesToShow = 4,
+                slidesToScroll = 1,
+                infinite = true,
+                autoplay = true,
+                autoplaySpeed = 1500,
+                responsive = responsiveSettingsList,
+            };
+    }
+
+    public async void ShowCurrentSlideIndex()
+    {
+        if(theCarousel != null){
+            int currentSlide = await theCarousel.CurrentSlide();
+        }
+    }
+
+    public async void GoTo(int slideNumber)
+    {
+        if(theCarousel != null){
+        await theCarousel.GoTo(slideNumber);
+        }
+    }
+
+    public async void Next()
+    {
+        if(theCarousel != null){
+            await theCarousel.Next();
+        }
+    }
+
+    public async void Prev()
+    {
+        if(theCarousel != null){
+            await theCarousel.Prev();
+        }
+    }
+
+    public async void Add()
+    {
+        if(theCarousel != null){
+            await theCarousel.Add("<div><img src='../assets/images/media/media-42.jpg' /></div>");
+        }
+    }
+
+    public async void Remove(int slideNumber, bool removeBefore)
+    {
+        if(theCarousel != null){
+            await theCarousel.Remove(slideNumber, removeBefore);
+        }
+    }
+
+    public async void Destroy()
+    {
+        if(theCarousel != null){
+            await theCarousel.Destroy();
+        }
+    }
+
+    public async void Constroy()
+    {
+        if(theCarousel != null){
+            await theCarousel.Constroy(theCarousel.Configurations);
+        }
+    }
+}

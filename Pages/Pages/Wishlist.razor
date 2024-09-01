@@ -1,0 +1,111 @@
+@page "/wishlist"
+@inject SweetAlertService Swal
+@inject ProductListService ProductListService
+@inject NavigationManager NavigationManager
+
+            <div class="container-fluid">
+
+                <!-- Page Header -->
+                <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                    <h1 class="page-title fw-semibold fs-18 mb-0">Wishlist</h1>
+                    <div class="ms-md-1 ms-0">
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Ecommerce</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Page Header Close -->
+
+                <!-- Start::row-1 -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-body d-sm-flex align-items-center justify-content-between">
+                                <div class="fs-15 mb-sm-0 mb-2">Total <span class="badge bg-success">12</span> products are wishlisted</div>
+                                <div class="d-flex" role="search">
+                                    <input class="form-control form-control-sm me-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-sm btn-light" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @foreach (var ProductList in ProductListService.GetProductLists())
+                    {
+                        <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="card custom-card product-card">
+                                <div class="card-body">
+                                    <a href="javascript:void(0)" class="product-image">
+                                        <img src="@ProductList.Product" class="card-img mb-3" alt="...">
+                                    </a>
+                                    <div class="product-icons">
+                                        <a href="javascript:void(0);"  class="wishlist btn-delete" @onclick="@(async () => await ShowDeleteAlert(ProductList))" ><i class="ri-close-line"></i></a>
+                                    </div>
+                                    <p class="product-name fw-semibold mb-0 d-flex align-items-center justify-content-between">@ProductList.ProductTitle<span class="float-end text-warning fs-12">@ProductList.Rating<i class="ri-star-s-fill align-middle ms-1 d-inline-block"></i></span></p>
+                                    <p class="product-description fs-11 text-muted mb-2">@ProductList.Description</p>
+                                    <p class="mb-1 fw-semibold fs-16 d-flex align-items-center justify-content-between"><span>@ProductList.Price<span class="text-muted text-decoration-line-through ms-1 d-inline-block op-6">@ProductList.ActualPrice</span></span><span class="badge @ProductList.BadgeClass float-end fs-10">@ProductList.Badge</span></p>
+                                    <p class="fs-11 text-success fw-semibold mb-0 d-flex align-items-center">
+                                        <i class="ti ti-discount-2 fs-16 me-1"></i>Offer Price @ProductList.Price
+                                    </p>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <a href="/cart" class="btn btn-primary-light m-1"><i class="ri-shopping-cart-2-line me-2 align-middle d-inline-block"></i>Move To Cart</a>
+                                    <a href="/product-details" class="btn btn-success-light m-1"><i class="ri-eye-line me-2 align-middle d-inline-block"></i>View Product</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <!--End::row-1 -->
+
+                <ul class="pagination justify-content-end">
+                    <li class="page-item disabled">
+                        <a class="page-link">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:void(0);">Next</a>
+                    </li>
+                </ul>
+
+            </div>
+            
+    <!-- Sweetalerts JS -->
+    <script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.min.js"></script>
+
+@code {
+    private async Task ShowDeleteAlert(ProductList ProductId)
+    {
+        var confirmResult = await Swal.FireAsync(new SweetAlertOptions
+        {
+            Title = "Are you sure?",
+            Text = "You won't be able to revert this!",
+            Icon = SweetAlertIcon.Warning,
+            ShowCancelButton = true,
+            ConfirmButtonColor = "#3085d6",
+            CancelButtonColor = "#d33",
+            ConfirmButtonText = "Yes, delete it!"
+        });
+      
+        if (confirmResult.IsConfirmed)
+        {
+            await DeleteProductList(ProductId);
+        }
+    }
+    
+    protected async Task DeleteProductList(ProductList ProductId)
+    {
+        ProductListService.DeleteProductList(ProductId?.ProductId);
+        await Swal.FireAsync(new SweetAlertOptions
+        {
+            Title = "Deleted!",
+            Text = "Your file has been deleted.",
+            Icon = SweetAlertIcon.Success,
+        });
+        NavigationManager.NavigateTo("/wishlist", forceLoad: false);
+    }
+}
